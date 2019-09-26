@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: edan-backend
+  profiles:
+    active:
+    - admin
