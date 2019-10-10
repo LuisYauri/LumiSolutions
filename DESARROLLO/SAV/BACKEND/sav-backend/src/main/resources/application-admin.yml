@@ -8,9 +8,9 @@ spring:
 #    show-sql: true
   datasource:
 #    driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://35.199.124.47:3306/SAV_BD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-    password: 
+    password: root
 #  jackson:
 #    default-property-inclusion: NON_NULL
 #    deserialization:
