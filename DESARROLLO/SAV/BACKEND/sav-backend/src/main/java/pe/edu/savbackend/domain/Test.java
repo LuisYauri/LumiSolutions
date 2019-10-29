@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +17,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(schema = "SAV_BD", name = "TEST")
+@Table(schema = "SAV_BD", name = "test")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Test {
 	@Id
 	@Column(name = "id_test")
