@@ -2,11 +2,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-  &--title{
-    color: #ffffff;
-    font-size: 20px;
+  height: 200px;
+  margin: 30px 16px 30px;
+}
+
+.sidebar{
+  &__item{
+    font-size: 18px;
+    color: #9899AC;
+  }
+
+  &__icon{
+    padding-left: 39px;
+  }
+
+  &__box{
+    height: 60px;
+    display: flex;
+    align-items: center
   }
 }
