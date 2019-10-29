@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
-import { CommonModule } from '@angular/common';
-import { LoginComponent } from './Login/login.component';
-import { StudentComponent } from './Student/student.component';
-import { TeacherComponent } from './Teacher/teacher.component';
+import {LoginComponent} from './Login/login.component';
+import {StudentComponent} from './Student/student.component';
+import {TeacherComponent} from './Teacher/teacher.component';
+import {CoreModule} from "../core/core.module";
 
 const COMPONENTS = [LoginComponent, StudentComponent, TeacherComponent];
 
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [
-    CommonModule,
-    SharedModule
+    SharedModule,
+    CoreModule
   ],
-  exports:[...COMPONENTS]
+  exports: [...COMPONENTS]
 })
-export class LayoutsModule { }
+export class LayoutsModule {
+}

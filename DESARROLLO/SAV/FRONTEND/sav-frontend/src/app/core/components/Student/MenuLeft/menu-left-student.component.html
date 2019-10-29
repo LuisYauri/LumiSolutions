@@ -1,0 +1,9 @@
+<div class="logo">
+  <div class="logo--title">Aula Virtural</div>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <li nz-menu-item *ngFor="let menu of menus" routerLink="{{menu.url}}" [nzSelected]="false">
+    <i nz-icon nzType="{{menu.icon}}" nzTheme="outline"></i>
+    <span>{{menu.title}}</span>
+  </li>
+</ul>

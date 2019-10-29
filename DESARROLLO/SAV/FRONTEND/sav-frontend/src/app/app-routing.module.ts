@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./layouts/Login/login.component";
 import {StudentComponent} from "./layouts/Student/student.component";
 import {LayoutsModule} from "./layouts/layouts.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "./shared/shared.module";
 
 
 const routes: Routes = [
@@ -35,7 +37,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),LayoutsModule],
+  imports: [RouterModule.forRoot(routes),
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LayoutsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
