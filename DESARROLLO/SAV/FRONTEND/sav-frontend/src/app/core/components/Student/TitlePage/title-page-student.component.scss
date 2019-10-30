@@ -1,0 +1,8 @@
+.title_box {
+  display: flex;
+  &--text {
+    font-weight: normal;
+    font-size: 18px;
+    border-bottom: 3px solid #2C77F4;
+  }
+}

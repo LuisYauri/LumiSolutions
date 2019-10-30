@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeworkStudentComponent implements OnInit {
 
+  varHeader = {
+    title:'Tareas',
+    icon:'file-text',
+    url:''
+  }
+
+  varTitle = 'Lista de Tareas'
   constructor() { }
 
   ngOnInit() {
