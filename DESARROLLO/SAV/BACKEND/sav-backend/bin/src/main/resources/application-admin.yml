@@ -1,0 +1,21 @@
+server:
+  servlet:
+    context-path: /sav-backend/
+
+spring:
+#  jpa:
+#    database-platform: org.hibernate.dialect.Oracle10gDialect
+#    show-sql: true
+  datasource:
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:mysql://35.199.124.47:3306/SAV_BD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+#  jackson:
+#    default-property-inclusion: NON_NULL
+#    deserialization:
+#      FAIL_ON_UNKNOWN_PROPERTIES: false
+#      FAIL_ON_READING_DUP_TREE_KEY: true
+#      FAIL_ON_IGNORED_PROPERTIES: false
+#    serialization:
+#      INDENT_OUTPUT: true
