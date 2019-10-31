@@ -22,7 +22,7 @@ export class MenuService {
       {
         title: 'Criterios',
         key: 'Criterios',
-        url: '/student/history-homework',
+        url: '/student/criteria',
         icon: 'copy',
       },
     ]

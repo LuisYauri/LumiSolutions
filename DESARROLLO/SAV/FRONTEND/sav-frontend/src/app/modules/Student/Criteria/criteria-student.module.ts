@@ -1,12 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
+import {SharedModule} from '../../../shared/shared.module';
+import {CriteriaStudentRoutingModule} from "./criteria-student-routing.module";
+import {CriteriaStudentComponent} from './pages/Criteria/criteria-student.component';
+import {CoreModule} from "../../../core/core.module";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CriteriaStudentComponent],
   imports: [
-    CommonModule
+    SharedModule,
+    CommonModule,
+    CriteriaStudentRoutingModule,
+    CoreModule
   ]
 })
-export class CriteriaStudentModule { }
+export class CriteriaStudentModule {
+}
