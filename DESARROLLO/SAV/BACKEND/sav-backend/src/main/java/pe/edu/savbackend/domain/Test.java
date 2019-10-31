@@ -27,4 +27,8 @@ public class Test {
 	private String campo;
 	@Column(name = "descripcion")
 	private String descripcion;
+	
+
+	//
+	//LocalDateTime
 }
