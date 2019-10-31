@@ -27,10 +27,8 @@ public class TestController {
 	TestService testService;
     
     @RequestMapping("/")
-    public List<Test> get() {
-    	System.out.println("Ingreso a getAll");
-    	System.out.println(testService.getAll());
-        return testService.getAll();
+    public String get() {
+        return "hola soy el test";
     }
     
     @RequestMapping("/{idTest}")
