@@ -1,6 +1,7 @@
 package pe.edu.savbackend.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,7 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import pe.edu.savbackend.dao.DocenteDao;
+import pe.edu.savbackend.dao.EstudianteDao;
+import pe.edu.savbackend.dao.PersonaDao;
+import pe.edu.savbackend.domain.DatosEstudiante;
 import pe.edu.savbackend.domain.Test;
+import pe.edu.savbackend.entity.Docente;
+import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.service.TestService;
 
 /**
@@ -25,6 +32,15 @@ public class TestController {
 
 	@Autowired
 	TestService testService;
+	@Autowired
+	EstudianteDao personaDao;
+
+
+	@RequestMapping("/personas-prueba")
+	public List<DatosEstudiante> getPersonas() {
+		return personaDao.listEstudiante();
+	}
+
 
 	@RequestMapping("/")
 	public List<Test> get() {
