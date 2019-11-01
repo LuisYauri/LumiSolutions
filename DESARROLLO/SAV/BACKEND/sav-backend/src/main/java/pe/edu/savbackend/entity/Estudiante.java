@@ -17,16 +17,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "usuarios")
+@Table(name = "estudiantes")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Usuario {
+public class Estudiante {
 	@Id
+	@Column(name="id")
+	private Integer id;
+	@Column(name="id_personas")
+	private Integer idPersona;
 	@Column(name="username")
 	private String username;
-	@Column(name="contrasenia")
-	private String contrasenia;
-	@Column(name="cod_estado")
-	private String codigoEstado;
-	@Column(name="id_roles")
-	private String idRoles;
+	@Column(name="correo_apoderado")
+	private String correoApoderado;
 }
