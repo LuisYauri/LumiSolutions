@@ -8,4 +8,7 @@ import pe.edu.savbackend.domain.Test;
 public interface TestDao extends JpaRepository<Test, Integer> {
 	@Query(value = "select max(t.idTest)+ 1 from Test t")
 	Integer nextId();
+	
+//	@Query(value = "select new pe.edu.savbackend.domain.Ejemplo(t.username) from Usuario")
+//	List<Ejemplo> ejemplo();
 }

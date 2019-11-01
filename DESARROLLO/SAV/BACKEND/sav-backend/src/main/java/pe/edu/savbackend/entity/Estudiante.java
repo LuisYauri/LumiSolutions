@@ -23,7 +23,7 @@ public class Estudiante {
 	@Id
 	@Column(name="id")
 	private Integer id;
-	@Column(name="id_personas")
+	@Column(name="id_persona")
 	private Integer idPersona;
 	@Column(name="username")
 	private String username;
