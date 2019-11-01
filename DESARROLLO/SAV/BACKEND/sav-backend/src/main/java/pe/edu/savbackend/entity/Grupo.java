@@ -1,5 +1,7 @@
 package pe.edu.savbackend.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,16 +19,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "usuarios")
+@Table(name = "grupos")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Usuario {
+public class Grupo {
 	@Id
-	@Column(name="username")
-	private String username;
-	@Column(name="contrasenia")
-	private String contrasenia;
+	@Column(name="id")
+	private Integer id;
+	
+	@Column(name="nombre")
+	private String nombre;
+	
+	@Column(name="cod_grado")
+	private String codigoGrado;
+	
+	@Column(name="anio")
+	private LocalDateTime anio;
+	
 	@Column(name="cod_estado")
 	private String codigoEstado;
-	@Column(name="cod_rol")
-	private String codigoRoles;
+	
+	@Column(name="id_docente")
+	private String idDocente;
 }
