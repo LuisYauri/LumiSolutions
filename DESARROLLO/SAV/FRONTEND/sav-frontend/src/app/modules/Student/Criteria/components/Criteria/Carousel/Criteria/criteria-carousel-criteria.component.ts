@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {interval, Observable} from "rxjs";
 import {NguCarouselConfig} from "@ngu/carousel";
 import {map, startWith, take} from "rxjs/operators";
@@ -12,6 +12,8 @@ import {Criteria} from "../../../../model/criteria.model";
 export class CriteriaCarouselCriteriaComponent implements OnInit {
 
   @Input() listCriteria: Criteria[] = null
+  @Output() getCriterio = new EventEmitter();
+
 
   carouselTileItems$: Observable<Criteria[]>;
   carouselTileConfig: NguCarouselConfig = {
@@ -30,8 +32,7 @@ export class CriteriaCarouselCriteriaComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.listCriteria)
-    this.carouselTileItems$ = interval(500).pipe(
+    this.carouselTileItems$ = interval(10000).pipe(
       startWith(-1),
       take(this.listCriteria.length),
       map(val => {
@@ -41,8 +42,7 @@ export class CriteriaCarouselCriteriaComponent implements OnInit {
 
   }
 
-
-  selectItem(item: Criteria) {
-    console.log(item)
+  sendCriterio(item: Criteria) {
+    this.getCriterio.emit(item)
   }
 }

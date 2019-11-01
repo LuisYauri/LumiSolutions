@@ -168,7 +168,6 @@ export class CriteriaStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.listCriteria)
     this.getListCriteria()
     this.listCriteria = [...this.listCriteria]
     this.varLoading = true
@@ -185,4 +184,11 @@ export class CriteriaStudentComponent implements OnInit {
   }
 
 
+  getCriterio($event: Criteria) {
+    console.log($event)
+  }
+
+  getContent($event: Content) {
+    console.log($event)
+  }
 }

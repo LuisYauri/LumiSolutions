@@ -9,6 +9,7 @@ import {CoreModule} from "../../../core/core.module";
 import { NguCarouselModule } from '@ngu/carousel';
 import { CriteriaCarouselCriteriaComponent } from './components/Criteria/Carousel/Criteria/criteria-carousel-criteria.component';
 import { ContentCarouselCriteriaComponent } from './components/Criteria/Carousel/Content/content-carousel-criteria.component';
+import { ContentStudentComponent } from './pages/Content/content-student.component';
 
 const CRITERIA_PAGES = [CriteriaStudentComponent]
 const CRITERIA_COMPONENTS = [CriteriaCarouselCriteriaComponent]
@@ -16,7 +17,7 @@ const CRITERIA_ENTRY_COMPONENTS=[]
 @NgModule({
   exports: [...CRITERIA_COMPONENTS],
   entryComponents: [...CRITERIA_ENTRY_COMPONENTS],
-  declarations: [...CRITERIA_PAGES, CRITERIA_COMPONENTS, ContentCarouselCriteriaComponent],
+  declarations: [...CRITERIA_PAGES, CRITERIA_COMPONENTS, ContentCarouselCriteriaComponent, ContentStudentComponent],
   imports: [
     SharedModule,
     CommonModule,

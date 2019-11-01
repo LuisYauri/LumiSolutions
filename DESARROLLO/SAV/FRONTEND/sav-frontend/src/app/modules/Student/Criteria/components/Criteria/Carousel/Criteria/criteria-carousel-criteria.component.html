@@ -1,5 +1,5 @@
 <ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
-      <ngu-tile *nguCarouselDef="let item;" (click)="selectItem(item)">
+      <ngu-tile *nguCarouselDef="let item;" (click)="sendCriterio(item)">
         <div class="tile" [style.background]="'url('+item.urlImagen+')'">
         </div>
         <div class="carousel__text">
