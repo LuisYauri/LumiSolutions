@@ -17,6 +17,7 @@ import pe.edu.savbackend.entity.Grupo;
 import pe.edu.savbackend.entity.Matricula;
 import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.entity.Pregunta;
+import pe.edu.savbackend.entity.TablaMaestra;
 import pe.edu.savbackend.entity.Usuario;
 
 /**
@@ -109,5 +110,12 @@ public class PRUEBA_CONTROLLER {
 	@RequestMapping("evaluacionDetalles")
 	public List<EvaluacionDetalle> getEvaluacionDetalles() {
 		return evaluacionDetalleDao.findAll();
+  }
+  
+	@Autowired
+	TablaMaestraDao tablaMaestraDao;
+	@RequestMapping("tablas-maestras")
+	public List<TablaMaestra> getTablaMaestra() {
+		return tablaMaestraDao.findAll();
 	}
 }
