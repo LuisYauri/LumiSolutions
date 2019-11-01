@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Calificacion {
-	
+
 	private Integer idCalificacion;
 	private Integer calificacion;
-	private Integer idRecurso; //nombre apellido
+	private Integer idRecurso; // nombre apellido
 	private Integer idEstudiante;
-	
+
 }

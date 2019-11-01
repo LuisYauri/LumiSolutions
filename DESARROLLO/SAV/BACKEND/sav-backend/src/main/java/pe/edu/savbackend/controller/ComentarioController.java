@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.Comentario;
 
-
 @RestController
 @RequestMapping("/comentarios")
 public class ComentarioController {
@@ -19,23 +18,22 @@ public class ComentarioController {
 //        		Pregunta.builder().build(),
 //        		Pregunta.builder().build());
 //    }
-    
+
 //    //comprobar pregunta
 //    @PostMapping(value = "/{idPregunta}/comprobar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public Boolean comprobarPregunta(@RequestBody Pregunta er) {
 //        return true;
 //    }
-    
-    
+
 //    @RequestMapping("/{idTest}")
 //    public Tarea getById(@PathVariable Integer idTest) {
 //        return Tarea.builder().build();
 //    }
 //    
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Comentario register(@RequestBody Comentario er) {
-        return null;
-    }
+	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Comentario register(@RequestBody Comentario er) {
+		return null;
+	}
 //    
 //    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //	public Test update(@RequestBody Test er) {

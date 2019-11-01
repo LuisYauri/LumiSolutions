@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.Calificacion;
 
-
 @RestController
 @RequestMapping("/calificaciones")
 public class CalificacionController {
@@ -20,23 +19,22 @@ public class CalificacionController {
 //        		Pregunta.builder().build(),
 //        		Pregunta.builder().build());
 //    }
-    
+
 //    //comprobar pregunta
 //    @PostMapping(value = "/{idPregunta}/comprobar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public Boolean comprobarPregunta(@RequestBody Pregunta er) {
 //        return true;
 //    }
-    
-    
+
 //    @RequestMapping("/{idTest}")
 //    public Tarea getById(@PathVariable Integer idTest) {
 //        return Tarea.builder().build();
 //    }
 //    
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Calificacion registerUpdate(@RequestBody Calificacion er) {
-        return Calificacion.builder().build();
-    }
+	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Calificacion registerUpdate(@RequestBody Calificacion er) {
+		return Calificacion.builder().build();
+	}
 //    
 //    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //	public Calificacion update(@RequestBody Calificacion er) {

@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Criterio {
-	
+
 	private Integer idCriterio;
-	private Integer nombre; 
-	private String urlImagen; 
+	private Integer nombre;
+	private String urlImagen;
 
 }

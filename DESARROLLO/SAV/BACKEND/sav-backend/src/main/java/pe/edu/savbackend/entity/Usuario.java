@@ -1,4 +1,4 @@
-package pe.edu.savbackend.domain;
+package pe.edu.savbackend.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,17 +17,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(schema = "SAV_BD", name = "test")
+@Table(name = "usuario")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Test {
+public class Usuario {
 	@Id
-	@Column(name = "id_test")
-	private Integer idTest;
-	@Column(name = "campo")
-	private String campo;
-	@Column(name = "descripcion")
-	private String descripcion;
-
-	//
-	// LocalDateTime
+	@Column(name="usuario")
+	private String usuario;
+	@Column(name="contrasenia")
+	private String contrasenia;
 }

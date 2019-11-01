@@ -20,10 +20,10 @@ public class Tarea {
 	private String fechaLimite;
 	private String tiempoLimite;
 	private String contenido;
-	
+
 	private Date fechaSolucion;
 	private Integer idEstudiante;
 	private List<Pregunta> lsPreguntas;
-	
+
 	private Estadistica estadistica;
 }

@@ -14,7 +14,7 @@ public class TestServiceImpl implements TestService {
 
 	@Autowired
 	private TestDao testDao;
-	
+
 	@Override
 	public List<Test> getAll() {
 		// TODO Auto-generated method stub
@@ -37,15 +37,15 @@ public class TestServiceImpl implements TestService {
 	@Override
 	public Test update(Test test) {
 		// TODO Auto-generated method stub
-		if(!testDao.existsById(test.getIdTest())) {
-    		throw new RuntimeException("No existe registro con id " + test.getIdTest());
-    	}
+		if (!testDao.existsById(test.getIdTest())) {
+			throw new RuntimeException("No existe registro con id " + test.getIdTest());
+		}
 		return testDao.save(test);
 	}
 
 	@Override
 	public void delete(Integer idTest) {
-		testDao.deleteById(idTest);		
+		testDao.deleteById(idTest);
 	}
-	
+
 }

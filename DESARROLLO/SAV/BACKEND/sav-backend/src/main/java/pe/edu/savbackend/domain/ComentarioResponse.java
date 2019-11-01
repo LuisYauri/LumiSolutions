@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class ComentarioResponse {
-	
+
 	private Integer idEstudiante;
-	private String inicialesEstudiante; //nombre apellido
+	private String inicialesEstudiante; // nombre apellido
 	private String apellidoPaternoEstudiante;
 	private String nombreEstudiante;
 	private String descripcion;
-	
+
 }
