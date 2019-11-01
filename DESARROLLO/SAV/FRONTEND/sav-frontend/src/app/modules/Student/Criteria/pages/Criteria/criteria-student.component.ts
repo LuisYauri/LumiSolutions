@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Criteria} from "../../model/criteria.model";
+import {Content, Criteria} from "../../model/criteria.model";
 import {CriteriaStudentService} from "../../services/criteria-student.service";
+
+
 
 @Component({
   selector: 'app-criteria-student',
@@ -14,8 +16,10 @@ export class CriteriaStudentComponent implements OnInit {
     icon: 'copy',
     url: ''
   }
+  varLoading = false
 
-  varTitle = 'Lista de criterios'
+  varTitleCriterio = 'Criterios'
+  varTitleCotenido = 'Contenidos'
 
   listCriteria: Criteria[] = [
     {
@@ -61,15 +65,116 @@ export class CriteriaStudentComponent implements OnInit {
       "urlImagen": "https://drupal.ed.team/sites/default/files/imagenes-cdn-edteam/2019-03/Redes%20Conmutacion.png"
     }
   ]
+  listContent: Content[] = [
+    {
+      "idCriterio": 1,
+      "idContenido": 1,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    },
+    {
+      "idCriterio": 1,
+      "idContenido": 2,
+      "nombre": "Criterio1",
+      "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
+    }
+  ]
 
-  constructor(private criteriaStudentService: CriteriaStudentService) {
+  constructor(private criteriaStudentService: CriteriaStudentService,) {
   }
 
   ngOnInit() {
+    console.log(this.listCriteria)
     this.getListCriteria()
+    this.listCriteria = [...this.listCriteria]
+    this.varLoading = true
   }
 
-  private async getListCriteria() {
+  private getListCriteria() {
     // //Consumo de servicio
     // try {
     //   const response: any = await this.criteriaStudentService.getListCriteria().toPromise()
@@ -78,5 +183,6 @@ export class CriteriaStudentComponent implements OnInit {
     //   console.log(e)
     // }
   }
+
 
 }
