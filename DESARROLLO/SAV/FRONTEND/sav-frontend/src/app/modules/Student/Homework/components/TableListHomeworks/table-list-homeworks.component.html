@@ -1,0 +1,30 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+  	<nz-table #tableHomeworks [nzData]="items">
+	  <thead>
+	    <tr>
+	      <th>Nro</th>
+	      <th>Título</th>
+	      <th>Cantidad</th>
+	      <th>Fecha(Límite)</th>
+	      <th>Tiempo(Límite)</th>
+	      <th>Contenido</th>
+	      <th>Contenido</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr *ngFor="let homework of tableHomeworks.data">
+	      <td>{{ homework.idTarea }}</td>
+	      <td>{{ homework.titulo }}</td>
+	      <td>{{ homework.cantidadPreguntas }}</td>
+	      <td>{{ homework.fechaLimite }}</td>
+	      <td>{{ homework.tiempoLimite }}</td>
+	      <td>{{ homework.contenido }}</td>
+	      <td>
+	        <button nz-button nzType="primary" (click)="showModal(homework.idTarea)"><i nz-icon nzType="rocket"></i>Resolver</button>
+	      </td>
+	    </tr>
+	  </tbody>
+	</nz-table>
+  </div>
+</div>

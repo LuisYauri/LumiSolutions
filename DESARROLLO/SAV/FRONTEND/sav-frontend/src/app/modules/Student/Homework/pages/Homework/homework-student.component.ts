@@ -14,9 +14,45 @@ export class HomeworkStudentComponent implements OnInit {
   }
 
   varTitle = 'Lista de Tareas'
-  constructor() { }
+
+  homeworks = [
+    {
+      idTarea: '1',
+      titulo: 'Tarea 1',
+      cantidadPreguntas: '10',
+      fechaLimite: '17-01-15',
+      tiempoLimite: '10:00 horas',
+      contenido: 'NroNaturales'
+    },{
+      idTarea: '2',
+      titulo: 'Tarea 2',
+      cantidadPreguntas: '10',
+      fechaLimite: '17-01-15',
+      tiempoLimite: '10:00 horas',
+      contenido: 'NroNaturales'
+    },{
+      idTarea: '3',
+      titulo: 'Tarea 3',
+      cantidadPreguntas: '10',
+      fechaLimite: '17-01-15',
+      tiempoLimite: '10:00 horas',
+      contenido: 'NroNaturales'
+    },{
+      idTarea: '4',
+      titulo: 'Tarea 4',
+      cantidadPreguntas: '10',
+      fechaLimite: '17-01-15',
+      tiempoLimite: '10:00 horas',
+      contenido: 'NroNaturales'
+    }
+  ];
+
+  constructor() { 
+
+  }
 
   ngOnInit() {
   }
+
 
 }
