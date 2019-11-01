@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Content, Criteria} from "../../model/criteria.model";
+import {Content, Criteria} from "../../model/criteria-student.model";
 import {CriteriaStudentService} from "../../services/criteria-student.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 
@@ -164,7 +165,7 @@ export class CriteriaStudentComponent implements OnInit {
     }
   ]
 
-  constructor(private criteriaStudentService: CriteriaStudentService,) {
+  constructor(private criteriaStudentService: CriteriaStudentService,private route: ActivatedRoute,private router: Router) {
   }
 
   ngOnInit() {
@@ -189,6 +190,6 @@ export class CriteriaStudentComponent implements OnInit {
   }
 
   getContent($event: Content) {
-    console.log($event)
+    this.router.navigate(['/student/criteria/content/',$event.idContenido.toString()]);
   }
 }

@@ -11,13 +11,13 @@ import { CriteriaCarouselCriteriaComponent } from './components/Criteria/Carouse
 import { ContentCarouselCriteriaComponent } from './components/Criteria/Carousel/Content/content-carousel-criteria.component';
 import { ContentStudentComponent } from './pages/Content/content-student.component';
 
-const CRITERIA_PAGES = [CriteriaStudentComponent]
-const CRITERIA_COMPONENTS = [CriteriaCarouselCriteriaComponent]
+const CRITERIA_PAGES = [CriteriaStudentComponent,ContentStudentComponent]
+const CRITERIA_COMPONENTS = [CriteriaCarouselCriteriaComponent,ContentCarouselCriteriaComponent]
 const CRITERIA_ENTRY_COMPONENTS=[]
 @NgModule({
   exports: [...CRITERIA_COMPONENTS],
   entryComponents: [...CRITERIA_ENTRY_COMPONENTS],
-  declarations: [...CRITERIA_PAGES, CRITERIA_COMPONENTS, ContentCarouselCriteriaComponent, ContentStudentComponent],
+  declarations: [...CRITERIA_PAGES, CRITERIA_COMPONENTS],
   imports: [
     SharedModule,
     CommonModule,
