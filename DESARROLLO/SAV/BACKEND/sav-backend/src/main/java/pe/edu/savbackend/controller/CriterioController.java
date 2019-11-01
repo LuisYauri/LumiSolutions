@@ -25,13 +25,11 @@ import pe.edu.savbackend.service.TestService;
 @RequestMapping("/criterios")
 public class CriterioController {
 
+	@RequestMapping("/")
+	public List<Criterio> getAll() {
+		return Arrays.asList(Criterio.builder().build());
+	}
 
-    
-    @RequestMapping("/")
-    public List<Criterio> getAll() {
-        return Arrays.asList(Criterio.builder().build());
-    }
-    
 //    @RequestMapping("/{idTest}")
 //    public Test getById(@PathVariable Integer idTest) {
 //    	System.out.println("Ingreso a get");

@@ -16,30 +16,30 @@ import pe.edu.savbackend.domain.tarea.Examen;
 @RequestMapping("/historiales")
 public class HistorialController {
 
-	 //listar tareas sin preguntas
-    @RequestMapping("?idEstudiante={idEstudiante}&fecha={fecha}")
-    public Historial getAll(@PathVariable String idEstudiante) {
-        return Historial.builder().build();//filtrar por estudiante
-    }
-    
-    //listar tareas con preguntas
-    @RequestMapping("/estadisticas?idEstudiante={idEstudiante}&idEvaluacion={idEvaluacion}")
-    public Estadistica filtrarEstadisticas(@PathVariable Integer idEvaluacion) {
-        return Estadistica.builder().build();
-    }
-    
-    //listar tareas con preguntas
-    @RequestMapping("/preguntas?idEstudiante={idEstudiante}&idEvaluacion={idEvaluacion}")
-    public Examen filtrarHistorialPreguntas(@PathVariable Integer idEvaluacion) {
-        return Examen.builder().build();
-    }
+	// listar tareas sin preguntas
+	@RequestMapping("?idEstudiante={idEstudiante}&fecha={fecha}")
+	public Historial getAll(@PathVariable String idEstudiante) {
+		return Historial.builder().build();// filtrar por estudiante
+	}
+
+	// listar tareas con preguntas
+	@RequestMapping("/estadisticas?idEstudiante={idEstudiante}&idEvaluacion={idEvaluacion}")
+	public Estadistica filtrarEstadisticas(@PathVariable Integer idEvaluacion) {
+		return Estadistica.builder().build();
+	}
+
+	// listar tareas con preguntas
+	@RequestMapping("/preguntas?idEstudiante={idEstudiante}&idEvaluacion={idEvaluacion}")
+	public Examen filtrarHistorialPreguntas(@PathVariable Integer idEvaluacion) {
+		return Examen.builder().build();
+	}
 //    
 //    @PostMapping(value = "/{idExamen}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //	  public Estadistica finalizar(@RequestBody Examen idExamen) {
 //	  	System.out.println("Ingreso a post " + idExamen);
 //	      return Estadistica.builder().build();
 //	  }
-    
+
 //    
 //    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public Test register(@RequestBody Test er) {

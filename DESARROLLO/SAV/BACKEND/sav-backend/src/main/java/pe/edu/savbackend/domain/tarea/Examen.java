@@ -14,15 +14,16 @@ import pe.edu.savbackend.domain.tarea.Tarea.TareaBuilder;
 @NoArgsConstructor
 @Builder
 public class Examen {
-	private Integer idExamen;   private Integer idEvaluacion; // idEslaucio e idExamen  contienen lo mismo 
+	private Integer idExamen;
+	private Integer idEvaluacion; // idEslaucio e idExamen contienen lo mismo
 	private String titulo;
 	private String cantidadPreguntas;
 	private String fechaInico;
 	private String horaInicio;
 	private Integer duracion; // en minutos
-	
+
 	private Date fechaSolucion;
 	private Integer idEstudiante;
 	private List<Pregunta> lsPreguntas;
-	
+
 }

@@ -11,19 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.tarea.Pregunta;
 
-
 @RestController
 @RequestMapping("/preguntas")
 public class PreguntaController {
 
-    
-    //comprobar pregunta
-    @PostMapping(value = "/{idPregunta}/comprobar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Boolean comprobarPregunta(@RequestBody Pregunta er) {
-        return true;
-    }
-    
-    
+	// comprobar pregunta
+	@PostMapping(value = "/{idPregunta}/comprobar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Boolean comprobarPregunta(@RequestBody Pregunta er) {
+		return true;
+	}
+
 //    @RequestMapping("/{idTest}")
 //    public Tarea getById(@PathVariable Integer idTest) {
 //        return Tarea.builder().build();

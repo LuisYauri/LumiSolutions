@@ -19,8 +19,8 @@ public class Pregunta {
 	private Integer tipo; // tipo 0 es para completar, tipo 1 para llenar // se maneja 5 alternativas
 	private String urlImagen;
 	private String[] alternativas;
-	
+
 	private String respuestaEstudiante;
 	private String respuestaCorrecta;
-	
+
 }

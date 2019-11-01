@@ -21,26 +21,24 @@ import pe.edu.savbackend.domain.tarea.Tarea;
 @RequestMapping("/tareas")
 public class TareaController {
 
-	 //listar tareas sin preguntas
-    @RequestMapping("?idEstudiante={idEstudiante}&fecha={fecha}")
-    public List<Tarea> getAll(@PathVariable String idEstudiante) {
-        return Arrays.asList(
-        		Tarea.builder().build(),
-        		Tarea.builder().build());//filtrar por estudiante
-    }
-    
-    //listar tareas con preguntas
-    @RequestMapping("/{idTareas}/preguntas")
-    public Tarea getPreguntasPorTarea(@PathVariable Integer idTareas) {
-        return Tarea.builder().build();
-    }
-    
-    @PostMapping(value = "/{idTareas}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-  public Estadistica finalizar(@RequestBody Tarea er) {
-  	System.out.println("Ingreso a post " + er);
-      return Estadistica.builder().build();
-  }
-    
+	// listar tareas sin preguntas
+	@RequestMapping("?idEstudiante={idEstudiante}&fecha={fecha}")
+	public List<Tarea> getAll(@PathVariable String idEstudiante) {
+		return Arrays.asList(Tarea.builder().build(), Tarea.builder().build());// filtrar por estudiante
+	}
+
+	// listar tareas con preguntas
+	@RequestMapping("/{idTareas}/preguntas")
+	public Tarea getPreguntasPorTarea(@PathVariable Integer idTareas) {
+		return Tarea.builder().build();
+	}
+
+	@PostMapping(value = "/{idTareas}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Estadistica finalizar(@RequestBody Tarea er) {
+		System.out.println("Ingreso a post " + er);
+		return Estadistica.builder().build();
+	}
+
 //    
 //    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public Test register(@RequestBody Test er) {

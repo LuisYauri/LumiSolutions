@@ -8,10 +8,12 @@ spring:
 #    show-sql: true
   datasource:
 #    driver-class-name: oracle.jdbc.driver.OracleDriver
-#    url: jdbc:mysql://35.199.124.47:3306/SAV_BD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    url: jdbc:mysql://uadids81xbjsrck3:l4WYWPKehOUa2zvXobDk@bzmytufp51dwgxbqcq22-mysql.services.clever-cloud.com:3306/bzmytufp51dwgxbqcq22
+    url: jdbc:mysql://35.199.124.47:3306/SAV_BD?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: root
+#    url: jdbc:mysql://uadids81xbjsrck3:l4WYWPKehOUa2zvXobDk@bzmytufp51dwgxbqcq22-mysql.services.clever-cloud.com:3306/bzmytufp51dwgxbqcq22
+#    username: uadids81xbjsrck3
+#    password: l4WYWPKehOUa2zvXobDk
 #  jackson:
 #    default-property-inclusion: NON_NULL
 #    deserialization:

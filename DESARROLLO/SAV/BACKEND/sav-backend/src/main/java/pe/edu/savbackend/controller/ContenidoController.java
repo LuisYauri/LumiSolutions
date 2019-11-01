@@ -3,12 +3,11 @@ package pe.edu.savbackend.controller;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.Contenido;
-import pe.edu.savbackend.domain.Criterio;
 
 /**
  * UsuariosController
@@ -18,13 +17,13 @@ import pe.edu.savbackend.domain.Criterio;
 @RequestMapping("/contenidos")
 public class ContenidoController {
 
+	@RequestMapping("")//"?idCriterio={idCriterio}&codigoGrado={codigoGrado}"
+	public List<Contenido> filtrar(@RequestParam(required = false) String idCriterio, @RequestParam(required = false) String codigoGrado) {
+		System.out.println("idCriterio = " + idCriterio);
+		System.out.println("codigoGrado = " + codigoGrado);
+		return Arrays.asList(Contenido.builder().nombre("contenido 2").build());
+	}
 
-    
-    @RequestMapping("?idCriterio={idCriterio}&codigoGrado={codigoGrado}")
-    public List<Contenido> filtrar(@PathVariable Integer idCriterio) {
-        return Arrays.asList(Contenido.builder().build());
-    }
-    
 //    @RequestMapping("/{idTest}")
 //    public Test getById(@PathVariable Integer idTest) {
 //    	System.out.println("Ingreso a get");

@@ -13,7 +13,7 @@ import pe.edu.savbackend.domain.tarea.Tarea.TareaBuilder;
 @NoArgsConstructor
 @Builder
 public class TipoResultado {
-	private String tipo;  // "Correcto, Incorrecto, Sin responder
+	private String tipo; // "Correcto, Incorrecto, Sin responder
 	private Integer porcentaje;
 	private Integer cantidad;
 }

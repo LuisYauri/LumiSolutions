@@ -25,32 +25,32 @@ public class TestController {
 
 	@Autowired
 	TestService testService;
-    
-    @RequestMapping("/")
-    public String get() {
-        return "hola soy el test";
-    }
-    
-    @RequestMapping("/{idTest}")
-    public Test getById(@PathVariable Integer idTest) {
-    	System.out.println("Ingreso a get");
-        return testService.get(idTest);
-    }
-    
-    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Test register(@RequestBody Test er) {
-    	System.out.println("Ingreso a post " + er);
-        return testService.register(er);
-    }
-    
-    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Test update(@RequestBody Test er) {
-    	
-	  	return testService.update(er);
+
+	@RequestMapping("/")
+	public List<Test> get() {
+		return testService.getAll();
 	}
-    
-    @DeleteMapping(value = "/{idTest}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping("/{idTest}")
+	public Test getById(@PathVariable Integer idTest) {
+		System.out.println("Ingreso a get");
+		return testService.get(idTest);
+	}
+
+	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Test register(@RequestBody Test er) {
+		System.out.println("Ingreso a post " + er);
+		return testService.register(er);
+	}
+
+	@PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public Test update(@RequestBody Test er) {
+
+		return testService.update(er);
+	}
+
+	@DeleteMapping(value = "/{idTest}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void delete(@PathVariable Integer idTest) {
-	  	 testService.delete(idTest);
+		testService.delete(idTest);
 	}
 }

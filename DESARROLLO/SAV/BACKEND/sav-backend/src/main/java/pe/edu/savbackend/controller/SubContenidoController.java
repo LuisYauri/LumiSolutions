@@ -17,13 +17,11 @@ import pe.edu.savbackend.domain.SubContenido;
 @RequestMapping("/subContenidos")
 public class SubContenidoController {
 
+	@RequestMapping("?idContenido={idContenido}")
+	public List<SubContenido> filtrar(@PathVariable Integer idCriterio) {
+		return Arrays.asList(SubContenido.builder().build());
+	}
 
-    
-    @RequestMapping("?idContenido={idContenido}")
-    public List<SubContenido> filtrar(@PathVariable Integer idCriterio) {
-        return Arrays.asList(SubContenido.builder().build());
-    }
-    
 //    @RequestMapping("/{idTest}")
 //    public Test getById(@PathVariable Integer idTest) {
 //    	System.out.println("Ingreso a get");

@@ -15,7 +15,7 @@ public class Recurso {
 	private Integer idRecurso;
 	private String nombre;
 	private String descripcion;
-	private String tipo;//PDF/VIDEO
+	private String tipo;// PDF/VIDEO
 	private String urlRecurso; //
 	private Integer alumnoCalificacion;
 	private Double promedioCalificacio;

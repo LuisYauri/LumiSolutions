@@ -17,24 +17,22 @@ import pe.edu.savbackend.domain.Recurso;
 @RequestMapping("/recursos")
 public class RecursoController {
 
-	
-    
-    @RequestMapping("/{idRecurso}")
-    public Recurso getById(@PathVariable Integer idRecurso) {
-        return Recurso.builder().build(); // devolver un recurso con lista de alumnos
-    }
-    
-    @RequestMapping("?idSubContenido={idSubContenido}")
-    public List<Recurso> filtrar(@PathVariable Integer idSubContenido) {
-        return Arrays.asList(Recurso.builder().build()); // devolver un recurso con lista de alumnos
-    }
-    
+	@RequestMapping("/{idRecurso}")
+	public Recurso getById(@PathVariable Integer idRecurso) {
+		return Recurso.builder().build(); // devolver un recurso con lista de alumnos
+	}
+
+	@RequestMapping("?idSubContenido={idSubContenido}")
+	public List<Recurso> filtrar(@PathVariable Integer idSubContenido) {
+		return Arrays.asList(Recurso.builder().build()); // devolver un recurso con lista de alumnos
+	}
+
 //    //listar tareas con preguntas
 //    @RequestMapping("/{idTest}/preguntas")
 //    public List<Tarea> getPreguntasPorTarea(@PathVariable Integer idTest) {
 //        return Arrays.asList(Tarea.builder().build());
 //    }
-    
+
 //    
 //    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 //    public Test register(@RequestBody Test er) {
