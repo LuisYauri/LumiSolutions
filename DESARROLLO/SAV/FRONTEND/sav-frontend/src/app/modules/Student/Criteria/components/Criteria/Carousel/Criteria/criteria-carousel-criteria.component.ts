@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {interval, Observable} from "rxjs";
 import {NguCarouselConfig} from "@ngu/carousel";
 import {map, startWith, take} from "rxjs/operators";
-import {Criteria} from "../../../../model/criteria.model";
+import {Criteria} from "../../../../model/criteria-student.model";
 
 @Component({
   selector: 'app-criteria-carousel-criteria',

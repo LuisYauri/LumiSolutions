@@ -5,5 +5,5 @@
       {{title}}
     </div>
   </div>
-  <i *ngIf="url.length>0" nz-icon nzType="close" nzTheme="outline"></i>
+  <i *ngIf="url.length>0" nz-icon nzType="close" nzTheme="outline" (click)="redirect()"></i>
 </div>

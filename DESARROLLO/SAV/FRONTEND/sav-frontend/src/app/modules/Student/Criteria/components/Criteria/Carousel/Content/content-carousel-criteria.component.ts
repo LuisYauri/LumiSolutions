@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Content} from "../../../../model/criteria.model";
+import {Content} from "../../../../model/criteria-student.model";
 import {interval, Observable} from "rxjs";
 import {NguCarouselConfig} from "@ngu/carousel";
 import {map, startWith, take} from "rxjs/operators";
