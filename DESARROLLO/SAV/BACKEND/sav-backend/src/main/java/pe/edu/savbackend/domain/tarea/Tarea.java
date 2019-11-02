@@ -26,4 +26,10 @@ public class Tarea {
 	private List<Pregunta> lsPreguntas;
 
 	private Estadistica estadistica;
+
+	public Tarea (String titulo, Integer idEstudiante)
+	{
+		this.titulo = titulo;
+		this.idEstudiante = idEstudiante;
+	}
 }
