@@ -9,11 +9,11 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router) { }
-
   ngOnInit() {
+
   }
 
   openView() {
-    this.router.navigate(['/student/homework'])
+    //this.router.navigate(['/student/homework'])
   }
 }
