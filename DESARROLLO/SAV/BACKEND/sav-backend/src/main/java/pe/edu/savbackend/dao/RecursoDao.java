@@ -17,18 +17,18 @@ public interface RecursoDao extends JpaRepository<Recurso, Integer> {
     //Integer alumnoCalificacion, 
     @Query
     (value = "select new pe.edu.savbackend.domain.comentario.RecursoDto( " 
-           + "r.id, r.nombre, r.descripcion, r.codigoTipoRecurso, "
+           + "r.idRecurso, r.nombre, r.descripcion, r.codigoTipoRecurso, "
            + "r.urlRecurso, c.calificacion, r.promedioCalificacion) "
-           + "from Recurso r join Calificacion c on r.id = c.idRecurso where r.id = ?1 and c.idEstudiante = ?2"
+           + "from Recurso r join Calificacion c on r.idRecurso = c.idRecurso where r.idRecurso = ?1 and c.idEstudiante = ?2"
     ) 
     RecursoDto obtenerPorId(Integer idRecurso,Integer idEstudiante);
 
 
     @Query
     (value = "select new pe.edu.savbackend.domain.comentario.RecursoDto( " 
-           + "r.id, r.nombre, r.descripcion, r.codigoTipoRecurso, "
+           + "r.idRecurso, r.nombre, r.descripcion, r.codigoTipoRecurso, "
            + "r.urlRecurso, c.calificacion, r.promedioCalificacion) "
-           + "from Recurso r join Calificacion c on r.id = c.idRecurso where r.idDetalleContenido = ?1"
+           + "from Recurso r join Calificacion c on r.idRecurso = c.idRecurso where r.idSubcontenido = ?1"
     ) 
     List<RecursoDto> filtrarPorIdSubcontenido(Integer idSubContenido);
 

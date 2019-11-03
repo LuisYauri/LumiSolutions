@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiMain: 'API_BACK/'
+  apiMain: 'https://gentle-ridge-09487.herokuapp.com/api/'
 };
 
 /*

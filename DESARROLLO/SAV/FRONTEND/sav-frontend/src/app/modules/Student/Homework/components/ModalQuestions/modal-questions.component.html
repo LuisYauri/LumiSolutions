@@ -1,13 +1,63 @@
-<div class="row">
-	<div nz-col nzSpan="24">
-		<p>Pregunta 1</p>
-		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. </p>
-	</div>
-</div>
-<div class="row">
-	<img src="https://preguntas.tudemia.com/uploads/pregunta/thumb-00001349-rgufrmrizj.png">
+<div>
+  <form nz-form class="login-form" [formGroup]="answersForm">
+    <nz-tabset [nzSelectedIndex]="indexTab" [nzTabPosition]="'left'">
+      <nz-tab *ngFor="let question of questions.lsPreguntas; index as i" nzTitle="Pregunta {{i+1}}"
+              (nzClick)="pressTab(i)">
+        <div class="box_text">{{question.descripcion}}</div>
+        <img class="box__imag" [src]="question.urlImagen" alt="">
+        <div *ngIf="question.tipo == 0">
+          <div class="flex-style">
+            <button nz-button nzType="default" class="btn_global--help" (click)="viewHelp(question)">Ayuda</button>
+            <div class="flex-style">
+              <div class="text-alter">La Respuesta es :</div>
+
+              <nz-input-number class="input-number" formControlName="{{i}}" [nzMin]="-100000000000000000"
+                               [nzMax]="100000000000000000"
+                               [nzStep]="1"></nz-input-number>
+
+              <button nz-button nzType="default" class="btn_global--check" (click)="checkAnswer(question,i)">Comprobar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="question.tipo == 1">
+          <div class="aler-box">
+            <nz-radio-group class="flex-style" formControlName="{{i}}">
+              <label *ngFor="let alter of question.alternativas" nz-radio nzValue="{{alter}}">{{alter}}</label>
+            </nz-radio-group>
+          </div>
+          <div class="flex-style">
+            <button nz-button nzType="default" class="btn_global--help" (click)="viewHelp(question)">Ayuda</button>
+            <button nz-button nzType="default" class="btn_global--check" (click)="checkAnswer(question,i)">Comprobar
+            </button>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </form>
 </div>
 
 <div *nzModalFooter>
-  <button nz-button nzType="primary" (click)="destroyModal()">Custom Submit</button>
+  <div class="flex-style">
+    <div>Pregunta {{indexTab + 1}} de {{questions.lsPreguntas.length}}</div>
+    <div class="">
+      <button nz-button nzType="default" class="btn_global--press" (click)="pre()" *ngIf="indexTab > 0">
+        <span>Anterior</span>
+      </button>
+      <button nz-button nzType="default" class="btn_global--press" (click)="next()"
+              *ngIf="indexTab < questions.lsPreguntas.length-1">
+        <span>Siguiente</span>
+      </button>
+      <button nz-button
+              nzType="primary"
+              class="btn_global--press"
+              nz-popconfirm
+              nzPopconfirmTitle="¿Estas seguro de enviar tus respuestas?"
+              nzPopconfirmPlacement="rightTop"
+              (nzOnConfirm)="sendAnswers()"
+              *ngIf="indexTab === questions.lsPreguntas.length-1">
+        <span>Finalizar</span>
+      </button>
+    </div>
+  </div>
 </div>

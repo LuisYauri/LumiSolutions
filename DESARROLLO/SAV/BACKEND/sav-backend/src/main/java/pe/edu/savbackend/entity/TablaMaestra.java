@@ -26,8 +26,9 @@ import lombok.AllArgsConstructor;
 
 public class TablaMaestra {
     @Id
-    @Column(name="id_tabla")
-    private Integer id;
+    @Column(name="id_tabla_maestra")
+    private Integer idTablaMaestra;
+    
     @Column(name="descripcion")
     private String descripcion;
 }

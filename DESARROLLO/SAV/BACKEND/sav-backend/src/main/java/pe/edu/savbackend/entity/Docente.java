@@ -26,7 +26,8 @@ import lombok.AllArgsConstructor;
 
 public class Docente {
     @Id
-    private Integer id;
+    @Column(name="id")
+    private Integer idDocente;
 	@Column(name="id_persona")
 	private Integer id_persona;
     @Column(name="username")

@@ -23,11 +23,11 @@ import lombok.AllArgsConstructor;
 public class Contenido {
     @Id
     @Column(name="id")
-    private Integer id;
+    private Integer idContenido;
     @Column(name="nombre")
     private String nombre;
     @Column(name="cod_grado")
-    private String codGrado;
+    private String codigoGrado;
     @Column(name="id_criterio")
     private Integer idCriterio;
     @Column(name="url_imagen")

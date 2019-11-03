@@ -27,7 +27,7 @@ public class Pregunta {
 	//Llave primaria
     @Id
 	@Column(name="id")
-	private Integer id;
+	private Integer idPregunta;
 	
 	//Llaves foráneas
 	@Column(name="id_recurso")

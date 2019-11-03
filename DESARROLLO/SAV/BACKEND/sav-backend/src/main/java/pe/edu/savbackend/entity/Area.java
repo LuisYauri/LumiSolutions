@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 public class Area {
     @Id
     @Column(name="id")
-    private Integer id;
+    private Integer idArea;
     @Column(name="nombre")
     private String nombre;
     @Column(name="descripcion")

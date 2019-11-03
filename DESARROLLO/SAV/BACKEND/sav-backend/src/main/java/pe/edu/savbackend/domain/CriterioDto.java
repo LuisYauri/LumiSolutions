@@ -6,13 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class CriterioDto {
 
 	private Integer idCriterio;
-	private Integer nombre;
+	private String nombre;
 	private String urlImagen;
+	
+	public CriterioDto(Integer idCriterio, String nombre, String urlImagen) {
+		this.idCriterio = idCriterio;
+		this.nombre = nombre;
+		this.urlImagen = urlImagen;
+	}
 
+	
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Homework} from "../../model/homework-student.model";
+import {HomeworkStudentService} from "../../services/homework-student.service";
 
 @Component({
   selector: 'app-homework-student',
@@ -14,45 +16,26 @@ export class HomeworkStudentComponent implements OnInit {
   }
 
   varTitle = 'Lista de Tareas'
+  varLoading = true
 
-  homeworks = [
-    {
-      idTarea: '1',
-      titulo: 'Tarea 1',
-      cantidadPreguntas: '10',
-      fechaLimite: '17-01-15',
-      tiempoLimite: '10:00 horas',
-      contenido: 'NroNaturales'
-    },{
-      idTarea: '2',
-      titulo: 'Tarea 2',
-      cantidadPreguntas: '10',
-      fechaLimite: '17-01-15',
-      tiempoLimite: '10:00 horas',
-      contenido: 'NroNaturales'
-    },{
-      idTarea: '3',
-      titulo: 'Tarea 3',
-      cantidadPreguntas: '10',
-      fechaLimite: '17-01-15',
-      tiempoLimite: '10:00 horas',
-      contenido: 'NroNaturales'
-    },{
-      idTarea: '4',
-      titulo: 'Tarea 4',
-      cantidadPreguntas: '10',
-      fechaLimite: '17-01-15',
-      tiempoLimite: '10:00 horas',
-      contenido: 'NroNaturales'
-    }
-  ];
+  listHomeworks: Homework[] = []
 
-  constructor() { 
-
+  constructor(private homeworkStudentService:HomeworkStudentService) {
   }
 
   ngOnInit() {
+    this.getListHomeworks()
   }
 
 
+  private async getListHomeworks() {
+    try {
+      const response:any = await this.homeworkStudentService.getListHomework().toPromise()
+      this.listHomeworks = response
+      this.varLoading = false
+    }catch (e) {
+      this.varLoading = false
+      console.log(e)
+    }
+  }
 }
