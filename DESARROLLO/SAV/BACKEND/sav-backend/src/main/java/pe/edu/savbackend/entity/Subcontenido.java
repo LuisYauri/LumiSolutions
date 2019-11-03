@@ -27,7 +27,9 @@ public class Subcontenido {
     @Column(name="descripcion")
     private String descripcion;
     @Column(name="id_contenido")
-    private Integer id_contenido;
+    private Integer idContenido;
     @Column(name="nombre")
     private String nombre;
+    @Column(name="url_imagen")
+    private String urlImagen;
 }
