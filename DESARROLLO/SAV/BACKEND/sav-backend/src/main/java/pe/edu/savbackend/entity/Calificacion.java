@@ -27,7 +27,7 @@ public class Calificacion {
     @Column(name="calificacion")
     private Float calificacion;
     @Column(name="id_estudiante")
-    private Integer id_estudiante;
+    private Integer idEstudiante;
     @Column(name="id_recurso")
-    private Integer id_recurso;
+    private Integer idRecurso;
 }
