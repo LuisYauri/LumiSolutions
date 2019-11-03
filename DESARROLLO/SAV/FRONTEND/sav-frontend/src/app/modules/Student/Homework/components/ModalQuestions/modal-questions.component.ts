@@ -131,4 +131,8 @@ export class ModalQuestionsComponent implements OnInit {
       respuesta: Number(this.answersForm.controls[i].value)
     }
   }
+
+  viewHelp(question: Question) {
+    console.log(question.idRecurso)
+  }
 }
