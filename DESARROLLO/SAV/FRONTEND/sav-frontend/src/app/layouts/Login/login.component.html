@@ -1,62 +1,69 @@
-<div style="height: 100%;background:#E5E5E5;" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
-	<div nz-row nzType="flex" nzJustify="center" style="padding: 0px;background: #FFFFFF;border: 1px solid #D9D9D9;box-sizing: border-box;border-radius: 15px; height: 470px;">
-        <div nz-col nzSpan="12">
-        	<div>
-		      <img alt="example" src="https://s3-alpha-sig.figma.com/img/2e1e/c0d1/30a7827e9c9bb92d67b5717806243ef3?Expires=1573430400&Signature=WdQJz6Wy9J~zCP-Xh~mACvgXC29UWo9GRiNx~Fltm6WKQjO82urwGtQbZKvYJ6J4Dsv0Ljd-s3gRr0f~0gnpI5ebhBeV-~CNpOkYWRZuDezg2PQ5cWHYfxCSSd2E2haiMQ18nMVxZv0THO9pGnIF2wcGppTi7AS9Cdiz~OFZd-pHx19cf80mV-iTVOOyFsOjOhFR2PdLx1mh7dp3eHVG50Sv5lOjOVYT9UZVNz8H7YmTq7FT~0nC8R-CmQTTZVGwKJ5hvb~0qXmBl2~3KJMzwF3AdJzwhXFFv8txM72xzRTCGUbY7F77Axy9g9J11UJHmnFkQmPOf2WfWCDna9WWrQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA" style="width: 100%;height: auto; border-top-left-radius: 15px;border-bottom-left-radius: 15px;" />
-		      <span style="position: absolute;left: 6.09%;right: 54.94%;top: 73.58%;bottom: 14.72%;color: #FFFFFF;font-family: Poppins;font-style: normal;font-weight: normal;font-size: 15px;line-height: 22px;width: 370px;">La educación es nuestro pasaporte para el futuro, porque el mañana pertenece a la gente que se prepara para el hoy.</span>
-		      <span style="position: absolute;left: 68.37%;right: 99.89%;top: 90.8%;bottom: 4.85%;
-				font-family: Poppins;font-style: normal;font-weight: normal;font-size: 15px;line-height: 22px;width: 150px;color: #FFFFFF;">Siguenos<i nz-icon nzType="facebook" nzTheme="outline" style="margin-left: 7px;"></i></span>
-		    </div>
+<div class="login-box" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
+  <div nz-row nzType="flex" nzJustify="center" class="login-box__body">
+    <div nz-col nzSpan="12">
+      <div>
+        <img alt="example" [src]="'assets/img/bg_login.svg'" class="login-box__body--left-bg"/>
+        <span class="login-box__body--left-text-1">La educación es nuestro pasaporte para el futuro, porque el mañana pertenece a la gente que se prepara para el hoy.</span>
+        <span class="login-box__body--left-text-2">Siguenos<i nz-icon nzType="facebook" nzTheme="outline"
+                                                              class="login-box__body--left-icon"></i>
+        </span>
+      </div>
+    </div>
+    <div nz-col nzSpan="12" class="login-box__body--right">
+      <div nz-row nzType="flex" nzJustify="center" nzAlign="middle" class="login-box__body--right-bg">
+        <div>
+          <div nz-col nzSpan="24" class="login-title_box">
+            <div nz-row nzType="flex" nzJustify="center">
+              <h1 nz-col class="login-title_box--text">INICIAR SESIÓN</h1>
+            </div>
+            <div nz-row nzType="flex" nzJustify="center">
+              <div nz-col class="login-title_box--line"></div>
+            </div>
+          </div>
+          <form nz-form class="login-form" [formGroup]="loginForm">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Porfavor seleccione una opción.">
+                <span style="margin-right: 10px;">Usted es:</span>
+                <nz-radio-group formControlName="type">
+                  <label nz-radio nzValue="E">Estudiante</label>
+                  <label nz-radio nzValue="P">Profesor</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item style="margin-bottom: 5px;">
+              <nz-form-label nzFor="username">Ingrese su nombre de usuario</nz-form-label>
+              <nz-form-control  nzErrorTip="Porfavor ingresa su nombre de usuario.">
+                <nz-input-group nzPrefixIcon="user">
+                  <input id="username" type="text" nz-input formControlName="username" autocomplete="username" placeholder="luis.yauri"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="password">Ingrese su contraseña</nz-form-label>
+              <nz-form-control  nzErrorTip="Porfavor ingrese su contraseña.">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input id="password" type="password" nz-input formControlName="password" autocomplete="password" placeholder="contraseña"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <a href="#">¿Olvidaste la contraseña?</a>
+                <button nz-button class="login-form-button" [nzType]="'primary'"  (click)="send()">Ingresar
+                  <i nz-icon nzType="rocket" nzTheme="outline" style="transform: rotate(33.37deg);"></i>
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
         </div>
-        <div nz-col nzSpan="12" style="height: 100%;padding-left: 0px;">
-        		<div nz-row nzType="flex" nzJustify="center" nzAlign="middle" style="height: 100%">
-        			<div>
-	        		<div nz-col nzSpan="24" style="margin-bottom: 30px;">
-	        			<div nz-row nzType="flex" nzJustify="center">
-	        				<h1 nz-col style="margin-bottom: 0px; padding-bottom: 0px;">INICIAR SESIÓN</h1>
-	        			</div>
-	        			<div nz-row nzType="flex" nzJustify="center">
-	        				<div nz-col style="width: 109px;height: 4px;background: #2C77F4;margin-top: 0px;"></div>
-	        			</div>
-	        		</div>
-	        		
-	        		<form nz-form class="login-form">
+      </div>
+    </div>
+  </div>
+</div>
 
-	        			<nz-form-item>
-	        				<span style="margin-right: 10px;">Usted es:</span>
-		        			<nz-radio-group>
-						      <label nz-radio nzValue="0">Estudiante</label>
-						      <label nz-radio nzValue="1">Profesor</label>
-						    </nz-radio-group>
-						</nz-form-item>
-
-				      <nz-form-item style="margin-bottom: 5px;">
-				      	<nz-form-label>Ingrese su nombre de usuario</nz-form-label>
-				        <nz-form-control nzErrorTip="Porfavor ingresa tu nombre de usuario!">
-				          <nz-input-group nzPrefixIcon="user">
-				            <input type="text" nz-input formControlName="name" placeholder="luis.yauri1" />
-				          </nz-input-group>
-				        </nz-form-control>
-				      </nz-form-item>
-				      <nz-form-item>
-				      	<nz-form-label>Ingrese su contraseña</nz-form-label>
-				        <nz-form-control nzErrorTip="Porfavor ingresa tu contraseña">
-				          <nz-input-group nzPrefixIcon="lock">
-				            <input type="password" nz-input formControlName="password" placeholder="contraseña" />
-				          </nz-input-group>
-				        </nz-form-control>
-				      </nz-form-item>
-				      <nz-form-item>
-				        <nz-form-control>
-					      <a>¿Olvidaste la contraseña?</a>
-				          <button nz-button class="login-form-button" [nzType]="'primary'">Ingresar
-				          	<i nz-icon nzType="rocket" nzTheme="outline" style="transform: rotate(33.37deg);"></i>
-				          </button>
-				        </nz-form-control>
-				      </nz-form-item>
-				    </form>
-				</div>
-				</div>
-        </div>
+<div  *ngIf="varLoading" class="loading-login">
+    <div class="loading-login--flex">
+      <div class="loader">Loading...</div>
+      <div class="loading-login--text" >Estamos comprobando sus datos . . .</div>
     </div>
 </div>
