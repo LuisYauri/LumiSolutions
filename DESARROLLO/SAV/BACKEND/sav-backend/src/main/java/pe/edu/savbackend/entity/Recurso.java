@@ -25,15 +25,15 @@ public class Recurso {
     @Column(name="id")
     private Integer id;
     @Column(name="cod_tipo_recurso")
-    private String cod_tipo_recurso;
+    private String codigoTipoRecurso;
     @Column(name="id_detalle_contenido")
-    private Integer id_detalle_contenido;
+    private Integer idDetalleContenido;
     @Column(name="url_recurso")
-    private String url_recurso;
+    private String urlRecurso;
     @Column(name="nombre")
     private String nombre;
     @Column(name="descripcion")
     private String descripcion;
     @Column(name="promedio_calificacion")
-    private String promedio_calificacion;
+    private Double promedioCalificacion;
 }

@@ -14,4 +14,5 @@ import lombok.NoArgsConstructor;
 public class HistorialDto {
 	private List<TareaDto> lsTareas;
 	private List<ExamenDto> lsExamenes;
+
 }

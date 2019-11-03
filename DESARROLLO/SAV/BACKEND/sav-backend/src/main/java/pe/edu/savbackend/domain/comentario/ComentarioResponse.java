@@ -17,4 +17,13 @@ public class ComentarioResponse {
 	private String nombreEstudiante;
 	private String descripcion;
 
+	public ComentarioResponse (Integer idEstudiante, String apellidoPaternoEstudiante,
+							   String nombreEstudiante,String descripcion )
+	{
+		this.idEstudiante = idEstudiante;
+		this.apellidoPaternoEstudiante = apellidoPaternoEstudiante;
+		this.nombreEstudiante = nombreEstudiante;
+		this.descripcion = descripcion;
+	}
+
 }

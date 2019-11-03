@@ -25,11 +25,11 @@ public class Persona {
 	@Column(name="nombre")
 	private String nombre;
 	@Column(name="apellido_paterno")
-	private String apellido_paterno;
+	private String apellidoPaterno;
     @Column(name="apellido_materno")
-    private String apellido_materno;
+    private String apellidoMaterno;
     @Column(name="numero_celular")
-    private Integer numero_celular;
+    private Integer numeroCelular;
     @Column(name="correo")
 	private String correo;
 }
