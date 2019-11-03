@@ -40,4 +40,9 @@ export class AuthService {
     this.payload = this.getTokenDecode()
     return this.payload.identity.codigoGrado
   }
+
+  getSiglas(){
+    this.payload = this.getTokenDecode()
+    return this.payload.identity.siglas
+  }
 }

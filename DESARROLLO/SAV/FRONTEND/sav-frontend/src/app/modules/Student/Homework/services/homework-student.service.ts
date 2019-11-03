@@ -13,6 +13,7 @@ export class HomeworkStudentService {
   private API_URL_QUESTIONS = `${environment.apiMain}tareas/`
   private API_URL_SEND_ANSWERS = `${environment.apiMain}tareas/`
   private API_URL_CHECK_ANSWER = `${environment.apiMain}preguntas/`
+  private API_URL_RESOURCE = `${environment.apiMain}recursos/`
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
@@ -39,5 +40,9 @@ export class HomeworkStudentService {
 
   postCheckAnswer(idPregunta: string, data: Answer) {
     return this.http.post(`${this.API_URL_CHECK_ANSWER}${idPregunta}/comprobar`, data, this.headersList())
+  }
+
+  getResource(idRecurso:string){
+    return this.http.get(`${this.API_URL_RESOURCE}${idRecurso}`, this.headersList())
   }
 }
