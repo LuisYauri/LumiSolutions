@@ -29,12 +29,6 @@ public class RecursoController {
 		return recursoService.obtenerRecursoPorId(idRecurso, idEstudiante); // devolver un recurso con lista de alumnos
 	}
 
-	//prueba
-	@RequestMapping("/p/{idRecurso}")
-	public List<ComentarioResponse> ob(@PathVariable Integer idRecurso) {
-		return recursoService.ob(idRecurso); // devolver un recurso con lista de alumnos
-	}
-
 	@RequestMapping("")//?idSubContenido={idSubContenido}
 	public List<RecursoDto> filtrar(@RequestParam(required = false) Integer idSubContenido) {
 		return recursoService.filtrarPorIdSubcontenido(idSubContenido);
