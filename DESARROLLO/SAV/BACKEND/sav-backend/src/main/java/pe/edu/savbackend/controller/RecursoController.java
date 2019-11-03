@@ -34,4 +34,5 @@ public class RecursoController {
 		return recursoService.filtrarPorIdSubcontenido(idSubContenido);
 	}
 
+	}
 }
