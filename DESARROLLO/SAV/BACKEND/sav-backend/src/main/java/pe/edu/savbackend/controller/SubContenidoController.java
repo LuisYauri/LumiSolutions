@@ -18,6 +18,7 @@ import pe.edu.savbackend.domain.SubContenidoDto;
 @RequestMapping("/subContenidos")
 public class SubContenidoController {
 
+		//JORDAN SUB CONTENIDO
 	@RequestMapping("") // ?idContenido={idContenido}
 	public List<SubContenidoDto> filtrar(@RequestParam(required = false) String idContenido) {
 		return Arrays.asList(SubContenidoDto.builder().build());

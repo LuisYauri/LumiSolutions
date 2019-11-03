@@ -17,7 +17,7 @@ import pe.edu.savbackend.domain.ContenidoDto;
 @RequestMapping("/contenidos")
 public class ContenidoController {
 
-	//gabriel
+	//gabriel HECHO
 	@RequestMapping("")//"?idCriterio={idCriterio}&codigoGrado={codigoGrado}"
 	public List<ContenidoDto> filtrar(@RequestParam(required = false) String idCriterio, @RequestParam(required = false) String codigoGrado) {
 		return Arrays.asList(ContenidoDto.builder().nombre("contenido 2").build());
