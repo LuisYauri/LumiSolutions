@@ -11,13 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Contenido {
+public class ContenidoDto {
 
 	private Integer idContenido;
 	private String nombre;
 	private String urlImagen;
 
 	// se utiliza solo para contenidoController
-	// @RequestMapping("?idCriterio={idCriterio}&codigoGrado={codigoGrado}")
 	private Integer idCriterio;
 }

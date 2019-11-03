@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ResultadoTareaResponse {
+public class ResultadoTareaResponseDto {
 
 	private Integer idEstudiante;
 	private String inicialesEstudiante; // nombre apellido

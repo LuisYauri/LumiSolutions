@@ -206,9 +206,9 @@ public class PRUEBA_CONTROLLER {
 	@Autowired
 	EvaluacionDao evaluDao;
 
-	@RequestMapping("evas/{idEstudiante}")
-	public List<Tarea> getTareasEval(@PathVariable Integer idEstudiante) {
-		return evaluDao.ejemplo(idEstudiante);
-	}
+//	@RequestMapping("evas/{idEstudiante}")
+//	public List<Tarea> getTareasEval(@PathVariable Integer idEstudiante) {
+//		return evaluDao.ejemplo(idEstudiante);
+//	}
 	
 }

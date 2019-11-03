@@ -1,4 +1,6 @@
-package pe.edu.savbackend.domain;
+package pe.edu.savbackend.domain.tarea;
+
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Criterio {
-
-	private Integer idCriterio;
-	private Integer nombre;
-	private String urlImagen;
-
+public class HistorialDto {
+	private List<TareaDto> lsTareas;
+	private List<ExamenDto> lsExamenes;
 }

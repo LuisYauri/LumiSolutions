@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pe.edu.savbackend.domain.Test.TestBuilder;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -23,10 +23,11 @@ public class Tarea {
 
 	private Date fechaSolucion;
 	private Integer idEstudiante;
-	private List<Pregunta> lsPreguntas;
+	private List<PreguntaDto> lsPreguntas;
 
-	private Estadistica estadistica;
+	private EstadisticaDto estadistica;
 
+	
 	public Tarea (String titulo, Integer idEstudiante)
 	{
 		this.titulo = titulo;

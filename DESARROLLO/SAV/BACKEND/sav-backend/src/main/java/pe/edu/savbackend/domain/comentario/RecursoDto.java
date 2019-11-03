@@ -1,4 +1,4 @@
-package pe.edu.savbackend.domain;
+package pe.edu.savbackend.domain.comentario;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Recurso {
+public class RecursoDto {
 	private Integer idRecurso;
 	private String nombre;
 	private String descripcion;

@@ -1,4 +1,4 @@
-package pe.edu.savbackend.service.impl;
+package pe.edu.savbackend.service.test;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.savbackend.dao.TestDao;
 import pe.edu.savbackend.domain.Test;
-import pe.edu.savbackend.service.TestService;
 
 @Service
 public class TestServiceImpl implements TestService {
