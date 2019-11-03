@@ -1,0 +1,40 @@
+<div>
+  <div class="help-box__name">{{resource.nombre}}</div>
+  <div *ngIf="resource.tipo === 'pdf'">
+    <div>{{resource.urlRecurso}}</div>
+  </div>
+  <div *ngIf="resource.tipo === 'video'">
+    <iframe width="100%" height="315" [src]=" resource.urlRecurso | safeStudent" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="help-box__val">
+    <div class="help-box__val--rate">
+      <div class="help-box__val--rate-text">Tu voto :</div>
+      <nz-rate [(ngModel)]="selectValue" [nzTooltips]="tooltips" (ngModelChange)="changeRate($event)"></nz-rate>
+    </div>
+    <div class="help-box__val--cal">
+      <span class="help-box__val--rate-text">Calificación:</span> <span
+      class="help-box__val--cal-text">{{resource.promedioCalificacion}}</span>
+    </div>
+  </div>
+  <div class="comments_box">
+    <div class="comments_box__title">
+      Comentarios
+    </div>
+    <div class="comments_box__write">
+      <div class="comments_box__write--line">
+        <div class="comments_box__write--line--1">
+          <div class="box-square">
+            <div class="box-square--text">{{authService.getSiglas()}}</div>
+          </div>
+        </div>
+        <textarea class="comments_box__write--line-2" placeholder="Escriba un comentario..." rows="2" nz-input
+                  [(ngModel)]="commentValue"></textarea>
+      </div>
+      <div class="comments_box__write--send">
+        <button nz-button nzType="default" class="btn_global--check" (click)="sendComment()">Enviar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
