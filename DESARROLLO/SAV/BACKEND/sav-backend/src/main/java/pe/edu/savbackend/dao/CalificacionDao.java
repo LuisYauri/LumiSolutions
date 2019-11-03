@@ -14,4 +14,7 @@ public interface CalificacionDao extends JpaRepository<Calificacion, Integer> {
 	@Query(value = "select max(c.idCalificacion)+ 1 from Calificacion c")
 	Integer nextId();
 
+	@Query(value = "select avg(c.calificacion) from Calificacion c where c.idRecurso = ?1")
+	Double obtenerCalificacionPromedio(Integer idRecurso);
+
 }

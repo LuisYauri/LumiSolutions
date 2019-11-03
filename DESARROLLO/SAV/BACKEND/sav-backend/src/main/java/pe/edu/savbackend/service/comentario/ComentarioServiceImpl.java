@@ -32,7 +32,7 @@ public class ComentarioServiceImpl implements ComentarioService {
 		
 	}
 
-	public List<ComentarioResponse> obtenerListaComentarios(Integer idRecurso)
+	public List<ComentarioResponse> listaComentariosPorIdRecurso(Integer idRecurso)
 	{
 		List<ComentarioResponse> listComentarioResponse = comentarioDao.obtenerListaComentarios(idRecurso);
 		listComentarioResponse.forEach( comentarioResponse -> {
