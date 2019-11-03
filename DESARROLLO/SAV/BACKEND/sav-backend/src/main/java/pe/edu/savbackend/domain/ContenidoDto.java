@@ -20,6 +20,7 @@ public class ContenidoDto {
 
 	// se utiliza solo para contenidoController
 	private Integer idCriterio;
+
 	private List<SubContenidoDto> lsSubContenido;
 	public ContenidoDto(Integer idCriterio, Integer idContenido, String nombre, String urlImagen) {
 		this.idCriterio = idCriterio;
@@ -27,6 +28,5 @@ public class ContenidoDto {
 		this.nombre = nombre;
 		this.urlImagen = urlImagen;
 	}
-  
-	
+
 }

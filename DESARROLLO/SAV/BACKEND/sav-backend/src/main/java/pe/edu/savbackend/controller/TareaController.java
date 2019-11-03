@@ -30,8 +30,6 @@ public class TareaController {
 	
 	@RequestMapping("")//?idEstudiante={idEstudiante}&fecha={fecha}
 	public List<TareaDto> filtrar(@RequestParam(required = false) Integer idEstudiante, @RequestParam(required = false) String fecha) {
-		
-		System.out.println("ID ESTDIANTES: "+idEstudiante);
 		return evaluacionService.getLsTareas(idEstudiante);// filtrar por estudiante
 	}
 
@@ -42,7 +40,6 @@ public class TareaController {
 
 	@PostMapping(value = "/{idTareas}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public EstadisticaDto finalizar(@RequestBody TareaDto er) {
-		System.out.println("Ingreso a post " + er);
 		return EstadisticaDto.builder().build();
 	}
 

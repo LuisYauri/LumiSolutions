@@ -18,10 +18,9 @@ import pe.edu.savbackend.service.contenido.ContenidoService;
 @RestController
 @RequestMapping("/contenidos")
 public class ContenidoController {
-	
+  
 	@Autowired
 	ContenidoService contenidoService;
-	
 	//gabriel
 	@RequestMapping("")//"?idCriterio={idCriterio}&codigoGrado={codigoGrado}"
 	public List<ContenidoDto> filtrar(@RequestParam(required = false) Integer idCriterio, @RequestParam(required = false) String codigoGrado) {

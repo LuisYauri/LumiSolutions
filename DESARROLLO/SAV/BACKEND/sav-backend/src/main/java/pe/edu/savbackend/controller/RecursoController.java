@@ -18,12 +18,13 @@ import pe.edu.savbackend.domain.comentario.RecursoDto;
 @RequestMapping("/recursos")
 public class RecursoController {
 
+	//ALISSON
 	@RequestMapping("/{idRecurso}")
 	public RecursoDto get(@PathVariable Integer idRecurso) {
 		return RecursoDto.builder().build(); // devolver un recurso con lista de alumnos
 	}
-
-	@RequestMapping("?idSubContenido={idSubContenido}")
+	//ALISSON
+	@RequestMapping("") // ?idSubContenido={idSubContenido}
 	public List<RecursoDto> filtrar(@RequestParam(required = false) String idSubContenido) {
 		return Arrays.asList(RecursoDto.builder().build()); // devolver un recurso con lista de alumnos
 	}

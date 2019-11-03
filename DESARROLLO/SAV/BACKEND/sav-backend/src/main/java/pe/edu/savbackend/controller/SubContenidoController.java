@@ -18,9 +18,10 @@ import pe.edu.savbackend.service.subcontenidos.SubcontenidosService;
 @RestController
 @RequestMapping("/subContenidos")
 public class SubContenidoController {
+  
 	@Autowired
 	SubcontenidosService subcontenido;
-	
+  
 	@RequestMapping("") // ?idContenido={idContenido}
 	public ContenidoDto filtrar(@RequestParam(required = false) Integer idContenido) {
 		return subcontenido.getLsubContenido(idContenido);

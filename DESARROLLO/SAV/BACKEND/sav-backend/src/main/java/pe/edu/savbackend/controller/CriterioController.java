@@ -25,6 +25,7 @@ import pe.edu.savbackend.service.test.TestService;
 @RequestMapping("/criterios")
 public class CriterioController {
 
+	
 	@RequestMapping("/")
 	public List<CriterioDto> getAll() {
 		
