@@ -12,14 +12,6 @@ import pe.edu.savbackend.entity.Evaluacion;
  * EvaluacionDao
  */
 public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
-
-    //select b.fname, b.lname from Users b JOIN Groups c where c.groupName = :groupName
-//    @Query(value = "select new pe.edu.savbackend.domain.tarea.Tarea(e.titulo, h.idEstudiante) from Evaluacion e join Historial h on e.id = h.idEvaluacion where h.idEstudiante = ?1")
-//    List<Tarea> ejemplo(Integer idEstudiante);
-    
 	@Query(value = "select new pe.edu.savbackend.domain.tarea.TareaDto(e.idEvaluacion,e.titulo) from Evaluacion e join EstudianteEvaluacion ee on e.idEvaluacion = ee.idEvaluacion where ee.idEstudiante = ?1")
 	List<TareaDto> getLsTareas(Integer idEstudiante);
-	
-	
-
 }
