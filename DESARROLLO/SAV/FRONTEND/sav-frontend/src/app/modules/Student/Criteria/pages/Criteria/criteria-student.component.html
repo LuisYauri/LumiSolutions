@@ -1,0 +1,14 @@
+<div class="header_global">
+  <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon" [url]="varHeader.url"></app-header-page-student>
+</div>
+<div class="body_global">
+  <app-title-page-student [title]="varTitleCriterio"></app-title-page-student>
+  <div *ngIf="varLoading" class="carousel_box">
+    <app-criteria-carousel-criteria (getCriterio)="getCriterio($event)" [listCriteria]="listCriteria"></app-criteria-carousel-criteria>
+  </div>
+  <app-title-page-student [title]="varTitleCotenido"></app-title-page-student>
+  <div *ngIf="varLoading" class="carousel_box">
+    <app-content-carousel-criteria (getContent)="getContent($event)" [listContent]="listContent"></app-content-carousel-criteria>
+  </div>
+</div>
+

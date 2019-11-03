@@ -1,18 +1,18 @@
-package pe.edu.savbackend.service;
+package pe.edu.savbackend.service.test;
 
 import java.util.List;
 
 import pe.edu.savbackend.domain.Test;
 
-public interface TestService{
-	
+public interface TestService {
+
 	public List<Test> getAll();
-	
+
 	public Test get(Integer idTest);
-	
+
 	public Test register(Test test);
-	
-	public Test update (Test test);
-	
-	public void delete (Integer idTest);
+
+	public Test update(Test test);
+
+	public void delete(Integer idTest);
 }

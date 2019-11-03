@@ -1,0 +1,12 @@
+<ngu-carousel #myCarousel [inputs]="carouselTileConfig" [dataSource]="carouselTileItems$ | async">
+  <ngu-tile *nguCarouselDef="let item;" (click)="sendContent(item)">
+    <div class="tile" [style.background]="'url('+item.urlImagen+')'">
+    </div>
+    <div class="carousel__text">
+      {{item.nombre}}
+    </div>
+  </ngu-tile>
+  <i nz-icon NguCarouselPrev nzType="left-circle" nzTheme="fill" class="carousel__icon "></i>
+  <i nz-icon NguCarouselNext nzType="right-circle" nzTheme="fill" class="carousel__icon "></i>
+</ngu-carousel>
+

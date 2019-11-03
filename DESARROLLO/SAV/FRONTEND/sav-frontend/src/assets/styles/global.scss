@@ -17,10 +17,14 @@ body {
 }
 
 .body_global {
-  margin-top: 40px;
+  margin: 40px 0;
   width: 100%;
   background: #ffffff;
   border-radius: 5px;
   padding: 40px;
+}
+
+.tile {
+  box-shadow: none !important;
 }
 

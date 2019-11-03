@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header-page-student',
@@ -11,10 +12,13 @@ export class HeaderPageStudentComponent implements OnInit {
   @Input() icon: string = ''
   @Input() url: string = ''
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
   }
 
+  redirect() {
+    this.router.navigate([`${this.url}`]);
+  }
 }

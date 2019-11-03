@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Table(schema = "SAV_BD", name = "test")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Test {
 	@Id
 	@Column(name = "id_test")
@@ -27,8 +27,7 @@ public class Test {
 	private String campo;
 	@Column(name = "descripcion")
 	private String descripcion;
-	
 
 	//
-	//LocalDateTime
+	// LocalDateTime
 }

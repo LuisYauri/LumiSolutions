@@ -1,2 +1,69 @@
-<button nz-button nzType="primary" (click)="openView()">Ingresar</button>
+<div class="login-box" nz-row nzType="flex" nzJustify="center" nzAlign="middle">
+  <div nz-row nzType="flex" nzJustify="center" class="login-box__body">
+    <div nz-col nzSpan="12">
+      <div>
+        <img alt="example" [src]="'assets/img/bg_login.svg'" class="login-box__body--left-bg"/>
+        <span class="login-box__body--left-text-1">La educación es nuestro pasaporte para el futuro, porque el mañana pertenece a la gente que se prepara para el hoy.</span>
+        <span class="login-box__body--left-text-2">Siguenos<i nz-icon nzType="facebook" nzTheme="outline"
+                                                              class="login-box__body--left-icon"></i>
+        </span>
+      </div>
+    </div>
+    <div nz-col nzSpan="12" class="login-box__body--right">
+      <div nz-row nzType="flex" nzJustify="center" nzAlign="middle" class="login-box__body--right-bg">
+        <div>
+          <div nz-col nzSpan="24" class="login-title_box">
+            <div nz-row nzType="flex" nzJustify="center">
+              <h1 nz-col class="login-title_box--text">INICIAR SESIÓN</h1>
+            </div>
+            <div nz-row nzType="flex" nzJustify="center">
+              <div nz-col class="login-title_box--line"></div>
+            </div>
+          </div>
+          <form nz-form class="login-form" [formGroup]="loginForm">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Porfavor seleccione una opción.">
+                <span style="margin-right: 10px;">Usted es:</span>
+                <nz-radio-group formControlName="type">
+                  <label nz-radio nzValue="E">Estudiante</label>
+                  <label nz-radio nzValue="P">Profesor</label>
+                </nz-radio-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item style="margin-bottom: 5px;">
+              <nz-form-label nzFor="username">Ingrese su nombre de usuario</nz-form-label>
+              <nz-form-control  nzErrorTip="Porfavor ingresa su nombre de usuario.">
+                <nz-input-group nzPrefixIcon="user">
+                  <input id="username" type="text" nz-input formControlName="username" autocomplete="username" placeholder="luis.yauri"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="password">Ingrese su contraseña</nz-form-label>
+              <nz-form-control  nzErrorTip="Porfavor ingrese su contraseña.">
+                <nz-input-group nzPrefixIcon="lock">
+                  <input id="password" type="password" nz-input formControlName="password" autocomplete="password" placeholder="contraseña"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <a href="#">¿Olvidaste la contraseña?</a>
+                <button nz-button class="login-form-button" [nzType]="'primary'"  (click)="send()">Ingresar
+                  <i nz-icon nzType="rocket" nzTheme="outline" style="transform: rotate(33.37deg);"></i>
+                </button>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div  *ngIf="varLoading" class="loading-login">
+    <div class="loading-login--flex">
+      <div class="loader">Loading...</div>
+      <div class="loading-login--text" >Estamos comprobando sus datos . . .</div>
+    </div>
+</div>
