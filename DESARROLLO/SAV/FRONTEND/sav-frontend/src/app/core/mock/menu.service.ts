@@ -16,7 +16,7 @@ export class MenuService {
       {
         title: 'Historial',
         key: 'Historial',
-        url: '/student/history-homework',
+        url: '/student/history',
         icon: 'read',
       },
       {
