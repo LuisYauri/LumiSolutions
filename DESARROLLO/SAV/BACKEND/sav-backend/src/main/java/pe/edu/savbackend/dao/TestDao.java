@@ -9,6 +9,6 @@ public interface TestDao extends JpaRepository<Test, Integer> {
 	@Query(value = "select max(t.idTest)+ 1 from Test t")
 	Integer nextId();
 	
-//	@Query(value = "select new pe.edu.savbackend.domain.Ejemplo(t.username) from Usuario")
-//	List<Ejemplo> ejemplo();
+//	@Query(value = "select new pe.edu.savbackend.domain.Tarea(u.username, p.nombre) from Usuario u JOIN Persona p")
+//	List<Tarea> ejemplo();
 }

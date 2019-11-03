@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Calificacion {
+public class ComentarioDto {
 
-	private Integer idCalificacion;
-	private Integer calificacion;
-	private Integer idRecurso; // nombre apellido
+	private Integer idComentario;
+	private Integer idRecurso; 
 	private Integer idEstudiante;
+	private String descripcion;
 
 }

@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ComentarioResponse {
+public class CalificacionDto {
 
+	private Integer idCalificacion;
+	private Integer calificacion;
+	private Integer idRecurso; 
 	private Integer idEstudiante;
-	private String inicialesEstudiante; // nombre apellido
-	private String apellidoPaternoEstudiante;
-	private String nombreEstudiante;
-	private String descripcion;
 
 }

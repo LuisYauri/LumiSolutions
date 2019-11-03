@@ -1,4 +1,4 @@
-package pe.edu.savbackend.service.impl;
+package pe.edu.savbackend.service.usuario;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.entity.Usuario;
-import pe.edu.savbackend.service.UsuarioService;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {

@@ -1,4 +1,4 @@
-package pe.edu.savbackend.configuration;
+package pe.edu.savbackend.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Usuario {
-	private String usuario;
-	private String contrasena;
+public class CriterioDto {
+
+	private Integer idCriterio;
+	private Integer nombre;
+	private String urlImagen;
+
 }

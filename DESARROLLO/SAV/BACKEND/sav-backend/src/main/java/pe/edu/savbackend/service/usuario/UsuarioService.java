@@ -1,4 +1,4 @@
-package pe.edu.savbackend.service;
+package pe.edu.savbackend.service.usuario;
 
 import java.util.List;
 

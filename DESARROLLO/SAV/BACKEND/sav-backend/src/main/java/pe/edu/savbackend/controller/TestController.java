@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pe.edu.savbackend.dao.EstudianteDao;
 import pe.edu.savbackend.domain.Test;
 import pe.edu.savbackend.entity.Estudiante;
-import pe.edu.savbackend.service.TestService;
+import pe.edu.savbackend.service.test.TestService;
 
 /**
  * UsuariosController
@@ -27,15 +27,6 @@ public class TestController {
 
 	@Autowired
 	TestService testService;
-	@Autowired
-	EstudianteDao personaDao;
-
-
-	@RequestMapping("/personas-prueba")
-	public List<Estudiante> getPersonas() {
-		return personaDao.findAll();
-	}
-
 
 	@RequestMapping("/")
 	public List<Test> get() {

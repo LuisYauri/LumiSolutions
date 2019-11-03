@@ -12,7 +12,7 @@ import pe.edu.savbackend.domain.Test.TestBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Pregunta {
+public class PreguntaDto {
 	private String idPregunta;
 	private String idRecurso;
 	private String descripcion;

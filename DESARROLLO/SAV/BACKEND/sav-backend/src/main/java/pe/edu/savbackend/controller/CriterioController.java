@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.savbackend.domain.Criterio;
+import pe.edu.savbackend.domain.CriterioDto;
 import pe.edu.savbackend.domain.Test;
-import pe.edu.savbackend.service.TestService;
+import pe.edu.savbackend.service.test.TestService;
 
 /**
  * UsuariosController
@@ -26,30 +26,9 @@ import pe.edu.savbackend.service.TestService;
 public class CriterioController {
 
 	@RequestMapping("/")
-	public List<Criterio> getAll() {
-		return Arrays.asList(Criterio.builder().build());
+	public List<CriterioDto> getAll() {
+		
+		return Arrays.asList(CriterioDto.builder().build());
 	}
 
-//    @RequestMapping("/{idTest}")
-//    public Test getById(@PathVariable Integer idTest) {
-//    	System.out.println("Ingreso a get");
-//        return testService.get(idTest);
-//    }
-//    
-//    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//    public Test register(@RequestBody Test er) {
-//    	System.out.println("Ingreso a post " + er);
-//        return testService.register(er);
-//    }
-//    
-//    @PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public Test update(@RequestBody Test er) {
-//    	
-//	  	return testService.update(er);
-//	}
-//    
-//    @DeleteMapping(value = "/{idTest}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public void delete(@PathVariable Integer idTest) {
-//	  	 testService.delete(idTest);
-//	}
 }

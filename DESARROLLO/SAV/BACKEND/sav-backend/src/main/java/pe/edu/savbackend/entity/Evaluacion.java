@@ -1,5 +1,7 @@
 package pe.edu.savbackend.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,10 +9,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Entity
 @Data
@@ -29,10 +31,10 @@ public class Evaluacion {
 	private String descripcion;
 	
     @Column(name="fecha_inicio")
-    private String fechaInicio;
+    private LocalDateTime fechaInicio;
     
     @Column(name="fecha_fin")
-    private Integer fechaFin;
+    private LocalDateTime fechaFin;
     
     @Column(name="cod_tipo_evaluacion")
 	private String codTipoEvaluacion;

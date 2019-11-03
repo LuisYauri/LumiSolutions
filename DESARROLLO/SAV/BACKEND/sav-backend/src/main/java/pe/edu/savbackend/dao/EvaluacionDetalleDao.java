@@ -8,5 +8,5 @@ import pe.edu.savbackend.entity.EvaluacionDetalle;
  */
 public interface EvaluacionDetalleDao extends JpaRepository<EvaluacionDetalle, Integer>{
 
-    
+        
 }
