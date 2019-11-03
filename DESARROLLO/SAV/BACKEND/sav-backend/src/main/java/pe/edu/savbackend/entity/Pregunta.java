@@ -54,4 +54,7 @@ public class Pregunta {
 	
 	@Column(name="url_imagen")
 	private String urlImagen;
+	
+	@Column(name="tipo")
+	private String tipo;
 }

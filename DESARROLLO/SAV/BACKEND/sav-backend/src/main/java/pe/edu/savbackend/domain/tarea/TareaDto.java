@@ -1,13 +1,12 @@
 package pe.edu.savbackend.domain.tarea;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pe.edu.savbackend.domain.Test.TestBuilder;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +20,7 @@ public class TareaDto {
 	private String tiempoLimite;
 	private String contenido;
 
-	private Date fechaSolucion;
+	private LocalDateTime fechaSolucion;
 	private Integer idEstudiante;
 	private List<PreguntaDto> lsPreguntas;
 

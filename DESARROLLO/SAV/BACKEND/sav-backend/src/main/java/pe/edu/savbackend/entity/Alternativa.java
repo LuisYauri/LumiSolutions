@@ -34,7 +34,7 @@ public class Alternativa {
 
 	//Atributos
 	@Column(name="descripcion")
-	private Double descripcion;
+	private String descripcion;
 	
     
 }

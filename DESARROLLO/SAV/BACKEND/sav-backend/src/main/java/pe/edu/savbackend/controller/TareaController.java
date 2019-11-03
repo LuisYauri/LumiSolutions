@@ -33,14 +33,14 @@ public class TareaController {
 		return evaluacionService.getLsTareas(idEstudiante);// filtrar por estudiante
 	}
 
-	@RequestMapping("/{idTareas}/preguntas")
-	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTareas) {
-		return TareaDto.builder().build();
+	@RequestMapping("/{idTarea}/preguntas")
+	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTarea) {
+		return evaluacionService.getPreguntasPorTarea(idTarea);
 	}
 
 	@PostMapping(value = "/{idTareas}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EstadisticaDto finalizar(@RequestBody TareaDto er) {
-		return EstadisticaDto.builder().build();
+	public EstadisticaDto finalizar(@RequestBody TareaDto tareaDto) {
+		return evaluacionService.finalizarTarea(tareaDto);
 	}
 
 }

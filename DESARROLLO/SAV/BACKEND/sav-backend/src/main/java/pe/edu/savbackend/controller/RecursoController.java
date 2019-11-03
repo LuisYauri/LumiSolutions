@@ -38,5 +38,5 @@ public class RecursoController {
 	@RequestMapping("")//?idSubContenido={idSubContenido}
 	public List<RecursoDto> filtrar(@RequestParam(required = false) Integer idSubContenido) {
 		return recursoService.filtrarPorIdSubcontenido(idSubContenido);
-
+	}
 }
