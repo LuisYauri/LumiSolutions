@@ -24,10 +24,8 @@ public class Contenido {
     @Id
     @Column(name="id")
     private Integer id;
-    @Column(name="tema")
-    private String tema;
-    @Column(name="descripcion")
-    private String descripcion;
+    @Column(name="nombre")
+    private String nombre;
     @Column(name="cod_grado")
     private String cod_grado;
     @Column(name="id_criterio")

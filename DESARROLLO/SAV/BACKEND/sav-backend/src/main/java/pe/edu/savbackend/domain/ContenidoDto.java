@@ -1,6 +1,6 @@
 package pe.edu.savbackend.domain;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,4 +19,7 @@ public class ContenidoDto {
 
 	// se utiliza solo para contenidoController
 	private Integer idCriterio;
+	
+	private List<SubContenidoDto> lsSubContenido;
+	
 }
