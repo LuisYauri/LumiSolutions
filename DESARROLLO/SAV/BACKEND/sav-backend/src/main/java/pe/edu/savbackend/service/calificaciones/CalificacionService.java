@@ -4,5 +4,5 @@ import pe.edu.savbackend.entity.Calificacion;
 
 public interface CalificacionService {
 
-	Calificacion registrarCalificacion(Calificacion calificacion);
+	Double registrarCalificacion(Calificacion calificacion);
 }

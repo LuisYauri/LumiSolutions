@@ -7,21 +7,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import pe.edu.savbackend.entity.Calificacion;
 import pe.edu.savbackend.entity.Comentario;
+import pe.edu.savbackend.service.calificaciones.CalificacionService;
 import pe.edu.savbackend.service.comentario.ComentarioService;
 
 @RestController
-@RequestMapping("/comentario")
+@RequestMapping("/calificaciones")
 public class CalificacionController {
 
 	
 	@Autowired
-	ComentarioService comentarioService;
+	CalificacionService calificacionService;
 	
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	//registra una calificacion (estrellas)
-	public Comentario registerUpdate(@RequestBody Comentario comentario) {
-		return comentarioService.registrarComentario(comentario);
+	public Double registrarCalificacion(@RequestBody Calificacion calificacion) {
+		return calificacionService.registrarCalificacion(calificacion);
 	}
 
 }

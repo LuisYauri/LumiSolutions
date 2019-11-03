@@ -28,8 +28,8 @@ public class ComentarioController {
 	}
 
 	@RequestMapping("")//?idRecurso={idRecurso}
-	public List<ComentarioResponse> obtenerListaComentarios(@RequestParam(required = false) Integer idRecurso) {
-		return comentarioService.obtenerListaComentarios(idRecurso); // devolver un recurso con lista de alumnos
+	public List<ComentarioResponse> listaComentarios(@RequestParam(required = false) Integer idRecurso) {
+		return comentarioService.listaComentariosPorIdRecurso(idRecurso); // devolver un recurso con lista de alumnos
 	}
 
 }

@@ -29,7 +29,7 @@ public class RecursoServiceImpl implements RecursoService {
 		List<RecursoDto> listaRecursosDto = recursoDao.filtrarPorIdSubcontenido(idSubContenido);
 
 		listaRecursosDto.forEach(recursoDto -> {
-			List<ComentarioResponse> lsComentarios = comentarioService.obtenerListaComentarios(recursoDto.getIdRecurso());
+			List<ComentarioResponse> lsComentarios = comentarioService.listaComentariosPorIdRecurso(recursoDto.getIdRecurso());
 			recursoDto.setLsComentarios(lsComentarios);
 		});
 
