@@ -1,8 +1,5 @@
 package pe.edu.savbackend.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

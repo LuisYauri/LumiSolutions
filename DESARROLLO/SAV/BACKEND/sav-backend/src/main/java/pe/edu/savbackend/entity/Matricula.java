@@ -29,7 +29,7 @@ public class Matricula {
     //Llave primaria
     @Id
 	@Column(name="id")
-    private Integer id;
+    private Integer idMatricula;
     
     //Llaves foráneas	
 	@Column(name="id_estudiante")

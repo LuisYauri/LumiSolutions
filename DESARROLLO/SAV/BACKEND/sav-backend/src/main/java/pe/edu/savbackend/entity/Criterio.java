@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 public class Criterio {
     @Id
     @Column(name="id")
-    private Integer id;
+    private Integer idCriterio;
     @Column(name="nombre")
     private String nombre;
     @Column(name="id_area")

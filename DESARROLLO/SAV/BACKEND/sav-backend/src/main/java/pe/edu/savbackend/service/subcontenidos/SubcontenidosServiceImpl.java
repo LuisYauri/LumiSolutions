@@ -1,7 +1,5 @@
 package pe.edu.savbackend.service.subcontenidos;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

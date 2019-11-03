@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.savbackend.dao.EstudianteDao;
 import pe.edu.savbackend.domain.Test;
-import pe.edu.savbackend.entity.Estudiante;
 import pe.edu.savbackend.service.test.TestService;
 
 /**

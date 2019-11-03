@@ -19,8 +19,8 @@ public class CalificacionServiceImpl implements CalificacionService {
 		if(!(calificacion.getCalificacion() < 5 && calificacion.getCalificacion() > 1 )) {
 			throw new RuntimeException("Debe mandarse una calificacion entre 1 y 5");
 		}else {
-			if (calificacion.getId() == null) {
-				calificacion.setId(calificacionDao.nextId());
+			if (calificacion.getIdCalificacion() == null) {
+				calificacion.setIdCalificacion(calificacionDao.nextId());
 				return calificacionDao.save(calificacion);
 			}
 			return calificacionDao.save(calificacion);

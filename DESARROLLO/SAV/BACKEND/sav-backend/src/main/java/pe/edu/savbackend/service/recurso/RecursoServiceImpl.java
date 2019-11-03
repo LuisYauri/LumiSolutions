@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.savbackend.dao.ComentarioDao;
 import pe.edu.savbackend.dao.RecursoDao;
 import pe.edu.savbackend.domain.comentario.ComentarioResponse;
 import pe.edu.savbackend.domain.comentario.RecursoDto;

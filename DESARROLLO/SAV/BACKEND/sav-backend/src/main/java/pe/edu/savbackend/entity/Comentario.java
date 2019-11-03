@@ -26,7 +26,7 @@ public class Comentario {
 	//Llave primaria
     @Id
 	@Column(name="id")
-	private Integer id;
+	private Integer idComentario;
 
 	//Llaves foráneas
 	@Column(name="id_recurso")

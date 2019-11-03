@@ -11,7 +11,7 @@ import pe.edu.savbackend.entity.Calificacion;
 
 public interface CalificacionDao extends JpaRepository<Calificacion, Integer> {
 	
-	@Query(value = "select max(c.id)+ 1 from Calificacion c")
+	@Query(value = "select max(c.idCalificacion)+ 1 from Calificacion c")
 	Integer nextId();
 
 }

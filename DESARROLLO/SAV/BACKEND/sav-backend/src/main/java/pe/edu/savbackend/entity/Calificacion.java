@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 public class Calificacion {
     @Id
     @Column(name="id")
-    private Integer id;
+    private Integer idCalificacion;
     @Column(name="calificacion")
     private Integer calificacion;
     @Column(name="id_estudiante")
