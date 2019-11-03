@@ -1,7 +1,5 @@
 package pe.edu.savbackend.domain;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

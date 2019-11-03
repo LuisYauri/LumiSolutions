@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.tarea.EstadisticaDto;
 import pe.edu.savbackend.domain.tarea.ExamenDto;
-import pe.edu.savbackend.domain.tarea.TareaDto;
 
 /**
  * UsuariosController
