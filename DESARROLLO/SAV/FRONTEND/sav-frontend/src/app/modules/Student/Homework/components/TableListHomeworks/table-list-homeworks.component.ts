@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { ModalQuestionsComponent } from '../ModalQuestions/modal-questions.component';
+import {Component, OnInit, Input} from '@angular/core';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {ModalQuestionsComponent} from '../ModalQuestions/modal-questions.component';
+import {Homework, Questions} from "../../model/homework-student.model";
+import {HomeworkStudentService} from "../../services/homework-student.service";
 
 @Component({
   selector: 'app-table-list-homeworks',
@@ -9,52 +11,48 @@ import { ModalQuestionsComponent } from '../ModalQuestions/modal-questions.compo
 })
 export class TableListHomeworksComponent implements OnInit {
 
-  @Input()
-  items: any[];
+  @Input() items: Homework[];
+  @Input() varLoading: boolean;
 
-  constructor(private modalService: NzModalService) {}
+  varTableTitle = ["Título", "Cantidad", "Fecha(Límite)", "Tiempo(Límite)", "Contenido", "Accion"]
+  questions: Questions
+  loadingBtn = false
+
+  constructor(private modalService: NzModalService, private homeworkStudentService: HomeworkStudentService) {
+  }
 
   ngOnInit() {
+
   }
 
-  showModal(data): void {
-  	console.log(data)
-  	
-  	var homework = {
-	  "idTarea": 1,
-	  "titulo": "Tarea 1",
-	  "lsPreguntas": [
-		{
-		  "idPregunta": 1,
-		  "idRecurso":1,
-		  "descripcion": "Pregunta1",
-		  "urlImagen": "URL Imagen",
-		  "tipo": "0",
-		  "alternativas": []
-		},
-		{
-		  "idPregunta": 2,
-		  "idRecurso":2,
-		  "descripcion": "Pregunta1",
-		  "urlImagen": "URL Imagen",
-		  "tipo": "1",
-		  "alternativas": ["10","20","30"]
-		},
-		{
-		  "idPregunta": 3,
-		  "idRecurso":3,
-		  "descripcion": "Pregunta1",
-		  "urlImagen": "URL Imagen",
-		  "tipo": "0",
-		  "alternativas": []
-		}
-	  ]
-	}
-	
-    this.modalService.create({
-      nzTitle: homework.titulo,
-      nzContent: ModalQuestionsComponent
-    });
+  showModal(item: Homework) {
+    this.loadingBtn = true
+    this.getQuestions(item.idTarea.toString())
   }
 
+  async getQuestions(idTarea: string) {
+    try {
+      const response: any = await this.homeworkStudentService.getQuestions(idTarea).toPromise()
+      this.questions = response
+      this.loadingBtn = false
+      this.generateModal()
+
+    } catch (e) {
+      this.loadingBtn = false
+      console.log(e)
+    }
+  }
+
+
+  private generateModal() {
+    const modal = this.modalService.create({
+      nzTitle: this.questions.titulo,
+      nzContent: ModalQuestionsComponent,
+      nzWidth: 700,
+      nzComponentParams: {
+        questions: this.questions
+      },
+      nzMaskClosable: false,
+    })
+  }
 }

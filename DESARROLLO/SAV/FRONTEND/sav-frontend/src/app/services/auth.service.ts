@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Login} from "../model/auth.model";
+import {Login, PayloadToken} from "../model/auth.model";
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import {Login} from "../model/auth.model";
 export class AuthService {
 
   private API_URL_LOGIN = `${environment.apiMain}autentificacion/login`
+  private payload:PayloadToken
 
   constructor(private http: HttpClient) { }
 
@@ -18,5 +20,24 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('access_token');
+  }
+
+  private getTokenDecode(){
+    const token = localStorage.getItem('access_token')
+    return jwt_decode(token);
+  }
+
+  getToken(){
+    return localStorage.getItem('access_token')
+  }
+
+  getIdEstudiante(){
+    this.payload = this.getTokenDecode()
+    return this.payload.identity.idEstudiante
+  }
+
+  getCodigoGrado(){
+    this.payload = this.getTokenDecode()
+    return this.payload.identity.codigoGrado
   }
 }
