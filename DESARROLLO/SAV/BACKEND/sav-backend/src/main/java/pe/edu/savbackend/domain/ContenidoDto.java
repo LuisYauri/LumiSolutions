@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ContenidoDto {
 
-	private Integer idContenido;
+	private Integer idContenido; 
 	private String nombre;
 	private String urlImagen;
 

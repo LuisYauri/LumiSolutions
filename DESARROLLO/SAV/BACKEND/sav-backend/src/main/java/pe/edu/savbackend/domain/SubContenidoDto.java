@@ -26,7 +26,7 @@ public class SubContenidoDto {
 		this.idSubContenido = idSubContenido;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.urlImagen = urlImagen;
+		this.urlImagen = urlImagen; 
 	}
 	
 }

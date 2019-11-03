@@ -27,9 +27,9 @@ public class Contenido {
     @Column(name="nombre")
     private String nombre;
     @Column(name="cod_grado")
-    private String cod_grado;
+    private String codGrado;
     @Column(name="id_criterio")
-    private Integer id_criterio;
+    private Integer idCriterio;
     @Column(name="url_imagen")
-    private String url_imagen;
+    private String urlImagen;
 }
