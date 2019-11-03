@@ -27,7 +27,7 @@ public class Criterio {
     @Column(name="nombre")
     private String nombre;
     @Column(name="id_area")
-    private Integer id_area;
+    private Integer idArea;
     @Column(name="url_imagen")
-    private String url_imagen;
+    private String urlImagen;
 }
