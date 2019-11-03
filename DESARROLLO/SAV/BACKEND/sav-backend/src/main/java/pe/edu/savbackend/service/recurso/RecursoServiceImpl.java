@@ -21,11 +21,7 @@ public class RecursoServiceImpl implements RecursoService {
 	@Override
 	public RecursoDto obtenerRecursoPorId(Integer idRecurso, Integer idEstudiante) {
 		//contar las tareas formatear la fecha 	
-		RecursoDto recursoDto = recursoDao.obtenerPorId(idRecurso, idEstudiante);
-		List<ComentarioResponse> lsComentarios = comentarioService.obtenerListaComentarios(idRecurso);
-		recursoDto.setLsComentarios(lsComentarios);
-
-		return recursoDto;
+		return recursoDao.obtenerPorId(idRecurso, idEstudiante);
 	}
 
 	public List<RecursoDto> filtrarPorIdSubcontenido(Integer idSubContenido) {
