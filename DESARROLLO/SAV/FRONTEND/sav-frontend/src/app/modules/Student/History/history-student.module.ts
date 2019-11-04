@@ -7,10 +7,10 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
-import { ExamsComponent } from './exams/exams.component';
+import { ExamsComponent } from './pages/exams/exams.component';
 import { HistoryRoutingModule } from './history-student-routing.module';
-import { HistoryComponent } from './history/history.component';
-import { HomeworksComponent } from './homeworks/homeworks.component';
+import { HistoryComponent } from './pages/history/history.component';
+import { HomeworksComponent } from './components/homeworks/homeworks.component';
 
 @NgModule({
   declarations: [HistoryComponent, HomeworksComponent, ExamsComponent],
