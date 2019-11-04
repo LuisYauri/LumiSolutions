@@ -20,7 +20,13 @@ public class TareaDto {
 	private String tiempoLimite;
 	private String contenido;
 
+	
+	private String duracion;
+	
 	private LocalDateTime fechaSolucion;
+	private String fechaRealizada;
+	private String horaRealizada;
+	
 	private Integer idEstudiante;
 	private List<PreguntaDto> lsPreguntas;
 

@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ExamenDto {
 	private Integer idExamen;
-	private Integer idEvaluacion; // idEslaucio e idExamen contienen lo mismo
 	private String titulo;
 	private String cantidadPreguntas;
 	private String fechaInico;
@@ -22,7 +21,21 @@ public class ExamenDto {
 	private Integer duracion; // en minutos
 
 	private LocalDateTime fechaSolucion;
+	private String fechaRealizada;
+	private String horaRealizada;
+	
 	private Integer idEstudiante;
 	private List<PreguntaDto> lsPreguntas;
+
+	
+	private Integer idEvaluacion; // idEslaucio e idExamen contienen lo mismo
+
+
+	public ExamenDto(Integer idExamen, String titulo) {
+		this.idExamen = idExamen;
+		this.titulo = titulo;
+	}
+	
+	
 
 }

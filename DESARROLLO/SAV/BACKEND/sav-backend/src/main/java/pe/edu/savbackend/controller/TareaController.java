@@ -37,8 +37,10 @@ public class TareaController {
 		return evaluacionService.getPreguntasPorTarea(idTarea);
 	}
 
-	@PostMapping(value = "/{idTareas}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EstadisticaDto finalizar(@RequestBody TareaDto tareaDto) {
+	@PostMapping(value = "/{idEvaluacion}/estudiante/{idEstudiante}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EstadisticaDto finalizar(@PathVariable Integer idEvaluacion, @PathVariable Integer idEstudiante, @RequestBody TareaDto tareaDto) {
+		tareaDto.setIdTarea(idEvaluacion);
+		tareaDto.setIdEstudiante(idEstudiante);
 		return evaluacionService.finalizarTarea(tareaDto);
 	}
 
