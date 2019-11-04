@@ -3,6 +3,8 @@ package pe.edu.savbackend.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +37,8 @@ public class ExamenController {
 		return ExamenDto.builder().build();
 	}
 	
-	@PostMapping(value = "/{idExamen}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EstadisticaDto finalizar(@RequestBody ExamenDto idExamen) {
+	@PostMapping(value = "/{idExamen}/estudiante/{idEstudiante}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EstadisticaDto finalizar(@PathVariable Integer idExamen, @PathVariable Integer idEstudiante, @RequestBody ExamenDto examenDto) {
 
 		return EstadisticaDto.builder().build();
 
