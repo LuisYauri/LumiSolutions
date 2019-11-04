@@ -32,7 +32,7 @@ public class HistorialServiceImpl implements HistorialService {
 		HistorialDto historialDto = new HistorialDto();
 		List<TareaDto> lsTareaDto = new ArrayList<>();
 		List<ExamenDto> lsExamenDto= new ArrayList<>();
-		historialDao.findAll().forEach(historial -> {
+		historialDao.obtenerPorIdEstudiante(idEstudiante).forEach(historial -> {
 		
 			if(historial.getTipoEvaluacion().equals("T")){
 				TareaDto tareaDto = gson.fromJson(historial.getJsonCompleto(), TareaDto.class);

@@ -12,6 +12,8 @@ public interface EvaluacionService {
 	List<ExamenDto> getLsExamenes(Integer idEstudiante);
 	
 	TareaDto getPreguntasPorTarea(Integer idTarea);
+	ExamenDto getPreguntasPorExamen(Integer idExamen);
 	
 	EstadisticaDto finalizarTarea(TareaDto tareaDto);
+	EstadisticaDto finalizarExamen(ExamenDto examenDto);
 }

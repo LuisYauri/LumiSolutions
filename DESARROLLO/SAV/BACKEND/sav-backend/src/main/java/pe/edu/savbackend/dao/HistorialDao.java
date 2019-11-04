@@ -16,4 +16,9 @@ public interface HistorialDao extends JpaRepository<Historial, Integer>{
 			+ " from Historial h "
 			+ "where h.idEstudiante = ?1 and h.idEvaluacion = ?2")
 	Historial obtenerPorIds(Integer idEstudiante, Integer idEvaluacion);
+	
+	@Query(value = "select h "
+			+ " from Historial h "
+			+ "where h.idEstudiante = ?1")
+	List<Historial> obtenerPorIdEstudiante(Integer idEstudiante);
 }
