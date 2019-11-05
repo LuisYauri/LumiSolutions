@@ -1,6 +1,5 @@
 package pe.edu.savbackend.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +32,16 @@ public class TareaController {
 		return evaluacionService.getLsTareas(idEstudiante);// filtrar por estudiante
 	}
 
-	@RequestMapping("/{idTareas}/preguntas")
-	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTareas) {
-		return TareaDto.builder().build();
+	@RequestMapping("/{idTarea}/preguntas")
+	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTarea) {
+		return evaluacionService.getPreguntasPorTarea(idTarea);
 	}
 
-	@PostMapping(value = "/{idTareas}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public EstadisticaDto finalizar(@RequestBody TareaDto er) {
-		return EstadisticaDto.builder().build();
+	@PostMapping(value = "/{idEvaluacion}/estudiante/{idEstudiante}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public EstadisticaDto finalizar(@PathVariable Integer idEvaluacion, @PathVariable Integer idEstudiante, @RequestBody TareaDto tareaDto) {
+		tareaDto.setIdTarea(idEvaluacion);
+		tareaDto.setIdEstudiante(idEstudiante);
+		return evaluacionService.finalizarTarea(tareaDto);
 	}
 
 }

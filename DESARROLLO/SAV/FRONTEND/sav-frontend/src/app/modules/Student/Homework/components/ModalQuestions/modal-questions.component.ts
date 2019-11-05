@@ -1,10 +1,12 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {NzModalRef} from 'ng-zorro-antd/modal';
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
 import {ConfirmationAnswer, Question, Questions} from "../../model/homework-student.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
 import {HomeworkStudentService} from "../../services/homework-student.service";
 import {AuthService} from "../../../../../services/auth.service";
+import {ModalHelpStudentComponent} from "../../../../../core/components/Student/ModalHelp/modal-help-student.component";
+import {Resource} from "../../../../../core/model/Student/resource.model";
 
 @Component({
   selector: 'app-modal-questions',
@@ -17,10 +19,13 @@ export class ModalQuestionsComponent implements OnInit {
   indexTab = 0
   answersForm: FormGroup
   checkConfirm: ConfirmationAnswer = {confirmacion: false}
+  loadingBtn = false
+  resource: Resource
 
   constructor(private modal: NzModalRef, private fb: FormBuilder, private nzMessageService: NzMessageService,
               private homeworkStudentService: HomeworkStudentService, private authService: AuthService,
-              private notification: NzNotificationService) {
+              private notification: NzNotificationService,
+              private modalService: NzModalService) {
 
   }
 
@@ -130,5 +135,35 @@ export class ModalQuestionsComponent implements OnInit {
     return {
       respuesta: Number(this.answersForm.controls[i].value)
     }
+  }
+
+  viewHelp(question: Question) {
+    this.loadingBtn = true
+    this.getHelp(question.idRecurso.toString())
+
+  }
+
+  private async getHelp(idRecurso: string) {
+    try {
+      const response:any = await this.homeworkStudentService.getResource(idRecurso).toPromise()
+      this.resource = response
+      this.loadingBtn = false
+      this.generateModal()
+    }catch (e) {
+      this.loadingBtn = false
+      console.log(e)
+    }
+  }
+
+  private generateModal() {
+    const modal = this.modalService.create({
+      nzTitle: 'Ayuda',
+      nzContent: ModalHelpStudentComponent,
+      nzWidth: 700,
+      nzComponentParams: {
+        resource: this.resource
+      },
+      nzMaskClosable: false,
+    })
   }
 }

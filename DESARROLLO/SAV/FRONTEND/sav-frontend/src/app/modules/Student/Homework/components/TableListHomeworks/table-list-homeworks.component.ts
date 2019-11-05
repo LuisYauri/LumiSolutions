@@ -36,7 +36,6 @@ export class TableListHomeworksComponent implements OnInit {
       this.questions = response
       this.loadingBtn = false
       this.generateModal()
-
     } catch (e) {
       this.loadingBtn = false
       console.log(e)

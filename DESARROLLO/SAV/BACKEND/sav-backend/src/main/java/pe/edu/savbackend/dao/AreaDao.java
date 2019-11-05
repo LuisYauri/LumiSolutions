@@ -6,4 +6,6 @@ import pe.edu.savbackend.entity.Area;
 
 
 public interface AreaDao extends JpaRepository<Area, Integer> {
+	
+	
 }

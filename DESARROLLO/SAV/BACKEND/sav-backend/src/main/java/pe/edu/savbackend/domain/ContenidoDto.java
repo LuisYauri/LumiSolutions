@@ -1,7 +1,6 @@
 package pe.edu.savbackend.domain;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -23,7 +23,9 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Evaluacion {
     @Id
-    private Integer id;
+    @Column(name="id")
+    private Integer idEvaluacion;
+    
 	@Column(name="titulo")
 	private String titulo;
 	

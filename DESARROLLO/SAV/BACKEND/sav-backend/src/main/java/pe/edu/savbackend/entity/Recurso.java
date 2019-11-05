@@ -23,11 +23,11 @@ import lombok.AllArgsConstructor;
 public class Recurso {
     @Id
     @Column(name="id")
-    private Integer id;
+    private Integer idRecurso;
     @Column(name="cod_tipo_recurso")
     private String codigoTipoRecurso;
-    @Column(name="id_detalle_contenido")
-    private Integer idDetalleContenido;
+    @Column(name="id_subcontenido")
+    private Integer idSubcontenido;
     @Column(name="url_recurso")
     private String urlRecurso;
     @Column(name="nombre")

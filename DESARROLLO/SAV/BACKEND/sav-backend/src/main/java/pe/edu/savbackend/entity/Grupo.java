@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class Grupo {
 	@Id
 	@Column(name="id")
-	private Integer id;
+	private Integer idGrupo;
 	
 	@Column(name="nombre")
 	private String nombre;

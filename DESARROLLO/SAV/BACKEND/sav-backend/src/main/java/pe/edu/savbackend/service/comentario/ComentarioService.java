@@ -9,5 +9,5 @@ public interface ComentarioService {
 
 	Comentario registrarComentario(Comentario comentario);
 
-	List<ComentarioResponse> obtenerListaComentarios(Integer idRecurso);
+	List<ComentarioResponse> listaComentariosPorIdRecurso(Integer idRecurso);
 }
