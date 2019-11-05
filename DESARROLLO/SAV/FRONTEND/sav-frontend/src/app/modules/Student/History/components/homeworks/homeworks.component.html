@@ -1,0 +1,29 @@
+<nz-table #basicTable [nzData]="listOfData" [nzTotal]="3">
+  <thead>
+    <tr>
+      <th>Nro</th>
+      <th>Titulo</th>
+      <th>Cantidad</th>
+      <th>Fecha Realizada</th>
+      <th>Hora Realizada</th>
+      <th>Contenido</th>
+      <th>Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data; let i = index;">
+      <td> {{i}}</td>
+      <td>{{data.titulo}}</td>
+      <td>{{data.cantidad}}</td>
+      <td>{{data.fecha}}</td>
+      <td>{{data.hora}}</td>
+      <td>{{data.contenido}}</td>
+      <td>
+        <button nz-button  [nzSize]="'large'" nzShape="round">
+          Ver<i nz-icon nzType="eye"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<p id="leyenda">tiene  <b>{{listOfData.length}}</b>  tareas</p>
