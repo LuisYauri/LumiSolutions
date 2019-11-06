@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamsComponent implements OnInit {
 
+	//Falta implementar los servicios
+	//Eliminar esto cuando se implemente
   constructor() { }
 
   ngOnInit() {
