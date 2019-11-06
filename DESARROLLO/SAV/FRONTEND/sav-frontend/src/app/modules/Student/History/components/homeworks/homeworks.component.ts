@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./homeworks.component.scss'],
 })
 export class HomeworksComponent implements OnInit {
+  //Creando data para ser visualizada en la tabla
+  //Esto se eliminará cuando este listo el servicio Backend
   listOfData = [
     {
       key: '1',

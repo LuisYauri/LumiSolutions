@@ -1,3 +1,6 @@
+
+//Interfaces para la Autentificación
+
 export interface Login {
   tipo: string
   usuario:string
