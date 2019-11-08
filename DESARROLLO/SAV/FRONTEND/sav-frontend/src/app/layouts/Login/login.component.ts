@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
     //Esta función llena en el formulario datos por defecto para iniciar sesión mas rápido
     this.loginForm = this.fb.group({
       type: ['E', [Validators.required]],
-      username: ['luis.yauri1', [Validators.required]],
-      password: ['123456', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     })
   }
 
@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit {
     let ga = this
     this.varLoading = true
     setTimeout(function () {
-      ga.router.navigate(['/student/homework'])
+      if( ga.loginForm.controls['username'].value === 'miguel.moya@unmsm.edu.pe' && ga.loginForm.controls['password'].value === '12345'){
+        ga.router.navigate(['/student/homework'])
+      }else{
+        ga.varLoading = false
+      }
     }, 3000);
   }
 

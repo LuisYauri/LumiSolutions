@@ -25,44 +25,44 @@ export class CriteriaStudentComponent implements OnInit {
   listCriteria: Criteria[] = [
     {
       "idCriterio": 1,
-      "nombre": "Criterio1",
+      "nombre": "Figma",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png"
     },
     {
       "idCriterio": 2,
-      "nombre": "Criterio1",
+      "nombre": "VueJS",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/Vue-JS.png"
     },
     {
       "idCriterio": 3,
-      "nombre": "Criterio1",
+      "nombre": "RxJs",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/RxJs.png"
     },
     {
       "idCriterio": 4,
-      "nombre": "Criterio1",
+      "nombre": "Angular",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-08/angular.png"
     },
     {
       "idCriterio": 5,
-      "nombre": "Criterio1",
+      "nombre": "Firebase",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-07/firebase-web.png"
     },
     {
       "idCriterio": 6,
-      "nombre": "Criterio1",
+      "nombre": "Audition",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-07/AuditionDesdeCero.png"
     }, {
       "idCriterio": 7,
-      "nombre": "Criterio1",
+      "nombre": "Google Analytics",
       "urlImagen": "https://drupal.ed.team/sites/default/files/imagenes-cdn-edteam/2019-06/Google%20analytics%20Avanzado.png"
     }, {
       "idCriterio": 8,
-      "nombre": "Criterio1",
+      "nombre": "After Effects",
       "urlImagen": "https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-07/AfterEffectsDesdeCero.png"
     }, {
       "idCriterio": 9,
-      "nombre": "Criterio1",
+      "nombre": "Redes",
       "urlImagen": "https://drupal.ed.team/sites/default/files/imagenes-cdn-edteam/2019-03/Redes%20Conmutacion.png"
     }
   ]
@@ -190,6 +190,6 @@ export class CriteriaStudentComponent implements OnInit {
   }
 
   getContent($event: Content) {
-    this.router.navigate(['/student/criteria/content/',$event.idContenido.toString()]);
+    //this.router.navigate(['/student/criteria/content/',$event.idContenido.toString()]);
   }
 }

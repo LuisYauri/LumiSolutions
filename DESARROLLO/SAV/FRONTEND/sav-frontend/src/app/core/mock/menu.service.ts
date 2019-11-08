@@ -8,12 +8,6 @@ export class MenuService {
         icon: 'file-text',
       },
       {
-        title: 'Examenes',
-        key: 'Examenes',
-        url: '/student/courses',
-        icon: 'profile',
-      },
-      {
         title: 'Historial',
         key: 'Historial',
         url: '/student/history',
