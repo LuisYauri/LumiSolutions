@@ -45,13 +45,13 @@ export class MenuService {
       {
         title: 'Historial',
         key: 'Historial',
-        url: '/student/history-homework',
+        url: '/student/historya-homework',
         icon: 'read',
       },
       {
         title: 'Criterios',
         key: 'Criterios',
-        url: '/student/history-homework',
+        url: '/student/historya-homework',
         icon: 'copy',
       },
     ]
