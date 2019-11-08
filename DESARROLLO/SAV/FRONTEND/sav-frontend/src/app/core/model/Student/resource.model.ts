@@ -6,7 +6,6 @@ export interface Resource {
   urlRecurso:string
   alumnoCalificacion:number
   promedioCalificacion:number
-  lsComentarios: Comment[]
 }
 
 export interface Comment {
@@ -26,5 +25,5 @@ export interface SendComment {
 export interface SendRate {
   idRecurso:number
   idEstudiante:number
-  calificacion:string
+  calificacion:number
 }

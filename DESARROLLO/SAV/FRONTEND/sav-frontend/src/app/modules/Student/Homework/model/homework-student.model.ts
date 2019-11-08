@@ -41,7 +41,7 @@ export interface QuestionA {
 }
 
 export interface Answer {
-  respuesta: number
+  respuesta: string
 }
 
 export interface ConfirmationAnswer {

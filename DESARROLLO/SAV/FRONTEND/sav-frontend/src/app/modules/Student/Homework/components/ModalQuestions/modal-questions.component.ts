@@ -71,7 +71,7 @@ export class ModalQuestionsComponent implements OnInit {
 
   private async confirmationSend() {
     try {
-      const response = await this.homeworkStudentService.postAnswers(this.questions.idTarea.toString(), this.gJsonSendAnswers(this.questions)).toPromise()
+      const response:any = await this.homeworkStudentService.postAnswers(this.questions.idTarea.toString(), this.gJsonSendAnswers(this.questions)).toPromise()
       console.log('Ingreso')
     } catch (e) {
       console.log(e)
@@ -133,7 +133,7 @@ export class ModalQuestionsComponent implements OnInit {
 
   gJsonCheckAnswer(i: number) {
     return {
-      respuesta: Number(this.answersForm.controls[i].value)
+      respuesta: this.answersForm.controls[i].value.toString()
     }
   }
 

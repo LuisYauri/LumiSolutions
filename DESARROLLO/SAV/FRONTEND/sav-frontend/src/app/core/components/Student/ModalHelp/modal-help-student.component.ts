@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Resource} from "../../../model/Student/resource.model";
+import {Comment, Resource} from "../../../model/Student/resource.model";
 import {AuthService} from "../../../../services/auth.service";
 import {ResourceService} from "../../../services/Student/resource.service";
+import {NzModalRef} from "ng-zorro-antd";
 
 @Component({
   selector: 'app-modal-help-student',
@@ -15,11 +16,13 @@ export class ModalHelpStudentComponent implements OnInit {
   tooltips = ['Puede mejorar', 'Maso menos', 'Normal', 'Bueno', 'Maravilloso'];
   selectValue = 0;
   commentValue: string;
+  listComment: Comment[] = []
 
-  constructor(private authService:AuthService, private resourceService:ResourceService) { }
+  constructor(private authService:AuthService, private resourceService:ResourceService, private modal: NzModalRef) { }
 
   ngOnInit() {
     this.selectValue = this.resource.alumnoCalificacion
+    this.getComments(this.resource.idRecurso)
   }
 
   changeRate(value: number) {
@@ -39,7 +42,7 @@ export class ModalHelpStudentComponent implements OnInit {
     return {
       idRecurso: this.resource.idRecurso,
       idEstudiante: this.authService.getIdEstudiante(),
-      calificacion: value.toString()
+      calificacion: value
     }
   }
 
@@ -58,5 +61,20 @@ export class ModalHelpStudentComponent implements OnInit {
       idEstudiante: this.authService.getIdEstudiante(),
       descripcion: this.commentValue.toString()
     }
+  }
+
+
+  private async getComments(idRecurso: number) {
+    try {
+      const response:any = await this.resourceService.getComments(idRecurso.toString()).toPromise()
+      this.listComment = response
+      console.log(this.listComment)
+    }catch (e) {
+      console.log(e)
+    }
+  }
+
+  destroyModal(): void {
+    this.modal.destroy();
   }
 }

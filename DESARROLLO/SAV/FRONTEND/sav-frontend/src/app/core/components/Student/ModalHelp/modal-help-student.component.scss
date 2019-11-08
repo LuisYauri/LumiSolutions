@@ -78,3 +78,14 @@
     font-weight: bold;
   }
 }
+
+.comment-box{
+  margin: 10px 0;
+  &--bold{
+    font-weight: bold;
+  }
+  &--flex{
+    display: flex;
+    flex-direction: column;
+  }
+}

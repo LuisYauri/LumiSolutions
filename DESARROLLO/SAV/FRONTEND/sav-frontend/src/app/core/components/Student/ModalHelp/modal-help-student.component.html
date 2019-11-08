@@ -1,9 +1,9 @@
 <div>
   <div class="help-box__name">{{resource.nombre}}</div>
-  <div *ngIf="resource.tipo === 'pdf'">
+  <div *ngIf="resource.tipo === '1'">
     <div>{{resource.urlRecurso}}</div>
   </div>
-  <div *ngIf="resource.tipo === 'video'">
+  <div *ngIf="resource.tipo === '2'">
     <iframe width="100%" height="315" [src]=" resource.urlRecurso | safeStudent" frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
@@ -36,5 +36,26 @@
         </button>
       </div>
     </div>
+    <div class="comments_box__block">
+      <div class="comments_box__write--line comment-box" *ngFor="let comment of listComment">
+        <div class="comments_box__write--line--1">
+          <div class="box-square">
+            <div class="box-square--text">{{comment.inicialesEstudiante}}</div>
+          </div>
+        </div>
+        <div class="comment-box--flex">
+          <div>
+            Comentado por <span class="comment-box--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
+          </div>
+          <div>
+            {{comment.descripcion}}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+<div *nzModalFooter>
+  <button nz-button nzType="default" class="btn_global--press" (click)="destroyModal()">Regresar</button>
 </div>

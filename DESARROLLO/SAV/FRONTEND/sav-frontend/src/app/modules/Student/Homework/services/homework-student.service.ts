@@ -18,31 +18,23 @@ export class HomeworkStudentService {
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  private headersList() {
-    return {
-      headers: {
-        Authorization: `Bearer ${this.authService.getToken()}`
-      }
-    };
-  }
-
   getListHomework() {
-    return this.http.get(`${this.API_URL_LIST_HOMEWORK}${this.authService.getIdEstudiante()}`, this.headersList())
+    return this.http.get(`${this.API_URL_LIST_HOMEWORK}${this.authService.getIdEstudiante().toString()}`)
   }
 
   getQuestions(idTarea: string) {
-    return this.http.get(`${this.API_URL_QUESTIONS}${idTarea}/preguntas`, this.headersList())
+    return this.http.get(`${this.API_URL_QUESTIONS}${idTarea}/preguntas`)
   }
 
   postAnswers(idTarea: string, data: SendAnswers) {
-    return this.http.post(`${this.API_URL_SEND_ANSWERS}${idTarea}/finalizar`, data, this.headersList())
+    return this.http.post(`${this.API_URL_SEND_ANSWERS}${idTarea}/estudiante/${this.authService.getIdEstudiante().toString()}/finalizar`, data)
   }
 
   postCheckAnswer(idPregunta: string, data: Answer) {
-    return this.http.post(`${this.API_URL_CHECK_ANSWER}${idPregunta}/comprobar`, data, this.headersList())
+    return this.http.post(`${this.API_URL_CHECK_ANSWER}${idPregunta}/comprobar`, data)
   }
 
   getResource(idRecurso:string){
-    return this.http.get(`${this.API_URL_RESOURCE}${idRecurso}`, this.headersList())
+    return this.http.get(`${this.API_URL_RESOURCE}${idRecurso}/estudiante/${this.authService.getIdEstudiante().toString()}`)
   }
 }

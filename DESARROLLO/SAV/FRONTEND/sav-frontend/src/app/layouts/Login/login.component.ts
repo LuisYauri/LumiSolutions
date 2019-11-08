@@ -46,20 +46,28 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async sendCredentials() {
-    //Esta función usa el servicio postLogin para iniciar sesión con los datos obtenidos del formulario
+  sendCredentials() {
+    let ga = this
     this.varLoading = true
-    try {
-      const response = await this.authService.postLogin(this.gJsonLogin()).toPromise()
-      localStorage.setItem('access_token', response['token']);
-      this.varLoading = false
-      await this.router.navigate(['/student/homework'])
-    } catch (e) {
-      console.log(e)
-      this.varLoading = false
-      this.notificationService.info('Datos Incorrectos', 'Su datos ingresados son incorrectos.')
-    }
+    setTimeout(function () {
+      ga.router.navigate(['/student/homework'])
+    }, 3000);
   }
+
+  // async sendCredentials() {
+  //   //Esta función usa el servicio postLogin para iniciar sesión con los datos obtenidos del formulario
+  //   this.varLoading = true
+  //   try {
+  //     const response = await this.authService.postLogin(this.gJsonLogin()).toPromise()
+  //     localStorage.setItem('access_token', response['token']);
+  //     this.varLoading = false
+  //     await this.router.navigate(['/student/homework'])
+  //   } catch (e) {
+  //     console.log(e)
+  //     this.varLoading = false
+  //     this.notificationService.info('Datos Incorrectos', 'Su datos ingresados son incorrectos.')
+  //   }
+  // }
 
   private gJsonLogin() {
     //Esta función retorna los datos introducidos en el formulario en formato JSON
