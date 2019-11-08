@@ -1,1 +1,15 @@
-<p>history-student works!</p>
+<div class="header_global">
+  <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon" [url]="varHeader.url"></app-header-page-student>
+</div>
+
+<div class="body_global">
+  <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
+    <nz-tab  [nzTitle]="'Tareas'">
+
+    </nz-tab>
+    <nz-tab  [nzTitle]="'Exámenes'">
+      En Proceso...
+    </nz-tab>
+  </nz-tabset>
+
+</div>

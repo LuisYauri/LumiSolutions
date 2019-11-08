@@ -9,6 +9,7 @@ import {NzTabsModule} from 'ng-zorro-antd/tabs';
 
 import {HistoryRoutingModule} from './history-student-routing.module';
 import {HistoryStudentComponent} from './pages/History/history-student.component';
+import {CoreModule} from "../../../core/core.module";
 
 const CONST_PAGES = [HistoryStudentComponent]
 const CONST_COMPONENTS = []
@@ -26,6 +27,7 @@ const CONST_ENTRY_COMPONENTS = []
     NzButtonModule,
     NzIconModule,
     NzTableModule,
+    CoreModule,
   ],
   entryComponents: [CONST_ENTRY_COMPONENTS]
 })

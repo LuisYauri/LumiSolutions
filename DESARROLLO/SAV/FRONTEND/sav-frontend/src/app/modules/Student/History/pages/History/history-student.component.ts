@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryStudentComponent implements OnInit {
 
+  varHeader = {
+    title:'Historial',
+    icon:'read',
+    url:''
+  }
+
   constructor() { }
 
   ngOnInit() {
