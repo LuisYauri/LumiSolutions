@@ -36,24 +36,26 @@
         </button>
       </div>
     </div>
-    <div class="comments_box__block">
-      <div class="comments_box__write--line comment-box" *ngFor="let comment of listComment">
-        <div class="comments_box__write--line--1">
-          <div class="box-square">
-            <div class="box-square--text">{{comment.inicialesEstudiante}}</div>
+    <nz-spin [nzSpinning]="varLoadingSpinning" nzTip="Cargando...">
+      <div class="comments_box__block">
+        <div class="comments_box__write--line comment-box" *ngFor="let comment of listComment">
+          <div class="comments_box__write--line--1">
+            <div class="box-square">
+              <div class="box-square--text">{{comment.inicialesEstudiante}}</div>
+            </div>
           </div>
-        </div>
-        <div class="comment-box--flex">
-          <div>
-            Comentado por <span
-            class="comment-box--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
-          </div>
-          <div>
-            {{comment.descripcion}}
+          <div class="comment-box--flex">
+            <div>
+              Comentado por <span
+              class="comment-box--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
+            </div>
+            <div>
+              {{comment.descripcion}}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </nz-spin>
   </div>
 </div>
 

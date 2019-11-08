@@ -17,6 +17,7 @@ export class ModalHelpStudentComponent implements OnInit {
   selectValue = 0;
   commentValue: string;
   listComment: Comment[] = []
+  varLoadingSpinning = false
 
   constructor(private authService: AuthService, private resourceService: ResourceService, private modal: NzModalRef) {
   }
@@ -49,8 +50,11 @@ export class ModalHelpStudentComponent implements OnInit {
 
   async sendComment() {
     try {
+      this.varLoadingSpinning = true
       const response = await this.resourceService.postComment(this.gJsonSendComment()).toPromise()
       this.getComments(this.resource.idRecurso)
+      this.varLoadingSpinning = false
+      this.commentValue = ""
     } catch (e) {
       console.log(e)
     }
