@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "sav-frontend",
+    "public": "dist/sav-frontend",
     "ignore": [
       "firebase.json",
       "**/.*",
