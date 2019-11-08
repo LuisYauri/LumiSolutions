@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.savbackend.dao.RecursoDao;
 import pe.edu.savbackend.domain.comentario.ComentarioResponse;
 import pe.edu.savbackend.domain.comentario.RecursoDto;
+import pe.edu.savbackend.service.calificaciones.CalificacionService;
 import pe.edu.savbackend.service.comentario.ComentarioService;
 
 @Service
@@ -17,11 +18,16 @@ public class RecursoServiceImpl implements RecursoService {
 	private RecursoDao recursoDao;
 	@Autowired
 	private ComentarioService comentarioService;
-
+	@Autowired
+	private CalificacionService calificacionService;
+	
 	@Override
 	public RecursoDto obtenerRecursoPorId(Integer idRecurso, Integer idEstudiante) {
-		//contar las tareas formatear la fecha 	
-		return recursoDao.obtenerPorId(idRecurso, idEstudiante);
+
+		Integer calificacionEstudiante = calificacionService.obtenerCalificacionPorEstudiante(idRecurso, idEstudiante);
+		RecursoDto recursoDto = recursoDao.obtenerPorId(idRecurso);
+		recursoDto.setAlumnoCalificacion((calificacionEstudiante== null)?0:calificacionEstudiante);
+		return recursoDto;
 	}
 
 	public List<RecursoDto> filtrarPorIdSubcontenido(Integer idSubContenido) {

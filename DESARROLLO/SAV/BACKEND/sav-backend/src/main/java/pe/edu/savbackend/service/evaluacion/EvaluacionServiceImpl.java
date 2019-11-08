@@ -149,7 +149,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			estadistica.setNota("C");
 		}
 		estadistica.setLsTiposResultados(lsTipoResultado);
-		estadistica.setTotalPreguntas(tareaDto.getCantidadPreguntas());
+		estadistica.setTotalPreguntas(Integer.parseInt(tareaDto.getCantidadPreguntas()));
 		estadistica.setIdEstudiante(tareaDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(tareaDto.getIdTarea());
 		estadistica.setTipo("T");
@@ -199,7 +199,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			estadistica.setNota("C");
 		}
 		estadistica.setLsTiposResultados(lsTipoResultado);
-		estadistica.setTotalPreguntas(examenDto.getCantidadPreguntas());
+		estadistica.setTotalPreguntas(Integer.parseInt(examenDto.getCantidadPreguntas()));
 		estadistica.setIdEstudiante(examenDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(examenDto.getIdExamen());
 		estadistica.setTipo("E");

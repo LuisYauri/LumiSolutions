@@ -22,16 +22,24 @@ public class RecursoDto {
 	private List<ComentarioResponse> lsComentarios;
 
 	public RecursoDto(Integer idRecurso, String nombre, String descripcion, 
-					  String tipo, String urlRecurso, Integer alumnoCalificacion, 
-					  Double promedioCalificacion)
+					  String tipo, String urlRecurso, Double promedioCalificacion)
 	{
 		this.idRecurso = idRecurso;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.tipo = tipo;
 		this.urlRecurso = urlRecurso; 
-		this.alumnoCalificacion = alumnoCalificacion;
 		this.promedioCalificacion = promedioCalificacion;
 	}
-	
+	public RecursoDto(Integer idRecurso, String nombre, String descripcion, 
+			  String tipo, String urlRecurso, Integer alumnoCalificacion,Double promedioCalificacion)
+	{
+			this.idRecurso = idRecurso;
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.tipo = tipo;
+			this.urlRecurso = urlRecurso; 
+			this.promedioCalificacion = promedioCalificacion;
+			this.alumnoCalificacion = alumnoCalificacion;
+	}
 }
