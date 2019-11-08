@@ -77,6 +77,7 @@ export class ModalQuestionsComponent implements OnInit {
   private async confirmationSend() {
     try {
       this.varLoadingSend = true
+      console.log(this.gJsonSendAnswers(this.questions))
       const response:any = await this.homeworkStudentService.postAnswers(this.questions.idTarea.toString(), this.gJsonSendAnswers(this.questions)).toPromise()
       this.varLoadingSend = false
       this.modal.destroy();
@@ -93,6 +94,7 @@ export class ModalQuestionsComponent implements OnInit {
     return {
       idTarea: questions.idTarea,
       titulo: questions.titulo,
+      contenido: questions.contenido,
       idEstudiante: this.authService.getIdEstudiante(),
       lsPreguntas: this.gJsonAnswers(questions.lsPreguntas)
     }
@@ -108,7 +110,7 @@ export class ModalQuestionsComponent implements OnInit {
         urlImagen: lsPreguntas[i].urlImagen,
         tipo: lsPreguntas[i].tipo,
         alternativas: lsPreguntas[i].alternativas,
-        respuestaEstudiante: Number(this.answersForm.controls[i].value)
+        respuestaEstudiante: this.answersForm.controls[i].value
       })
     }
     return tempArray

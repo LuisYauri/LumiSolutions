@@ -9,13 +9,9 @@
         <div *ngIf="question.tipo == 0">
           <div class="flex-style">
             <button nz-button nzType="default" class="btn_global--help" (click)="viewHelp(question)">Ayuda</button>
-            <div class="flex-style">
+            <div class="input_text">
               <div class="text-alter">La Respuesta es :</div>
-
-              <nz-input-number class="input-number" formControlName="{{i}}" [nzMin]="-100000000000000000"
-                               [nzMax]="100000000000000000"
-                               [nzStep]="1"></nz-input-number>
-
+              <input class="input_text--inp" nz-input formControlName="{{i}}" />
               <button nz-button nzType="default"  [nzLoading]="varLoadingCheck" class="btn_global--check" (click)="checkAnswer(question,i)">Comprobar
               </button>
             </div>

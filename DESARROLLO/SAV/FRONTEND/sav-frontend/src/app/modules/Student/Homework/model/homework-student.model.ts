@@ -11,6 +11,7 @@ export interface Homework {
 export interface Questions {
   idTarea: number
   titulo: string
+  contenido: string
   lsPreguntas: Question[]
 }
 
@@ -27,6 +28,7 @@ export interface SendAnswers {
   idTarea: number
   titulo: string
   idEstudiante: number
+  contenido: string
   lsPreguntas: QuestionA[]
 }
 
@@ -37,7 +39,7 @@ export interface QuestionA {
   urlImagen: string
   tipo: string
   alternativas: string[]
-  respuestaEstudiante: number
+  respuestaEstudiante: string
 }
 
 export interface Answer {

@@ -1,7 +1,7 @@
 <div>
   <div class="help-box__name">{{resource.nombre}}</div>
   <div *ngIf="resource.tipo === '1'">
-    <div>{{resource.urlRecurso}}</div>
+    <embed [src]=" resource.urlRecurso | safeStudent" width="100%"  height="375">
   </div>
   <div *ngIf="resource.tipo === '2'">
     <iframe width="100%" height="315" [src]=" resource.urlRecurso | safeStudent" frameborder="0"
@@ -45,7 +45,8 @@
         </div>
         <div class="comment-box--flex">
           <div>
-            Comentado por <span class="comment-box--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
+            Comentado por <span
+            class="comment-box--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
           </div>
           <div>
             {{comment.descripcion}}

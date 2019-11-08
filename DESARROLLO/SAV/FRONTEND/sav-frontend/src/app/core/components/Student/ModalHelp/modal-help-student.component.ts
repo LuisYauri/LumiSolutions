@@ -18,7 +18,8 @@ export class ModalHelpStudentComponent implements OnInit {
   commentValue: string;
   listComment: Comment[] = []
 
-  constructor(private authService:AuthService, private resourceService:ResourceService, private modal: NzModalRef) { }
+  constructor(private authService: AuthService, private resourceService: ResourceService, private modal: NzModalRef) {
+  }
 
   ngOnInit() {
     this.selectValue = this.resource.alumnoCalificacion
@@ -33,7 +34,7 @@ export class ModalHelpStudentComponent implements OnInit {
     try {
       const response = await this.resourceService.postRate(this.gJsonSendRate(value)).toPromise()
       console.log("Good")
-    }catch (e) {
+    } catch (e) {
       console.log(e)
     }
   }
@@ -49,8 +50,8 @@ export class ModalHelpStudentComponent implements OnInit {
   async sendComment() {
     try {
       const response = await this.resourceService.postComment(this.gJsonSendComment()).toPromise()
-      console.log("Good")
-    }catch (e) {
+      this.getComments(this.resource.idRecurso)
+    } catch (e) {
       console.log(e)
     }
   }
@@ -66,15 +67,15 @@ export class ModalHelpStudentComponent implements OnInit {
 
   private async getComments(idRecurso: number) {
     try {
-      const response:any = await this.resourceService.getComments(idRecurso.toString()).toPromise()
+      const response: any = await this.resourceService.getComments(idRecurso.toString()).toPromise()
       this.listComment = response
       console.log(this.listComment)
-    }catch (e) {
+    } catch (e) {
       console.log(e)
     }
   }
 
-  destroyModal(): void {
+  destroyModal() {
     this.modal.destroy();
   }
 }

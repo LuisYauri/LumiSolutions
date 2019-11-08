@@ -17,7 +17,7 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [...COMPONENTS, SafeStudentPipe, ],
-  imports: [SharedModule, FormsModule, ReactiveFormsModule,],
+  imports: [SharedModule, FormsModule, ReactiveFormsModule],
   exports: [...COMPONENTS],
   entryComponents: [ModalHelpStudentComponent]
 })
