@@ -47,3 +47,15 @@ export interface Answer {
 export interface ConfirmationAnswer {
   confirmacion: boolean
 }
+
+export interface Results {
+  nota: string
+  totalPreguntas:number
+  lsTiposResultados: Result[]
+}
+
+export interface Result {
+  tipo: string
+  porcentaje:number
+  cantidad:number
+}

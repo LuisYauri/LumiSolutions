@@ -1,12 +1,13 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
-import {ConfirmationAnswer, Question, Questions} from "../../model/homework-student.model";
+import {ConfirmationAnswer, Question, Questions, Results} from "../../model/homework-student.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzMessageService, NzNotificationService} from "ng-zorro-antd";
 import {HomeworkStudentService} from "../../services/homework-student.service";
 import {AuthService} from "../../../../../services/auth.service";
 import {ModalHelpStudentComponent} from "../../../../../core/components/Student/ModalHelp/modal-help-student.component";
 import {Resource} from "../../../../../core/model/Student/resource.model";
+import {ModalResultsStudentComponent} from "../ModalResults/modal-results-student.component";
 
 @Component({
   selector: 'app-modal-questions',
@@ -21,6 +22,10 @@ export class ModalQuestionsComponent implements OnInit {
   checkConfirm: ConfirmationAnswer = {confirmacion: false}
   loadingBtn = false
   resource: Resource
+  results: Results
+
+  varLoadingSend = false
+  varLoadingCheck = false
 
   constructor(private modal: NzModalRef, private fb: FormBuilder, private nzMessageService: NzMessageService,
               private homeworkStudentService: HomeworkStudentService, private authService: AuthService,
@@ -71,10 +76,15 @@ export class ModalQuestionsComponent implements OnInit {
 
   private async confirmationSend() {
     try {
+      this.varLoadingSend = true
       const response:any = await this.homeworkStudentService.postAnswers(this.questions.idTarea.toString(), this.gJsonSendAnswers(this.questions)).toPromise()
-      console.log('Ingreso')
+      this.varLoadingSend = false
+      this.modal.destroy();
+      this.results = response
+      this.generateModalResults()
     } catch (e) {
       console.log(e)
+      this.varLoadingSend = false
     }
   }
 
@@ -106,7 +116,9 @@ export class ModalQuestionsComponent implements OnInit {
 
   async checkAnswer(question: Question, i: number) {
     try {
+      this.varLoadingCheck = true
       const response: any = await this.homeworkStudentService.postCheckAnswer(question.idPregunta.toString(), this.gJsonCheckAnswer(i)).toPromise()
+      this.varLoadingCheck = false
       this.checkConfirm = response
       if(this.checkConfirm.confirmacion){
         this.notification.create(
@@ -128,6 +140,7 @@ export class ModalQuestionsComponent implements OnInit {
         'Ánimos, tu puedes.'
       );
       console.log(e)
+      this.varLoadingCheck = false
     }
   }
 
@@ -162,6 +175,18 @@ export class ModalQuestionsComponent implements OnInit {
       nzWidth: 700,
       nzComponentParams: {
         resource: this.resource
+      },
+      nzMaskClosable: false,
+    })
+  }
+
+  private generateModalResults() {
+    const modal = this.modalService.create({
+      nzTitle: 'Resultados',
+      nzContent: ModalResultsStudentComponent,
+      nzWidth: 700,
+      nzComponentParams: {
+        results: this.results
       },
       nzMaskClosable: false,
     })

@@ -8,10 +8,15 @@ import {CoreModule} from "../../../core/core.module";
 import {TableListHomeworksComponent} from './components/TableListHomeworks/table-list-homeworks.component';
 import {ModalQuestionsComponent} from './components/ModalQuestions/modal-questions.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ModalResultsStudentComponent } from './components/ModalResults/modal-results-student.component';
 
+const CONST_PAGES = [HomeworkStudentComponent]
+const CONST_COMPONENTS = [TableListHomeworksComponent, ModalQuestionsComponent, ModalResultsStudentComponent]
+const CONST_ENTRY_COMPONENTS=[ModalQuestionsComponent, ModalResultsStudentComponent]
 
 @NgModule({
-  declarations: [HomeworkStudentComponent, TableListHomeworksComponent, ModalQuestionsComponent],
+  declarations: [...CONST_COMPONENTS, ...CONST_PAGES],
+  exports: [...CONST_COMPONENTS],
   imports: [
     SharedModule,
     CommonModule,
@@ -20,7 +25,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     FormsModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ModalQuestionsComponent]
+  entryComponents: [CONST_ENTRY_COMPONENTS]
 })
 export class HomeworkStudentModule {
 }
