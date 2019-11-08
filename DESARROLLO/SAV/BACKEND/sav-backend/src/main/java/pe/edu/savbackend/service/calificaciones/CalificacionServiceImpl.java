@@ -36,6 +36,11 @@ public class CalificacionServiceImpl implements CalificacionService {
 		return calificacionDao.obtenerCalificacionPorEstudiante(idRecurso, idEstudiante);
 	}
 
+	@Override
+	public Double obtenerCalificacionPromedio(Integer idRecurso) {
+		return calificacionDao.obtenerCalificacionPromedio(idRecurso);
+	}
+
 
 	
 

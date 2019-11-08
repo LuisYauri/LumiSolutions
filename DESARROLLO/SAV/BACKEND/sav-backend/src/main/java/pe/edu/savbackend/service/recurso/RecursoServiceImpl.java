@@ -25,7 +25,12 @@ public class RecursoServiceImpl implements RecursoService {
 	public RecursoDto obtenerRecursoPorId(Integer idRecurso, Integer idEstudiante) {
 
 		Integer calificacionEstudiante = calificacionService.obtenerCalificacionPorEstudiante(idRecurso, idEstudiante);
+		Double calificacionPromedio = calificacionService.obtenerCalificacionPromedio(idRecurso);
+		
+		calificacionPromedio = Math.floor(calificacionPromedio*10)/10;
+		
 		RecursoDto recursoDto = recursoDao.obtenerPorId(idRecurso);
+		recursoDto.setPromedioCalificacion(calificacionPromedio);
 		recursoDto.setAlumnoCalificacion((calificacionEstudiante== null)?0:calificacionEstudiante);
 		return recursoDto;
 	}

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import pe.edu.savbackend.dao.AlternativaDao;
+import pe.edu.savbackend.dao.ContenidoDao;
 import pe.edu.savbackend.dao.EstudianteEvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDetalleDao;
@@ -42,6 +43,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	private HistorialDao historialDao;	
 	@Autowired
 	private EstudianteEvaluacionDao estudianteEvaluacionDao;	
+	@Autowired
+	private ContenidoDao contenidoDao;
 	
 	Gson gson = new Gson();
 
@@ -49,6 +52,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public List<TareaDto> getLsTareas(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
 		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante);
+
 		lsTarea.forEach(e->{
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaInicio();
 			e.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdTarea()).toString());
@@ -75,7 +79,13 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	public TareaDto getPreguntasPorTarea(Integer idTarea) {
 		Evaluacion tarea = evaluacionDao.getOne(idTarea);
+		
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
+		if (tarea.getIdContenido()!= null) {
+			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());
+		}
+		
+		
 		List<PreguntaDto> lsPreguntas = preguntaDao.obtenerPreguntasPorIdTarea(idTarea);
 		
 		lsPreguntas.forEach(preg -> {
@@ -124,7 +134,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		
 		tareaDto.getLsPreguntas().forEach(pregunta->{
 			String rptaCorrecta = preguntaDao.getOne(pregunta.getIdPregunta()).getRespuestaCorrecta();
-			if(pregunta.getRespuestaEstudiante() == null){
+			if(pregunta.getRespuestaEstudiante() == null || pregunta.getRespuestaEstudiante().equals("")){
 				vacio++;
 			} else if (pregunta.getRespuestaEstudiante().equals(rptaCorrecta)) {
 				correcto++;

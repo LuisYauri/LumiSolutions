@@ -1,4 +1,6 @@
 package pe.edu.savbackend.entity;
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -39,4 +41,6 @@ public class Comentario {
 	@Column(name="descripcion")
 	private String descripcion;
     
+	@Column(name="fecha")
+	private LocalDateTime fecha;
 }

@@ -47,4 +47,6 @@ public class Evaluacion {
     @Column(name="cantidad")
 	private Integer cantidad;
 
+    @Column(name="id_contenido")
+	private Integer idContenido;
 }
