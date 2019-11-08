@@ -1,0 +1,24 @@
+<div>
+  <div class="statics">
+    <div class="statics__item" *ngFor="let result of results.lsTiposResultados">
+      <nz-progress
+        nzType="circle"
+        [nzPercent]=result.porcentaje
+        [nzStrokeColor]="getColor(result.tipo)"
+        [nzFormat]="formatOne"
+      ></nz-progress>
+      <div class="statics__item--text" *ngIf="result.tipo === 'Correcto'">Respuestas Correctas: {{result.cantidad}}</div>
+      <div class="statics__item--text" *ngIf="result.tipo === 'Incorrecto'">Respuestas Incorrectas: {{result.cantidad}}</div>
+      <div class="statics__item--text" *ngIf="result.tipo === 'Sin responder'">Respuestas Sin Responder: {{result.cantidad}}</div>
+    </div>
+  </div>
+  <div class="note">
+    Nota: {{results.nota}}
+  </div>
+</div>
+
+<div *nzModalFooter>
+  <button nz-button nzType="default" class="btn_global--press" (click)="destroyModal()">
+    Cerrar
+  </button>
+</div>

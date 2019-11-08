@@ -10,23 +10,22 @@ import {NzTabsModule} from 'ng-zorro-antd/tabs';
 import {HistoryRoutingModule} from './history-student-routing.module';
 import {HistoryStudentComponent} from './pages/History/history-student.component';
 import {CoreModule} from "../../../core/core.module";
+import {TabTareasHistoryStudentComponent} from './components/TabTareas/tab-tareas-history-student.component';
+import {ModalViewHistoryStudentComponent} from './components/ModalView/modal-view-history-student.component';
+import {SharedModule} from "../../../shared/shared.module";
 
 const CONST_PAGES = [HistoryStudentComponent]
-const CONST_COMPONENTS = []
-const CONST_ENTRY_COMPONENTS = []
+const CONST_COMPONENTS = [TabTareasHistoryStudentComponent, ModalViewHistoryStudentComponent]
+const CONST_ENTRY_COMPONENTS = [ModalViewHistoryStudentComponent]
 
 @NgModule({
   declarations: [...CONST_COMPONENTS, ...CONST_PAGES],
   exports: [...CONST_COMPONENTS],
   imports: [
+    SharedModule,
     CommonModule,
     HistoryRoutingModule,
-    NzTabsModule,
-    NzDatePickerModule,
     FormsModule,
-    NzButtonModule,
-    NzIconModule,
-    NzTableModule,
     CoreModule,
   ],
   entryComponents: [CONST_ENTRY_COMPONENTS]

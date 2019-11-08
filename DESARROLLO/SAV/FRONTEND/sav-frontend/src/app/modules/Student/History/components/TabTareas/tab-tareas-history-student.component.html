@@ -1,0 +1,27 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-table #tableTareaHistory
+              [nzData]="lsTareas"
+              [nzShowPagination]="false"
+              [nzLoading]="varLoading"
+    >
+      <thead>
+      <tr>
+        <th *ngFor="let title of varTableTitle">{{title}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tarea of tableTareaHistory.data">
+        <td>{{ tarea.titulo}}</td>
+        <td>{{ tarea.cantidadPreguntas }}</td>
+        <td>{{ tarea.fechaRealizada }}</td>
+        <td>{{ tarea.horaRealizada }}</td>
+        <td>{{ tarea.contenido }}</td>
+        <td>
+          <button nz-button class="btn_global--check" [nzLoading]="loadingBtn" nzType="primary" (click)="showModal(tarea)"><i nz-icon nzType="eye"></i>Ver</button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
