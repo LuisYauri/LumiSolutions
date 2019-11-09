@@ -54,6 +54,11 @@ export class LoginComponent implements OnInit {
         ga.router.navigate(['/student/homework'])
       }else{
         ga.varLoading = false
+        ga.notificationService.create(
+          'error',
+          'Datos Incorrectos',
+          'Revise sus datos.'
+        );
       }
     }, 3000);
   }

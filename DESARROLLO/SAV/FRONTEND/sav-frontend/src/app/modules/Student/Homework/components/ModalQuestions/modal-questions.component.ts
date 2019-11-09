@@ -131,14 +131,14 @@ export class ModalQuestionsComponent implements OnInit {
       }else {
         this.notification.create(
           'error',
-          'Respuesta Correcta',
+          'Respuesta Incorrecta',
           'Ánimos, tu puedes.'
         );
       }
     } catch (e) {
       this.notification.create(
         'error',
-        'Respuesta Correcta',
+        'Respuesta Incorrecta',
         'Ánimos, tu puedes.'
       );
       console.log(e)

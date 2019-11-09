@@ -1,0 +1,24 @@
+[debug] [2019-11-09T00:16:59.865Z] ----------------------------------------------------------------------
+[debug] [2019-11-09T00:16:59.867Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Luis\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2019-11-09T00:16:59.868Z] CLI Version:   7.4.0
+[debug] [2019-11-09T00:16:59.868Z] Platform:      win32
+[debug] [2019-11-09T00:16:59.868Z] Node Version:  v10.15.1
+[debug] [2019-11-09T00:16:59.874Z] Time:          Fri Nov 08 2019 19:16:59 GMT-0500 (GMT-05:00)
+[debug] [2019-11-09T00:16:59.874Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-11-09T00:16:59.888Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-11-09T00:16:59.888Z] > authorizing via signed-in user
+[debug] [2019-11-09T00:16:59.889Z] [iam] checking project ihcpro for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-11-09T00:16:59.890Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ihcpro:testIamPermissions  
+
+[debug] [2019-11-09T00:17:03.676Z] <<< HTTP RESPONSE 200
+[debug] [2019-11-09T00:17:03.678Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ihcpro  
+ 
+[debug] [2019-11-09T00:17:04.782Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'ihcpro'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-11-09T00:17:04.788Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/ihcpro/versions  
+
+[debug] [2019-11-09T00:17:08.883Z] <<< HTTP RESPONSE 200
