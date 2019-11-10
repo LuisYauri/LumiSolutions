@@ -54,6 +54,7 @@ export interface ConfirmationAnswer {
 export interface Results {
   nota: string
   totalPreguntas: number
+  tipo: string
   lsTiposResultados: Result[]
 }
 

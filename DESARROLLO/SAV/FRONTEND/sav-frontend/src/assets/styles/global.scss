@@ -35,6 +35,14 @@ body {
   color: #ffffff;
   font-weight: bold;
   font-size: 12px;
+  &:hover{
+    border-color: #2C77F4;
+    color: #2C77F4;
+  }
+  &:focus{
+    border-color: #2C77F4;
+    color: #2C77F4;
+  }
 }
 
 .btn_global--check {
@@ -44,6 +52,14 @@ body {
   color: #ffffff;
   font-weight: bold;
   font-size: 12px;
+  &:hover{
+    border-color: #73D13D;
+    color: #73D13D;
+  }
+  &:focus{
+    border-color: #73D13D;
+    color: #73D13D;
+  }
 }
 
 .btn_global--press {
@@ -53,6 +69,14 @@ body {
   color: #ffffff;
   font-weight: bold;
   font-size: 12px;
+  &:hover{
+    border-color: #363735;
+    color: #363735;
+  }
+  &:focus{
+    border-color: #363735;
+    color: #363735;
+  }
 }
 
 .ant-progress-circle.ant-progress-status-success .ant-progress-text {
@@ -68,10 +92,6 @@ body {
   color: #000000;
   font-weight: bold;
   font-size: 18px;
-}
-
-.color-black-global {
-  color: #000000;
 }
 
 // Results
@@ -103,4 +123,14 @@ body {
   align-items: center;
   margin-top: 10px;
   color: #000000;
+}
+
+.block-result{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0;
+}
+
+.text-bold{
+  font-weight: bold;
 }

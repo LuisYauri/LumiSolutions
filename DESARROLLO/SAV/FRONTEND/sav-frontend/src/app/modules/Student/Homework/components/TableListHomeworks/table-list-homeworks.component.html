@@ -19,7 +19,7 @@
 	      <td>{{ homework.tiempoLimite }}</td>
 	      <td>{{ homework.contenido }}</td>
 	      <td>
-	        <button nz-button [nzLoading]="homework.flag" nzType="primary" (click)="showModal(homework)"><i nz-icon nzType="rocket"></i>Resolver</button>
+	        <button nz-button [nzLoading]="homework.flag" nzType="primary" (click)="showModal(homework)"><i nz-icon nzType="rocket" class="btn-resolve"></i>Resolver</button>
 	      </td>
         <app-loading-blank-student [flag]="homework.flag"></app-loading-blank-student>
 	    </tr>
