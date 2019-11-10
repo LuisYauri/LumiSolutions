@@ -37,8 +37,13 @@
   justify-content: flex-end;
   flex-direction: row;
   align-items: center;
-  &--inp{
+
+  &--inp {
     width: 20%;
     margin: 0 10px 0 0;
   }
+}
+
+.question-list {
+  color: #000000;
 }

@@ -58,3 +58,49 @@ body {
 .ant-progress-circle.ant-progress-status-success .ant-progress-text {
   color: #595959;
 }
+
+.ant-tabs-nav .ant-tabs-tab-active {
+  color: #2c77f4;
+  font-weight: bold;
+}
+
+.ant-modal-title {
+  color: #000000;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.color-black-global {
+  color: #000000;
+}
+
+// Results
+.statics {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+
+    &--text {
+      margin: 10px 0;
+      color: #000000;
+    }
+  }
+}
+
+.note {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  font-size: 16px;
+  align-items: center;
+  margin-top: 10px;
+  color: #000000;
+}

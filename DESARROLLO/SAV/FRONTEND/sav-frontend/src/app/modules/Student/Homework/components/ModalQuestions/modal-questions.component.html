@@ -2,16 +2,16 @@
 <div>
   <form nz-form class="login-form" [formGroup]="answersForm">
     <nz-tabset [nzSelectedIndex]="indexTab" [nzTabPosition]="'left'">
-      <nz-tab *ngFor="let question of questions.lsPreguntas; index as i" nzTitle="Pregunta {{i+1}}"
+      <nz-tab *ngFor="let question of questions.lsPreguntas; index as i" class="question-list" nzTitle="Pregunta {{i+1}}"
               (nzClick)="pressTab(i)">
-        <div class="box_text">{{question.descripcion}}</div>
+        <div class="box_text color-black-global">{{question.descripcion}}</div>
         <img class="box__imag" [src]="question.urlImagen" alt="">
         <div *ngIf="question.tipo == 0">
           <div class="flex-style">
             <button nz-button nzType="default" class="btn_global--help" [nzLoading]="varLoadingHelp" (click)="viewHelp(question)">Ayuda</button>
             <div class="input_text">
-              <div class="text-alter">La Respuesta es :</div>
-              <input class="input_text--inp" nz-input formControlName="{{i}}" />
+              <div class="text-alter color-black-global">La Respuesta es :</div>
+              <input class="input_text--inp color-black-global" nz-input formControlName="{{i}}" />
               <button nz-button nzType="default"  [nzLoading]="varLoadingCheck" class="btn_global--check" (click)="checkAnswer(question,i)">Comprobar
               </button>
             </div>
@@ -20,7 +20,7 @@
         <div *ngIf="question.tipo == 1">
           <div class="aler-box">
             <nz-radio-group class="flex-style" formControlName="{{i}}">
-              <label *ngFor="let alter of question.alternativas" nz-radio nzValue="{{alter}}">{{alter}}</label>
+              <label *ngFor="let alter of question.alternativas" nz-radio nzValue="{{alter}}"><span class="color-black-global">{{alter}}</span></label>
             </nz-radio-group>
           </div>
           <div class="flex-style">
@@ -36,7 +36,7 @@
 
 <div *nzModalFooter>
   <div class="flex-style">
-    <div>Pregunta {{indexTab + 1}} de {{questions.lsPreguntas.length}}</div>
+    <div class="color-black-global">Pregunta {{indexTab + 1}} de {{questions.lsPreguntas.length}}</div>
     <div class="">
       <button nz-button nzType="default" class="btn_global--press" (click)="pre()" *ngIf="indexTab > 0">
         <span>Anterior</span>
