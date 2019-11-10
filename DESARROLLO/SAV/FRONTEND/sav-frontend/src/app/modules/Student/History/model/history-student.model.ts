@@ -35,3 +35,22 @@ export interface TypeResults {
   porcentaje: number
   cantidad: number
 }
+
+export interface EvaluationHistoryStudent {
+  idEvaluacion: number
+  titulo:string
+  idEstudiante:string
+  lsPreguntas: QuestionsEvaluationHistoryStudent[]
+}
+
+export interface QuestionsEvaluationHistoryStudent {
+  idPregunta:number
+  idRecurso:number
+  descripcion:string
+  urlImagen:string
+  tipo:string
+  alternativas:string[]
+  respuestaEstudiante:string
+  respuestaCorrecta:string
+
+}

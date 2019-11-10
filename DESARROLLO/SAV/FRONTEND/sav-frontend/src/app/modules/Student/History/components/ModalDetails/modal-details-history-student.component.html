@@ -1,0 +1,51 @@
+<div>
+  <nz-tabset [nzSelectedIndex]="indexTab" [nzTabPosition]="'left'">
+    <nz-tab *ngFor="let question of questions.lsPreguntas; index as i" class="question-list" nzTitle="Pregunta {{i+1}}"
+            (nzClick)="pressTab(i)">
+      <div class="box_text">{{question.descripcion}}</div>
+      <img class="box__imag" [src]="question.urlImagen" alt="">
+      <div class="block-details-answers">
+        <button nz-button nzType="default" class="btn-global--blue--line btn-help-details" [nzLoading]="varLoadingHelp"
+                (click)="viewHelp(question)">Ayuda
+        </button>
+        <div class="block-details-answers__inputs">
+          <div class="block-details-answers__inputs--block">
+            <div class="">Respuesta Ingresada :</div>
+            <input class="input-text-details" nz-input placeholder="" [(ngModel)]="question.respuestaEstudiante" [readonly]="true"/>
+          </div>
+          <div class="block-details-answers__inputs--block">
+            <div class="">Respuesta Correcta :</div>
+            <input class="input-text-details" nz-input placeholder="" [(ngModel)]="question.respuestaCorrecta" [readonly]="true"/>
+          </div>
+        </div>
+      </div>
+      <nz-alert *ngIf="question.respuestaCorrecta === question.respuestaEstudiante" nzType="success" nzMessage="Respuesta iguales." nzShowIcon></nz-alert>
+      <nz-alert *ngIf="question.respuestaCorrecta !== question.respuestaEstudiante"  nzType="error" nzMessage="Respuestas diferentes" nzShowIcon></nz-alert>
+    </nz-tab>
+  </nz-tabset>
+</div>
+
+<div *nzModalFooter>
+  <div class="flex-style">
+    <div>Pregunta {{indexTab + 1}} de {{questions.lsPreguntas.length}}</div>
+    <div class="">
+      <button nz-button nzType="default" class="btn-global--black--line" (click)="pre()" *ngIf="indexTab > 0">
+        <span>Anterior</span>
+      </button>
+      <button nz-button nzType="default" class="btn-global--black--line" (click)="next()"
+              *ngIf="indexTab < questions.lsPreguntas.length-1">
+        <span>Siguiente</span>
+      </button>
+      <button nz-button
+              nzType="default"
+              class="btn-global--black--line"
+              (click)="destroyModal()"
+              *ngIf="indexTab === questions.lsPreguntas.length-1">
+        <span>Finalizar</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-loading-blank-student [flag]="varLoadingHelp"></app-loading-blank-student>
+

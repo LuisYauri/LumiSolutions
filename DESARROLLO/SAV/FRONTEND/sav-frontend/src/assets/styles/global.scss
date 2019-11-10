@@ -28,56 +28,106 @@ body {
   box-shadow: none !important;
 }
 
-.btn_global--help {
+//btns
+
+.btn_global--blue-solid {
+  background: #2C77F4;
+  border-color: #2C77F4;
+  color: #ffffff;
+
+  &:hover {
+    background: #2C77F4;
+    border-color: #2C77F4;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #2C77F4;
+    color: #2C77F4;
+  }
+}
+
+.btn_global--green-solid {
+  background: #73D13D;
+  border-color: #73D13D;
+  border-radius: 4px;
+  color: #ffffff;
+
+  &:hover {
+    border-color: #73D13D;
+    background: #73D13D;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #73D13D;
+    background: #73D13D;
+    color: #ffffff;
+  }
+}
+
+.btn-global--black--solid {
+
+}
+
+.btn-global--blue--line {
   background: #2C77F4;
   border-color: #2C77F4;
   border-radius: 4px;
   color: #ffffff;
   font-weight: bold;
   font-size: 12px;
-  &:hover{
+
+  &:hover {
     border-color: #2C77F4;
     color: #2C77F4;
   }
-  &:focus{
+
+  &:focus {
     border-color: #2C77F4;
     color: #2C77F4;
   }
 }
 
-.btn_global--check {
+.btn-global--green--line {
   background: #73D13D;
   border-color: #73D13D;
   border-radius: 4px;
   color: #ffffff;
   font-weight: bold;
   font-size: 12px;
-  &:hover{
+
+  &:hover {
     border-color: #73D13D;
     color: #73D13D;
   }
-  &:focus{
+
+  &:focus {
     border-color: #73D13D;
     color: #73D13D;
   }
 }
 
-.btn_global--press {
+.btn-global--black--line {
   background: #363735;
   border-color: #363735;
   border-radius: 4px;
   color: #ffffff;
   font-weight: bold;
   font-size: 12px;
-  &:hover{
+
+  &:hover {
     border-color: #363735;
     color: #363735;
   }
-  &:focus{
+
+  &:focus {
     border-color: #363735;
     color: #363735;
   }
 }
+
+//fin btns
 
 .ant-progress-circle.ant-progress-status-success .ant-progress-text {
   color: #595959;
@@ -94,7 +144,7 @@ body {
   font-size: 18px;
 }
 
-.btn-resolve{
+.btn-resolve {
   transform: matrix(0.8, 0.5, -0.68, 0.83, 0, 0);
 }
 
@@ -130,13 +180,13 @@ body {
   color: #000000;
 }
 
-.block-result{
+.block-result {
   display: flex;
   flex-direction: column;
   margin: 10px 0 0;
 }
 
-.text-bold{
+.text-bold {
   font-weight: bold;
 }
 
@@ -147,7 +197,8 @@ body {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  &-exam{
+
+  &-exam {
     justify-content: flex-end;
   }
 }
@@ -196,7 +247,7 @@ body {
 }
 
 // Statics Cronómetro
-.ant-statistic-content{
+.ant-statistic-content {
   font-size: 18px !important;
   color: #F5222D;
 }

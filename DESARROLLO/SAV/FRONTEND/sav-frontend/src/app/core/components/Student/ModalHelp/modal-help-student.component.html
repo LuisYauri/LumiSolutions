@@ -37,7 +37,7 @@
           </nz-form-item>
         </div>
         <div class="comments_box__write--send">
-          <button nz-button nzType="default" class="btn_global--check" [nzLoading]="varLoadingSpinning" (click)="sendFormComment()">Enviar
+          <button nz-button nzType="default" class="btn-global--green--line" [nzLoading]="varLoadingSpinning" (click)="sendFormComment()">Enviar
           </button>
         </div>
       </div>
@@ -66,7 +66,7 @@
 </div>
 
 <div *nzModalFooter>
-  <button nz-button nzType="default" class="btn_global--press" (click)="destroyModal()">Regresar</button>
+  <button nz-button nzType="default" class="btn-global--black--line" (click)="destroyModal()">Regresar</button>
 </div>
 
 <app-loading-blank-student [flag]="varLoadingSpinning"></app-loading-blank-student>

@@ -10,6 +10,7 @@ export class HistoryStudentService {
 
   private API_URL_LIST_HISTORY = `${environment.apiMain}historiales?idEstudiante=`
   private API_URL_RESULTS_STATICS = `${environment.apiMain}historiales/estadisticas?idEstudiante=`
+  private API_URL_RESULTS_STATICS_QUESTIONS = `${environment.apiMain}historiales/preguntas?idEstudiante=`
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -19,5 +20,9 @@ export class HistoryStudentService {
 
   getResultsStatics(idEvaluacion:string){
     return this.http.get(`${this.API_URL_RESULTS_STATICS}${this.authService.getIdEstudiante().toString()}&idEvaluacion=${idEvaluacion}`)
+  }
+
+  getResultsStaticsQuestions(idEvaluacion:string){
+    return this.http.get(`${this.API_URL_RESULTS_STATICS_QUESTIONS}${this.authService.getIdEstudiante().toString()}&idEvaluacion=${idEvaluacion}`)
   }
 }

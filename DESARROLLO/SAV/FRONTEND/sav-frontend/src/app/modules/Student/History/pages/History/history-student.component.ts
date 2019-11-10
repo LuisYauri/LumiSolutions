@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HistoryStudentService} from "../../services/history-student.service";
 import {ListHistory} from "../../model/history-student.model";
+import {Homework} from "../../../Homework/model/homework-student.model";
 
 @Component({
   selector: 'app-history-student',
@@ -30,11 +31,20 @@ export class HistoryStudentComponent implements OnInit {
     try {
       const response: any = await this.historyStudentService.getListHistory().toPromise()
       this.listHistory = response
+      this.listHistory.lsTareas = this.generateJsonWithFlag(this.listHistory.lsTareas)
       this.varLoading = false
     } catch (e) {
       console.log(e)
       this.varLoading = false
     }
+  }
+
+  private generateJsonWithFlag(array: any) {
+    let jsonGenerate = []
+    for (let item of array){
+      jsonGenerate.push({...item, flag:false})
+    }
+    return jsonGenerate;
   }
 
 }
