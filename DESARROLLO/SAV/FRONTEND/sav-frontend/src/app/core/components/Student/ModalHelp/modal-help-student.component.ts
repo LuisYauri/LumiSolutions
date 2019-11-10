@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Comment, Resource} from "../../../model/Student/resource.model";
 import {AuthService} from "../../../../services/auth.service";
 import {ResourceService} from "../../../services/Student/resource.service";
-import {NzModalRef} from "ng-zorro-antd";
+import {NzModalRef, NzNotificationService} from "ng-zorro-antd";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -21,7 +21,8 @@ export class ModalHelpStudentComponent implements OnInit {
 
   commentForm: FormGroup
 
-  constructor(private authService: AuthService, private resourceService: ResourceService, private modal: NzModalRef,private fb: FormBuilder) {
+  constructor(private authService: AuthService, private resourceService: ResourceService,
+              private modal: NzModalRef,private fb: FormBuilder,  private notification: NzNotificationService) {
   }
 
   ngOnInit() {
@@ -57,7 +58,12 @@ export class ModalHelpStudentComponent implements OnInit {
       const response = await this.resourceService.postComment(this.gJsonSendComment()).toPromise()
       this.getComments(this.resource.idRecurso)
       this.varLoadingSpinning = false
-      this.getCommentForm()
+      this.commentForm.controls['comment'].setValue(null);
+      this.notification.create(
+        'success',
+        'Mensaje Enviado Correctamente',
+        ''
+      );
     } catch (e) {
       console.log(e)
     }
@@ -76,7 +82,6 @@ export class ModalHelpStudentComponent implements OnInit {
     try {
       const response: any = await this.resourceService.getComments(idRecurso.toString()).toPromise()
       this.listComment = response
-      console.log(this.listComment)
     } catch (e) {
       console.log(e)
     }
@@ -98,8 +103,20 @@ export class ModalHelpStudentComponent implements OnInit {
         this.commentForm.controls[i].markAsDirty()
         this.commentForm.controls[i].updateValueAndValidity()
       }
+      this.notification.create(
+        'info',
+        'Debe Ingresar un comentario.',
+        ''
+      );
       return
-    } else {
+    } else if (/^ *$/.test(this.commentForm.controls['comment'].value.toString())) {
+      this.notification.create(
+        'info',
+        'Debe Ingresar un comentario.',
+        ''
+      );
+    }
+    else {
       this.sendComment()
     }
   }

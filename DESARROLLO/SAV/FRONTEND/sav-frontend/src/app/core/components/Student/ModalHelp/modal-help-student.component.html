@@ -30,16 +30,14 @@
               <div class="box-square--text">{{authService.getSiglas()}}</div>
             </div>
           </div>
-          <nz-form-item class="validate">
-            <nz-form-control  nzErrorTip="Debe escribir mínimo unas palabras.">
+          <nz-form-item class="validate inputText" >
             <textarea [maxlength]="150" class="comments_box__write--line-2" placeholder="Escriba un comentario..."
                       rows="2" nz-input
                       formControlName="comment"></textarea>
-            </nz-form-control>
           </nz-form-item>
         </div>
         <div class="comments_box__write--send">
-          <button nz-button nzType="default" class="btn_global--check" (click)="sendFormComment()">Enviar
+          <button nz-button nzType="default" class="btn_global--check" [nzLoading]="varLoadingSpinning" (click)="sendFormComment()">Enviar
           </button>
         </div>
       </div>
