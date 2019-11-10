@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import pe.edu.savbackend.dao.AlternativaDao;
+import pe.edu.savbackend.dao.ContenidoDao;
 import pe.edu.savbackend.dao.EstudianteEvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDetalleDao;
@@ -24,6 +25,7 @@ import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.PreguntaDto;
 import pe.edu.savbackend.domain.tarea.TareaDto;
 import pe.edu.savbackend.domain.tarea.TipoResultadoDto;
+import pe.edu.savbackend.entity.EstudianteEvaluacion;
 import pe.edu.savbackend.entity.Evaluacion;
 import pe.edu.savbackend.entity.Historial;
 
@@ -42,6 +44,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	private HistorialDao historialDao;	
 	@Autowired
 	private EstudianteEvaluacionDao estudianteEvaluacionDao;	
+	@Autowired
+	private ContenidoDao contenidoDao;
 	
 	Gson gson = new Gson();
 
@@ -49,12 +53,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public List<TareaDto> getLsTareas(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
 		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante);
+
 		lsTarea.forEach(e->{
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaInicio();
 			e.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdTarea()).toString());
 			e.setFechaLimite((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			e.setTiempoLimite((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
 		});
+		
 		return lsTarea;
 	}
 
@@ -75,7 +81,14 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	public TareaDto getPreguntasPorTarea(Integer idTarea) {
 		Evaluacion tarea = evaluacionDao.getOne(idTarea);
+		
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
+		if (tarea.getIdContenido()!= null) {
+			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());
+			//agregar hora en segundos
+		}
+		
+		
 		List<PreguntaDto> lsPreguntas = preguntaDao.obtenerPreguntasPorIdTarea(idTarea);
 		
 		lsPreguntas.forEach(preg -> {
@@ -124,7 +137,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		
 		tareaDto.getLsPreguntas().forEach(pregunta->{
 			String rptaCorrecta = preguntaDao.getOne(pregunta.getIdPregunta()).getRespuestaCorrecta();
-			if(pregunta.getRespuestaEstudiante() == null){
+			if(pregunta.getRespuestaEstudiante() == null || pregunta.getRespuestaEstudiante().equals("")){
 				vacio++;
 			} else if (pregunta.getRespuestaEstudiante().equals(rptaCorrecta)) {
 				correcto++;
@@ -149,10 +162,16 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			estadistica.setNota("C");
 		}
 		estadistica.setLsTiposResultados(lsTipoResultado);
-		estadistica.setTotalPreguntas(tareaDto.getCantidadPreguntas());
+		estadistica.setTotalPreguntas(Integer.parseInt(tareaDto.getCantidadPreguntas()));
 		estadistica.setIdEstudiante(tareaDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(tareaDto.getIdTarea());
 		estadistica.setTipo("T");
+		
+//		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(tareaDto.getIdEstudiante(), tareaDto.getIdTarea()) ;
+//		System.out.println("ESTUDIANTE = " + ee);
+//		ee.setCodigoEstadoEvaluacion("2");
+//		estudianteEvaluacionDao.save(ee);
+		//aaa
 		
 		Historial historial = new Historial();
 		historial.setIdEstudiante(tareaDto.getIdEstudiante());
@@ -199,7 +218,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			estadistica.setNota("C");
 		}
 		estadistica.setLsTiposResultados(lsTipoResultado);
-		estadistica.setTotalPreguntas(examenDto.getCantidadPreguntas());
+		estadistica.setTotalPreguntas(Integer.parseInt(examenDto.getCantidadPreguntas()));
 		estadistica.setIdEstudiante(examenDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(examenDto.getIdExamen());
 		estadistica.setTipo("E");

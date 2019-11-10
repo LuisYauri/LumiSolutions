@@ -65,7 +65,13 @@ public class HistorialServiceImpl implements HistorialService {
 	@Override
 	public EstadisticaDto obtenerEstadisticaEvaluacion(Integer idEstudiante, Integer idEvaluacion) {
 		Historial historial = historialDao.obtenerPorIds(idEstudiante, idEvaluacion);
-		return gson.fromJson(historial.getJsonEstadistica(), EstadisticaDto.class);
+		if(historial != null) {
+			return gson.fromJson(historial.getJsonEstadistica(), EstadisticaDto.class);
+		} else {
+			return null;
+		}
+		
+		
 	}
 
 	
