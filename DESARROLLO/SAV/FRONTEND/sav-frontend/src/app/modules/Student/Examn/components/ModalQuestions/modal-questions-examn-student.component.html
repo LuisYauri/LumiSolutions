@@ -1,4 +1,10 @@
 <div>
+  <div class="timer-examn">
+    <div class="timer-flex">
+      <div class="timer-flex__text">Tiempo restante: </div>
+      <nz-countdown class="timer-flex__count" (nzCountdownFinish)="sendAnswers()" [nzValue]="deadline"></nz-countdown>
+    </div>
+  </div>
   <form nz-form class="login-form" [formGroup]="answersForm">
     <nz-tabset [nzSelectedIndex]="indexTab" [nzTabPosition]="'left'">
       <nz-tab *ngFor="let question of questions.lsPreguntas; index as i" class="question-list" nzTitle="Pregunta {{i+1}}"
@@ -6,13 +12,10 @@
         <div class="box_text">{{question.descripcion}}</div>
         <img class="box__imag" [src]="question.urlImagen" alt="">
         <div *ngIf="question.tipo == 0">
-          <div class="flex-style">
-            <button nz-button nzType="default" class="btn_global--help" [nzLoading]="varLoadingHelp" (click)="viewHelp(question)">Ayuda</button>
+          <div class="flex-style-exam">
             <div class="input_text">
               <div class="text-alter">La Respuesta es :</div>
               <input class="input_text--inp" nz-input formControlName="{{i}}" />
-              <button nz-button nzType="default"  [nzLoading]="varLoadingCheck" class="btn_global--check" (click)="checkAnswer(question,i)">Comprobar
-              </button>
             </div>
           </div>
         </div>
@@ -22,11 +25,6 @@
             <nz-radio-group class="flex-style" formControlName="{{i}}">
               <label *ngFor="let alter of question.alternativas" nz-radio nzValue="{{alter}}"><span>{{alter}}</span></label>
             </nz-radio-group>
-          </div>
-          <div class="flex-style">
-            <button nz-button nzType="default" class="btn_global--help" [nzLoading]="varLoadingHelp" (click)="viewHelp(question)">Ayuda</button>
-            <button nz-button nzType="default" [nzLoading]="varLoadingCheck" class="btn_global--check" (click)="checkAnswer(question,i)">Comprobar
-            </button>
           </div>
         </div>
       </nz-tab>
@@ -60,4 +58,5 @@
   </div>
 </div>
 
-<app-loading-blank-student [flag]="varLoadingCheck || varLoadingSend || varLoadingHelp"></app-loading-blank-student>
+<app-loading-blank-student [flag]="varLoadingSend"></app-loading-blank-student>
+
