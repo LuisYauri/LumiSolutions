@@ -10,7 +10,7 @@ export class MenuService {
       {
         title: 'Examenes',
         key: 'Examenes',
-        url: '/student/courses',
+        url: '/student/examn',
         icon: 'profile',
       },
       {

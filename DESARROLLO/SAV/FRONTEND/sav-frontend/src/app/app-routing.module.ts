@@ -25,8 +25,8 @@ const routes: Routes = [
         loadChildren: 'src/app/modules/Student/History/history-student.module#HistoryStudentModule',
       },
       {
-        path: 'exam',
-        loadChildren: 'src/app/modules/Student/Exam/exam-student.module#ExamStudentModule',
+        path: 'examn',
+        loadChildren: 'src/app/modules/Student/Examn/examn-student.module#ExamnStudentModule',
       },
       {
         path: 'criteria',
