@@ -20,7 +20,7 @@ export class ExamnStudentComponent implements OnInit {
   varTitle = 'Lista de Examenes'
   varLoading = false
 
-  constructor(private examnStudentService:ExamnStudentService) {
+  constructor(private examnStudentService: ExamnStudentService) {
   }
 
   ngOnInit() {
@@ -28,17 +28,19 @@ export class ExamnStudentComponent implements OnInit {
   }
 
   refresh($event: any) {
-
+    if ($event) {
+      this.getListExamn()
+    }
   }
 
   private async getListExamn() {
     try {
       this.varLoading = true
-      const response:any = await this.examnStudentService.getListExamn().toPromise()
+      const response: any = await this.examnStudentService.getListExamn().toPromise()
       this.listExamn = this.generateJsonWithFlag(response)
       console.log(this.listExamn)
       this.varLoading = false
-    }catch (e) {
+    } catch (e) {
       this.varLoading = false
       console.log(e)
     }
@@ -46,8 +48,8 @@ export class ExamnStudentComponent implements OnInit {
 
   private generateJsonWithFlag(response: ExamnStudent[]) {
     let jsonGenerate = []
-    for (let home of response){
-      jsonGenerate.push({...home, flag:false})
+    for (let home of response) {
+      jsonGenerate.push({...home, flag: false})
     }
     return jsonGenerate;
   }

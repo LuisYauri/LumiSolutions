@@ -2,7 +2,7 @@
   <div class="timer-examn">
     <div class="timer-flex">
       <div class="timer-flex__text">Tiempo restante: </div>
-      <nz-countdown class="timer-flex__count" [nzValue]="deadline"></nz-countdown>
+      <nz-countdown class="timer-flex__count" (nzCountdownFinish)="sendAnswers()" [nzValue]="deadline"></nz-countdown>
     </div>
   </div>
   <form nz-form class="login-form" [formGroup]="answersForm">
