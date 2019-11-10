@@ -21,7 +21,7 @@ public class TareaDto {
 	private String contenido;
 
 	
-	private String duracion;
+	private Double duracion;
 	
 	private LocalDateTime fechaSolucion;
 	private String fechaRealizada;

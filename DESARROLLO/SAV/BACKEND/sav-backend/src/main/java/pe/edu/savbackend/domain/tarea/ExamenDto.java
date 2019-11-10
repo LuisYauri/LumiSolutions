@@ -18,7 +18,7 @@ public class ExamenDto {
 	private String cantidadPreguntas;
 	private String fechaInico;
 	private String horaInicio;
-	private Integer duracion; // en minutos
+	private Double duracion; // en minutos
 
 	private LocalDateTime fechaSolucion;
 	private String fechaRealizada;
