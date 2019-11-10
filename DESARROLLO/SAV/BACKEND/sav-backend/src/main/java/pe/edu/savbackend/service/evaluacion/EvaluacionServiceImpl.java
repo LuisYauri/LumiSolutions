@@ -3,15 +3,17 @@ package pe.edu.savbackend.service.evaluacion;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.google.gson.Gson;
 
 import pe.edu.savbackend.dao.AlternativaDao;
 import pe.edu.savbackend.dao.ContenidoDao;
@@ -25,7 +27,6 @@ import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.PreguntaDto;
 import pe.edu.savbackend.domain.tarea.TareaDto;
 import pe.edu.savbackend.domain.tarea.TipoResultadoDto;
-import pe.edu.savbackend.entity.EstudianteEvaluacion;
 import pe.edu.savbackend.entity.Evaluacion;
 import pe.edu.savbackend.entity.Historial;
 
@@ -67,13 +68,17 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	public List<ExamenDto> getLsExamenes(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
-		List<ExamenDto> lsExamenes = evaluacionDao.getLsExamenes(idEstudiante);
-		lsExamenes.forEach(e->{
-			LocalDateTime ldt = evaluacionDao.getOne(e.getIdExamen()).getFechaInicio();
-			e.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdExamen()).toString());
-
-			e.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-			e.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+		List<Evaluacion> lsEvaluaciones = evaluacionDao.getLsExamenesModel(idEstudiante);
+		List<ExamenDto> lsExamenes = new ArrayList<>();
+		lsEvaluaciones.forEach(e->{
+			ExamenDto examenDto = new ExamenDto();
+			LocalDateTime ldt = evaluacionDao.getOne(e.getIdEvaluacion()).getFechaInicio();
+			examenDto.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdEvaluacion()).toString());
+			long seg = e.getFechaInicio().until(e.getFechaFin(), ChronoUnit.SECONDS);
+			examenDto.setDuracion((double)seg/3600);
+			examenDto.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+			examenDto.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+			lsExamenes.add(examenDto);
 		});
 		return lsExamenes;
 	}
@@ -85,7 +90,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
 		if (tarea.getIdContenido()!= null) {
 			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());
-			//agregar hora en segundos
+			long seg = tarea.getFechaInicio().until(tarea.getFechaFin(), ChronoUnit.SECONDS);
+			tareaDto.setDuracion((double)seg/3600);
 		}
 		
 		
@@ -110,6 +116,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public ExamenDto getPreguntasPorExamen(Integer idExamen) {
 		Evaluacion examen = evaluacionDao.getOne(idExamen);
 		ExamenDto examenDto = new ExamenDto(examen.getIdEvaluacion(), examen.getTitulo());
+		long seg = examen.getFechaInicio().until(examen.getFechaFin(), ChronoUnit.SECONDS);
+		examenDto.setDuracion((double)seg/3600);
 		List<PreguntaDto> lsPreguntas = preguntaDao.obtenerPreguntasPorIdTarea(idExamen);
 		
 		lsPreguntas.forEach(preg -> {
@@ -124,6 +132,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			
 		});
 		examenDto.setLsPreguntas(lsPreguntas);
+		
 		return examenDto;
 	}
 	
