@@ -7,6 +7,7 @@ import { HeaderPageStudentComponent } from './components/Student/HeaderPage/head
 import { TitlePageStudentComponent } from './components/Student/TitlePage/title-page-student.component';
 import { ModalHelpStudentComponent } from './components/Student/ModalHelp/modal-help-student.component';
 import { SafeStudentPipe } from './pipe/Student/safe-student.pipe';
+import { LoadingBlankStudentComponent } from './components/Student/LoadingBlank/loading-blank-student.component';
 
 const COMPONENTS = [
   MenuLeftStudentComponent,
@@ -16,9 +17,9 @@ const COMPONENTS = [
   ModalHelpStudentComponent];
 
 @NgModule({
-  declarations: [...COMPONENTS, SafeStudentPipe, ],
+  declarations: [...COMPONENTS, SafeStudentPipe, LoadingBlankStudentComponent, ],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
-  exports: [...COMPONENTS],
+  exports: [...COMPONENTS, LoadingBlankStudentComponent],
   entryComponents: [ModalHelpStudentComponent]
 })
 export class CoreModule { }

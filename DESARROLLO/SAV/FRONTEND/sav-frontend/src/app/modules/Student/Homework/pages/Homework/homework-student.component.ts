@@ -31,11 +31,21 @@ export class HomeworkStudentComponent implements OnInit {
   private async getListHomeworks() {
     try {
       const response:any = await this.homeworkStudentService.getListHomework().toPromise()
-      this.listHomeworks = response
+      console.log(response)
+      this.listHomeworks = this.generateJsonWithFlag(response)
+      console.log(this.listHomeworks)
       this.varLoading = false
     }catch (e) {
       this.varLoading = false
       console.log(e)
     }
+  }
+
+  private generateJsonWithFlag(response: Homework[]) {
+    let jsonGenerate = []
+    for (let home of response){
+      jsonGenerate.push({...home, flag:false})
+    }
+    return jsonGenerate;
   }
 }

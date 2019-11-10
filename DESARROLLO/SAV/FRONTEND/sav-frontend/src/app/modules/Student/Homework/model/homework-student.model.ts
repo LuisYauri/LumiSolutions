@@ -5,6 +5,7 @@ export interface Homework {
   fechaLimite: string
   tiempoLimite: string
   contenido: string
+  flag?: boolean
 }
 
 
@@ -52,12 +53,12 @@ export interface ConfirmationAnswer {
 
 export interface Results {
   nota: string
-  totalPreguntas:number
+  totalPreguntas: number
   lsTiposResultados: Result[]
 }
 
 export interface Result {
   tipo: string
-  porcentaje:number
-  cantidad:number
+  porcentaje: number
+  cantidad: number
 }
