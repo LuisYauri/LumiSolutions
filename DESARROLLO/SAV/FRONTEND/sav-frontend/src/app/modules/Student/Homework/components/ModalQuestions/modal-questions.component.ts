@@ -20,12 +20,12 @@ export class ModalQuestionsComponent implements OnInit {
   indexTab = 0
   answersForm: FormGroup
   checkConfirm: ConfirmationAnswer = {confirmacion: false}
-  loadingBtn = false
   resource: Resource
   results: Results
 
   varLoadingSend = false
   varLoadingCheck = false
+  varLoadingHelp = false
 
   constructor(private modal: NzModalRef, private fb: FormBuilder, private nzMessageService: NzMessageService,
               private homeworkStudentService: HomeworkStudentService, private authService: AuthService,
@@ -77,10 +77,9 @@ export class ModalQuestionsComponent implements OnInit {
   private async confirmationSend() {
     try {
       this.varLoadingSend = true
-      console.log(this.gJsonSendAnswers(this.questions))
       const response:any = await this.homeworkStudentService.postAnswers(this.questions.idTarea.toString(), this.gJsonSendAnswers(this.questions)).toPromise()
       this.varLoadingSend = false
-      this.modal.destroy();
+      this.modal.destroy({ status: true })
       this.results = response
       this.generateModalResults()
     } catch (e) {
@@ -153,19 +152,19 @@ export class ModalQuestionsComponent implements OnInit {
   }
 
   viewHelp(question: Question) {
-    this.loadingBtn = true
     this.getHelp(question.idRecurso.toString())
 
   }
 
   private async getHelp(idRecurso: string) {
     try {
+      this.varLoadingHelp = true
       const response:any = await this.homeworkStudentService.getResource(idRecurso).toPromise()
       this.resource = response
-      this.loadingBtn = false
+      this.varLoadingHelp = false
       this.generateModal()
     }catch (e) {
-      this.loadingBtn = false
+      this.varLoadingHelp = false
       console.log(e)
     }
   }
@@ -174,7 +173,7 @@ export class ModalQuestionsComponent implements OnInit {
     const modal = this.modalService.create({
       nzTitle: 'Ayuda',
       nzContent: ModalHelpStudentComponent,
-      nzWidth: 700,
+      nzWidth: 750,
       nzComponentParams: {
         resource: this.resource
       },

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core'
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
 import {NzModalService} from 'ng-zorro-antd/modal'
 import {ModalQuestionsComponent} from '../ModalQuestions/modal-questions.component'
 import {Homework, Questions} from "../../model/homework-student.model"
@@ -13,6 +13,8 @@ export class TableListHomeworksComponent implements OnInit {
 
   @Input() items: Homework[]
   @Input() varLoading: boolean
+  @Output() refresh = new EventEmitter();
+
 
   varTableTitle = ["Título", "Cantidad", "Fecha(Límite)", "Tiempo(Límite)", "Contenido", "Accion"]
   questions: Questions
@@ -21,7 +23,6 @@ export class TableListHomeworksComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   showModal(item: Homework) {
@@ -51,6 +52,13 @@ export class TableListHomeworksComponent implements OnInit {
         questions: this.questions
       },
       nzMaskClosable: false,
+    })
+    modal.afterClose.subscribe((response: any) => {
+      if (response === undefined) {
+        return
+      } else if (response.status) {
+        this.refresh.emit({status: response.status})
+      }
     })
   }
 }

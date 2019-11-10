@@ -17,7 +17,6 @@ export class ModalResultsStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.results)
   }
 
 

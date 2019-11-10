@@ -3,6 +3,7 @@ import {Comment, Resource} from "../../../model/Student/resource.model";
 import {AuthService} from "../../../../services/auth.service";
 import {ResourceService} from "../../../services/Student/resource.service";
 import {NzModalRef} from "ng-zorro-antd";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-modal-help-student',
@@ -15,15 +16,17 @@ export class ModalHelpStudentComponent implements OnInit {
 
   tooltips = ['Puede mejorar', 'Maso menos', 'Normal', 'Bueno', 'Maravilloso'];
   selectValue = 0;
-  commentValue: string;
   listComment: Comment[] = []
   varLoadingSpinning = false
 
-  constructor(private authService: AuthService, private resourceService: ResourceService, private modal: NzModalRef) {
+  commentForm: FormGroup
+
+  constructor(private authService: AuthService, private resourceService: ResourceService, private modal: NzModalRef,private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.selectValue = this.resource.alumnoCalificacion
+    this.getCommentForm()
     this.getComments(this.resource.idRecurso)
   }
 
@@ -54,7 +57,7 @@ export class ModalHelpStudentComponent implements OnInit {
       const response = await this.resourceService.postComment(this.gJsonSendComment()).toPromise()
       this.getComments(this.resource.idRecurso)
       this.varLoadingSpinning = false
-      this.commentValue = ""
+      this.getCommentForm()
     } catch (e) {
       console.log(e)
     }
@@ -64,7 +67,7 @@ export class ModalHelpStudentComponent implements OnInit {
     return {
       idRecurso: this.resource.idRecurso,
       idEstudiante: this.authService.getIdEstudiante(),
-      descripcion: this.commentValue.toString()
+      descripcion: this.commentForm.controls['comment'].value.toString()
     }
   }
 
@@ -81,5 +84,23 @@ export class ModalHelpStudentComponent implements OnInit {
 
   destroyModal() {
     this.modal.destroy();
+  }
+
+  private getCommentForm() {
+    this.commentForm = this.fb.group({
+      comment:['',[Validators.required]]
+    })
+  }
+
+  sendFormComment() {
+    if (!this.commentForm.valid) {
+      for (const i in this.commentForm.controls) {
+        this.commentForm.controls[i].markAsDirty()
+        this.commentForm.controls[i].updateValueAndValidity()
+      }
+      return
+    } else {
+      this.sendComment()
+    }
   }
 }

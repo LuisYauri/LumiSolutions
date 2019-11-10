@@ -1,7 +1,7 @@
 <div>
   <div class="help-box__name">{{resource.nombre}}</div>
   <div *ngIf="resource.tipo === '1'">
-    <embed [src]=" resource.urlRecurso | safeStudent" width="100%"  height="375">
+    <embed [src]=" resource.urlRecurso | safeStudent" width="100%" height="375">
   </div>
   <div *ngIf="resource.tipo === '2'">
     <iframe width="100%" height="315" [src]=" resource.urlRecurso | safeStudent" frameborder="0"
@@ -21,35 +21,43 @@
     <div class="comments_box__title">
       Comentarios
     </div>
-    <div class="comments_box__write">
-      <div class="comments_box__write--line">
-        <div class="comments_box__write--line--1">
-          <div class="box-square">
-            <div class="box-square--text">{{authService.getSiglas()}}</div>
-          </div>
-        </div>
-        <textarea class="comments_box__write--line-2" placeholder="Escriba un comentario..." rows="2" nz-input
-                  [(ngModel)]="commentValue"></textarea>
-      </div>
-      <div class="comments_box__write--send">
-        <button nz-button nzType="default" class="btn_global--check" (click)="sendComment()">Enviar
-        </button>
-      </div>
-    </div>
-    <nz-spin [nzSpinning]="varLoadingSpinning" nzTip="Cargando...">
-      <div class="comments_box__block">
-        <div class="comments_box__write--line comment-box" *ngFor="let comment of listComment">
+
+    <form nz-form class="login-form" [formGroup]="commentForm">
+      <div class="comments_box__write">
+        <div class="comments_box__write--line">
           <div class="comments_box__write--line--1">
+            <div class="box-square">
+              <div class="box-square--text">{{authService.getSiglas()}}</div>
+            </div>
+          </div>
+          <nz-form-item class="validate">
+            <nz-form-control  nzErrorTip="Debe escribir mínimo unas palabras.">
+            <textarea [maxlength]="150" class="comments_box__write--line-2" placeholder="Escriba un comentario..."
+                      rows="2" nz-input
+                      formControlName="comment"></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div class="comments_box__write--send">
+          <button nz-button nzType="default" class="btn_global--check" (click)="sendFormComment()">Enviar
+          </button>
+        </div>
+      </div>
+    </form>
+    <nz-spin [nzSpinning]="varLoadingSpinning" nzTip="Cargando...">
+      <div class="comment-box">
+        <div class="comment-box__flex" *ngFor="let comment of listComment">
+          <div class="">
             <div class="box-square">
               <div class="box-square--text">{{comment.inicialesEstudiante}}</div>
             </div>
           </div>
-          <div class="comment-box--flex">
+          <div class="comment-box__comment">
             <div>
               Comentado por <span
-              class="comment-box--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
+              class="comment-box__comment--bold">{{comment.nombreEstudiante}} {{comment.apellidoPaternoEstudiante}}</span>
             </div>
-            <div>
+            <div class="comment-box__comment--text">
               {{comment.descripcion}}
             </div>
           </div>
@@ -62,3 +70,5 @@
 <div *nzModalFooter>
   <button nz-button nzType="default" class="btn_global--press" (click)="destroyModal()">Regresar</button>
 </div>
+
+<app-loading-blank-student [flag]="varLoadingSpinning"></app-loading-blank-student>
