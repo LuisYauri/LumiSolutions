@@ -18,7 +18,8 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 			+ "join EstudianteEvaluacion ee on e.idEvaluacion = ee.idEvaluacion "
 			+ "join Contenido c on c.idContenido= e.idContenido "
 			+ "where ee.idEstudiante = ?1 "
-			+ "and e.codTipoEvaluacion = 'T'")
+			+ "and e.codTipoEvaluacion = 'T' "
+			+ "and ee.codigoEstadoEvaluacion = 1")
 	List<TareaDto> getLsTareas(Integer idEstudiante);
 	
 	@Query(value = "select new pe.edu.savbackend.domain.tarea.ExamenDto(e.idEvaluacion,e.titulo) "

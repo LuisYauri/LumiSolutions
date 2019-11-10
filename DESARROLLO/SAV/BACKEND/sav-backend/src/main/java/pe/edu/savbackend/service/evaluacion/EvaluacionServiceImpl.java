@@ -25,6 +25,7 @@ import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.PreguntaDto;
 import pe.edu.savbackend.domain.tarea.TareaDto;
 import pe.edu.savbackend.domain.tarea.TipoResultadoDto;
+import pe.edu.savbackend.entity.EstudianteEvaluacion;
 import pe.edu.savbackend.entity.Evaluacion;
 import pe.edu.savbackend.entity.Historial;
 
@@ -59,6 +60,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			e.setFechaLimite((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			e.setTiempoLimite((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
 		});
+		
 		return lsTarea;
 	}
 
@@ -83,6 +85,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
 		if (tarea.getIdContenido()!= null) {
 			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());
+			//agregar hora en segundos
 		}
 		
 		
@@ -163,6 +166,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		estadistica.setIdEstudiante(tareaDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(tareaDto.getIdTarea());
 		estadistica.setTipo("T");
+		
+//		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(tareaDto.getIdEstudiante(), tareaDto.getIdTarea()) ;
+//		System.out.println("ESTUDIANTE = " + ee);
+//		ee.setCodigoEstadoEvaluacion("2");
+//		estudianteEvaluacionDao.save(ee);
+		//aaa
 		
 		Historial historial = new Historial();
 		historial.setIdEstudiante(tareaDto.getIdEstudiante());
