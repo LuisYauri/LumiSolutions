@@ -94,6 +94,11 @@ body {
   font-size: 18px;
 }
 
+.btn-resolve{
+  transform: matrix(0.8, 0.5, -0.68, 0.83, 0, 0);
+}
+
+
 // Results
 .statics {
   display: flex;
@@ -133,4 +138,65 @@ body {
 
 .text-bold{
   font-weight: bold;
+}
+
+
+//Modal Questions
+.flex-style {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &-exam{
+    justify-content: flex-end;
+  }
+}
+
+.input-number {
+  width: 100px;
+  margin: 0 10px 0 0;
+}
+
+.aler-box {
+  background: #F9F9FC;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.box__imag {
+  margin: 10px 0;
+  height: 350px;
+  width: 100%;
+}
+
+.text-alter {
+  margin: 0 10px 0 0;
+}
+
+.box_text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.input_text {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+
+  &--inp {
+    width: 20%;
+    margin: 0 10px 0 0;
+  }
+}
+
+.question-list {
+  color: #000000;
+}
+
+// Statics Cronómetro
+.ant-statistic-content{
+  font-size: 18px !important;
+  color: #F5222D;
 }

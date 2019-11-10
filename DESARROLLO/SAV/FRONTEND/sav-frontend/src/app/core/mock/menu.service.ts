@@ -8,7 +8,7 @@ export class MenuService {
         icon: 'file-text',
       },
       {
-        title: 'Examenes',
+        title: 'Exámenes',
         key: 'Examenes',
         url: '/student/examn',
         icon: 'profile',

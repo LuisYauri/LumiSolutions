@@ -1,0 +1,20 @@
+.timer-flex{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  &__text{
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  &__count{
+    font-weight: bold;
+    font-size: 14px !important;
+  }
+}
+
+.timer-examn{
+  position: absolute;
+  top: 10px;
+  right: 25px;
+}

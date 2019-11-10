@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ExamnStudent} from "../../model/examn-student.model";
+import {ExamnStudentService} from "../../services/examn-student.service";
 
 @Component({
   selector: 'app-examn-student',
@@ -7,9 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamnStudentComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  varHeader = {
+    title: 'Exámenes',
+    icon: 'profile',
+    url: ''
   }
 
+  listExamn: ExamnStudent[]
+
+  varTitle = 'Lista de Examenes'
+  varLoading = false
+
+  constructor(private examnStudentService:ExamnStudentService) {
+  }
+
+  ngOnInit() {
+    this.getListExamn()
+  }
+
+  refresh($event: any) {
+
+  }
+
+  private async getListExamn() {
+    try {
+      this.varLoading = true
+      const response:any = await this.examnStudentService.getListExamn().toPromise()
+      this.listExamn = this.generateJsonWithFlag(response)
+      console.log(this.listExamn)
+      this.varLoading = false
+    }catch (e) {
+      this.varLoading = false
+      console.log(e)
+    }
+  }
+
+  private generateJsonWithFlag(response: ExamnStudent[]) {
+    let jsonGenerate = []
+    for (let home of response){
+      jsonGenerate.push({...home, flag:false})
+    }
+    return jsonGenerate;
+  }
 }
