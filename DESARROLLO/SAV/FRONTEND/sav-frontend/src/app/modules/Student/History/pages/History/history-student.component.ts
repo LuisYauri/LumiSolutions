@@ -32,6 +32,7 @@ export class HistoryStudentComponent implements OnInit {
       const response: any = await this.historyStudentService.getListHistory().toPromise()
       this.listHistory = response
       this.listHistory.lsTareas = this.generateJsonWithFlag(this.listHistory.lsTareas)
+      this.listHistory.lsExamenes = this.generateJsonWithFlag(this.listHistory.lsExamenes)
       this.varLoading = false
     } catch (e) {
       console.log(e)

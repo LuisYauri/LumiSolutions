@@ -14,13 +14,14 @@ import {TabTareasHistoryStudentComponent} from './components/TabTareas/tab-tarea
 import {ModalViewHistoryStudentComponent} from './components/ModalView/modal-view-history-student.component';
 import {SharedModule} from "../../../shared/shared.module";
 import {ModalDetailsHistoryStudentComponent} from './components/ModalDetails/modal-details-history-student.component';
+import { TabExamnsHistoryStudentComponent } from './components/TabExamns/tab-examns-history-student.component';
 
 const CONST_PAGES = [HistoryStudentComponent]
 const CONST_COMPONENTS = [TabTareasHistoryStudentComponent, ModalViewHistoryStudentComponent, ModalDetailsHistoryStudentComponent]
 const CONST_ENTRY_COMPONENTS = [ModalViewHistoryStudentComponent, ModalDetailsHistoryStudentComponent]
 
 @NgModule({
-  declarations: [...CONST_COMPONENTS, ...CONST_PAGES,],
+  declarations: [...CONST_COMPONENTS, ...CONST_PAGES, TabExamnsHistoryStudentComponent,],
   exports: [...CONST_COMPONENTS],
   imports: [
     SharedModule,

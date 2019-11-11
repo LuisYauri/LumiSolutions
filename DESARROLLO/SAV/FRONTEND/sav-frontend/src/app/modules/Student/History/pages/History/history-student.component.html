@@ -1,14 +1,17 @@
 <div class="header_global">
-  <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon" [url]="varHeader.url"></app-header-page-student>
+  <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon"
+                           [url]="varHeader.url"></app-header-page-student>
 </div>
 
 <div class="body_global">
   <nz-tabset [nzTabPosition]="'top'" [nzType]="'card'">
-    <nz-tab  [nzTitle]="'Tareas'">
-      <app-tab-tareas-history-student [varLoading]="varLoading" [lsTareas] = listHistory.lsTareas></app-tab-tareas-history-student>
+    <nz-tab [nzTitle]="'Tareas'">
+      <app-tab-tareas-history-student [varLoading]="varLoading"
+                                      [lsTareas]="listHistory.lsTareas"></app-tab-tareas-history-student>
     </nz-tab>
-    <nz-tab  [nzTitle]="'Exámenes'">
-      En Proceso...
+    <nz-tab [nzTitle]="'Exámenes'">
+      <app-tab-examns-history-student [varLoading]="varLoading"
+                                      [lsTareas]="listHistory.lsExamenes"></app-tab-examns-history-student>
     </nz-tab>
   </nz-tabset>
 
