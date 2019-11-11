@@ -81,7 +81,6 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	public TareaDto getPreguntasPorTarea(Integer idTarea) {
 		Evaluacion tarea = evaluacionDao.getOne(idTarea);
-		
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
 		if (tarea.getIdContenido()!= null) {
 			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());

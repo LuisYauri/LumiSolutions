@@ -1,5 +1,7 @@
 package pe.edu.savbackend.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -19,9 +21,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @Table(name = "usuarios")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Usuario {
+public class Usuario implements Serializable{
 	@Id
-	@Column(name="username")
+	@Column(name="username", unique = true)
 	private String username;
 	@Column(name="contrasenia")
 	private String contrasenia;
