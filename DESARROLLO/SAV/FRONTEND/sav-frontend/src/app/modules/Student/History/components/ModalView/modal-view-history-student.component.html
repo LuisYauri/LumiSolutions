@@ -7,10 +7,18 @@
         [nzStrokeColor]="getColor(result.tipo)"
         [nzFormat]="formatOne"
       ></nz-progress>
-      <div class="statics__item--text" *ngIf="result.tipo === 'Correcto'">Respuestas Correctas: {{result.cantidad}}</div>
-      <div class="statics__item--text" *ngIf="result.tipo === 'Incorrecto'">Respuestas Incorrectas: {{result.cantidad}}</div>
-      <div class="statics__item--text" *ngIf="result.tipo === 'Sin responder'">Respuestas Sin Responder: {{result.cantidad}}</div>
+      <div class="statics__item--text" *ngIf="result.tipo === 'Correcto'">Respuestas
+        Correctas: {{result.cantidad}}</div>
+      <div class="statics__item--text" *ngIf="result.tipo === 'Incorrecto'">Respuestas
+        Incorrectas: {{result.cantidad}}</div>
+      <div class="statics__item--text" *ngIf="result.tipo === 'Sin responder'">Respuestas Sin
+        Responder: {{result.cantidad}}</div>
     </div>
+  </div>
+  <div class="block-result">
+    <div *ngIf="results.tipo==='T'" class="text-bold">Su tarea ya esta terminado.</div>
+    <div *ngIf="results.tipo==='E'" class="text-bold">Su examen ya esta terminado.</div>
+    <div>Recuerda “La verdadera educación consiste en obtener lo mejor de uno mismo“.</div>
   </div>
   <div class="note">
     Nota: {{results.nota}}
@@ -18,10 +26,12 @@
 </div>
 
 <div *nzModalFooter>
-<!--  <button nz-button nzType="default" style="margin-right: 10px" class="btn_global&#45;&#45;press" (click)="destroyModal()">-->
-<!--    Detalles-->
-<!--  </button>-->
-  <button nz-button nzType="default" class="btn_global--press" (click)="destroyModal()">
+  <button nz-button nzType="default" [nzLoading]="varLoadingDetails" style="margin-right: 10px" class="btn-global--black--line" (click)="openDetails()">
+    Detalles
+  </button>
+  <button nz-button nzType="default" class="btn-global--black--line" (click)="destroyModal()">
     Cerrar
   </button>
 </div>
+
+<app-loading-blank-student [flag]="varLoadingDetails"></app-loading-blank-student>

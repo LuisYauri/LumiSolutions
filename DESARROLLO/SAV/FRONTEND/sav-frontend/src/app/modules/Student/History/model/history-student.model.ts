@@ -10,6 +10,7 @@ export interface TareaHistory {
   fechaRealizada: string
   horaRealizada: string
   contenido: string
+  flag?: boolean
 }
 
 export interface ExamenHistory {
@@ -19,6 +20,7 @@ export interface ExamenHistory {
   fechaRealizada: string
   horaRealizada: string
   duracion: string
+  flag?: boolean
 }
 
 export interface ResultStatics {
@@ -34,4 +36,23 @@ export interface TypeResults {
   tipo: string
   porcentaje: number
   cantidad: number
+}
+
+export interface EvaluationHistoryStudent {
+  idEvaluacion: number
+  titulo: string
+  idEstudiante: string
+  lsPreguntas: QuestionsEvaluationHistoryStudent[]
+}
+
+export interface QuestionsEvaluationHistoryStudent {
+  idPregunta: number
+  idRecurso: number
+  descripcion: string
+  urlImagen: string
+  tipo: string
+  alternativas: string[]
+  respuestaEstudiante: string
+  respuestaCorrecta: string
+
 }

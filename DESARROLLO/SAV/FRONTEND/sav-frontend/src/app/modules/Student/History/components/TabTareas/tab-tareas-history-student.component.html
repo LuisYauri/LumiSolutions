@@ -18,8 +18,9 @@
         <td>{{ tarea.horaRealizada }}</td>
         <td>{{ tarea.contenido }}</td>
         <td>
-          <button nz-button class="btn_global--check" [nzLoading]="loadingBtn" nzType="primary" (click)="showModal(tarea)"><i nz-icon nzType="eye"></i>Ver</button>
+          <button nz-button class="btn_global--green-solid" [nzLoading]="tarea.flag" nzType="primary" (click)="showModal(tarea)"><i nz-icon nzType="eye"></i>Ver</button>
         </td>
+        <app-loading-blank-student [flag]="tarea.flag"></app-loading-blank-student>
       </tr>
       </tbody>
     </nz-table>

@@ -17,25 +17,28 @@ export class TabTareasHistoryStudentComponent implements OnInit {
   @Input() varLoading: boolean
   varTableTitle = ["Título", "Cantidad", "Fecha Realizada", "Hora Realizada", "Contenido", "Accion"]
   loadingBtn = false
-  resultStatics:ResultStatics
+  resultStatics: ResultStatics
 
-  constructor(private historyStudentService:HistoryStudentService, private modalService: NzModalService) { }
+  constructor(private historyStudentService: HistoryStudentService, private modalService: NzModalService) {
+  }
 
   ngOnInit() {
   }
 
-  showModal(tarea:TareaHistory) {
+  showModal(tarea: TareaHistory) {
     this.loadingBtn = true
-    this.getResultStatics(tarea.idTarea)
+    this.getResultStatics(tarea)
   }
 
-  private async getResultStatics(idTarea: number) {
+  private async getResultStatics(tarea: TareaHistory) {
     try {
-      const response: any  = await this.historyStudentService.getResultsStatics(idTarea.toString()).toPromise()
+      tarea.flag = true
+      const response: any = await this.historyStudentService.getResultsStatics(tarea.idTarea.toString()).toPromise()
       this.resultStatics = response
-      this.loadingBtn = false
+      tarea.flag = false
       this.generateModalResults()
-    }catch (e) {
+    } catch (e) {
+      tarea.flag = false
       console.log(e)
     }
   }

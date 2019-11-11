@@ -38,7 +38,6 @@ export class ExamnStudentComponent implements OnInit {
       this.varLoading = true
       const response: any = await this.examnStudentService.getListExamn().toPromise()
       this.listExamn = this.generateJsonWithFlag(response)
-      console.log(this.listExamn)
       this.varLoading = false
     } catch (e) {
       this.varLoading = false
