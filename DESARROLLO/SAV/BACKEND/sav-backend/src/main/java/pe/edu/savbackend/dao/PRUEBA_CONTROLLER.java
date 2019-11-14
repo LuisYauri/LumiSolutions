@@ -1,37 +1,31 @@
 package pe.edu.savbackend.dao;
 
 import java.util.List;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.savbackend.entity.Criterio;
+import pe.edu.savbackend.entity.Alternativa;
 import pe.edu.savbackend.entity.Area;
 import pe.edu.savbackend.entity.Calificacion;
-import pe.edu.savbackend.entity.Contenido;
-import pe.edu.savbackend.entity.Historial;
-import pe.edu.savbackend.domain.tarea.Tarea;
-import pe.edu.savbackend.entity.Alternativa;
 import pe.edu.savbackend.entity.Comentario;
-
+import pe.edu.savbackend.entity.Contenido;
+import pe.edu.savbackend.entity.Criterio;
 import pe.edu.savbackend.entity.Docente;
 import pe.edu.savbackend.entity.Estudiante;
 import pe.edu.savbackend.entity.EstudianteEvaluacion;
 import pe.edu.savbackend.entity.EvaluacionDetalle;
 import pe.edu.savbackend.entity.Grupo;
-
+import pe.edu.savbackend.entity.Historial;
 import pe.edu.savbackend.entity.MaestraDetalle;
-import pe.edu.savbackend.entity.Recurso;
-import pe.edu.savbackend.entity.Subcontenido;
 import pe.edu.savbackend.entity.Matricula;
 import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.entity.Pregunta;
-
+import pe.edu.savbackend.entity.Recurso;
+import pe.edu.savbackend.entity.Subcontenido;
 import pe.edu.savbackend.entity.TablaMaestra;
 import pe.edu.savbackend.entity.Usuario;
 
@@ -80,7 +74,8 @@ public class PRUEBA_CONTROLLER {
 
 	@RequestMapping("usuarios")
 	public List<Usuario> getUsuario() {
-		return usuariosDao.findAll();
+		return StreamSupport.stream(usuariosDao.findAll().spliterator(), false)
+			    .collect(Collectors.toList());
 	}
 
 	@Autowired
