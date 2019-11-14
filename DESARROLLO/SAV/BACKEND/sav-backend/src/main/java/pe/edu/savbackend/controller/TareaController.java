@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,6 +37,7 @@ public class TareaController {
 	}
 
 	@RequestMapping("/{idTarea}/preguntas")
+//	@Secured("ALUMNO")
 	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTarea) {
 		return evaluacionService.getPreguntasPorTarea(idTarea);
 	}
