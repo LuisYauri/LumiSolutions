@@ -7,20 +7,13 @@ import {AuthService} from "../../../../services/auth.service";
   providedIn: 'root'
 })
 export class ContentStudentService {
-  private API_URL_SUB_CONTENT = `${environment.apiMain}subcontenidos?idContenido=`
+  private API_URL_SUB_CONTENT = `${environment.apiMain}subContenidos?idContenido=`
 
-  private static headersList() {
-    return {
-      headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('access_token')
-      }
-    };
-  }
 
   constructor(private http: HttpClient,private  authService:AuthService) {
   }
 
   getSubContent(idContenido: string) {
-    return this.http.get(`${this.API_URL_SUB_CONTENT}${idContenido}`, ContentStudentService.headersList())
+    return this.http.get(`${this.API_URL_SUB_CONTENT}${idContenido}`)
   }
 }
