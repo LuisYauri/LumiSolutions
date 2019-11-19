@@ -11,39 +11,17 @@ import {ContentStudentService} from "../../services/content-student.service";
 export class ContentStudentComponent implements OnInit {
 
   varHeader = {
-    title: 'Criterios',
+    title: '',
     icon: 'copy',
     url: '/student/criteria/'
   }
 
   varTitleSubcontent = "Temas"
 
-  varLoading = false
+  varLoading = true
   varIdContent = ""
 
-  subContent:SubContent = {
-    "nombre": "Contenido",
-    "lsSubContenidos": [
-      {
-        "idSubContenido": 1,
-        "nombre": "ga",
-        "descripcion": "Criterio1",
-        "urlImagen": "http://dfdsf.png"
-      },
-      {
-        "idSubContenido": 2,
-        "nombre": "sdsfs",
-        "descripcion": "Criterio1",
-        "urlImagen": "http://dfdsf.png"
-      },
-      {
-        "idSubContenido": 3,
-        "nombre": "dsfds",
-        "descripcion": "Criterio1",
-        "urlImagen": "http://dfdsf.png"
-      }
-    ]
-  }
+  subContent:SubContent
 
   constructor(private route: ActivatedRoute, private contentStudentService:ContentStudentService) { }
 
@@ -53,12 +31,14 @@ export class ContentStudentComponent implements OnInit {
   }
 
   private async getSubContent(idContent:string) {
-    // Consumeo de servicio
-    // try {
-    //   const response:any = await this.contentStudentService.getSubContent(idContent).toPromise()
-    //   this.subContent = response
-    // }catch (e) {
-    //   console.log(e)
-    // }
+    try {
+      this.varLoading = true
+      const response:any = await this.contentStudentService.getSubContent(idContent).toPromise()
+      this.subContent = response
+      this.varHeader.title = this.subContent.nombre
+      this.varLoading = false
+    }catch (e) {
+      console.log(e)
+    }
   }
 }
