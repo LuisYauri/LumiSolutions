@@ -25,7 +25,7 @@ import pe.edu.savbackend.service.test.TestService;
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/test")
 public class TestController {
-
+	//clase usada para testear
 	@Autowired
 	TestService testService;
 
