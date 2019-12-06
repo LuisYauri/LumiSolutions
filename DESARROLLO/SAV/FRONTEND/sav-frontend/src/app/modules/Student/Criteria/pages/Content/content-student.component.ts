@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {SubContent} from "../../model/content-student.model";
+import {Component, OnInit} from '@angular/core';
+import {ItemSubContent, SubContent} from "../../model/content-student.model";
 import {ActivatedRoute} from "@angular/router";
 import {ContentStudentService} from "../../services/content-student.service";
 
@@ -21,24 +21,39 @@ export class ContentStudentComponent implements OnInit {
   varLoading = true
   varIdContent = ""
 
-  subContent:SubContent
+  subContent: SubContent
 
-  constructor(private route: ActivatedRoute, private contentStudentService:ContentStudentService) { }
+  constructor(private route: ActivatedRoute, private contentStudentService: ContentStudentService) {
+  }
 
   ngOnInit() {
     this.varIdContent = this.route.snapshot.paramMap.get('id').toString()
     this.getSubContent(this.varIdContent)
   }
 
-  private async getSubContent(idContent:string) {
+  private async getSubContent(idContent: string) {
     try {
       this.varLoading = true
-      const response:any = await this.contentStudentService.getSubContent(idContent).toPromise()
+      const response: any = await this.contentStudentService.getSubContent(idContent).toPromise()
       this.subContent = response
+      this.subContent.lsSubContenido = this.addFlag(this.subContent.lsSubContenido)
       this.varHeader.title = this.subContent.nombre
       this.varLoading = false
-    }catch (e) {
+    } catch (e) {
       console.log(e)
     }
+  }
+
+  addFlag(lsSubContenido: ItemSubContent[]) {
+    let arrayTem = []
+    for (let item of lsSubContenido) {
+      arrayTem.push({...item, flag: false})
+    }
+    return arrayTem
+  }
+
+  checkSubContent(item: ItemSubContent) {
+    item.flag = true
+
   }
 }

@@ -38,7 +38,6 @@ export class CriteriaStudentComponent implements OnInit {
     try {
       this.varLoadingCriterio = true
       const response: any = await this.criteriaStudentService.getListCriteria().toPromise()
-      console.log(response)
       this.listCriteria = response
       this.varLoadingCriterio = false
     } catch (e) {
@@ -62,7 +61,6 @@ export class CriteriaStudentComponent implements OnInit {
       this.varLoadingContent = true
       const response: any = await this.criteriaStudentService.getListContent(idCriterio).toPromise()
       this.listContent = response
-      console.log(response)
       this.varLoadingContent = false
     } catch (e) {
       this.varLoadingContent = false
