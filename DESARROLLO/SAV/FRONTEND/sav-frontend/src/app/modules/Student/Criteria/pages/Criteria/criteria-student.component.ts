@@ -13,18 +13,19 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class CriteriaStudentComponent implements OnInit {
 
   varHeader = {
-    title: 'Criterios',
+    title: 'Competencias',
     icon: 'copy',
     url: ''
   }
   varLoadingCriterio = true
   varLoadingContent = true
 
-  varTitleCriterio = 'Criterios'
+  varTitleCriterio = 'Competencias'
   varTitleCotenido = 'Contenidos'
 
   listCriteria: Criteria[]
   listContent: Content[]
+  valueInitial= 0
 
   constructor(private criteriaStudentService: CriteriaStudentService,private route: ActivatedRoute,private router: Router) {
   }
@@ -37,6 +38,7 @@ export class CriteriaStudentComponent implements OnInit {
     try {
       this.varLoadingCriterio = true
       const response: any = await this.criteriaStudentService.getListCriteria().toPromise()
+      console.log(response)
       this.listCriteria = response
       this.varLoadingCriterio = false
     } catch (e) {
@@ -47,6 +49,7 @@ export class CriteriaStudentComponent implements OnInit {
 
 
   getCriterio($event: Criteria) {
+    this.valueInitial= 1
     this.getListContent($event.idCriterio.toString())
   }
 
@@ -59,6 +62,7 @@ export class CriteriaStudentComponent implements OnInit {
       this.varLoadingContent = true
       const response: any = await this.criteriaStudentService.getListContent(idCriterio).toPromise()
       this.listContent = response
+      console.log(response)
       this.varLoadingContent = false
     } catch (e) {
       this.varLoadingContent = false

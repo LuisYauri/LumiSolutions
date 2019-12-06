@@ -20,8 +20,8 @@ export class MenuService {
         icon: 'read',
       },
       {
-        title: 'Criterios',
-        key: 'Criterios',
+        title: 'Competencias',
+        key: 'Competencias',
         url: '/student/criteria',
         icon: 'copy',
       },
