@@ -1,0 +1,34 @@
+<div *ngIf="varLoading" class="loading-default">
+  <div class="content-loading">
+    <nz-spin nzSimple nzTip="Cargando..."></nz-spin>
+  </div>
+</div>
+<div *ngIf="!varLoading">
+  <div class="header_global">
+    <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon"
+                             [url]="varHeader.url"></app-header-page-student>
+  </div>
+  <div class="body_global">
+    <app-title-page-student [title]="varTitleResource"></app-title-page-student>
+    <div class="content-box-row" *ngFor="let item of resource; let i = index">
+      <div class="content-box-row--group">
+        <div class="cb-row-square">
+          {{i+1}}
+        </div>
+        <div class="cb-row-text">
+          <div class="cb-row-title">
+            {{item.nombre}}
+          </div>
+          <div class="cb-row-description">
+            {{item.descripcion}}
+          </div>
+        </div>
+      </div>
+      <div>
+        <button nz-button nzType="default" [nzLoading]="item.flag" class="btn-global--green--line" (click)="checkResource(item)">Ver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

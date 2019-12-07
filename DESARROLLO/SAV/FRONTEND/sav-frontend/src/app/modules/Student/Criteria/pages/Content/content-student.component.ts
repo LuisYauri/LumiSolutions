@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ItemSubContent, SubContent} from "../../model/content-student.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ContentStudentService} from "../../services/content-student.service";
+import {Content} from "../../model/criteria-student.model";
+import {DataCriteriaStudentService} from "../../services/data-criteria-student.service";
 
 @Component({
   selector: 'app-content-student',
@@ -23,7 +25,7 @@ export class ContentStudentComponent implements OnInit {
 
   subContent: SubContent
 
-  constructor(private route: ActivatedRoute, private contentStudentService: ContentStudentService) {
+  constructor(private route: ActivatedRoute, private contentStudentService: ContentStudentService, private router: Router,) {
   }
 
   ngOnInit() {
@@ -53,7 +55,8 @@ export class ContentStudentComponent implements OnInit {
   }
 
   checkSubContent(item: ItemSubContent) {
-    item.flag = true
-
+    let id = `${this.varIdContent.toString()}-${item.idSubContenido.toString()}`
+    this.router.navigate(['/student/criteria/content/resource/', id]);
   }
+
 }
