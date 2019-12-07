@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiMain: 'https://sav-backend-fisi.herokuapp.com/sav-backend/'
+  apiMain: 'https://sav-backend-v2.herokuapp.com/sav-backend/'
 };
 
 /*

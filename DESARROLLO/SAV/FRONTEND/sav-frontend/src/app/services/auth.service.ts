@@ -9,7 +9,7 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class AuthService {
 
-  private API_URL_LOGIN = `${environment.apiMain}autentificacion/login`
+  private API_URL_LOGIN = `${environment.apiMain}login`
   private payload: PayloadToken = this.getTokenDecode()
 
   constructor(private http: HttpClient) {
@@ -24,8 +24,12 @@ export class AuthService {
   }
 
   private getTokenDecode() {
-    const token = localStorage.getItem('access_token')
-    return jwt_decode(token);
+    try {
+      const token = localStorage.getItem('access_token')
+      return jwt_decode(token);
+    }catch (e) {
+
+    }
   }
 
   getToken() {
