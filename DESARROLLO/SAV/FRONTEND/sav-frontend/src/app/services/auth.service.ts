@@ -27,6 +27,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('data_username');
+    localStorage.removeItem('username');
   }
 
   private getTokenDecode() {
@@ -52,32 +54,4 @@ export class AuthService {
     this.payloadData = this.getTokenDataUsername()
     return this.payloadData
   }
-  // //
-  // getIdStudent() {
-  //   return this.payload.student.id
-  // }
-  //
-  // getCodigoGradoStudent() {
-  //   return this.payload.student.codigoGrado
-  // }
-  //
-  // getSiglasStudent() {
-  //   return this.payload.student.siglas
-  // }
-  //
-  // getLastNameStudent() {
-  //   return this.payload.student.apellidoPaterno
-  // }
-  //
-  // getFirstNameStudent() {
-  //   return this.payload.student.nombre
-  // }
-  //
-  // getSeccionStudent() {
-  //   return this.payload.student.seccion
-  // }
-  //
-  // getAnioStudent() {
-  //   return this.payload.student.anio
-  // }
 }
