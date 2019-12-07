@@ -73,7 +73,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		lsEvaluaciones.forEach(e->{
 			ExamenDto examenDto = new ExamenDto();
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdEvaluacion()).getFechaInicio();
-			examenDto.setIdEvaluacion(e.getIdEvaluacion()); 
+			examenDto.setIdExamen(e.getIdEvaluacion()); 
 			examenDto.setTitulo(e.getTitulo());
 			examenDto.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdEvaluacion()).toString());
 			long seg = e.getFechaInicio().until(e.getFechaFin(), ChronoUnit.SECONDS);
