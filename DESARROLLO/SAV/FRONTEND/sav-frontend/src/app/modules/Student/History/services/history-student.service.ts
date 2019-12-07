@@ -15,14 +15,14 @@ export class HistoryStudentService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getListHistory() {
-    return this.http.get(`${this.API_URL_LIST_HISTORY}${this.authService.getIdEstudiante().toString()}`)
+    return this.http.get(`${this.API_URL_LIST_HISTORY}${this.authService.getIdStudent().toString()}`)
   }
 
   getResultsStatics(idEvaluacion:string){
-    return this.http.get(`${this.API_URL_RESULTS_STATICS}${this.authService.getIdEstudiante().toString()}&idEvaluacion=${idEvaluacion}`)
+    return this.http.get(`${this.API_URL_RESULTS_STATICS}${this.authService.getIdStudent().toString()}&idEvaluacion=${idEvaluacion}`)
   }
 
   getResultsStaticsQuestions(idEvaluacion:string){
-    return this.http.get(`${this.API_URL_RESULTS_STATICS_QUESTIONS}${this.authService.getIdEstudiante().toString()}&idEvaluacion=${idEvaluacion}`)
+    return this.http.get(`${this.API_URL_RESULTS_STATICS_QUESTIONS}${this.authService.getIdStudent().toString()}&idEvaluacion=${idEvaluacion}`)
   }
 }

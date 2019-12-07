@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ItemSubContent, SubContent} from "../../model/content-student.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ContentStudentService} from "../../services/content-student.service";
-import {Content} from "../../model/criteria-student.model";
-import {DataCriteriaStudentService} from "../../services/data-criteria-student.service";
 
 @Component({
   selector: 'app-content-student',

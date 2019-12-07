@@ -6,7 +6,6 @@ import {ItemSubContent} from "../../model/content-student.model";
 import {HomeworkStudentService} from "../../../Homework/services/homework-student.service";
 import {ModalHelpStudentComponent} from "../../../../../core/components/Student/ModalHelp/modal-help-student.component";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {DataCriteriaStudentService} from "../../services/data-criteria-student.service";
 
 @Component({
   selector: 'app-resource-criteria-student',

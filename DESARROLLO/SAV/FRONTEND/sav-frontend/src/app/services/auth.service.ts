@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 export class AuthService {
 
   private API_URL_LOGIN = `${environment.apiMain}autentificacion/login`
-  private payload:PayloadToken
+  private payload:PayloadToken = this.getTokenDecode()
 
   constructor(private http: HttpClient) { }
 
@@ -31,18 +31,23 @@ export class AuthService {
     return localStorage.getItem('access_token')
   }
 
-  getIdEstudiante(){
-    this.payload = this.getTokenDecode()
-    return this.payload.identity.idEstudiante
+  getIdStudent(){
+    return this.payload.student.id
   }
 
-  getCodigoGrado(){
-    this.payload = this.getTokenDecode()
-    return this.payload.identity.codigoGrado
+  getCodigoGradoStudent(){
+    return this.payload.student.codigoGrado
   }
 
-  getSiglas(){
-    this.payload = this.getTokenDecode()
-    return this.payload.identity.siglas
+  getSiglasStudent(){
+    return this.payload.student.siglas
+  }
+
+  getLastNameStudent(){
+    return this.payload.student.apellidoPaterno
+  }
+
+  getFirstNameStudent(){
+    return this.payload.student.nombre
   }
 }

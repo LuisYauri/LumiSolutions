@@ -8,9 +8,15 @@ export interface Login {
 }
 
 export interface PayloadToken {
-  "identity": {
-    idEstudiante: number,
+  student?: {
+    id: number,
     codigoGrado: number,
+    apellidoPaterno:string,
+    nombre:string
+    siglas:string
+  }
+  teacher?:{
+    id: number,
     apellidoPaterno:string,
     nombre:string
     siglas:string
