@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {Login, PayloadToken} from "../model/auth.model";
+import {Login, PayloadDataToken, PayloadToken} from "../model/auth.model";
 import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -11,13 +11,18 @@ export class AuthService {
 
   private API_URL_LOGIN = `${environment.apiMain}login`
   private API_URL_LOGIN_DATA = `${environment.apiMain}usuarios/asdaaa`
-  private payload: PayloadToken = this.getTokenDecode()
+  private payload: PayloadToken
+  private payloadData: PayloadDataToken
 
   constructor(private http: HttpClient) {
   }
 
   postLogin(data: Login) {
     return this.http.post(this.API_URL_LOGIN, data)
+  }
+
+  getLoginData(username:string){
+    return this.http.get(this.API_URL_LOGIN_DATA)
   }
 
   logout() {
@@ -33,35 +38,46 @@ export class AuthService {
     }
   }
 
-  getToken() {
-    return localStorage.getItem('access_token')
+  getUsername(){
+    this.payload = this.getTokenDecode()
+    return this.payload.sub.toString()
   }
 
-  getIdStudent() {
-    return this.payload.student.id
+  getTokenDataUsername() {
+    return JSON.parse(localStorage.getItem('data_username'))
   }
 
-  getCodigoGradoStudent() {
-    return this.payload.student.codigoGrado
+  ///
+  getDataUsername(){
+    this.payloadData = this.getTokenDataUsername()
+    return this.payloadData
   }
-
-  getSiglasStudent() {
-    return this.payload.student.siglas
-  }
-
-  getLastNameStudent() {
-    return this.payload.student.apellidoPaterno
-  }
-
-  getFirstNameStudent() {
-    return this.payload.student.nombre
-  }
-
-  getSeccionStudent() {
-    return this.payload.student.seccion
-  }
-
-  getAnioStudent() {
-    return this.payload.student.anio
-  }
+  // //
+  // getIdStudent() {
+  //   return this.payload.student.id
+  // }
+  //
+  // getCodigoGradoStudent() {
+  //   return this.payload.student.codigoGrado
+  // }
+  //
+  // getSiglasStudent() {
+  //   return this.payload.student.siglas
+  // }
+  //
+  // getLastNameStudent() {
+  //   return this.payload.student.apellidoPaterno
+  // }
+  //
+  // getFirstNameStudent() {
+  //   return this.payload.student.nombre
+  // }
+  //
+  // getSeccionStudent() {
+  //   return this.payload.student.seccion
+  // }
+  //
+  // getAnioStudent() {
+  //   return this.payload.student.anio
+  // }
 }

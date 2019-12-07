@@ -45,32 +45,22 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // sendCredentials() {
-  //   let ga = this
-  //   this.varLoading = true
-  //   setTimeout(function () {
-  //     if( ga.loginForm.controls['username'].value === 'miguel.moya@unmsm.edu.pe' && ga.loginForm.controls['password'].value === '12345'){
-  //       ga.router.navigate(['/student/homework'])
-  //     }else{
-  //       ga.varLoading = false
-  //       ga.notificationService.create(
-  //         'error',
-  //         'Datos Incorrectos',
-  //         'Revise sus datos.'
-  //       );
-  //     }
-  //   }, 3000);
-  // }
-
   async sendCredentials() {
-    //Esta función usa el servicio postLogin para iniciar sesión con los datos obtenidos del formulario
     this.varLoading = true
     try {
-      const response = await this.authService.postLogin(this.gJsonLogin()).toPromise()
-      console.log(response['token'])
+      const response: any = await this.authService.postLogin(this.gJsonLogin()).toPromise()
       localStorage.setItem('access_token', response['token']);
-      this.varLoading = false
-      await this.router.navigate(['/student/homework'])
+      const username = this.authService.getUsername()
+      localStorage.setItem('username', username);
+      try {
+        const response: any = await this.authService.getLoginData(username).toPromise()
+        localStorage.setItem('data_username', JSON.stringify(response));
+        this.varLoading = false
+        this.authService.getDataUsername()
+        await this.router.navigate(['/student/homework'])
+      } catch (e) {
+        console.log(e)
+      }
     } catch (e) {
       console.log(e)
       this.varLoading = false

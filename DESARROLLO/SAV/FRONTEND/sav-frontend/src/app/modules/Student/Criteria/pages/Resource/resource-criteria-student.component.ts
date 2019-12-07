@@ -45,7 +45,6 @@ export class ResourceCriteriaStudentComponent implements OnInit {
       const response: any = await this.resourceStudentService.getListResource(idSubContenido).toPromise()
       this.resource = response
       this.resource = this.addFlag(this.resource)
-      console.log(this.resource)
       this.varLoading = false
     } catch (e) {
       console.log(e)

@@ -94,7 +94,7 @@ export class ModalQuestionsComponent implements OnInit {
       idTarea: questions.idTarea,
       titulo: questions.titulo,
       contenido: questions.contenido,
-      idEstudiante: this.authService.getIdStudent(),
+      idEstudiante: this.authService.getDataUsername().id,
       lsPreguntas: this.gJsonAnswers(questions.lsPreguntas)
     }
   }

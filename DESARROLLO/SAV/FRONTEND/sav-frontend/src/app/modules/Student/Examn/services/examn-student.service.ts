@@ -16,13 +16,13 @@ export class ExamnStudentService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getListExamn() {
-    return this.http.get(`${this.API_URL_LIST_EXAMN}${this.authService.getIdStudent().toString()}`)
+    return this.http.get(`${this.API_URL_LIST_EXAMN}${this.authService.getDataUsername().id.toString()}`)
   }
   getQuestions(idExamn: string) {
     return this.http.get(`${this.API_URL_QUESTIONS}${idExamn}/preguntas`)
   }
 
   postAnswers(idExamn: string, data: SendAnswersExamenStudent) {
-    return this.http.post(`${this.API_URL_SEND_ANSWERS_EXAMN}${idExamn}/estudiante/${this.authService.getIdStudent().toString()}/finalizar`, data)
+    return this.http.post(`${this.API_URL_SEND_ANSWERS_EXAMN}${idExamn}/estudiante/${this.authService.getDataUsername().id.toString()}/finalizar`, data)
   }
 }

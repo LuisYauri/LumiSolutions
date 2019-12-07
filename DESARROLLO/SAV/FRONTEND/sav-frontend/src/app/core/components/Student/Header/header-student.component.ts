@@ -21,7 +21,7 @@ export class HeaderStudentComponent implements OnInit {
       description: ''
     },
     {
-      title: 'Sección',
+      title: 'Grupo',
       description: ''
     },
     {
@@ -30,16 +30,16 @@ export class HeaderStudentComponent implements OnInit {
     },
   ];
 
-  constructor(private authService: AuthService,private router: Router,) {
+  constructor(private authService: AuthService, private router: Router,) {
   }
 
   ngOnInit() {
-    this.data[0].description = `${this.authService.getCodigoGradoStudent().toString()} Secundaria`
-    this.data[1].description = this.authService.getSeccionStudent().toString()
-    this.data[2].description = this.authService.getAnioStudent().toString()
-    this.lastName = this.authService.getLastNameStudent()
-    this.firstName = this.authService.getFirstNameStudent()
-    this.siglas = this.authService.getSiglasStudent()
+    this.data[0].description = `${this.authService.getDataUsername().codigoGrado.toString()} Secundaria`
+    this.data[1].description = this.authService.getDataUsername().seccion.toString()
+    this.data[2].description = this.authService.getDataUsername().anio.toString()
+    this.lastName = this.authService.getDataUsername().apellidoPaterno
+    this.firstName = this.authService.getDataUsername().nombres
+    this.siglas = this.authService.getDataUsername().siglas
   }
 
   open() {

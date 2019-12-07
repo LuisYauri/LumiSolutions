@@ -46,7 +46,7 @@ export class ModalHelpStudentComponent implements OnInit {
   private gJsonSendRate(value: number) {
     return {
       idRecurso: this.resource.idRecurso,
-      idEstudiante: this.authService.getIdStudent(),
+      idEstudiante: this.authService.getDataUsername().id,
       calificacion: value
     }
   }
@@ -55,7 +55,6 @@ export class ModalHelpStudentComponent implements OnInit {
     try {
       this.varLoadingSpinning = true
       const response = await this.resourceService.postComment(this.gJsonSendComment()).toPromise()
-      console.log(this.gJsonSendComment())
       this.getComments(this.resource.idRecurso)
       this.varLoadingSpinning = false
       this.commentForm.controls['comment'].setValue(null);
@@ -72,7 +71,7 @@ export class ModalHelpStudentComponent implements OnInit {
   private gJsonSendComment() {
     return {
       idRecurso: this.resource.idRecurso,
-      idEstudiante: this.authService.getIdStudent(),
+      idEstudiante: this.authService.getDataUsername().id,
       descripcion: this.commentForm.controls['comment'].value.toString()
     }
   }
