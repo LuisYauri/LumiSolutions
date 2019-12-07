@@ -5,6 +5,7 @@ import {StudentComponent} from "./layouts/Student/student.component";
 import {LayoutsModule} from "./layouts/layouts.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
+import {TeacherComponent} from "./layouts/Teacher/teacher.component";
 
 
 const routes: Routes = [
@@ -34,6 +35,12 @@ const routes: Routes = [
       },
     ],
   },
+  {path: 'teacher-dashboard',
+    component: TeacherComponent,
+    children:[
+
+    ]
+  }
 ];
 
 @NgModule({

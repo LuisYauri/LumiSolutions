@@ -10,6 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 export class AuthService {
 
   private API_URL_LOGIN = `${environment.apiMain}login`
+  private API_URL_LOGIN_DATA = `${environment.apiMain}usuarios/asdaaa`
   private payload: PayloadToken = this.getTokenDecode()
 
   constructor(private http: HttpClient) {
