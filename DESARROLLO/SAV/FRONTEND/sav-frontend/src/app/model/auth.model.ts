@@ -14,6 +14,8 @@ export interface PayloadToken {
     apellidoPaterno:string,
     nombre:string
     siglas:string
+    seccion:string
+    anio:string
   }
   teacher?:{
     id: number,
