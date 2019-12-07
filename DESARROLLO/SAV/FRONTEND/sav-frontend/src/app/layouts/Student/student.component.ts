@@ -7,9 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  //Falta aún implementar los servicios para estudiante
-  //Quitar eso cuando se implemente
-
   isCollapsed = false;
 
   constructor() { }

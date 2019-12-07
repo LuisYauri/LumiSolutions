@@ -21,15 +21,6 @@
             </div>
           </div>
           <form nz-form class="login-form" [formGroup]="loginForm">
-            <nz-form-item>
-              <nz-form-control nzErrorTip="Porfavor seleccione una opción.">
-                <span style="margin-right: 10px;">Usted es:</span>
-                <nz-radio-group formControlName="type">
-                  <label nz-radio nzValue="E">Estudiante</label>
-                  <label nz-radio nzValue="P">Profesor</label>
-                </nz-radio-group>
-              </nz-form-control>
-            </nz-form-item>
             <nz-form-item style="margin-bottom: 5px;">
               <nz-form-label nzFor="username">Ingrese su nombre de usuario</nz-form-label>
               <nz-form-control  nzErrorTip="Porfavor ingresa su nombre de usuario.">

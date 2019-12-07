@@ -38,7 +38,6 @@ export class ModalHelpStudentComponent implements OnInit {
   private async sendRate(value: number) {
     try {
       const response = await this.resourceService.postRate(this.gJsonSendRate(value)).toPromise()
-      console.log("Good")
     } catch (e) {
       console.log(e)
     }
@@ -47,7 +46,7 @@ export class ModalHelpStudentComponent implements OnInit {
   private gJsonSendRate(value: number) {
     return {
       idRecurso: this.resource.idRecurso,
-      idEstudiante: this.authService.getIdEstudiante(),
+      idEstudiante: this.authService.getDataUsername().id,
       calificacion: value
     }
   }
@@ -72,7 +71,7 @@ export class ModalHelpStudentComponent implements OnInit {
   private gJsonSendComment() {
     return {
       idRecurso: this.resource.idRecurso,
-      idEstudiante: this.authService.getIdEstudiante(),
+      idEstudiante: this.authService.getDataUsername().id,
       descripcion: this.commentForm.controls['comment'].value.toString()
     }
   }

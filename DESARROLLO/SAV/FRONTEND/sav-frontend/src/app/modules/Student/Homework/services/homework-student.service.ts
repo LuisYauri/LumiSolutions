@@ -19,7 +19,7 @@ export class HomeworkStudentService {
   }
 
   getListHomework() {
-    return this.http.get(`${this.API_URL_LIST_HOMEWORK}${this.authService.getIdEstudiante().toString()}`)
+    return this.http.get(`${this.API_URL_LIST_HOMEWORK}${this.authService.getDataUsername().id.toString()}`)
   }
 
   getQuestions(idTarea: string) {
@@ -27,7 +27,7 @@ export class HomeworkStudentService {
   }
 
   postAnswers(idTarea: string, data: SendAnswers) {
-    return this.http.post(`${this.API_URL_SEND_ANSWERS}${idTarea}/estudiante/${this.authService.getIdEstudiante().toString()}/finalizar`, data)
+    return this.http.post(`${this.API_URL_SEND_ANSWERS}${idTarea}/estudiante/${this.authService.getDataUsername().id.toString()}/finalizar`, data)
   }
 
   postCheckAnswer(idPregunta: string, data: Answer) {
@@ -35,6 +35,6 @@ export class HomeworkStudentService {
   }
 
   getResource(idRecurso:string){
-    return this.http.get(`${this.API_URL_RESOURCE}${idRecurso}/estudiante/${this.authService.getIdEstudiante().toString()}`)
+    return this.http.get(`${this.API_URL_RESOURCE}${idRecurso}/estudiante/${this.authService.getDataUsername().id.toString()}`)
   }
 }
