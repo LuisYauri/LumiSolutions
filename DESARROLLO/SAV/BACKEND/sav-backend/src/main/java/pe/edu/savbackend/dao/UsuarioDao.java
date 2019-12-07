@@ -9,3 +9,5 @@ public interface UsuarioDao extends CrudRepository<Usuario, Long>{
 	public Usuario findByUsername(String username);
 
 }
+
+
