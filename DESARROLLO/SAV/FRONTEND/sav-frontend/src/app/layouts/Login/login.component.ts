@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   private getLoginForm() {
     //Esta función llena en el formulario datos por defecto para iniciar sesión mas rápido
     this.loginForm = this.fb.group({
-      type: ['E', [Validators.required]],
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     })
@@ -46,44 +45,34 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  sendCredentials() {
-    let ga = this
+  async sendCredentials() {
     this.varLoading = true
-    setTimeout(function () {
-      if( ga.loginForm.controls['username'].value === 'miguel.moya@unmsm.edu.pe' && ga.loginForm.controls['password'].value === '12345'){
-        ga.router.navigate(['/student/homework'])
-      }else{
-        ga.varLoading = false
-        ga.notificationService.create(
-          'error',
-          'Datos Incorrectos',
-          'Revise sus datos.'
-        );
+    try {
+      const response: any = await this.authService.postLogin(this.gJsonLogin()).toPromise()
+      localStorage.setItem('access_token', response['token']);
+      const username = this.authService.getUsername()
+      localStorage.setItem('username', username);
+      try {
+        const response: any = await this.authService.getLoginData(username).toPromise()
+        localStorage.setItem('data_username', JSON.stringify(response));
+        this.varLoading = false
+        this.authService.getDataUsername()
+        await this.router.navigate(['/student/homework'])
+      } catch (e) {
+        console.log(e)
       }
-    }, 3000);
+    } catch (e) {
+      console.log(e)
+      this.varLoading = false
+      this.notificationService.info('Datos Incorrectos', 'Su datos ingresados son incorrectos.')
+    }
   }
-
-  // async sendCredentials() {
-  //   //Esta función usa el servicio postLogin para iniciar sesión con los datos obtenidos del formulario
-  //   this.varLoading = true
-  //   try {
-  //     const response = await this.authService.postLogin(this.gJsonLogin()).toPromise()
-  //     localStorage.setItem('access_token', response['token']);
-  //     this.varLoading = false
-  //     await this.router.navigate(['/student/homework'])
-  //   } catch (e) {
-  //     console.log(e)
-  //     this.varLoading = false
-  //     this.notificationService.info('Datos Incorrectos', 'Su datos ingresados son incorrectos.')
-  //   }
-  // }
 
   private gJsonLogin() {
     //Esta función retorna los datos introducidos en el formulario en formato JSON
     return {
-      tipo: this.loginForm.controls['type'].value,
-      usuario: this.loginForm.controls['username'].value,
-      contrasenia: this.loginForm.controls['password'].value
+      username: this.loginForm.controls['username'].value,
+      password: this.loginForm.controls['password'].value
     }
   }
 }

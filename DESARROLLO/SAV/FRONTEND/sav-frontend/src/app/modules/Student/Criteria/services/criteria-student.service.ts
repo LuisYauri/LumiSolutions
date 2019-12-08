@@ -19,6 +19,6 @@ export class CriteriaStudentService {
   }
 
   getListContent(idCriterio:string) {
-    return this.http.get(`${this.API_URL_LIST_CONTENT}${idCriterio}&codigoGrado=${this.authService.getCodigoGrado().toString()}`)
+    return this.http.get(`${this.API_URL_LIST_CONTENT}${idCriterio}&codigoGrado=${this.authService.getDataUsername().codigoGrado.toString()}`)
   }
 }

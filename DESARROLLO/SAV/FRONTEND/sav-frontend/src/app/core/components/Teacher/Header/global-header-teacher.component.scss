@@ -25,28 +25,16 @@ nz-header {
   margin-right: 35px;
 }
 
-.box-drawer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.info-box {
-  display: flex;
-  flex-direction: row;
-  margin: 0 0 10px;
-
-  &--title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 15px;
-    margin: 5px 5px 5px 0;
-  }
-
-  &--description {
-    font-size: 15px;
-    margin: 5px 0;
+.routelink-header {
+  margin-right: 40px;
+  &--item {
+    font-size: 18px;
+    margin: 0 5px;
+    color: #FFFFFF;
+    text-underline: none;
+    &:hover {
+      color: #FFFFFF;
+      font-weight: bold;
+    }
   }
 }
