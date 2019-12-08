@@ -10,26 +10,31 @@
       <br>
     </div>
   </div>
-  <div class="paginator-box">
-    <button class="paginator-box--item btn_global--blue-solid" nz-button [nzSize]="'large'" nzType="primary">
-      <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
-      Agregar Aula
-    </button>
-  </div>
-  <div class="group-blue-box-square">
-    <div *ngFor="let item of listClassroom | paginate: { itemsPerPage: 8, currentPage: p}" class="blue-box-square">
-      <div>{{item.codigoGrado}} Secundaria</div>
-      <div>{{item.grupo}}</div>
-      <div>{{item.anio}}</div>
-      <div class="blue-box-square--action">
-        <button nz-button nzType="primary" class="btn_global--blue-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon nzType="export" nzTheme="outline"></i></button>
-        <button nz-button nzType="primary" class="btn_global--green-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
-        <button nz-button nzType="primary" class="btn-global--red-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+  <app-loading-teacher [varLoading]="varLoading"></app-loading-teacher>
+  <div *ngIf="!varLoading">
+    <div class="paginator-box">
+      <button class="paginator-box--item btn_global--blue-solid" nz-button [nzSize]="'large'" nzType="primary" (click)="openAddAula()">
+        <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+        Agregar Aula
+      </button>
+    </div>
+    <div class="group-blue-box-square">
+      <div *ngFor="let item of listClassroom | paginate: { itemsPerPage: 8, currentPage: p}" class="blue-box-square">
+        <div>{{item.codigoGrado}} Secundaria</div>
+        <div>{{item.grupo}}</div>
+        <div>{{item.anio}}</div>
+        <div class="blue-box-square--action">
+          <button nz-button nzType="primary" class="btn_global--blue-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon nzType="export" nzTheme="outline"></i></button>
+          <button nz-button nzType="primary" (click)="openEditAula(item)" class="btn_global--green-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+          <button nz-button nzType="primary" (click)="openDeleteAula(item)" class="btn-global--red-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="paginator-box">
-    <pagination-controls class="paginator-box--item" (pageChange)="p = $event" previousLabel="Anterior"
-                         nextLabel="Siguiente"></pagination-controls>
+    <div class="paginator-box">
+      <pagination-controls class="paginator-box--item" (pageChange)="p = $event" previousLabel="Anterior"
+                           nextLabel="Siguiente"></pagination-controls>
+    </div>
   </div>
 </div>
+
+

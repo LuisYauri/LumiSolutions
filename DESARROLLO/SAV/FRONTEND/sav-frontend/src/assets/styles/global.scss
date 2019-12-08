@@ -94,8 +94,23 @@ body {
   }
 }
 
-.btn-global--black--solid {
+.btn-global--black-solid {
+  background: #363735;
+  border-color: #363735;
+  border-radius: 4px;
+  color: #ffffff;
 
+  &:hover {
+    border-color: #363735;
+    background: #363735;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #363735;
+    background: #363735;
+    color: #ffffff;
+  }
 }
 
 .btn-global--blue--line {

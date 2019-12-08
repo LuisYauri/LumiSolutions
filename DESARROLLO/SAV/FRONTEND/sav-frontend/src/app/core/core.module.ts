@@ -10,6 +10,9 @@ import { SafeStudentPipe } from './pipe/Student/safe-student.pipe';
 import { LoadingBlankStudentComponent } from './components/Student/LoadingBlank/loading-blank-student.component';
 import { GlobalHeaderTeacherComponent } from './components/Teacher/Global/Header/global-header-teacher.component';
 import { HeaderPageTeacherComponent } from './components/Teacher/HeaderPage/header-page-teacher.component';
+import { LoadingBlankTeacherComponent } from './components/Teacher/LoadingBlank/loading-blank-teacher.component';
+import { LoadingTeacherComponent } from './components/Teacher/Loading/loading-teacher.component';
+import { DeleteModalTeacherComponent } from './components/Teacher/DeleteModal/delete-modal-teacher.component';
 
 const COMPONENTS = [
   MenuLeftStudentComponent,
@@ -20,13 +23,16 @@ const COMPONENTS = [
   LoadingBlankStudentComponent,
   GlobalHeaderTeacherComponent,
   SafeStudentPipe,
-  HeaderPageTeacherComponent
+  HeaderPageTeacherComponent,
+  LoadingBlankTeacherComponent,
+  LoadingTeacherComponent,
+  DeleteModalTeacherComponent
 ];
 
 @NgModule({
   declarations: [...COMPONENTS, ],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
   exports: [...COMPONENTS],
-  entryComponents: [ModalHelpStudentComponent]
+  entryComponents: [ModalHelpStudentComponent,DeleteModalTeacherComponent]
 })
 export class CoreModule { }

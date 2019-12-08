@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsGlobalTeacherComponent implements OnInit {
 
+  varHeader = {
+    title: 'Mis Estudiantes',
+    icon: 'profile',
+    url: ''
+  }
+
+  varTitle = 'Banco de estudiantes'
+  varLoading = false
   constructor() { }
 
   ngOnInit() {
