@@ -11,8 +11,6 @@ import pe.edu.savbackend.dao.PersonaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.EstudianteDto;
 import pe.edu.savbackend.entity.Estudiante;
-import pe.edu.savbackend.entity.Persona;
-import pe.edu.savbackend.entity.Usuario;
 
 @Service
 public class EstudianteServiceImpl implements EstudianteService {

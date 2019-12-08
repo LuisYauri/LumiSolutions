@@ -36,6 +36,5 @@ public class Matricula {
 	private Integer idEstudiante;
 	
 	@Column(name="id_grupo")
-	private Integer idGrupo;
-	
+	private Integer idGrupo;	
 }

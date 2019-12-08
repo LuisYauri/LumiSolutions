@@ -32,12 +32,12 @@ public class Grupo {
 	@Column(name="cod_grado")
 	private String codigoGrado;
 	
-	@Column(name="anio")
-	private Integer anio;
-	
 	@Column(name="cod_estado")
 	private String codigoEstado;
 	
 	@Column(name="id_docente")
 	private String idDocente;
+
+	@Column(name="anio")
+	private Integer anio;
 }
