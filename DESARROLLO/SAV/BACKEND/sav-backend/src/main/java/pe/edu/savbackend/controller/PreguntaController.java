@@ -16,7 +16,6 @@ import lombok.Data;
 import pe.edu.savbackend.service.pregunta.PreguntaService;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/preguntas")
 public class PreguntaController {
 

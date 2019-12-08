@@ -1,54 +1,54 @@
-package pe.edu.savbackend.service.aula;
+package pe.edu.savbackend.service.estudiante;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.savbackend.dao.GrupoDao;
-import pe.edu.savbackend.domain.AulaDto;
-import pe.edu.savbackend.entity.Grupo;
+import pe.edu.savbackend.dao.EstudianteDao;
+import pe.edu.savbackend.domain.EstudianteDto;
+import pe.edu.savbackend.entity.Estudiante;
 
 @Service
-public class AulaServiceImpl implements AulaService {
+public class EstudianteServiceImpl implements EstudianteService {
 
 	@Autowired
-	GrupoDao grupoDao;
+	EstudianteDao estudianteDao;
 
 	@Override
-	public List<AulaDto> getLsAulas() {
-		List<Grupo> listaGrupos = grupoDao.obtenerListaGrupos();
+	public List<EstudianteDto> getLsEstudiantes() {
+		/* List<Grupo> listaGrupos = estudianteDao.obtenerListaGrupos();
 		List<AulaDto> listaAulas = new ArrayList<>();
 		listaGrupos.forEach(g -> {
 			listaAulas.add(new AulaDto(g.getIdGrupo(), g.getNombre(), Integer.parseInt(g.getCodigoGrado()),
 			g.getAnio().getYear()));
 		});
-		return listaAulas;
+		return listaAulas; */
+		return null;
 	}
 
 	@Override
-	public Grupo registrarAula(AulaDto aula) {
-		if(grupoDao.existe(aula.getGrupo()) != 0) {
+	public Estudiante registrarEstudiante(EstudianteDto estudiante) {
+		/* if(estudianteDao.existe(aula.getGrupo()) != 0) {
 			throw new RuntimeException("El nombre de grupo ya existe");
 		}
 		Grupo grupo = new Grupo();
-		grupo.setIdGrupo(grupoDao.nextId());
+		grupo.setIdGrupo(estudianteDao.nextId());
 		grupo.setNombre(aula.getGrupo());
 		grupo.setIdDocente("1");
 		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
 		grupo.setCodigoEstado("1");
 		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
-		return grupoDao.save(grupo);
+		return estudianteDao.save(grupo); */
+		return null;
 	}
 
 	@Override
-	public Grupo actualizarAula(AulaDto aula) {
-		Grupo grupo = grupoDao.getOne(aula.getIdAula());
+	public Estudiante actualizarEstudiante(EstudianteDto estudiante) {
+		/* Grupo grupo = estudianteDao.getOne(aula.getIdAula());
 		if(!aula.getGrupo().equals(grupo.getNombre()))
 		{
-			if(grupoDao.existe(aula.getGrupo()) != 0) 
+			if(estudianteDao.existe(aula.getGrupo()) != 0) 
 			{
 				throw new RuntimeException("El nombre de grupo ya existe");
 			}
@@ -57,19 +57,21 @@ public class AulaServiceImpl implements AulaService {
 		
 		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
 		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
-		return grupoDao.save(grupo);
+		return estudianteDao.save(grupo); */
+		return null;
 	}
 
 	@Override
-	public Boolean eliminarAula(Integer idArea) {
-		try{
-			Grupo grupo = grupoDao.getOne(idArea);
+	public Boolean eliminarEstudiante(Integer idEstudiante) {
+		/* try{
+			Grupo grupo = estudianteDao.getOne(idArea);
 			grupo.setCodigoEstado("0");
-			grupoDao.save(grupo);
+			estudianteDao.save(grupo);
 			return true;	
 		}catch(Exception e){
 			throw new RuntimeException("El id grupo no existe");
-		}	
+		}	 */
+		return null;
 	}
 
 }

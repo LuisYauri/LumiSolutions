@@ -17,7 +17,6 @@ import pe.edu.savbackend.entity.Comentario;
 import pe.edu.savbackend.service.comentario.ComentarioService;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/comentarios")
 public class ComentarioController {
 	

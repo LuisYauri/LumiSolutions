@@ -13,7 +13,6 @@ import pe.edu.savbackend.entity.Calificacion;
 import pe.edu.savbackend.service.calificaciones.CalificacionService;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/calificaciones")
 public class CalificacionController {
 

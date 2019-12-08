@@ -11,7 +11,7 @@ public class Constantes {
 	
 	/*Aqui se genera el par de llaves privadas y publicas */
 	public static final KeyPair KEY_PAIR = Keys.keyPairFor(SignatureAlgorithm.RS256);	
-	public static final long EXPIRATION_DATE = 14000000L;
+	public static final long EXPIRATION_DATE = 1400000000000L;
 	public static final String TOKEN_PREFIX = "Bearer ";
 	public static final String HEADER_STRING = "Authorization";
 }
