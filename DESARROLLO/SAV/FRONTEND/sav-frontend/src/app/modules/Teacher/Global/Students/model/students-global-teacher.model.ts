@@ -4,4 +4,5 @@ export interface StudentsGlobalTeacherModel {
   aPaterno: string
   aMaterno: string
   usuario: string
+  contrasenia?:string
 }

@@ -100,7 +100,7 @@ export class CreateClassroomGlobalTeacherComponent implements OnInit {
       this.modal.destroy({status: true})
       this.notification.create(
         'success',
-        'Aula agredado correctamente',
+        'Aula agregado correctamente',
         ''
       );
       this.varLoadingData = false

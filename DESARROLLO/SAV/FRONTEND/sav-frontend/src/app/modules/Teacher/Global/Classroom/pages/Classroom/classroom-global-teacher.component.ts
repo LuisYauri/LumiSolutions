@@ -36,7 +36,7 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
   }
 
   async getListClassroom() {
-    this. p= 1;
+    this.p = 1;
     this.varLoading = true
     try {
       const response: any = await this.classroomGlobalTeacherService.getListClassroom().toPromise()
@@ -44,6 +44,7 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
       this.varLoading = false
     } catch (e) {
       console.log(e)
+      this.varLoading = false
     }
   }
 
@@ -83,11 +84,11 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
     const title = 'Eliminar Aula'
     const subtitle = '¿Está seguro de eliminar esta aula?'
     const description = 'Se eliminarán todos los datos relacionados a esta sección, no podrá recuperarlo después de realizar la acción.'
-    this.openModalDelete(title, subtitle, description,item)
+    this.openModalDelete(title, subtitle, description, item)
 
   }
 
-  openModalDelete(title: string, subtitle: string, description: string,item?:ClassroomGlobalTeacherModel) {
+  openModalDelete(title: string, subtitle: string, description: string, item?: ClassroomGlobalTeacherModel) {
     const modal = this.modalService.create({
       nzTitle: title,
       nzContent: DeleteModalTeacherComponent,
@@ -108,7 +109,7 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
     })
   }
 
-  async deleteClassroom(id:string){
+  async deleteClassroom(id: string) {
     try {
       this.varLoading = true
       await this.classroomGlobalTeacherService.deleteClassroom(id).toPromise()
@@ -118,7 +119,7 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
         'Aula eliminado correctamente',
         ''
       );
-    }catch (e) {
+    } catch (e) {
       console.log(e)
       this.varLoading = false
     }
