@@ -17,7 +17,6 @@ import pe.edu.savbackend.service.historial.HistorialService;
  */
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/historiales")
 public class HistorialController {
 

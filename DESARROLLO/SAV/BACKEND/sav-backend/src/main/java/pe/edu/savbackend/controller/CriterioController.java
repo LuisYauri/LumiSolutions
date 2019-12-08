@@ -17,7 +17,6 @@ import pe.edu.savbackend.service.criterio.CriterioService;
  */
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/criterios")
 public class CriterioController {
 
