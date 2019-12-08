@@ -2,8 +2,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {RouterModule} from '@angular/router';
+import {NgxPaginationModule} from 'ngx-pagination';
 
-const MODULES = [CommonModule, RouterModule, NgZorroAntdModule];
+const MODULES = [CommonModule, RouterModule, NgZorroAntdModule, NgxPaginationModule];
 const COMPONENTS = [];
 
 @NgModule({

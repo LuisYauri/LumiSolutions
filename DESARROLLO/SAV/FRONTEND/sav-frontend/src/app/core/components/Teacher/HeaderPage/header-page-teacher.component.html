@@ -1,0 +1,9 @@
+<div class="header_box">
+  <div class="title">
+    <i class="title--icon" nz-icon nzType="{{icon}}" nzTheme="outline"></i>
+    <div class="title--text">
+      {{title}}
+    </div>
+  </div>
+  <i *ngIf="url.length>0" nz-icon nzType="close" nzTheme="outline" (click)="redirect()"></i>
+</div>

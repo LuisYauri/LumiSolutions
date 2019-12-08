@@ -2,13 +2,22 @@ nz-header {
   background: #272534;
   padding: 0;
 }
-
+.general-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .header__box {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.header__logo{
+  height: 60px;
+  margin: 2px 0 0 25px;
 }
 
 .header__text {
@@ -37,4 +46,10 @@ nz-header {
       font-weight: bold;
     }
   }
+}
+
+.box-drawer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -5,7 +5,7 @@ import {StudentComponent} from "./layouts/Student/student.component";
 import {LayoutsModule} from "./layouts/layouts.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
-import {TeacherComponent} from "./layouts/Teacher/teacher.component";
+import {TeacherComponent} from "./layouts/Teacher/Global/teacher.component";
 
 
 const routes: Routes = [
@@ -35,10 +35,17 @@ const routes: Routes = [
       },
     ],
   },
-  {path: 'teacher-dashboard',
+  {path: 'teacher-global',
     component: TeacherComponent,
     children:[
-
+      {
+        path: 'classroom',
+        loadChildren: 'src/app/modules/Teacher/Global/Classroom/classroom-global-teacher.module#ClassroomGlobalTeacherModule',
+      },
+      {
+        path: 'students',
+        loadChildren: 'src/app/modules/Teacher/Global/Students/students-global-teacher.module#StudentsGlobalTeacherModule',
+      },
     ]
   }
 ];

@@ -1,8 +1,14 @@
 body {
   font-family: 'Poppins', sans-serif;
+  background: #f0f2f5;
 }
 
 .body {
+  width: 100%;
+  height: 100%;
+}
+
+.body-global {
   width: 100%;
   height: 100%;
 }
@@ -43,7 +49,8 @@ body {
 
   &:focus {
     border-color: #2C77F4;
-    color: #2C77F4;
+    background: #2C77F4;
+    color: #ffffff;
   }
 }
 
@@ -62,6 +69,27 @@ body {
   &:focus {
     border-color: #73D13D;
     background: #73D13D;
+    color: #ffffff;
+  }
+}
+
+.btn-global--red-solid {
+  background: #FF4D4F;
+  border-color: #FF4D4F;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+
+  &:hover {
+    border-color: #FF4D4F;
+    background: #FF4D4F;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #FF4D4F;
+    background: #FF4D4F;
     color: #ffffff;
   }
 }
@@ -250,4 +278,77 @@ body {
 .ant-statistic-content {
   font-size: 18px !important;
   color: #F5222D;
+}
+
+// Box-square-blue
+.group-blue-box-square {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: wrap;
+}
+
+.blue-box-square {
+  width: 100%;
+  height: 170px;
+  background: rgba(44, 119, 244, 0.83);
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.blue-box-square--action {
+  display: flex;
+  flex-direction: row;
+  background: #FFFFFF;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
+  padding: 3px;
+
+  &--item {
+    margin: 5px 2px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .blue-box-square {
+    width: 395px;
+  }
+}
+
+@media screen and (min-width: 1440px) and(max-width: 1919px) {
+  .blue-box-square {
+    width: 270px;
+  }
+}
+
+@media screen and (min-width: 1366px) and(max-width: 1439px) {
+  .blue-box-square {
+    width: 355px;
+  }
+}
+
+@media screen and (min-width: 1280px) and(max-width: 1365px) {
+  .blue-box-square {
+    width: 230px;
+  }
+}
+
+//paginator
+.paginator-box {
+  display: flex;
+  justify-content: flex-end;
+
+  &--item {
+    margin: 10px 20px 0 0;
+  }
 }

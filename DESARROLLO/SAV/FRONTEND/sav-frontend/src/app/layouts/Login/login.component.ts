@@ -18,12 +18,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    //Al iniciar el componente se llenan los datos por defecto
     this.getLoginForm()
   }
 
   private getLoginForm() {
-    //Esta función llena en el formulario datos por defecto para iniciar sesión mas rápido
     this.loginForm = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -31,8 +29,6 @@ export class LoginComponent implements OnInit {
   }
 
   send() {
-    //Esta función se encarga de verificar si los datos ingresados en el formulario son válidos
-    //Si lo son, se realiza una petición al Backend
     if (!this.loginForm.valid) {
       for (const i in this.loginForm.controls) {
         this.loginForm.controls[i].markAsDirty()
@@ -54,10 +50,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('username', username);
       try {
         const response: any = await this.authService.getLoginData(username).toPromise()
-        localStorage.setItem('data_username', JSON.stringify(response));
-        this.varLoading = false
+        localStorage.setItem('data_username', JSON.stringify(response))
         this.authService.getDataUsername()
         await this.router.navigate(['/student/homework'])
+        this.varLoading = false
       } catch (e) {
         console.log(e)
       }
@@ -69,7 +65,6 @@ export class LoginComponent implements OnInit {
   }
 
   private gJsonLogin() {
-    //Esta función retorna los datos introducidos en el formulario en formato JSON
     return {
       username: this.loginForm.controls['username'].value,
       password: this.loginForm.controls['password'].value
