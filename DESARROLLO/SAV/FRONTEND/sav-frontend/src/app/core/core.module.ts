@@ -13,6 +13,8 @@ import { HeaderPageTeacherComponent } from './components/Teacher/HeaderPage/head
 import { LoadingBlankTeacherComponent } from './components/Teacher/LoadingBlank/loading-blank-teacher.component';
 import { LoadingTeacherComponent } from './components/Teacher/Loading/loading-teacher.component';
 import { DeleteModalTeacherComponent } from './components/Teacher/DeleteModal/delete-modal-teacher.component';
+import { HeaderGroupTeacherComponent } from './components/Teacher/Group/Header/header-group-teacher.component';
+import { MenuLeftGroupTeacherComponent } from './components/Teacher/Group/MenuLeft/menu-left-group-teacher.component';
 
 const COMPONENTS = [
   MenuLeftStudentComponent,
@@ -26,7 +28,9 @@ const COMPONENTS = [
   HeaderPageTeacherComponent,
   LoadingBlankTeacherComponent,
   LoadingTeacherComponent,
-  DeleteModalTeacherComponent
+  DeleteModalTeacherComponent,
+  HeaderGroupTeacherComponent,
+  MenuLeftGroupTeacherComponent
 ];
 
 @NgModule({

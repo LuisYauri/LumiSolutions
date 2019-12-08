@@ -4,6 +4,7 @@ import {ClassroomGlobalTeacherService} from "../../services/classroom-global-tea
 import {NzModalService, NzNotificationService} from "ng-zorro-antd";
 import {CreateClassroomGlobalTeacherComponent} from "../../components/Modal/Create/create-classroom-global-teacher.component";
 import {DeleteModalTeacherComponent} from "../../../../../../core/components/Teacher/DeleteModal/delete-modal-teacher.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-classroom-global-teacher',
@@ -28,7 +29,8 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
 
   constructor(private classroomGlobalTeacherService: ClassroomGlobalTeacherService,
               private modalService: NzModalService,
-              private notification: NzNotificationService,) {
+              private notification: NzNotificationService,
+              private router: Router,) {
   }
 
   ngOnInit() {
@@ -125,4 +127,8 @@ export class ClassroomGlobalTeacherComponent implements OnInit {
     }
   }
 
+  openAula(item: ClassroomGlobalTeacherModel) {
+    localStorage.setItem('data_aula', JSON.stringify(item))
+    this.router.navigate(['/teacher-group/homework'])
+  }
 }

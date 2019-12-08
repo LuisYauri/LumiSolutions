@@ -29,6 +29,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('data_username');
     localStorage.removeItem('username');
+    localStorage.removeItem('data_aula');
   }
 
   private getTokenDecode() {

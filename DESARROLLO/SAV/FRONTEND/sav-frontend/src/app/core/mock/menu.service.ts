@@ -33,25 +33,25 @@ export class MenuService {
       {
         title: 'Tareas',
         key: 'Tareas',
-        url: '/student/homework',
+        url: '/teacher-group/homework',
         icon: 'file-text',
       },
       {
         title: 'Examenes',
         key: 'Examenes',
-        url: '/student/courses',
+        url: '/teacher-group/examn',
         icon: 'profile',
       },
       {
         title: 'Historial',
         key: 'Historial',
-        url: '/student/historya-homework',
+        url: '/teacher-group/historya-homework',
         icon: 'read',
       },
       {
         title: 'Criterios',
         key: 'Criterios',
-        url: '/student/historya-homework',
+        url: '/teacher-group/historya-homework',
         icon: 'copy',
       },
     ]
