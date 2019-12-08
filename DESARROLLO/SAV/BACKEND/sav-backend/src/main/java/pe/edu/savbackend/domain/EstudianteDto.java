@@ -13,8 +13,8 @@ public class EstudianteDto {
 
 	private Integer idEstudiante;
 	private String nombre;
-	private String aPaterno;
-	private String aMaterno;
+	private String apaterno;
+	private String amaterno;
     private String usuario;
     private String contrasenia;
 }
