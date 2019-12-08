@@ -32,5 +32,9 @@ public class Persona {
     @Column(name="numero_celular")
     private Integer numeroCelular;
     @Column(name="correo")
-	private String correo;
+    private String correo;
+    @Column(name="id_usuario")
+    private Long idUsuario;
+    @Column(name="cod_tipo_persona")
+	private String codigoTipoPersona;
 }

@@ -23,7 +23,7 @@ public class AulaServiceImpl implements AulaService {
 		List<AulaDto> listaAulas = new ArrayList<>();
 		listaGrupos.forEach(g -> {
 			listaAulas.add(new AulaDto(g.getIdGrupo(), g.getNombre(), Integer.parseInt(g.getCodigoGrado()),
-			g.getAnio().getYear()));
+			g.getAnio()));
 		});
 		return listaAulas;
 	}
@@ -39,7 +39,7 @@ public class AulaServiceImpl implements AulaService {
 		grupo.setIdDocente("1");
 		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
 		grupo.setCodigoEstado("1");
-		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
+		grupo.setAnio(aula.getAnio());
 		return grupoDao.save(grupo);
 	}
 
@@ -56,7 +56,7 @@ public class AulaServiceImpl implements AulaService {
 		}
 		
 		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
-		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
+		grupo.setAnio(aula.getAnio());
 		return grupoDao.save(grupo);
 	}
 
