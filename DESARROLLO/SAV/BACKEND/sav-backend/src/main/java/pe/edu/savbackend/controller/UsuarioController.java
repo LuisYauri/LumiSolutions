@@ -56,16 +56,7 @@ public class UsuarioController {
 	@Secured("ROLE_ALUMNO")
     public UsuarioDto buscarPorUsername(@PathVariable String username) {
         
-    	return UsuarioDto.builder()
-    			.id(1)
-    			.codigoGrado(1)
-    			.username(username)
-    			.apellidoPaterno("Yauri")
-    			.nombres("Luis")
-    			.siglas("LY")
-    			.seccion("5")
-    			.anio("2019")
-    			.build();
+    	return usuarioService.buscarPorUsername(username);
     }
 	
 }

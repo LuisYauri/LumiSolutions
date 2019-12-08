@@ -19,5 +19,12 @@ public class UsuarioDto {
 	private String siglas;
 	private String seccion;
 	private String anio;
+	
+	public UsuarioDto(Integer id, String username, String apellidoPaterno, String nombres) {
+		this.id = id;
+		this.username = username;
+		this.apellidoPaterno = apellidoPaterno;
+		this.nombres = nombres;
+	}
 		
 }

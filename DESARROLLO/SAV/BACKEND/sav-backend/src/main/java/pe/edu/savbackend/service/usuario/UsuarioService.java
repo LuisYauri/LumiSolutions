@@ -86,6 +86,8 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 
 	@Override
 	public UsuarioDto buscarPorUsername(String username) {
-		return null;
+		UsuarioDto aaa = usuarioDao.buscarPorUsername(username);
+		System.out.println(aaa);	
+		return usuarioDao.buscarPorUsername(username);
 	}	
 }
