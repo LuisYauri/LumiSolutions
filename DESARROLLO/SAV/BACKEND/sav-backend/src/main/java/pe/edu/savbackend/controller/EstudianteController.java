@@ -33,16 +33,19 @@ public class EstudianteController {
 
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Estudiante registrarEstudiante(@RequestBody EstudianteDto estudiante) {
-		return estudianteService.registrarEstudiante(estudiante);
+		return null;
+		//return estudianteService.registrarEstudiante(estudiante);
 	}
 
 	@PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Estudiante actualizarEstudiante(@RequestBody EstudianteDto estudiante) {
-		return estudianteService.actualizarEstudiante(estudiante);
+		return null;
+		//return estudianteService.actualizarEstudiante(estudiante);
 	}
 
 	@PatchMapping(value = "/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean eliminarEstudiante(@PathVariable Integer idEstudiante) {
-		return estudianteService.eliminarEstudiante(idEstudiante);
+		return null;
+		//return estudianteService.eliminarEstudiante(idEstudiante);
 	}
 }

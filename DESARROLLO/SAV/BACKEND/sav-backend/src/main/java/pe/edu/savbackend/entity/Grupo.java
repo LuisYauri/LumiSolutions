@@ -33,7 +33,7 @@ public class Grupo {
 	private String codigoGrado;
 	
 	@Column(name="anio")
-	private LocalDateTime anio;
+	private Integer anio;
 	
 	@Column(name="cod_estado")
 	private String codigoEstado;

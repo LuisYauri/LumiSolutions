@@ -76,7 +76,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			examenDto.setIdExamen(e.getIdEvaluacion()); 
 			examenDto.setTitulo(e.getTitulo());
 			examenDto.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdEvaluacion()).toString());
-			long seg = e.getFechaInicio().until(e.getFechaFin(), ChronoUnit.SECONDS);
+			long seg = e.getFechaFin().until(e.getFechaInicio(), ChronoUnit.SECONDS);
 			examenDto.setDuracion((double)seg/3600);
 			examenDto.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			examenDto.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
@@ -92,7 +92,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
 		if (tarea.getIdContenido()!= null) {
 			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());
-			long seg = tarea.getFechaInicio().until(tarea.getFechaFin(), ChronoUnit.SECONDS);
+			long seg = tarea.getFechaFin().until(tarea.getFechaInicio(), ChronoUnit.SECONDS);
 			tareaDto.setDuracion((double)seg/3600);
 		}
 		
@@ -118,7 +118,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public ExamenDto getPreguntasPorExamen(Integer idExamen) {
 		Evaluacion examen = evaluacionDao.getOne(idExamen);
 		ExamenDto examenDto = new ExamenDto(examen.getIdEvaluacion(), examen.getTitulo());
-		long seg = examen.getFechaInicio().until(examen.getFechaFin(), ChronoUnit.SECONDS);
+		long seg = examen.getFechaFin().until(examen.getFechaInicio(), ChronoUnit.SECONDS);
 		examenDto.setDuracion((double)seg/3600);
 		List<PreguntaDto> lsPreguntas = preguntaDao.obtenerPreguntasPorIdTarea(idExamen);
 		
