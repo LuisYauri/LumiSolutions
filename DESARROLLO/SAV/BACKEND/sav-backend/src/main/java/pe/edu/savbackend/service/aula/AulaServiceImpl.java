@@ -22,9 +22,8 @@ public class AulaServiceImpl implements AulaService {
 
 	@Override
 	public List<AulaDto> getLsAulas() {
-		// TODO Auto-generated method stub
-		final List<Grupo> listaGrupos = grupoDao.obtenerListaGrupos();
-		final List<AulaDto> listaAulas = new ArrayList<>();
+		List<Grupo> listaGrupos = grupoDao.obtenerListaGrupos();
+		List<AulaDto> listaAulas = new ArrayList<>();
 		listaGrupos.forEach(g -> {
 			listaAulas.add(new AulaDto(g.getIdGrupo(), g.getNombre(), Integer.parseInt(g.getCodigoGrado()),
 			g.getAnio().getYear()));
@@ -44,18 +43,29 @@ public class AulaServiceImpl implements AulaService {
 		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
 		grupo.setCodigoEstado("1");
 		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
-		return grupo;
+		return grupoDao.save(grupo);
 	}
 
 	@Override
-	public Boolean actualizarAula(final AulaDto aula) {
-		// TODO Auto-generated method stub
-		return null;
+	public Grupo actualizarAula(AulaDto aula) {
+		Grupo grupo = grupoDao.getOne(aula.getIdAula());
+		if(!aula.getGrupo().equals(grupo.getNombre()))
+		{
+			if(grupoDao.existe(aula.getGrupo()) != 0) 
+			{
+				throw new RuntimeException("El nombre de grupo ya existe");
+			}
+			grupo.setNombre(aula.getGrupo());
+		}
+		
+		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
+		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
+		return grupoDao.save(grupo);
 	}
 
 	@Override
-	public Boolean eliminarAula(final Integer idArea) {
-		// TODO Auto-generated method stub
+	public Boolean eliminarAula(Integer idArea) {
+		
 		return null;
 	}
 
