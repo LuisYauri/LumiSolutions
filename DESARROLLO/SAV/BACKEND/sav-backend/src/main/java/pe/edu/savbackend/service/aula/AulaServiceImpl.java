@@ -65,8 +65,14 @@ public class AulaServiceImpl implements AulaService {
 
 	@Override
 	public Boolean eliminarAula(Integer idArea) {
-		
-		return null;
+		try{
+			Grupo grupo = grupoDao.getOne(idArea);
+			grupo.setCodigoEstado("0");
+			grupoDao.save(grupo);
+			return true;	
+		}catch(Exception e){
+			throw new RuntimeException("El id grupo no existe");
+		}	
 	}
 
 }
