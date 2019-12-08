@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.savbackend.dao.UsuarioDao;
+import pe.edu.savbackend.domain.usuario.UsuarioDto;
 import pe.edu.savbackend.entity.Usuario;
 
 /**
@@ -81,5 +82,10 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 	@Transactional
 	public Usuario findByUsername(String username) {		
 		return usuarioDao.findByUsername(username);
+	}
+
+	@Override
+	public UsuarioDto buscarPorUsername(String username) {
+		return null;
 	}	
 }

@@ -1,14 +1,15 @@
 package pe.edu.savbackend.auth.service;
 
-import static pe.edu.savbackend.auth.Constantes.TOKEN_PREFIX;
 import static pe.edu.savbackend.auth.Constantes.EXPIRATION_DATE;
 import static pe.edu.savbackend.auth.Constantes.SECRET;
+import static pe.edu.savbackend.auth.Constantes.TOKEN_PREFIX;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,9 +22,13 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import pe.edu.savbackend.auth.SimpleGrantedAuthorityMixin;
+import pe.edu.savbackend.service.usuario.UsuarioService;
 
 @Component
 public class JWTServiceImpl implements JWTService {
+	
+	@Autowired
+	UsuarioService usuarioService;
 	
 	/**
 	 * Este metodo sirve para crear el token, se obtiene el username, los roles se insertan en los claims,
@@ -37,10 +42,9 @@ public class JWTServiceImpl implements JWTService {
 		String username = ((User) auth.getPrincipal()).getUsername();
 
 		Collection<? extends GrantedAuthority> roles = auth.getAuthorities();
-		
 		Claims claims = Jwts.claims();
 		claims.put("authorities", new ObjectMapper().writeValueAsString(roles));		
-			    		
+		
 		String token = Jwts.builder()
 				.setClaims(claims)
 				.setSubject(username)
