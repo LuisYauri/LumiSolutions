@@ -23,7 +23,6 @@ import pe.edu.savbackend.service.evaluacion.EvaluacionService;
  */
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/tareas")
 public class TareaController {
 

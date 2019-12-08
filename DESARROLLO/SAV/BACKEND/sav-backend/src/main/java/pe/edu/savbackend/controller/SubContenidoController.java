@@ -16,7 +16,6 @@ import pe.edu.savbackend.service.subcontenidos.SubcontenidosService;
  */
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/subContenidos")
 public class SubContenidoController {
   

@@ -20,7 +20,6 @@ import pe.edu.savbackend.service.contenido.ContenidoService;
  */
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/contenidos")
 public class ContenidoController {
   

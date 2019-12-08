@@ -19,7 +19,6 @@ import pe.edu.savbackend.entity.Grupo;
 import pe.edu.savbackend.service.aula.AulaService;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/aulas")
 public class AulaController {
 
@@ -42,7 +41,7 @@ public class AulaController {
 		return aulaService.actualizarAula(aula);
 	}
 
-	@PatchMapping(value = "/{idAula}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PatchMapping(value = "/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean eliminarAula(@PathVariable Integer idAula) {
 		return aulaService.eliminarAula(idAula);
 	}

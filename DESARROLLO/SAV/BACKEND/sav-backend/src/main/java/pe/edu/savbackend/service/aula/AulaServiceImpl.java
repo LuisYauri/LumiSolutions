@@ -7,11 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pe.edu.savbackend.dao.CalificacionDao;
 import pe.edu.savbackend.dao.GrupoDao;
-import pe.edu.savbackend.dao.RecursoDao;
 import pe.edu.savbackend.domain.AulaDto;
-import pe.edu.savbackend.entity.Calificacion;
 import pe.edu.savbackend.entity.Grupo;
 
 @Service

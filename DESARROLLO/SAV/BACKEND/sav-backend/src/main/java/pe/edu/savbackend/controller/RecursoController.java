@@ -18,7 +18,6 @@ import pe.edu.savbackend.service.recurso.RecursoService;
  */
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping("/recursos")
 public class RecursoController {
 
