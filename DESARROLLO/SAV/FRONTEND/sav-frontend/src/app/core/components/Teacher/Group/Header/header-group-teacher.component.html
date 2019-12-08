@@ -1,5 +1,11 @@
 <nz-header>
   <div class="header__box">
+    <div class="group-box-aula">
+      <div class="group-box-aula--item">{{aula.codigoGrado}} Secundaria</div>
+      <div class="group-box-aula--item">{{aula.grupo}}</div>
+      <div class="group-box-aula--item">{{aula.anio}}</div>
+      <div class="group-box-aula--item">|</div>
+    </div>
     <div class="header__text">Hola, {{firstName}} {{lastName}}
     </div>
     <nz-avatar (click)="open()" class="header__icon" [nzShape]="'square'" [nzSize]="'large'"
@@ -15,7 +21,11 @@
   (nzOnClose)="close()"
 >
   <div class="box-drawer">
-    <button nz-button nzType="default" class="btn_global--blue-solid" (click)="returnPanel()"><i nz-icon nzType="dot-chart" nzTheme="outline"></i>Panel de Control</button>
+    <button nz-button nzType="default" class="btn_global--blue-solid" (click)="returnPanel()"><i nz-icon
+                                                                                                 nzType="dot-chart"
+                                                                                                 nzTheme="outline"></i>Panel
+      de Control
+    </button>
   </div>
   <div class="box-drawer">
     <button nz-button nzType="danger" (click)="logout()"><i nz-icon nzType="api" nzTheme="outline"></i>Salir</button>

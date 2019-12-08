@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../../../services/auth.service";
 import {Router} from "@angular/router";
+import {AulaDataToken} from "../../../../../model/auth.model";
 
 @Component({
   selector: 'app-header-group-teacher',
@@ -14,6 +15,7 @@ export class HeaderGroupTeacherComponent implements OnInit {
   siglas: string = ''
 
   visible = false;
+  aula: AulaDataToken
 
   constructor(private authService: AuthService, private router: Router,) {
   }
@@ -22,6 +24,7 @@ export class HeaderGroupTeacherComponent implements OnInit {
     this.lastName = this.authService.getDataUsername().apellidoPaterno
     this.firstName = this.authService.getDataUsername().nombres
     this.siglas = this.authService.getDataUsername().siglas
+    this.getDataAula()
   }
 
   open() {
@@ -42,5 +45,10 @@ export class HeaderGroupTeacherComponent implements OnInit {
     localStorage.removeItem('data_aula');
     this.router.navigate(['/teacher-global/classroom'])
     this.visible = false
+  }
+
+  getDataAula() {
+    this.aula = this.authService.getAula()
+    console.log(this.aula)
   }
 }
