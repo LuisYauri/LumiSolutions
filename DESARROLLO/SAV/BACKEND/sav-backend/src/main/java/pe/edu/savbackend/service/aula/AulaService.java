@@ -11,7 +11,7 @@ public interface AulaService {
 
 	Grupo registrarAula(AulaDto aula);
 	
-	Boolean actualizarAula(AulaDto aula);
+	Grupo actualizarAula(AulaDto aula);
 	
 	Boolean eliminarAula(Integer idArea);
 }
