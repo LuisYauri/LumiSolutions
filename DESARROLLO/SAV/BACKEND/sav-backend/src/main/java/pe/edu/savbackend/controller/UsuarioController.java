@@ -55,7 +55,6 @@ public class UsuarioController {
     @GetMapping(value = "/{username}")
 	@Secured("ROLE_ALUMNO")
     public UsuarioDto buscarPorUsername(@PathVariable String username) {
-        
     	return usuarioService.buscarPorUsername(username);
     }
 	

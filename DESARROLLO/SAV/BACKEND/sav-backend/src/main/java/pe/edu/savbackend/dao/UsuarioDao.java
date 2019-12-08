@@ -11,10 +11,10 @@ public interface UsuarioDao extends CrudRepository<Usuario, Long>{
 	public Usuario findByUsername(String username);
 	
 	
-	@Query(value = "select new pe.edu.savbackend.domain.UsuarioDto(u.id, u.username, p.apellidoPaterno, p.nombre) "
+	@Query(value = "select new pe.edu.savbackend.domain.usuario.UsuarioDto(u.id, u.username, p.apellidoPaterno, p.nombre, p.codigoTipoPersona) "
 			+ " from Usuario u "
-			+ " join Persona p on p.id_usuario = u.id "
-			+ " where u.id = ?1")
+			+ " join Persona p on p.idUsuario = u.id "
+			+ " where u.username = ?1")
 	UsuarioDto buscarPorUsername(String username);
 }
 
