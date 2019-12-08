@@ -40,57 +40,17 @@ export class StudentsGlobalTeacherComponent implements OnInit {
     this.getListStudents()
   }
 
-  getListStudents() {
+  async getListStudents() {
     this.varLoading = true
-    this.listStudents = [
-      {
-        "idEstudiante": 1,
-        "nombre": "David ",
-        "aPaterno": "asxc",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      },
-      {
-        "idEstudiante": 2,
-        "nombre": "Luis",
-        "aPaterno": "ertret",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      },
-      {
-        "idEstudiante": 2,
-        "nombre": "Asdffg",
-        "aPaterno": "trhg",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      }, {
-        "idEstudiante": 2,
-        "nombre": "Bxvxcv",
-        "aPaterno": "jhjjh",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      }, {
-        "idEstudiante": 2,
-        "nombre": "Cvcbcvb",
-        "aPaterno": "jhhj",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      }, {
-        "idEstudiante": 2,
-        "nombre": "Drecxkpo",
-        "aPaterno": "kjkkj",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      }, {
-        "idEstudiante": 2,
-        "nombre": "vnpijuE",
-        "aPaterno": "hjhjjh",
-        "aMaterno": "Martinez",
-        "usuario": "LuisYauri"
-      }
-    ]
-    this.tempListStudents = this.generateTempListStudents(this.listStudents)
-    this.varLoading = false
+    try {
+      const response: any = await this.studentsGlobalTeacherService.getListStudents().toPromise()
+      this.listStudents = response
+      this.tempListStudents = this.generateTempListStudents(this.listStudents)
+      this.varLoading = false
+    } catch (e) {
+      console.log(e)
+      this.varLoading = false
+    }
   }
 
   reset(): void {
@@ -146,10 +106,10 @@ export class StudentsGlobalTeacherComponent implements OnInit {
     const title = 'Eliminar Estudiante'
     const subtitle = '¿Está seguro de eliminar este Estudiante?'
     const description = 'Se eliminarán todos los datos relacionados con este estudiante, no podrá recuperarlo después de realizar la acción.'
-    this.openModalDelete(title, subtitle, description,item)
+    this.openModalDelete(title, subtitle, description, item)
   }
 
-  openModalDelete(title: string, subtitle: string, description: string,item?:StudentsGlobalTeacherModel) {
+  openModalDelete(title: string, subtitle: string, description: string, item?: StudentsGlobalTeacherModel) {
     const modal = this.modalService.create({
       nzTitle: title,
       nzContent: DeleteModalTeacherComponent,
@@ -170,7 +130,7 @@ export class StudentsGlobalTeacherComponent implements OnInit {
     })
   }
 
-  async deleteStudent(id:string){
+  async deleteStudent(id: string) {
     try {
       this.varLoading = true
       await this.studentsGlobalTeacherService.deleteStudents(id).toPromise()
@@ -180,12 +140,11 @@ export class StudentsGlobalTeacherComponent implements OnInit {
         'Estudiante eliminado correctamente',
         ''
       );
-    }catch (e) {
+    } catch (e) {
       console.log(e)
       this.varLoading = false
     }
   }
-
 
 
 }
