@@ -235,6 +235,11 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		estadistica.setIdEvaluacion(examenDto.getIdExamen());
 		estadistica.setTipo("E");
 		
+		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(examenDto.getIdEstudiante(), examenDto.getIdExamen()) ;
+//		System.out.println("ESTUDIANTE = " + ee);
+		ee.setCodigoEstadoEvaluacion("2");
+		estudianteEvaluacionDao.save(ee);
+		
 		Historial historial = new Historial();
 		historial.setIdEstudiante(examenDto.getIdEstudiante());
 		historial.setIdEvaluacion(examenDto.getIdExamen());
