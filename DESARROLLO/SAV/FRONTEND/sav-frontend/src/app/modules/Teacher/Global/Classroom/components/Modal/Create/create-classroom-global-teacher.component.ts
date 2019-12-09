@@ -54,7 +54,6 @@ export class CreateClassroomGlobalTeacherComponent implements OnInit {
   }
 
   sendData() {
-
     if (!this.dataAulaForm.valid) {
       for (const i in this.dataAulaForm.controls) {
         this.dataAulaForm.controls[i].markAsDirty()

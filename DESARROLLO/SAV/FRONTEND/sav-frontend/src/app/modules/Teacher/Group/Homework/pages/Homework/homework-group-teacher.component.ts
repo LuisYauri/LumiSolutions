@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NzModalService, NzNotificationService} from "ng-zorro-antd";
 import {CreateStudentsGlobalTeacherComponent} from "../../../../Global/Students/components/Modal/Create/create-students-global-teacher.component";
 import {CreateHomeworkGroupTeacherComponent} from "../../components/Modal/Create/create-homework-group-teacher.component";
@@ -23,7 +23,8 @@ export class HomeworkGroupTeacherComponent implements OnInit {
   varAccionModal: number
 
   constructor(private modalService: NzModalService,
-              private notification: NzNotificationService,) { }
+              private notification: NzNotificationService,) {
+  }
 
   ngOnInit() {
   }
@@ -34,7 +35,7 @@ export class HomeworkGroupTeacherComponent implements OnInit {
     this.openModalAddEdit(this.varTitleModal, this.varAccionModal)
   }
 
-  openModalAddEdit(title: string, idAccionModal: number, item?:any) {
+  openModalAddEdit(title: string, idAccionModal: number, item?: any) {
     const modal = this.modalService.create({
       nzTitle: title,
       nzContent: CreateHomeworkGroupTeacherComponent,
@@ -42,7 +43,8 @@ export class HomeworkGroupTeacherComponent implements OnInit {
         idAccionModal: idAccionModal,
         item: item
       },
-      nzWidth: 1000,
+      nzFooter: null,
+      nzWidth: 800,
       nzMaskClosable: false,
     })
     modal.afterClose.subscribe((response: any) => {
