@@ -72,6 +72,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		List<Evaluacion> lsEvaluaciones = evaluacionDao.getLsExamenesModel(idEstudiante);
 		List<ExamenDto> lsExamenes = new ArrayList<>();
 		lsEvaluaciones.forEach(e->{
+			
 			ExamenDto examenDto = new ExamenDto();
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdEvaluacion()).getFechaInicio();
 			examenDto.setIdExamen(e.getIdEvaluacion()); 
@@ -82,6 +83,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			examenDto.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			examenDto.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
 			lsExamenes.add(examenDto);
+			
 		});
 		return lsExamenes;
 	}

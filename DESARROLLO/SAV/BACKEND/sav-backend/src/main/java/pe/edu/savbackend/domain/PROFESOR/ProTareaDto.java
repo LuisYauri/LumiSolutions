@@ -21,7 +21,6 @@ public class ProTareaDto {
 	private String fechaInicio;  
 	private String fechaLimite; //"20/12/19"
 	private String tiempoLimite;
-	private Integer cantidad;
 	private Integer cantidadPreguntas;
 
 }
