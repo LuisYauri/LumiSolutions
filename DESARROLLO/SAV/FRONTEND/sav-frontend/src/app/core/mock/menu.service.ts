@@ -1,5 +1,5 @@
 export class MenuService {
-  static menuStudents(){
+  static menuStudents() {
     return [
       {
         title: 'Tareas',
@@ -28,7 +28,7 @@ export class MenuService {
     ]
   }
 
-  static menuTeachers(){
+  static menuTeachers() {
     return [
       {
         title: 'Tareas',
@@ -45,14 +45,20 @@ export class MenuService {
       {
         title: 'Historial',
         key: 'Historial',
-        url: '/teacher-group/historya-homework',
+        url: '/teacher-group/history',
         icon: 'read',
       },
       {
-        title: 'Criterios',
+        title: 'Estudiantes',
         key: 'Criterios',
-        url: '/teacher-group/historya-homework',
-        icon: 'copy',
+        url: '/teacher-group/students',
+        icon: 'team',
+      },
+      {
+        title: 'Preguntas',
+        key: 'Preguntas',
+        url: '/teacher-group/questions',
+        icon: 'message',
       },
     ]
   }

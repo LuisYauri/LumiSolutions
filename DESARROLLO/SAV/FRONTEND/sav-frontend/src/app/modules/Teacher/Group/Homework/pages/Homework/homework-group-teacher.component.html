@@ -1,1 +1,16 @@
-<p>homework-group-teacher works!</p>
+<div class="header_global">
+  <app-header-page-teacher [title]="varHeader.title" [icon]="varHeader.icon"
+                           [url]="varHeader.url"></app-header-page-teacher>
+</div>
+<div class="body_global">
+  <app-title-page-student [title]="varTitle"></app-title-page-student>
+  <div class="paginator-box">
+    <button class="paginator-box--item btn_global--blue-solid" nz-button [nzSize]="'large'" nzType="primary"
+            (click)="openAddHomework()">
+      <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      Agregar Tarea
+    </button>
+  </div>
+</div>
+
+<app-loading-blank-teacher [flag]="varLoading"></app-loading-blank-teacher>

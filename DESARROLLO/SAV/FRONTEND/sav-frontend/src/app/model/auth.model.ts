@@ -7,21 +7,6 @@ export interface Login {
 
 export interface PayloadToken {
   sub: string
-  student?: {
-    id: number,
-    codigoGrado: number,
-    apellidoPaterno: string,
-    nombre: string
-    siglas: string
-    seccion: string
-    anio: string
-  }
-  teacher?: {
-    id: number,
-    apellidoPaterno: string,
-    nombre: string
-    siglas: string
-  }
 }
 
 export interface PayloadDataToken {

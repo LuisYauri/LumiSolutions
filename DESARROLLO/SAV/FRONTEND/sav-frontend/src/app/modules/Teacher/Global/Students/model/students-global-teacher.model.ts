@@ -1,8 +1,8 @@
 export interface StudentsGlobalTeacherModel {
   idEstudiante: number
   nombre: string
-  aPaterno: string
-  aMaterno: string
+  apaterno: string
+  amaterno: string
   usuario: string
   contrasenia?:string
 }

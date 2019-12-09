@@ -61,7 +61,7 @@ export class StudentsGlobalTeacherComponent implements OnInit {
   search(): void {
     let le = this
     const filterData = this.tempListStudents.filter(function (item: StudentsGlobalTeacherModel) {
-      return item.aPaterno.indexOf(le.searchValue) !== -1
+      return item.apaterno.indexOf(le.searchValue) !== -1
     });
     this.listStudents = [...filterData]
   }

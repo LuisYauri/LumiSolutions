@@ -36,8 +36,8 @@ export class CreateStudentsGlobalTeacherComponent implements OnInit {
   private getValidateForms() {
     this.dataStudentForm = this.fb.group({
       nombre: ['', [Validators.required]],
-      aPaterno: ['', [Validators.required]],
-      aMaterno: ['', [Validators.required]],
+      apaterno: ['', [Validators.required]],
+      amaterno: ['', [Validators.required]],
       usuario: ['', [Validators.required]],
       contrasenia: ['', [Validators.required]],
     })
@@ -49,8 +49,8 @@ export class CreateStudentsGlobalTeacherComponent implements OnInit {
     } else if (id === 2) {
       this.nameAccion = 'Editar'
       this.dataStudentForm.controls['nombre'].setValue(this.item.nombre);
-      this.dataStudentForm.controls['aPaterno'].setValue(this.item.aPaterno);
-      this.dataStudentForm.controls['aMaterno'].setValue(this.item.aMaterno);
+      this.dataStudentForm.controls['apaterno'].setValue(this.item.apaterno);
+      this.dataStudentForm.controls['amaterno'].setValue(this.item.amaterno);
       this.dataStudentForm.controls['usuario'].setValue(this.item.usuario);
       this.dataStudentForm.controls['contrasenia'].setValue(this.item.contrasenia);
       this.varEditIdItem = this.item.idEstudiante
@@ -85,8 +85,8 @@ export class CreateStudentsGlobalTeacherComponent implements OnInit {
     if (this.idAccionModal === 1) {
       return {
         nombre: this.dataStudentForm.controls['nombre'].value,
-        aPaterno: this.dataStudentForm.controls['aPaterno'].value,
-        aMaterno: this.dataStudentForm.controls['aMaterno'].value,
+        apaterno: this.dataStudentForm.controls['apaterno'].value,
+        amaterno: this.dataStudentForm.controls['amaterno'].value,
         usuario: this.dataStudentForm.controls['usuario'].value,
         contrasenia: this.dataStudentForm.controls['contrasenia'].value,
       }
@@ -94,8 +94,8 @@ export class CreateStudentsGlobalTeacherComponent implements OnInit {
       return {
         idEstudiante: this.varEditIdItem,
         nombre: this.dataStudentForm.controls['nombre'].value,
-        aPaterno: this.dataStudentForm.controls['aPaterno'].value,
-        aMaterno: this.dataStudentForm.controls['aMaterno'].value,
+        apaterno: this.dataStudentForm.controls['apaterno'].value,
+        amaterno: this.dataStudentForm.controls['amaterno'].value,
         usuario: this.dataStudentForm.controls['usuario'].value,
         contrasenia: this.dataStudentForm.controls['contrasenia'].value,
       }

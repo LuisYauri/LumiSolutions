@@ -10,7 +10,7 @@ import * as jwt_decode from 'jwt-decode';
 export class AuthService {
 
   private API_URL_LOGIN = `${environment.apiMain}login`
-  private API_URL_LOGIN_DATA = `${environment.apiMain}usuarios/asdaaa`
+  private API_URL_LOGIN_DATA = `${environment.apiMain}usuarios/`
   private payload: PayloadToken
   private payloadData: PayloadDataToken
   private payloadAula: AulaDataToken
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   getLoginData(username: string) {
-    return this.http.get(this.API_URL_LOGIN_DATA)
+    return this.http.get(`${this.API_URL_LOGIN_DATA}${username}`)
   }
 
   logout() {
