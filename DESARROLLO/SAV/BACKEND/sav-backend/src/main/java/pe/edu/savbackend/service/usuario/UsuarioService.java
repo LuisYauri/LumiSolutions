@@ -107,6 +107,7 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 					LocalDate.now().getYear());
 			System.out.println(lsMatriculas);
 			if (lsMatriculas.size() == 1) {
+				usuarioDto.setId(lsMatriculas.get(0).getIdEstudiante());
 				usuarioDto.setCodigoGrado(lsMatriculas.get(0).getCodGrado());
 				usuarioDto.setSeccion(lsMatriculas.get(0).getNombre());
 				usuarioDto.setAnio(lsMatriculas.get(0).getAnio());
