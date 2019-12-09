@@ -38,8 +38,7 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 	
 	@Autowired
 	private MatriculaDao matriculaDao;
-	@Autowired
-	private GrupoDao gruposDao;
+	
 	
 	/**
 	 * El metodo retorna el usuario de spring security, retornamos un tipo User que
@@ -85,7 +84,7 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 
 	@Override
 	@Transactional
-	public void eliminar(Long id) {
+	public void eliminar(Integer id) {
 		usuarioDao.deleteById(id);
 	}
 
@@ -104,8 +103,8 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 		usuarioDto.setAnio("2019");
 		switch (usuarioDto.getTipoPersona()) {
 		case "ALUMNO":
-//			List<MatriculaAux> lsMatriculas = matriculaDao.getMatriculasGrupos(usuarioDto.getId(),"2019");
-//			System.out.println(lsMatriculas);
+			List<MatriculaAux> lsMatriculas = matriculaDao.getMatriculasGrupos(usuarioDto.getId(),2019);
+			System.out.println(lsMatriculas);
 			break;
 		case "PROFESOR":
 			break;

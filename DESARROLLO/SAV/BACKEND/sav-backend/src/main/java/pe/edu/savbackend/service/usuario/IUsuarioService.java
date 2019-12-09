@@ -11,7 +11,7 @@ public interface IUsuarioService {
 	
 	public void guardar(Usuario usuario);
 		
-	public void eliminar(Long id);	
+	public void eliminar(Integer id);	
 	
 	public Usuario findByUsername(String username);
 	

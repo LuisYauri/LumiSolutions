@@ -16,12 +16,6 @@ public class ContenidoServiceImpl implements ContenidoService {
 	
 	@Override
 	public List<ContenidoDto> getLsContenido(Integer idCriterio, String codigoGrado) {
-		// TODO Auto-generated method stub
 		return contenidoDao.getLsContenidos(idCriterio, codigoGrado);
-		
 	}
-
-
-	
-
 }
