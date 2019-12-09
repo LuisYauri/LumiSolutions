@@ -2,6 +2,8 @@ package pe.edu.savbackend.service.estudiante;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import pe.edu.savbackend.dao.PersonaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.EstudianteDto;
 import pe.edu.savbackend.entity.Estudiante;
+import pe.edu.savbackend.entity.Persona;
+import pe.edu.savbackend.entity.Usuario;
 
 @Service
 public class EstudianteServiceImpl implements EstudianteService {
@@ -32,32 +36,36 @@ public class EstudianteServiceImpl implements EstudianteService {
 		return estudianteDao.obtenerListaAlumnos();
 	}
 
+	
 	@Override
+	@Transactional
 	public Estudiante registrarEstudiante(EstudianteDto estudiante) {
-		return null;
-		/* try{
-
+//		return null;
+//		/* try{
+			
 			Usuario usuarioBD = new Usuario();
 			usuarioBD.setUsername(estudiante.getUsuario());
 			usuarioBD.setPassword(encript.encode(estudiante.getContrasenia()));
+			usuarioBD.setEnabled(true);
 			usuarioDao.save(usuarioBD);
 
 			Persona personaBD = new Persona();
 			personaBD.setIdPersona(personaDao.nextId());
 			personaBD.setNombre(estudiante.getNombre());
-			personaBD.setApellidoPaterno(estudiante.getAPaterno());
-			personaBD.setApellidoMaterno(estudiante.getAMaterno());
+			personaBD.setApellidoPaterno(estudiante.getApaterno());
+			personaBD.setApellidoMaterno(estudiante.getAmaterno());
+			personaBD.setCodigoTipoPersona("ALUMNO");
 			personaBD.setIdUsuario(usuarioBD.getId());
 			personaDao.save(personaBD);
 
 			Estudiante estudianteBD = new Estudiante();
 			estudianteBD.setIdEstudiante(estudianteDao.nextId());
 			estudianteBD.setIdPersona(personaBD.getIdPersona());		
-
-			return estudianteDao.save(estudianteBD);
-		}catch(Exception e){
-			throw new RuntimeException(e.getMessage());
-		} */
+			estudianteDao.save(estudianteBD);
+			return estudianteBD;
+//		}catch(Exception e){
+//			throw new RuntimeException(e.getMessage());
+//		} */
 
 	}
 	@Override

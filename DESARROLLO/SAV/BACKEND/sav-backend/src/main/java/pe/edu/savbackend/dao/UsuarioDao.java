@@ -16,6 +16,9 @@ public interface UsuarioDao extends CrudRepository<Usuario, Integer>{
 			+ " join Persona p on p.idUsuario = u.id "
 			+ " where u.username = ?1")
 	UsuarioDto buscarPorUsername(String username);
+	
+//	@Query(value = "select max(u.id) + 1 from Usuario u")
+//    Integer nextId();
 }
 
 
