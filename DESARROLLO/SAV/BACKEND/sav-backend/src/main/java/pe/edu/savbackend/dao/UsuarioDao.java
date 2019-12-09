@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import pe.edu.savbackend.domain.usuario.UsuarioDto;
 import pe.edu.savbackend.entity.Usuario;
 
-public interface UsuarioDao extends CrudRepository<Usuario, Long>{
+public interface UsuarioDao extends CrudRepository<Usuario, Integer>{
 	
 	public Usuario findByUsername(String username);
 	

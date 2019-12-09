@@ -24,15 +24,16 @@ import pe.edu.savbackend.service.contenido.ContenidoService;
 public class ContenidoController {
   
 	@Autowired
-	ContenidoService contenidoService;
+	private ContenidoService contenidoService;
 	//gabriel
 	@RequestMapping("")//"?idCriterio={idCriterio}&codigoGrado={codigoGrado}"
 	public List<ContenidoDto> filtrar(@RequestParam(required = false) Integer idCriterio, @RequestParam(required = false) String codigoGrado) {
+		////////////
 		return contenidoService.getLsContenido(idCriterio, codigoGrado);
 	}
 	
 	@Autowired
-	ContenidoDao contenidoDao;
+	private ContenidoDao contenidoDao;
 	@RequestMapping("/prueba/{idContenido}")//"?idCriterio={idCriterio}&codigoGrado={codigoGrado}"
 	public Contenido prueba(@PathVariable Integer idContenido) {
 		

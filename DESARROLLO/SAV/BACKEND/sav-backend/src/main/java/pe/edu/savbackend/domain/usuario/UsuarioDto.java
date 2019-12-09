@@ -21,8 +21,8 @@ public class UsuarioDto {
 	private String seccion;
 	private String anio;
 	
-	public UsuarioDto(Long id, String username, String apellidoPaterno, String nombres, String tipoPersona) {
-		this.id = id.intValue();
+	public UsuarioDto(Integer id, String username, String apellidoPaterno, String nombres, String tipoPersona) {
+		this.id = id;
 		this.username = username;
 		this.apellidoPaterno = apellidoPaterno;
 		this.nombres = nombres;

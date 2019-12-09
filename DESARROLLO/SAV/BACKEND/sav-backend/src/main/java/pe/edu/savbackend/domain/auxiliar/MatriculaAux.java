@@ -6,24 +6,28 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-//@AllArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class MatriculaAux {
 
-	private Integer id_estudiante;
+	private Integer idEstudiante;
 	private String nombre;
 	private String codGrado;
-	private String anio;
+	private Integer anio;
 	private String codEstado;
-	
-	public MatriculaAux(Integer id_estudiante, String nombre, String codGrado, String anio, String codEstado) {
-		this.id_estudiante = id_estudiante;
-		this.nombre = nombre;
-		this.codGrado = codGrado;
-		this.anio = anio;
-		this.codEstado = codEstado;
+	public MatriculaAux(Integer idEstudiante) {
+		this.idEstudiante = idEstudiante;
 	}
+	
+//	descomentar si se agrega algun atributo
+//	public MatriculaAux(Integer idEstudiante, String nombre, String codGrado, Integer anio, String codEstado) {
+//		this.idEstudiante = idEstudiante;
+//		this.nombre = nombre;
+//		this.codGrado = codGrado;
+//		this.anio = anio;
+//		this.codEstado = codEstado;
+//	}
 	
 	
 
