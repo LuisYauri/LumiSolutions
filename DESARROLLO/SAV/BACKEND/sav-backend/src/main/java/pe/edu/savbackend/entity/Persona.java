@@ -34,7 +34,7 @@ public class Persona {
     @Column(name="correo")
     private String correo;
     @Column(name="id_usuario")
-    private Long idUsuario;
+    private Integer idUsuario;
     @Column(name="cod_tipo_persona")
 	private String codigoTipoPersona;
 }

@@ -11,18 +11,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UsuarioDto {
 
-	private Integer id;
+	private Integer id; //idEstudiante
 	private String username;
 	private String apellidoPaterno;
 	private String nombres;
 	private String siglas;
 	private String tipoPersona;
-	private Integer codigoGrado;
+	private String codigoGrado;
 	private String seccion;
-	private String anio;
+	private Integer anio;
 	
-	public UsuarioDto(Long id, String username, String apellidoPaterno, String nombres, String tipoPersona) {
-		this.id = id.intValue();
+	public UsuarioDto(Integer id, String username, String apellidoPaterno, String nombres, String tipoPersona) {
+		this.id = id;
 		this.username = username;
 		this.apellidoPaterno = apellidoPaterno;
 		this.nombres = nombres;

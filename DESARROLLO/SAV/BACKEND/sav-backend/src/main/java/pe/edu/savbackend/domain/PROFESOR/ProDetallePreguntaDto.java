@@ -1,4 +1,4 @@
-package pe.edu.savbackend.domain;
+package pe.edu.savbackend.domain.PROFESOR;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AulaDto {
-
-	private Integer idAula;
-	private String grupo;
-	private Integer codigoGrado; 
-	private Integer anio;
+public class ProDetallePreguntaDto {
+	private String descripcion;
+	private String urlImagen;
 
 }

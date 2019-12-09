@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import pe.edu.savbackend.domain.PROFESOR.ProTareaDto;
 import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.TareaDto;
 import pe.edu.savbackend.entity.Evaluacion;
@@ -26,13 +27,30 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 			+ "from Evaluacion e "
 			+ "join EstudianteEvaluacion ee on e.idEvaluacion = ee.idEvaluacion "
 			+ "where ee.idEstudiante = ?1 "
-			+ "and e.codTipoEvaluacion = 'E'")
+			+ "and e.codTipoEvaluacion = 'E' "
+			+ "and ee.codigoEstadoEvaluacion = 1")
 	List<ExamenDto> getLsExamenes(Integer idEstudiante);
 
 	@Query(value = "select e "
 			+ "from Evaluacion e "
 			+ "join EstudianteEvaluacion ee on e.idEvaluacion = ee.idEvaluacion "
 			+ "where ee.idEstudiante = ?1 "
-			+ "and e.codTipoEvaluacion = 'E'")
+			+ "and e.codTipoEvaluacion = 'E' "
+			+ "and ee.codigoEstadoEvaluacion = 1")
 	List<Evaluacion> getLsExamenesModel(Integer idEstudiante);
+
+	@Query(value = "select new pe.edu.savbackend.domain.PROFESOR.ProTareaDto( "
+				 + "e.idEvaluacion, e.titulo, c.idCriterio, cr.nombre, "
+				 + "c.idContenido, c.nombre, e.cantidad) From Evaluacion e "
+				 + "inner join Contenido c on e.idContenido = c.idContenido " 
+				 + "inner join Criterio cr on c.idCriterio = cr.idCriterio " 
+				 + "where e.idGrupo = ?1 and e.codTipoEvaluacion = ?2 and e.codigoEstado= ?3" 
+	)
+	List<ProTareaDto> getLsTareasAsignadas(Integer idAula, String tipoEvaluacion, String coidogEstado);
+
+	@Query(value = "select e from Evaluacion e where e.idEvaluacion=?1")
+	Evaluacion getEvaluacion(Integer idvaluacion);
+
+	@Query(value = "select max(e.idEvaluacion)+ 1 from Evaluacion e")
+    Integer nextId();
 }
