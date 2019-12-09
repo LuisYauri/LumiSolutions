@@ -8,7 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.savbackend.dao.PreguntaDao;
+
+import pe.edu.savbackend.domain.PROFESOR.ProDetallePreguntaDto;
 import pe.edu.savbackend.domain.PROFESOR.ProPreguntasDto;
+import pe.edu.savbackend.entity.Pregunta;
+
 
 @Service
 public class PreguntaServiceImpl implements PreguntaService {
@@ -39,8 +43,16 @@ public class PreguntaServiceImpl implements PreguntaService {
 		return lsPreguntasDto.stream().filter(e -> grado == null || e.getGrado().equals(grado))
 				.filter(e -> idCriterio == null || e.getIdCriterio() == idCriterio)
 				.filter(e -> idContenido == null || e.getIdContenido() == idContenido).collect(Collectors.toList());
-//		System.out.println(lsPreguntasDto);
-//		return lsPreguntasDto;
+		// System.out.println(lsPreguntasDto);
+		// return lsPreguntasDto;
 	}
+
+	@Override
+	public ProDetallePreguntaDto obtenerPregunta(Integer idPregunta) {
+		Pregunta pregunta = preguntaDao.getOne(idPregunta);
+		return new ProDetallePreguntaDto(pregunta.getDescripcion (), pregunta.getUrlImagen());
+	}
+
+	
 
 }

@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.savbackend.dao.GrupoDao;
 import pe.edu.savbackend.dao.MatriculaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.auxiliar.MatriculaAux;

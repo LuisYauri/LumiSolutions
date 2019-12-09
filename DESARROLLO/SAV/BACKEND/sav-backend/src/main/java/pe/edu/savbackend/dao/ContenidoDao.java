@@ -13,5 +13,9 @@ public interface ContenidoDao extends JpaRepository<Contenido, Integer> {
 	
 	@Query(value = "select new pe.edu.savbackend.domain.ContenidoDto(c.idCriterio, c.idContenido, c.nombre, c.urlImagen) from Contenido c where c.idCriterio = ?1 and c.codigoGrado = ?2")
 	List<ContenidoDto> getLsContenidos(Integer idCriterio, String codigoGrado);
+
+	@Query(value = "select c from Contenido c where c.idContenido = ?1")
+	Contenido getContenido(Integer idContenido);
+
 	
 }

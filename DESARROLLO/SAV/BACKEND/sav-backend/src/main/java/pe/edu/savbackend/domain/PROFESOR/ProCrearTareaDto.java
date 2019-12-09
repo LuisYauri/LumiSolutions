@@ -1,5 +1,7 @@
 package pe.edu.savbackend.domain.PROFESOR;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,19 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProTareaDto {
-	private Integer idTarea;
+public class ProCrearTareaDto {
 	private String titulo;
 	private Integer idCompetencia;
-	private String competencia;
 	private Integer idContenido;
-	private String contenido; 
 	private String fechaInicio;  
 	private String fechaLimite; //"20/12/19"
-	private String tiempoLimite;
-	private Integer cantidadPreguntas;
+    private String tiempoLimite;
+    private Integer idAula;
+	private List<Integer> lsPreguntas;
 
-	public ProTareaDto (Integer idTarea, String titulo, Integer idCompetencia, String competencia, 
+	/* public ProCrearTareaDto (Integer idTarea, String titulo, Integer idCompetencia, String competencia, 
 	Integer idContenido, String contenido, Integer cantidadPreguntas)
 	{
 		this.idTarea = idTarea;
@@ -31,6 +31,5 @@ public class ProTareaDto {
 		this.idContenido = idContenido;
 		this.contenido = contenido;
 		this.cantidadPreguntas = cantidadPreguntas;
-	}
-
+	} */
 }

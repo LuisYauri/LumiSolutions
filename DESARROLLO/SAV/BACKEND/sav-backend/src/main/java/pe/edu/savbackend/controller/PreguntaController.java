@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+
+import pe.edu.savbackend.domain.PROFESOR.ProDetallePreguntaDto;
 import pe.edu.savbackend.domain.PROFESOR.ProPreguntasDto;
 import pe.edu.savbackend.domain.PROFESOR.ProTareaDto;
+
 import pe.edu.savbackend.service.pregunta.PreguntaService;
 
 @RestController
@@ -34,11 +37,17 @@ public class PreguntaController {
 		return preguntaService.getRespuesta(idPregunta, respuesta.getRespuesta());
 	}
 
-	@RequestMapping("") // profesor/tareas?idAula={idAula}
+	@RequestMapping("") //preguntas?grado=1&idCriterio=1&idContenido=1
 	public List<ProPreguntasDto> filtrar(@RequestParam(required = false) String grado,
 			@RequestParam(required = false) Integer idCriterio, @RequestParam(required = false) Integer idContenido) {
-		return preguntaService.filtrar(grado,idCriterio,idContenido);// filtrar por estudiante
+		return preguntaService.filtrar(grado,idCriterio,idContenido);
 	}
+
+	@RequestMapping("/{idPregunta}") //preguntas/idPregunta
+	public ProDetallePreguntaDto obtenerPregunta(@PathVariable Integer idPregunta) {
+		return preguntaService.obtenerPregunta(idPregunta);
+	}
+
 }
 
 @Data

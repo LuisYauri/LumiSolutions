@@ -40,9 +40,6 @@ public class EstudianteServiceImpl implements EstudianteService {
 	@Override
 	@Transactional
 	public Estudiante registrarEstudiante(EstudianteDto estudiante) {
-//		return null;
-//		/* try{
-			
 			Usuario usuarioBD = new Usuario();
 			usuarioBD.setUsername(estudiante.getUsuario());
 			usuarioBD.setPassword(encript.encode(estudiante.getContrasenia()));
@@ -63,11 +60,8 @@ public class EstudianteServiceImpl implements EstudianteService {
 			estudianteBD.setIdPersona(personaBD.getIdPersona());		
 			estudianteDao.save(estudianteBD);
 			return estudianteBD;
-//		}catch(Exception e){
-//			throw new RuntimeException(e.getMessage());
-//		} */
-
 	}
+	
 	@Override
 	public Estudiante actualizarEstudiante(EstudianteDto estudiante) {
 		/* Grupo grupo = estudianteDao.getOne(aula.getIdAula());

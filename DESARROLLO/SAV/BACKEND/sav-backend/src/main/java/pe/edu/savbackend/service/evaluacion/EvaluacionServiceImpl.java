@@ -1,6 +1,8 @@
 package pe.edu.savbackend.service.evaluacion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -22,6 +24,8 @@ import pe.edu.savbackend.dao.EvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDetalleDao;
 import pe.edu.savbackend.dao.HistorialDao;
 import pe.edu.savbackend.dao.PreguntaDao;
+import pe.edu.savbackend.domain.PROFESOR.ProCrearTareaDto;
+import pe.edu.savbackend.domain.PROFESOR.ProTareaDto;
 import pe.edu.savbackend.domain.tarea.EstadisticaDto;
 import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.PreguntaDto;
@@ -253,4 +257,58 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		return estadistica;
 	}
 
+	@Override
+	public List<ProTareaDto> getLsTareasAsignadas(Integer idAula){
+		List<ProTareaDto> listaProTarea = evaluacionDao.getLsTareasAsignadas(idAula, "T", "EA");
+		listaProTarea.forEach(proTarea -> {
+			Evaluacion eva = evaluacionDao.getEvaluacion(proTarea.getIdTarea());
+			LocalDateTime fechaInicio = eva.getFechaInicio();
+			LocalDateTime fechaFin = eva.getFechaFin();
+			proTarea.setFechaInicio(fechaInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+			proTarea.setFechaLimite(fechaFin.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+			proTarea.setTiempoLimite(fechaFin.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+		});
+		return listaProTarea;
+	}
+
+	public Evaluacion registrarTarea(ProCrearTareaDto tarea)
+	{
+		Evaluacion evaluacion = new Evaluacion();
+		int idEvaluacion = evaluacionDao.nextId();
+		evaluacion.setIdEvaluacion(idEvaluacion);
+		evaluacion.setTitulo(tarea.getTitulo());
+		evaluacion.setIdContenido(tarea.getIdContenido());
+		evaluacion.setFechaInicio(
+			LocalDateTime.of(LocalDate.parse(tarea.getFechaInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
+			LocalTime.of(0, 0, 0))
+		);
+		evaluacion.setFechaFin(
+			LocalDateTime.of(LocalDate.parse(tarea.getFechaInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
+			LocalTime.parse(tarea.getTiempoLimite(), DateTimeFormatter.ofPattern("HH:mm")))
+		);
+		evaluacion.setCodTipoEvaluacion("T");
+		evaluacion.setIdGrupo(tarea.getIdAula());
+		evaluacion.setIdDocente(1);
+		evaluacion.setCantidad(tarea.getLsPreguntas().size());
+		evaluacion.setCodigoEstado("EA");
+		evaluacion = evaluacionDao.save(evaluacion);
+
+		tarea.getLsPreguntas().forEach(idPreg -> {
+			evaluacionDetalleDao.registrarEvaluacionDetalle(idEvaluacion, idPreg);
+		});
+		
+		return evaluacion;
+	}
+
+	@Override
+	public Boolean eliminarTarea(Integer idTarea) {
+		try{
+			Evaluacion evaluacion = evaluacionDao.getOne(idTarea);
+			evaluacion.setCodigoEstado("EE");
+			evaluacionDao.save(evaluacion);
+			return true;	
+		}catch(Exception e){
+			throw new RuntimeException("La tarea no existe");
+		}	
+	}
 }
