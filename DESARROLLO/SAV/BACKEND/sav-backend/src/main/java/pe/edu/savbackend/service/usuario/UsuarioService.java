@@ -99,9 +99,13 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 	public UsuarioDto buscarPorUsername(String username) {
 		UsuarioDto usuarioDto = usuarioDao.buscarPorUsername(username);
 		usuarioDto.setSiglas(usuarioDto.getApellidoPaterno().substring(0, 1) + usuarioDto.getNombres().substring(0, 1));
+		usuarioDto.setCodigoGrado(1);
+		usuarioDto.setSeccion("Grupo A-1");
+		usuarioDto.setAnio("2019");
 		switch (usuarioDto.getTipoPersona()) {
 		case "ALUMNO":
-//			List<MatriculaAux> lsMatriculas = matriculaDao.getMatriculasGrupos(usuarioDto.getId(),"2017");
+//			List<MatriculaAux> lsMatriculas = matriculaDao.getMatriculasGrupos(usuarioDto.getId(),"2019");
+//			System.out.println(lsMatriculas);
 			break;
 		case "PROFESOR":
 			break;
