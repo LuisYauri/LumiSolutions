@@ -95,7 +95,7 @@
         [nzFrontPagination]="false"
         [nzShowPagination]="false"
         [nzLoading]="varFlagTableQuestions"
-        [nzScroll]="{y: '200px' }"
+        [nzScroll]="{y: '400px' }"
       >
         <thead>
         <tr>
@@ -113,7 +113,12 @@
           <td nzShowCheckbox [(nzChecked)]="data.marcado"
               (nzCheckedChange)="checkItem($event,data)"></td>
           <td>{{ data.descripcion }}</td>
-          <td>Ver</td>
+          <td>
+            <button nz-button nzType="default" (click)="openViewQuestion(data)"
+                    class="btn-global--green--line blue-box-square--action--item" [nzSize]="'large'">
+              <i nz-icon nzType="eye" nzTheme="outline"></i>
+            </button>
+          </td>
         </tr>
         </tbody>
       </nz-table>

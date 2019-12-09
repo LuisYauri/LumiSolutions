@@ -9,6 +9,8 @@ import {AuthService} from "../../../../../../../services/auth.service";
 import {HomeworkGroupTeacherService} from "../../../services/homework-group-teacher.service";
 import {QuestionsHomeworkGroupTeacherModel} from "../../../model/homework-group-teacher.model";
 import * as moment from 'moment';
+import {DeleteModalTeacherComponent} from "../../../../../../../core/components/Teacher/DeleteModal/delete-modal-teacher.component";
+import {ViewQuestionHomeworkGroupComponent} from "../View/view-question-homework-group.component";
 
 @Component({
   selector: 'app-create-homework-group-teacher',
@@ -32,6 +34,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
   varTitleContenido: string = ''
   varTitleGrado: string = ''
   jsonQuestionsCheck: { idPregunta: number } [] = []
+  question: { descripcion: string, urlImagen: string }
 
   isAllChecked
 
@@ -257,5 +260,42 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
       arrayNum.push(Number(item.idPregunta))
     }
     return arrayNum
+  }
+
+  openViewQuestion(data: QuestionsHomeworkGroupTeacherModel) {
+    this.getViewQuestion(data.idPregunta.toString())
+  }
+
+  async getViewQuestion(idPregunta: string) {
+    try {
+      const response: any = await this.homeworkGroupTeacherService.getViewQuestion(idPregunta).toPromise()
+      this.question = response
+      const title = 'Ver Pregunta'
+      const description = this.question.descripcion
+      const imageUrl = this.question.urlImagen
+      this.openModalView(title,description,imageUrl)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  openModalView(title: string, description: string, imageUrl: string) {
+    const modal = this.modalService.create({
+      nzTitle: title,
+      nzContent: ViewQuestionHomeworkGroupComponent,
+      nzFooter: null,
+      nzComponentParams: {
+        description: description,
+        imageUrl: imageUrl
+      },
+      nzWidth: 500,
+      nzMaskClosable: false,
+    })
+    modal.afterClose.subscribe((response: any) => {
+      if (response === undefined) {
+        return
+      } else if (response.status) {
+      }
+    })
   }
 }

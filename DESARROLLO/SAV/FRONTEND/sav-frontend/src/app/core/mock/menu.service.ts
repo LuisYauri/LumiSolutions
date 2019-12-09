@@ -36,18 +36,18 @@ export class MenuService {
         url: '/teacher-group/homework',
         icon: 'file-text',
       },
-      {
-        title: 'Examenes',
-        key: 'Examenes',
-        url: '/teacher-group/examn',
-        icon: 'profile',
-      },
-      {
-        title: 'Historial',
-        key: 'Historial',
-        url: '/teacher-group/history',
-        icon: 'read',
-      },
+      // {
+      //   title: 'Examenes',
+      //   key: 'Examenes',
+      //   url: '/teacher-group/examn',
+      //   icon: 'profile',
+      // },
+      // {
+      //   title: 'Historial',
+      //   key: 'Historial',
+      //   url: '/teacher-group/history',
+      //   icon: 'read',
+      // },
       {
         title: 'Estudiantes',
         key: 'Criterios',
