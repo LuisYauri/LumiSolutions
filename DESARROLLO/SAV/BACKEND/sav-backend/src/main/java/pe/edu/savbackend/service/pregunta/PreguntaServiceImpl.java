@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pe.edu.savbackend.dao.PreguntaDao;
+
 import pe.edu.savbackend.domain.PROFESOR.ProDetallePreguntaDto;
 import pe.edu.savbackend.domain.PROFESOR.ProPreguntasDto;
 import pe.edu.savbackend.entity.Pregunta;
+
 
 @Service
 public class PreguntaServiceImpl implements PreguntaService {
@@ -50,5 +52,7 @@ public class PreguntaServiceImpl implements PreguntaService {
 		Pregunta pregunta = preguntaDao.getOne(idPregunta);
 		return new ProDetallePreguntaDto(pregunta.getDescripcion (), pregunta.getUrlImagen());
 	}
+
+	
 
 }

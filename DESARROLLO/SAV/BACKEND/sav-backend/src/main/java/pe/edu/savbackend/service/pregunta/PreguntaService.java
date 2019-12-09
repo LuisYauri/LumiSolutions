@@ -13,4 +13,5 @@ public interface PreguntaService {
 	List<ProPreguntasDto> filtrar(String grado,Integer idCriterio,Integer idContenido);
 
 	ProDetallePreguntaDto obtenerPregunta(Integer idPregunta);
+
 }

@@ -1,5 +1,6 @@
 package pe.edu.savbackend.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Data;
+
 import pe.edu.savbackend.domain.PROFESOR.ProDetallePreguntaDto;
 import pe.edu.savbackend.domain.PROFESOR.ProPreguntasDto;
+import pe.edu.savbackend.domain.PROFESOR.ProTareaDto;
+
 import pe.edu.savbackend.service.pregunta.PreguntaService;
 
 @RestController

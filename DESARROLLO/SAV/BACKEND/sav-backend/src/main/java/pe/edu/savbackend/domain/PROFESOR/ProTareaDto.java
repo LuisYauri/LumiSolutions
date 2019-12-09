@@ -32,4 +32,5 @@ public class ProTareaDto {
 		this.contenido = contenido;
 		this.cantidadPreguntas = cantidadPreguntas;
 	}
+
 }
