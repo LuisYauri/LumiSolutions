@@ -10,10 +10,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.google.gson.Gson;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.google.gson.Gson;
 
 import pe.edu.savbackend.dao.AlternativaDao;
 import pe.edu.savbackend.dao.ContenidoDao;
@@ -27,6 +27,7 @@ import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.PreguntaDto;
 import pe.edu.savbackend.domain.tarea.TareaDto;
 import pe.edu.savbackend.domain.tarea.TipoResultadoDto;
+import pe.edu.savbackend.entity.EstudianteEvaluacion;
 import pe.edu.savbackend.entity.Evaluacion;
 import pe.edu.savbackend.entity.Historial;
 
@@ -71,6 +72,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		List<Evaluacion> lsEvaluaciones = evaluacionDao.getLsExamenesModel(idEstudiante);
 		List<ExamenDto> lsExamenes = new ArrayList<>();
 		lsEvaluaciones.forEach(e->{
+			
 			ExamenDto examenDto = new ExamenDto();
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdEvaluacion()).getFechaInicio();
 			examenDto.setIdExamen(e.getIdEvaluacion()); 
@@ -81,6 +83,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			examenDto.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			examenDto.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
 			lsExamenes.add(examenDto);
+			
 		});
 		return lsExamenes;
 	}
@@ -145,7 +148,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		correcto = 0; incorrecto = 0; vacio = 0;
 		tareaDto.setFechaSolucion(LocalDateTime.now(ZoneId.of("America/Lima")));
 		tareaDto.setCantidadPreguntas(tareaDto.getLsPreguntas().size() + "");
-		
+
 		tareaDto.getLsPreguntas().forEach(pregunta->{
 			String rptaCorrecta = preguntaDao.getOne(pregunta.getIdPregunta()).getRespuestaCorrecta();
 			if(pregunta.getRespuestaEstudiante() == null || pregunta.getRespuestaEstudiante().equals("")){
@@ -178,10 +181,10 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		estadistica.setIdEvaluacion(tareaDto.getIdTarea());
 		estadistica.setTipo("T");
 		
-//		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(tareaDto.getIdEstudiante(), tareaDto.getIdTarea()) ;
+		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(tareaDto.getIdEstudiante(), tareaDto.getIdTarea()) ;
 //		System.out.println("ESTUDIANTE = " + ee);
-//		ee.setCodigoEstadoEvaluacion("2");
-//		estudianteEvaluacionDao.save(ee);
+		ee.setCodigoEstadoEvaluacion("2");
+		estudianteEvaluacionDao.save(ee);
 		//aaa
 		
 		Historial historial = new Historial();
@@ -233,6 +236,11 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		estadistica.setIdEstudiante(examenDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(examenDto.getIdExamen());
 		estadistica.setTipo("E");
+		
+		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(examenDto.getIdEstudiante(), examenDto.getIdExamen()) ;
+//		System.out.println("ESTUDIANTE = " + ee);
+		ee.setCodigoEstadoEvaluacion("2");
+		estudianteEvaluacionDao.save(ee);
 		
 		Historial historial = new Historial();
 		historial.setIdEstudiante(examenDto.getIdEstudiante());

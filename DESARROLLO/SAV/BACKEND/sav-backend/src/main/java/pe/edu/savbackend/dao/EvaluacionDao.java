@@ -26,13 +26,15 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 			+ "from Evaluacion e "
 			+ "join EstudianteEvaluacion ee on e.idEvaluacion = ee.idEvaluacion "
 			+ "where ee.idEstudiante = ?1 "
-			+ "and e.codTipoEvaluacion = 'E'")
+			+ "and e.codTipoEvaluacion = 'E' "
+			+ "and ee.codigoEstadoEvaluacion = 1")
 	List<ExamenDto> getLsExamenes(Integer idEstudiante);
 
 	@Query(value = "select e "
 			+ "from Evaluacion e "
 			+ "join EstudianteEvaluacion ee on e.idEvaluacion = ee.idEvaluacion "
 			+ "where ee.idEstudiante = ?1 "
-			+ "and e.codTipoEvaluacion = 'E'")
+			+ "and e.codTipoEvaluacion = 'E' "
+			+ "and ee.codigoEstadoEvaluacion = 1")
 	List<Evaluacion> getLsExamenesModel(Integer idEstudiante);
 }
