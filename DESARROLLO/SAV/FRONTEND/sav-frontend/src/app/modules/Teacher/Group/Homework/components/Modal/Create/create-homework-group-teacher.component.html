@@ -1,0 +1,152 @@
+<nz-steps [nzCurrent]="current">
+  <nz-step class="setps-header" *ngFor="let title of varStep.title" nzTitle="{{title}}"></nz-step>
+</nz-steps>
+
+<form nz-form [formGroup]="dataHomeworkForm" [nzLayout]="'vertical'">
+  <div class="steps-content">
+    <div *ngIf="current===0">
+      <div nz-row>
+        <div nz-col class="defaultColumn" nzSpan="8">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" nzFor="titulo">Título :</nz-form-label>
+            <nz-form-control nzErrorTip="Complete el campo.">
+              <input nz-input id="titulo" formControlName="titulo" placeholder="Ej. Tarea 1"/>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col class="defaultColumn" nzSpan="8">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" nzFor="idCompetencia">Competencia :</nz-form-label>
+            <nz-form-control nzErrorTip="Complete el campo.">
+              <nz-select id="idCompetencia" (ngModelChange)="getListContent($event)"
+                         formControlName="idCompetencia"
+                         [nzPlaceHolder]="'Ej. Competencia 1'"
+              >
+                <nz-option *ngFor="let item of listCriteria" nzValue="{{item.idCriterio}}"
+                           nzLabel="{{item.nombre}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="8">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" nzFor="idContenido">Contentido :</nz-form-label>
+            <nz-form-control nzErrorTip="Complete el campo.">
+              <nz-select id="idContenido" formControlName="idContenido"
+                         (ngModelChange)="changeContent($event)"
+                         [nzPlaceHolder]="'Ej. Contenido 1'"
+              >
+                <nz-option *ngFor="let item of listContent" nzValue="{{item.idContenido}}"
+                           nzLabel="{{item.nombre}}"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row>
+        <div nz-col class="defaultColumn" nzSpan="8">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" nzFor="fechaInicio">Fecha de Inicio :</nz-form-label>
+            <nz-form-control nzErrorTip="Complete el campo.">
+              <nz-date-picker id="fechaInicio" formControlName="fechaInicio"
+                              [nzFormat]="dateFormat" (ngModelChange)="formatDate($event)"
+                              [nzPlaceHolder]="'Ej. 01/01/2019'"
+                              [nzAllowClear]=false>
+              </nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col class="defaultColumn" nzSpan="8">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" nzFor="fechaLimite">Fecha Límite :</nz-form-label>
+            <nz-form-control nzErrorTip="Complete el campo.">
+              <nz-date-picker id="fechaLimite" formControlName="fechaLimite"
+                              [nzFormat]="dateFormat" (ngModelChange)="formatDate($event)"
+                              [nzPlaceHolder]="'Ej. 01/01/2019'"
+                              [nzAllowClear]=false>
+              </nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col nzSpan="8">
+          <nz-form-item>
+            <nz-form-label [nzNoColon]="true" nzFor="tiempoLimite">Tiempo Límite :</nz-form-label>
+            <nz-form-control nzErrorTip="Complete el campo.">
+              <nz-time-picker id="tiempoLimite" formControlName="tiempoLimite"
+                              nzFormat="HH:mm"
+                              [nzAllowEmpty] = false
+                              [nzPlaceHolder]="'Ej. 10:12'"
+                              (ngModelChange)="formatDate($event)"
+              ></nz-time-picker>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="current===1">
+      <div *ngIf="listQuestions.length>0" class="box-two-group">
+        <div class="box-two-group--item">{{varTitleCompetencia}}</div>
+        <div class="box-two-group--item">{{varTitleContenido}}</div>
+        <div class="box-two-group--item">{{varTitleGrado}}° Secundaria</div>
+      </div>
+      <div class="box-two-subtitle">Seleccione las preguntas</div>
+      <nz-table class="box-two-table"
+        [nzData]="listQuestions"
+        [nzFrontPagination]="false"
+        [nzShowPagination]="false"
+        [nzLoading]="varFlagTableQuestions"
+        [nzScroll]="{y: '400px' }"
+      >
+        <thead>
+        <tr>
+          <th nzWidth="10px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllChecked"
+              (nzCheckedChange)="checkAll($event)"
+          ></th>
+          <th nzWidth="300px" >{{varTableListTitle[0]}}</th>
+          <th nzWidth="100px" >{{varTableListTitle[1]}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of listQuestions">
+          <td nzShowCheckbox [(nzChecked)]="data.marcado"
+              (nzCheckedChange)="checkItem($event,data)"></td>
+          <td>{{ data.descripcion }}</td>
+          <td>
+            <button nz-button nzType="default" (click)="openViewQuestion(data)"
+                    class="btn-global--green--line blue-box-square--action--item" [nzSize]="'large'">
+              <i nz-icon nzType="eye" nzTheme="outline"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+
+    </div>
+  </div>
+  <div class="steps-action">
+    <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+      <span>Atrás</span>
+    </button>
+    <button nz-button nzType="default" (click)="next()" *ngIf="current < varStep.title.length-1">
+      <span>Siguiente</span>
+    </button>
+    <button nz-button
+            *ngIf="current === varStep.title.length-1"
+            [nzLoading]="varLoadingData"
+            nzType="default"
+            class="btn-global--blue--line"
+            nz-popconfirm
+            nzPopconfirmTitle="¿Estas seguro de agregar una tarea?"
+            nzPopconfirmPlacement="rightTop"
+            (nzOnConfirm)="save()"
+    >
+      <span>{{nameAccion}}</span>
+    </button>
+  </div>
+</form>
+
+<app-loading-blank-teacher [flag]="varLoadingData"></app-loading-blank-teacher>
+
+
