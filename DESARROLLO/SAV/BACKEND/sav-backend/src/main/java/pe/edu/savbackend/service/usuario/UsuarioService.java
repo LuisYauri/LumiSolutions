@@ -1,5 +1,6 @@
 package pe.edu.savbackend.service.usuario;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,11 +36,10 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 
 	@Autowired
 	private UsuarioDao usuarioDao;
-	
+
 	@Autowired
 	private MatriculaDao matriculaDao;
-	
-	
+
 	/**
 	 * El metodo retorna el usuario de spring security, retornamos un tipo User que
 	 * es la implementacion de UserDetails en donde indicamos el usuario, el pass,
@@ -97,14 +97,24 @@ public class UsuarioService implements UserDetailsService, IUsuarioService {
 	@Override
 	public UsuarioDto buscarPorUsername(String username) {
 		UsuarioDto usuarioDto = usuarioDao.buscarPorUsername(username);
+		if(usuarioDto == null) {
+			throw new RuntimeException("El usuario " + username + " no existe GAAAAA");
+		}
 		usuarioDto.setSiglas(usuarioDto.getApellidoPaterno().substring(0, 1) + usuarioDto.getNombres().substring(0, 1));
-		usuarioDto.setCodigoGrado(1);
-		usuarioDto.setSeccion("Grupo A-1");
-		usuarioDto.setAnio("2019");
 		switch (usuarioDto.getTipoPersona()) {
 		case "ALUMNO":
-			List<MatriculaAux> lsMatriculas = matriculaDao.getMatriculasGrupos(usuarioDto.getId(),2019);
+			List<MatriculaAux> lsMatriculas = matriculaDao.getMatriculasGrupos(usuarioDto.getId(),
+					LocalDate.now().getYear());
 			System.out.println(lsMatriculas);
+			if (lsMatriculas.size() == 1) {
+				usuarioDto.setCodigoGrado(lsMatriculas.get(0).getCodGrado());
+				usuarioDto.setSeccion(lsMatriculas.get(0).getNombre());
+				usuarioDto.setAnio(lsMatriculas.get(0).getAnio());
+			} else if (lsMatriculas.size() == 0){
+				throw new RuntimeException("El usuario " + username + " no se encuentra matriculado en ningun aula este año(" + LocalDate.now().getYear()+ ")");
+			} else if (lsMatriculas.size() > 1){
+				throw new RuntimeException("El usuario " + username + " se encuentra matriculado en mas de dos aulas, contacte al profesor");
+			}
 			break;
 		case "PROFESOR":
 			break;

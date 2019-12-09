@@ -1,6 +1,8 @@
 package pe.edu.savbackend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,41 +23,51 @@ import pe.edu.savbackend.service.usuario.IUsuarioService;
 @RestController
 @RequestMapping(value = "/usuarios")
 public class UsuarioController {
-	
+
 	@Autowired
 	private IUsuarioService usuarioService;
-	
+
 	@GetMapping(value = "/")
 	@Secured("ROLE_ADMIN")
-    public List<Usuario> buscarTodos() {
-        return usuarioService.buscar();
-    }
-    
-    @PostMapping
-    @Secured("ROLE_ADMIN")
-    public ResponseEntity<?> registrar(@RequestBody Usuario usuario) {
-        usuarioService.guardar(usuario);
-        return ResponseEntity.ok("Usuario creado con exito");
-    }
+	public List<Usuario> buscarTodos() {
+		return usuarioService.buscar();
+	}
 
-    @PutMapping
-    @Secured("ROLE_ADMIN")
-    public ResponseEntity<?> actualizar(@RequestBody Usuario usuario) {
-    	usuarioService.guardar(usuario);
-        return ResponseEntity.ok("Usuario actualizado con exito");
-    }
+	@PostMapping
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<?> registrar(@RequestBody Usuario usuario) {
+		usuarioService.guardar(usuario);
+		return ResponseEntity.ok("Usuario creado con exito");
+	}
 
-    @DeleteMapping
-    @Secured("ROLE_ADMIN")
-    public ResponseEntity<?> eliminar(@RequestBody Usuario usuario) {
-    	usuarioService.eliminar(usuario.getId());
-        return ResponseEntity.ok("Usuario eliminado con exito");
-    }
-    
-    @GetMapping(value = "/{username}")
+	@PutMapping
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<?> actualizar(@RequestBody Usuario usuario) {
+
+		usuarioService.guardar(usuario);
+
+		return ResponseEntity.ok("Usuario actualizado con exito");
+	}
+
+	@DeleteMapping
+	@Secured("ROLE_ADMIN")
+	public ResponseEntity<?> eliminar(@RequestBody Usuario usuario) {
+		usuarioService.eliminar(usuario.getId());
+		return ResponseEntity.ok("Usuario eliminado con exito");
+	}
+
+	@GetMapping(value = "/{username}")
 	@Secured("ROLE_ALUMNO")
-    public UsuarioDto buscarPorUsername(@PathVariable String username) {
-    	return usuarioService.buscarPorUsername(username);
-    }
-	
+	public ResponseEntity<?> buscarPorUsername(@PathVariable String username) {
+		UsuarioDto userDto;
+		try {
+			userDto = usuarioService.buscarPorUsername(username);
+		} catch (RuntimeException ex) {
+			Map map = new HashMap<>();
+			map.put("error", ex.getMessage());
+			return ResponseEntity.ok(map);
+		}
+		return ResponseEntity.ok(userDto);
+	}
+
 }
