@@ -17,9 +17,9 @@ public class UsuarioDto {
 	private String nombres;
 	private String siglas;
 	private String tipoPersona;
-	private Integer codigoGrado;
+	private String codigoGrado;
 	private String seccion;
-	private String anio;
+	private Integer anio;
 	
 	public UsuarioDto(Integer id, String username, String apellidoPaterno, String nombres, String tipoPersona) {
 		this.id = id;
