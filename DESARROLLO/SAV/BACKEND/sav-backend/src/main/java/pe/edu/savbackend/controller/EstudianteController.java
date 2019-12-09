@@ -24,7 +24,7 @@ public class EstudianteController {
 
 	//cambios
 	@Autowired
-	EstudianteService estudianteService;
+	private EstudianteService estudianteService;
     
     @RequestMapping("")
 	public List<EstudianteDto> listaEstudiantes() {
@@ -33,8 +33,8 @@ public class EstudianteController {
 
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Estudiante registrarEstudiante(@RequestBody EstudianteDto estudiante) {
-		return null;
-		//return estudianteService.registrarEstudiante(estudiante);
+//		return null;
+		return estudianteService.registrarEstudiante(estudiante);
 	}
 
 	@PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
