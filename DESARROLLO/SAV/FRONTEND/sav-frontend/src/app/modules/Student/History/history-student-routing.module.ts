@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { HistoryComponent } from './pages/history/history.component';
+import {HistoryStudentComponent} from "./pages/History/history-student.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: HistoryComponent,
-    data: {title: 'HomeWork'},
+    component: HistoryStudentComponent,
+    data: {title: 'History'},
   },
 ];
 

@@ -1,0 +1,12 @@
+<div class="logo">
+  <img [src]="'assets/img/logo/logo.svg'" alt="">
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <li class="sidebar__box" nz-menu-item *ngFor="let menu of menus" routerLink="{{menu.url}}">
+    <div>
+      <i  class="sidebar__icon sidebar__item" nz-icon nzType="{{menu.icon}}" nzTheme="outline"></i>
+      <span class="sidebar__item">{{menu.title}}</span>
+    </div>
+  </li>
+</ul>
+

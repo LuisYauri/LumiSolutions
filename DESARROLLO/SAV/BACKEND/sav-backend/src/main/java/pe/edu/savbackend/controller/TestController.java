@@ -22,7 +22,7 @@ import pe.edu.savbackend.service.test.TestService;
 @RestController
 @RequestMapping("/test")
 public class TestController {
-
+	//clase usada para testear
 	@Autowired
 	TestService testService;
 

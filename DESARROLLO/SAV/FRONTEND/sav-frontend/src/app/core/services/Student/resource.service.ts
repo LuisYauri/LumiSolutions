@@ -11,23 +11,20 @@ export class ResourceService {
 
   private API_URL_COMMENT = `${environment.apiMain}comentarios/`
   private API_URL_RATE = `${environment.apiMain}calificaciones/`
+  private API_URL_LIST_COMMENTS = `${environment.apiMain}comentarios?idRecurso=`
 
   constructor(private http: HttpClient, private authService: AuthService) {
   }
 
-  private headersList() {
-    return {
-      headers: {
-        Authorization: `Bearer ${this.authService.getToken()}`
-      }
-    };
-  }
-
   postComment(data: SendComment) {
-    return this.http.post(`${this.API_URL_COMMENT}`, data, this.headersList())
+    return this.http.post(`${this.API_URL_COMMENT}`, data)
   }
 
   postRate(data: SendRate) {
-    return this.http.post(`${this.API_URL_RATE}`, data, this.headersList())
+    return this.http.post(`${this.API_URL_RATE}`, data)
+  }
+
+  getComments(idRecurso: string) {
+    return this.http.get(`${this.API_URL_LIST_COMMENTS}${idRecurso}`)
   }
 }

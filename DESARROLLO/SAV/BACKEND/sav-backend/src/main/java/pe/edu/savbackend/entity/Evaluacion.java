@@ -47,4 +47,12 @@ public class Evaluacion {
     @Column(name="cantidad")
 	private Integer cantidad;
 
+    @Column(name="id_contenido")
+    private Integer idContenido;
+    
+    @Column(name="id_grupo")
+    private Integer idGrupo;
+    
+    @Column(name="cod_estado")
+    private String codigoEstado;
 }

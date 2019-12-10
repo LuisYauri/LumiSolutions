@@ -1,5 +1,5 @@
 export class MenuService {
-  static menuStudents(){
+  static menuStudents() {
     return [
       {
         title: 'Tareas',
@@ -8,9 +8,9 @@ export class MenuService {
         icon: 'file-text',
       },
       {
-        title: 'Examenes',
+        title: 'Exámenes',
         key: 'Examenes',
-        url: '/student/courses',
+        url: '/student/examn',
         icon: 'profile',
       },
       {
@@ -20,40 +20,46 @@ export class MenuService {
         icon: 'read',
       },
       {
-        title: 'Criterios',
-        key: 'Criterios',
+        title: 'Competencias',
+        key: 'Competencias',
         url: '/student/criteria',
         icon: 'copy',
       },
     ]
   }
 
-  static menuTeachers(){
+  static menuTeachers() {
     return [
       {
         title: 'Tareas',
         key: 'Tareas',
-        url: '/student/homework',
+        url: '/teacher-group/homework',
         icon: 'file-text',
       },
+      // {
+      //   title: 'Examenes',
+      //   key: 'Examenes',
+      //   url: '/teacher-group/examn',
+      //   icon: 'profile',
+      // },
+      // {
+      //   title: 'Historial',
+      //   key: 'Historial',
+      //   url: '/teacher-group/history',
+      //   icon: 'read',
+      // },
       {
-        title: 'Examenes',
-        key: 'Examenes',
-        url: '/student/courses',
-        icon: 'profile',
+        title: 'Estudiantes',
+        key: 'Estudiantes',
+        url: '/teacher-group/students',
+        icon: 'team',
       },
-      {
-        title: 'Historial',
-        key: 'Historial',
-        url: '/student/history-homework',
-        icon: 'read',
-      },
-      {
-        title: 'Criterios',
-        key: 'Criterios',
-        url: '/student/history-homework',
-        icon: 'copy',
-      },
+      // {
+      //   title: 'Preguntas',
+      //   key: 'Preguntas',
+      //   url: '/teacher-group/questions',
+      //   icon: 'message',
+      // },
     ]
   }
 }

@@ -20,18 +20,25 @@ public class CalificacionServiceImpl implements CalificacionService {
 	public Double registrarCalificacion(Calificacion calificacion) {
 		// TODO Auto-generated method stub
 		
-		if(!(calificacion.getCalificacion() < 5 && calificacion.getCalificacion() > 1 )) {
+		if(!(calificacion.getCalificacion() < 6 && calificacion.getCalificacion() > 0 )) {
 			throw new RuntimeException("Debe mandarse una calificacion entre 1 y 5");
 		}else {
-			if (calificacion.getIdCalificacion() == null) {
-				calificacion.setIdCalificacion(calificacionDao.nextId());
-			}
 			calificacionDao.save(calificacion);
 			Double calificacionPromedio = calificacionDao.obtenerCalificacionPromedio(calificacion.getIdRecurso());
 			calificacionPromedio = Math.floor(calificacionPromedio*100)/100;
 			recursoDao.getOne(calificacion.getIdRecurso()).setPromedioCalificacion(calificacionPromedio);
 			return calificacionPromedio;
 		}
+	}
+
+	@Override
+	public Integer obtenerCalificacionPorEstudiante(Integer idRecurso, Integer idEstudiante) {
+		return calificacionDao.obtenerCalificacionPorEstudiante(idRecurso, idEstudiante);
+	}
+
+	@Override
+	public Double obtenerCalificacionPromedio(Integer idRecurso) {
+		return calificacionDao.obtenerCalificacionPromedio(idRecurso);
 	}
 
 

@@ -9,6 +9,5 @@
       	<br>
       </div>
   </div>
-  <app-table-list-homeworks [varLoading]="varLoading" [items]="listHomeworks"></app-table-list-homeworks>
-
+  <app-table-list-homeworks (refresh)="refresh($event)" [varLoading]="varLoading" [items]="listHomeworks"></app-table-list-homeworks>
 </div>

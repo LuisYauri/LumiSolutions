@@ -1,8 +1,12 @@
 package pe.edu.savbackend.service.evaluacion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -14,16 +18,21 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import pe.edu.savbackend.dao.AlternativaDao;
+import pe.edu.savbackend.dao.ContenidoDao;
 import pe.edu.savbackend.dao.EstudianteEvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDetalleDao;
 import pe.edu.savbackend.dao.HistorialDao;
+import pe.edu.savbackend.dao.MatriculaDao;
 import pe.edu.savbackend.dao.PreguntaDao;
+import pe.edu.savbackend.domain.PROFESOR.ProCrearTareaDto;
+import pe.edu.savbackend.domain.PROFESOR.ProTareaDto;
 import pe.edu.savbackend.domain.tarea.EstadisticaDto;
 import pe.edu.savbackend.domain.tarea.ExamenDto;
 import pe.edu.savbackend.domain.tarea.PreguntaDto;
 import pe.edu.savbackend.domain.tarea.TareaDto;
 import pe.edu.savbackend.domain.tarea.TipoResultadoDto;
+import pe.edu.savbackend.entity.EstudianteEvaluacion;
 import pe.edu.savbackend.entity.Evaluacion;
 import pe.edu.savbackend.entity.Historial;
 
@@ -42,32 +51,48 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	private HistorialDao historialDao;	
 	@Autowired
 	private EstudianteEvaluacionDao estudianteEvaluacionDao;	
+	@Autowired
+	private ContenidoDao contenidoDao;
+	@Autowired
+	private MatriculaDao matriculaDao;
 	
 	Gson gson = new Gson();
 
 	@Override
 	public List<TareaDto> getLsTareas(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
-		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante);
+		LocalDateTime fechaActual = LocalDateTime.now(ZoneId.of("America/Lima"));
+		System.out.println("***** fechaActual: " + fechaActual);
+		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante, fechaActual);
+
 		lsTarea.forEach(e->{
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaInicio();
 			e.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdTarea()).toString());
 			e.setFechaLimite((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			e.setTiempoLimite((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
 		});
+		
 		return lsTarea;
 	}
 
 	@Override
 	public List<ExamenDto> getLsExamenes(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
-		List<ExamenDto> lsExamenes = evaluacionDao.getLsExamenes(idEstudiante);
-		lsExamenes.forEach(e->{
-			LocalDateTime ldt = evaluacionDao.getOne(e.getIdExamen()).getFechaInicio();
-			e.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdExamen()).toString());
-
-			e.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-			e.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+		List<Evaluacion> lsEvaluaciones = evaluacionDao.getLsExamenesModel(idEstudiante);
+		List<ExamenDto> lsExamenes = new ArrayList<>();
+		lsEvaluaciones.forEach(e->{
+			
+			ExamenDto examenDto = new ExamenDto();
+			LocalDateTime ldt = evaluacionDao.getOne(e.getIdEvaluacion()).getFechaInicio();
+			examenDto.setIdExamen(e.getIdEvaluacion()); 
+			examenDto.setTitulo(e.getTitulo());
+			examenDto.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdEvaluacion()).toString());
+			long seg = e.getFechaFin().until(e.getFechaInicio(), ChronoUnit.SECONDS);
+			examenDto.setDuracion((double)seg/3600);
+			examenDto.setFechaInico((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+			examenDto.setHoraInicio((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
+			lsExamenes.add(examenDto);
+			
 		});
 		return lsExamenes;
 	}
@@ -75,7 +100,15 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	public TareaDto getPreguntasPorTarea(Integer idTarea) {
 		Evaluacion tarea = evaluacionDao.getOne(idTarea);
+		
 		TareaDto tareaDto = new TareaDto(tarea.getIdEvaluacion(), tarea.getTitulo());
+		if (tarea.getIdContenido()!= null) {
+			tareaDto.setContenido(contenidoDao.getOne(tarea.getIdContenido()).getNombre());
+			long seg = tarea.getFechaFin().until(tarea.getFechaInicio(), ChronoUnit.SECONDS);
+			tareaDto.setDuracion((double)seg/3600);
+		}
+		
+		
 		List<PreguntaDto> lsPreguntas = preguntaDao.obtenerPreguntasPorIdTarea(idTarea);
 		
 		lsPreguntas.forEach(preg -> {
@@ -97,6 +130,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public ExamenDto getPreguntasPorExamen(Integer idExamen) {
 		Evaluacion examen = evaluacionDao.getOne(idExamen);
 		ExamenDto examenDto = new ExamenDto(examen.getIdEvaluacion(), examen.getTitulo());
+		long seg = examen.getFechaFin().until(examen.getFechaInicio(), ChronoUnit.SECONDS);
+		examenDto.setDuracion((double)seg/3600);
 		List<PreguntaDto> lsPreguntas = preguntaDao.obtenerPreguntasPorIdTarea(idExamen);
 		
 		lsPreguntas.forEach(preg -> {
@@ -111,6 +146,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			
 		});
 		examenDto.setLsPreguntas(lsPreguntas);
+		
 		return examenDto;
 	}
 	
@@ -121,10 +157,10 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		correcto = 0; incorrecto = 0; vacio = 0;
 		tareaDto.setFechaSolucion(LocalDateTime.now(ZoneId.of("America/Lima")));
 		tareaDto.setCantidadPreguntas(tareaDto.getLsPreguntas().size() + "");
-		
+
 		tareaDto.getLsPreguntas().forEach(pregunta->{
 			String rptaCorrecta = preguntaDao.getOne(pregunta.getIdPregunta()).getRespuestaCorrecta();
-			if(pregunta.getRespuestaEstudiante() == null){
+			if(pregunta.getRespuestaEstudiante() == null || pregunta.getRespuestaEstudiante().equals("")){
 				vacio++;
 			} else if (pregunta.getRespuestaEstudiante().equals(rptaCorrecta)) {
 				correcto++;
@@ -149,10 +185,16 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			estadistica.setNota("C");
 		}
 		estadistica.setLsTiposResultados(lsTipoResultado);
-		estadistica.setTotalPreguntas(tareaDto.getCantidadPreguntas());
+		estadistica.setTotalPreguntas(Integer.parseInt(tareaDto.getCantidadPreguntas()));
 		estadistica.setIdEstudiante(tareaDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(tareaDto.getIdTarea());
 		estadistica.setTipo("T");
+		
+		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(tareaDto.getIdEstudiante(), tareaDto.getIdTarea()) ;
+//		System.out.println("ESTUDIANTE = " + ee);
+		ee.setCodigoEstadoEvaluacion("2");
+		estudianteEvaluacionDao.save(ee);
+		//aaa
 		
 		Historial historial = new Historial();
 		historial.setIdEstudiante(tareaDto.getIdEstudiante());
@@ -199,10 +241,15 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			estadistica.setNota("C");
 		}
 		estadistica.setLsTiposResultados(lsTipoResultado);
-		estadistica.setTotalPreguntas(examenDto.getCantidadPreguntas());
+		estadistica.setTotalPreguntas(Integer.parseInt(examenDto.getCantidadPreguntas()));
 		estadistica.setIdEstudiante(examenDto.getIdEstudiante());
 		estadistica.setIdEvaluacion(examenDto.getIdExamen());
 		estadistica.setTipo("E");
+		
+		EstudianteEvaluacion ee = estudianteEvaluacionDao.obtenerEstudianteEvaluacion(examenDto.getIdEstudiante(), examenDto.getIdExamen()) ;
+//		System.out.println("ESTUDIANTE = " + ee);
+		ee.setCodigoEstadoEvaluacion("2");
+		estudianteEvaluacionDao.save(ee);
 		
 		Historial historial = new Historial();
 		historial.setIdEstudiante(examenDto.getIdEstudiante());
@@ -215,4 +262,68 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		return estadistica;
 	}
 
+	@Override
+	public List<ProTareaDto> getLsTareasAsignadas(Integer idAula){
+		List<ProTareaDto> listaProTarea = evaluacionDao.getLsTareasAsignadas(idAula, "T");
+		listaProTarea.forEach(proTarea -> {
+			Evaluacion eva = evaluacionDao.getEvaluacion(proTarea.getIdTarea());
+			LocalDateTime fechaInicio = eva.getFechaInicio();
+			LocalDateTime fechaFin = eva.getFechaFin();
+			proTarea.setFechaInicio(fechaInicio.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+			proTarea.setFechaLimite(fechaFin.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+			proTarea.setTiempoLimite(fechaFin.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+		});
+		return listaProTarea;
+	}
+
+	public Evaluacion registrarTarea(ProCrearTareaDto tarea)
+	{
+		Evaluacion evaluacion = new Evaluacion();
+		int idEvaluacion = evaluacionDao.nextId();
+		int idGrupo = tarea.getIdAula();
+		evaluacion.setIdEvaluacion(idEvaluacion);
+		evaluacion.setTitulo(tarea.getTitulo());
+		evaluacion.setIdContenido(tarea.getIdContenido());
+		evaluacion.setFechaInicio(
+			LocalDateTime.of(LocalDate.parse(tarea.getFechaInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
+			LocalTime.of(0, 0, 0))
+		);
+		evaluacion.setFechaFin(
+			LocalDateTime.of(LocalDate.parse(tarea.getFechaLimite(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
+			LocalTime.parse(tarea.getTiempoLimite(), DateTimeFormatter.ofPattern("HH:mm")))
+		);
+		evaluacion.setCodTipoEvaluacion("T");
+		evaluacion.setIdGrupo(idGrupo);
+		evaluacion.setIdDocente(1);
+		evaluacion.setCantidad(tarea.getLsPreguntas().size());
+		evaluacion.setCodigoEstado("1");
+		evaluacion = evaluacionDao.save(evaluacion);
+
+		tarea.getLsPreguntas().forEach(idPreg -> {
+			evaluacionDetalleDao.registrarEvaluacionDetalle(idEvaluacion, idPreg);
+		});
+
+		List<Integer> listaAlumnos = matriculaDao.obtenerLtAlumnosGrupo(idGrupo);
+		listaAlumnos.forEach(idEstudiante -> {
+			EstudianteEvaluacion ee = new EstudianteEvaluacion();
+			ee.setIdEstudiante(idEstudiante);
+			ee.setIdEvaluacion(idEvaluacion);
+			ee.setIdArea(1);
+			ee.setCodigoEstadoEvaluacion("1");
+			estudianteEvaluacionDao.save(ee);
+		});
+		return evaluacion;
+	}
+
+	@Override
+	public Boolean eliminarTarea(Integer idTarea) {
+		try{
+			Evaluacion evaluacion = evaluacionDao.getOne(idTarea);
+			evaluacion.setCodigoEstado("EE");
+			evaluacionDao.save(evaluacion);
+			return true;	
+		}catch(Exception e){
+			throw new RuntimeException("La tarea no existe");
+		}	
+	}
 }

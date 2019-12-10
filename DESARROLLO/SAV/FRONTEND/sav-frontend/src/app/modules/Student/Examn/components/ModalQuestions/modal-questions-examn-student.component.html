@@ -1,0 +1,62 @@
+<div>
+  <div class="timer-examn">
+    <div class="timer-flex">
+      <div class="timer-flex__text">Tiempo restante: </div>
+      <nz-countdown class="timer-flex__count" (nzCountdownFinish)="sendAnswers()" [nzValue]="deadline"></nz-countdown>
+    </div>
+  </div>
+  <form nz-form class="login-form" [formGroup]="answersForm">
+    <nz-tabset [nzSelectedIndex]="indexTab" [nzTabPosition]="'left'">
+      <nz-tab *ngFor="let question of questions.lsPreguntas; index as i" class="question-list" nzTitle="Pregunta {{i+1}}"
+              (nzClick)="pressTab(i)">
+        <div class="box_text">{{question.descripcion}}</div>
+        <img class="box__imag" [src]="question.urlImagen" alt="">
+        <div *ngIf="question.tipo == 0">
+          <div class="flex-style-exam">
+            <div class="input_text">
+              <div class="text-alter">La Respuesta es :</div>
+              <input class="input_text--inp" nz-input formControlName="{{i}}" />
+            </div>
+          </div>
+        </div>
+        <div *ngIf="question.tipo == 1">
+          <div>La Respuesta es :</div>
+          <div class="aler-box">
+            <nz-radio-group class="flex-style" formControlName="{{i}}">
+              <label *ngFor="let alter of question.alternativas" nz-radio nzValue="{{alter}}"><span>{{alter}}</span></label>
+            </nz-radio-group>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+  </form>
+</div>
+
+<div *nzModalFooter>
+  <div class="flex-style">
+    <div>Pregunta {{indexTab + 1}} de {{questions.lsPreguntas.length}}</div>
+    <div class="">
+      <button nz-button nzType="default" class="btn-global--black--line" (click)="pre()" *ngIf="indexTab > 0">
+        <span>Anterior</span>
+      </button>
+      <button nz-button nzType="default" class="btn-global--black--line" (click)="next()"
+              *ngIf="indexTab < questions.lsPreguntas.length-1">
+        <span>Siguiente</span>
+      </button>
+      <button nz-button
+              [nzLoading]="varLoadingSend"
+              nzType="default"
+              class="btn-global--black--line"
+              nz-popconfirm
+              nzPopconfirmTitle="¿Estas seguro de enviar tus respuestas?"
+              nzPopconfirmPlacement="rightTop"
+              (nzOnConfirm)="sendAnswers()"
+              *ngIf="indexTab === questions.lsPreguntas.length-1">
+        <span>Finalizar</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-loading-blank-student [flag]="varLoadingSend"></app-loading-blank-student>
+

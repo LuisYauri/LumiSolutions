@@ -21,7 +21,7 @@ public class TareaDto {
 	private String contenido;
 
 	
-	private String duracion;
+	private Double duracion;
 	
 	private LocalDateTime fechaSolucion;
 	private String fechaRealizada;
@@ -32,10 +32,14 @@ public class TareaDto {
 
 	private EstadisticaDto estadistica;
 
+	public TareaDto(Integer idTarea, String titulo, String contenido) {
+		this.idTarea = idTarea;
+		this.titulo = titulo;
+		this.contenido = contenido;
+	}
+	
 	public TareaDto(Integer idTarea, String titulo) {
 		this.idTarea = idTarea;
 		this.titulo = titulo;
 	}
-	
-	
 }

@@ -16,7 +16,7 @@ export class HomeworkStudentComponent implements OnInit {
   }
 
   varTitle = 'Lista de Tareas'
-  varLoading = true
+  varLoading = false
 
   listHomeworks: Homework[] = []
 
@@ -30,12 +30,27 @@ export class HomeworkStudentComponent implements OnInit {
 
   private async getListHomeworks() {
     try {
+      this.varLoading = true
       const response:any = await this.homeworkStudentService.getListHomework().toPromise()
-      this.listHomeworks = response
+      this.listHomeworks = this.generateJsonWithFlag(response)
       this.varLoading = false
     }catch (e) {
       this.varLoading = false
       console.log(e)
+    }
+  }
+
+  private generateJsonWithFlag(response: Homework[]) {
+    let jsonGenerate = []
+    for (let home of response){
+      jsonGenerate.push({...home, flag:false})
+    }
+    return jsonGenerate;
+  }
+
+  refresh($event: any) {
+    if($event){
+      this.getListHomeworks()
     }
   }
 }

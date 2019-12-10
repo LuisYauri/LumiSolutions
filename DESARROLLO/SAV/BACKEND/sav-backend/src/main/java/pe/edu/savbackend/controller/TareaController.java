@@ -33,6 +33,7 @@ public class TareaController {
 	}
 
 	@RequestMapping("/{idTarea}/preguntas")
+//	@Secured("ALUMNO")
 	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTarea) {
 		return evaluacionService.getPreguntasPorTarea(idTarea);
 	}
@@ -44,4 +45,5 @@ public class TareaController {
 		return evaluacionService.finalizarTarea(tareaDto);
 	}
 
+	
 }

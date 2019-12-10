@@ -17,7 +17,7 @@ public interface ComentarioDao extends JpaRepository<Comentario, Integer>{
                  + "(c.idEstudiante, p.apellidoPaterno, p.nombre , c.descripcion) " 
                  + "from Comentario c " 
                  + "join Estudiante e on e.idEstudiante = c.idEstudiante "
-                 + "join Persona p on p.idPersona = e.idPersona where c.idRecurso = ?1"
+                 + "join Persona p on p.idPersona = e.idPersona where c.idRecurso = ?1 ORDER BY c.fecha DESC"
            )
 	List<ComentarioResponse> obtenerListaComentarios(Integer idRecurso);
 

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.google.common.base.Predicates;
 
@@ -21,12 +24,25 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class Main {
-
+public class Main implements CommandLineRunner{
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	public static void main(String[] args) {
+		
 		SpringApplication.run(Main.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		String password = "user";
+		for (int i = 1; i <= 10; i++) {
+			String passwordBcrypt = passwordEncoder.encode(password + i);
+			System.out.println(i+"- "+passwordBcrypt);
+		}
+	}
+	
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.any())
@@ -40,3 +56,4 @@ public class Main {
 		return new ApiInfoBuilder().title("SAV-API").description("Api del Sistema de Aula Virtual").build();
 	}
 }
+

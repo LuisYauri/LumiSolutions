@@ -1,0 +1,83 @@
+<div class="header_global">
+  <app-header-page-teacher [title]="varHeader.title" [icon]="varHeader.icon"
+                           [url]="varHeader.url"></app-header-page-teacher>
+</div>
+<div class="body_global">
+  <app-title-page-student [title]="varTitle"></app-title-page-student>
+  <div class="paginator-box">
+    <button class="paginator-box--item btn_global--blue-solid" nz-button [nzSize]="'large'" nzType="primary"
+            (click)="openAddStudent()">
+      <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      Agregar Estudiante
+    </button>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <!-- Filtros -->
+      <br>
+    </div>
+  </div>
+  <nz-table #nzTable [nzData]="listStudents" [nzLoading]="varLoading">
+    <thead>
+    <tr>
+      <th nzCustomFilter>
+        Nombre
+      </th>
+      <th nzCustomFilter>
+        Apellido Paterno
+        <i
+          nz-th-extra
+          class="ant-table-filter-icon"
+          nz-icon
+          nz-dropdown
+          #dropdown="nzDropdown"
+          nzType="search"
+          [nzDropdownMenu]="menu"
+          [class.ant-table-filter-open]="dropdown.nzVisible"
+          nzTrigger="click"
+          nzPlacement="bottomRight"
+          [nzClickHide]="false"
+          nzTableFilter
+        ></i>
+      </th>
+      <th>Apellido Materno</th>
+      <th>Usuario</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of nzTable.data">
+      <td>{{ data.nombre }}</td>
+      <td>{{ data.apaterno }}</td>
+      <td>{{ data.amaterno }}</td>
+      <td>{{ data.usuario }}</td>
+      <td>
+        <div class="">
+          <button nz-button nzType="primary" (click)="openEditStudent(data)"
+                  class="btn_global--green-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon
+                                                                                                      nzType="edit"
+                                                                                                      nzTheme="outline"></i>
+          </button>
+          <button nz-button nzType="primary" (click)="openDeleteStudent(data)"
+                  class="btn-global--red-solid blue-box-square--action--item" [nzSize]="'large'"><i nz-icon
+                                                                                                    nzType="delete"
+                                                                                                    nzTheme="outline"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="search-box">
+      <input type="text" nz-input placeholder="Escriba la busqueda" [(ngModel)]="searchValue"/>
+      <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">
+        Buscar
+      </button>
+      <button nz-button nzSize="small" (click)="reset()">Resetear</button>
+    </div>
+  </nz-dropdown-menu>
+</div>
+
+<app-loading-blank-teacher [flag]="varLoading"></app-loading-blank-teacher>
+

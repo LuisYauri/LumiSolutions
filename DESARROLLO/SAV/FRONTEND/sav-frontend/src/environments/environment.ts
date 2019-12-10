@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiMain: 'https://gentle-ridge-09487.herokuapp.com/api/'
+  apiMain: 'https://sav-backend-fisi.herokuapp.com/sav-backend/'
 };
 
 /*

@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Resource} from "../../../model/Student/resource.model";
+import {Comment, Resource} from "../../../model/Student/resource.model";
 import {AuthService} from "../../../../services/auth.service";
 import {ResourceService} from "../../../services/Student/resource.service";
+import {NzModalRef, NzNotificationService} from "ng-zorro-antd";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-modal-help-student',
@@ -14,12 +16,19 @@ export class ModalHelpStudentComponent implements OnInit {
 
   tooltips = ['Puede mejorar', 'Maso menos', 'Normal', 'Bueno', 'Maravilloso'];
   selectValue = 0;
-  commentValue: string;
+  listComment: Comment[] = []
+  varLoadingSpinning = false
 
-  constructor(private authService:AuthService, private resourceService:ResourceService) { }
+  commentForm: FormGroup
+
+  constructor(private authService: AuthService, private resourceService: ResourceService,
+              private modal: NzModalRef,private fb: FormBuilder,  private notification: NzNotificationService) {
+  }
 
   ngOnInit() {
     this.selectValue = this.resource.alumnoCalificacion
+    this.getCommentForm()
+    this.getComments(this.resource.idRecurso)
   }
 
   changeRate(value: number) {
@@ -29,8 +38,7 @@ export class ModalHelpStudentComponent implements OnInit {
   private async sendRate(value: number) {
     try {
       const response = await this.resourceService.postRate(this.gJsonSendRate(value)).toPromise()
-      console.log("Good")
-    }catch (e) {
+    } catch (e) {
       console.log(e)
     }
   }
@@ -38,16 +46,24 @@ export class ModalHelpStudentComponent implements OnInit {
   private gJsonSendRate(value: number) {
     return {
       idRecurso: this.resource.idRecurso,
-      idEstudiante: this.authService.getIdEstudiante(),
-      calificacion: value.toString()
+      idEstudiante: this.authService.getDataUsername().id,
+      calificacion: value
     }
   }
 
   async sendComment() {
     try {
+      this.varLoadingSpinning = true
       const response = await this.resourceService.postComment(this.gJsonSendComment()).toPromise()
-      console.log("Good")
-    }catch (e) {
+      this.getComments(this.resource.idRecurso)
+      this.varLoadingSpinning = false
+      this.commentForm.controls['comment'].setValue(null);
+      this.notification.create(
+        'success',
+        'Mensaje Enviado Correctamente',
+        ''
+      );
+    } catch (e) {
       console.log(e)
     }
   }
@@ -55,8 +71,52 @@ export class ModalHelpStudentComponent implements OnInit {
   private gJsonSendComment() {
     return {
       idRecurso: this.resource.idRecurso,
-      idEstudiante: this.authService.getIdEstudiante(),
-      descripcion: this.commentValue.toString()
+      idEstudiante: this.authService.getDataUsername().id,
+      descripcion: this.commentForm.controls['comment'].value.toString()
+    }
+  }
+
+
+  private async getComments(idRecurso: number) {
+    try {
+      const response: any = await this.resourceService.getComments(idRecurso.toString()).toPromise()
+      this.listComment = response
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  destroyModal() {
+    this.modal.destroy();
+  }
+
+  private getCommentForm() {
+    this.commentForm = this.fb.group({
+      comment:['',[Validators.required]]
+    })
+  }
+
+  sendFormComment() {
+    if (!this.commentForm.valid) {
+      for (const i in this.commentForm.controls) {
+        this.commentForm.controls[i].markAsDirty()
+        this.commentForm.controls[i].updateValueAndValidity()
+      }
+      this.notification.create(
+        'info',
+        'Debe Ingresar un comentario.',
+        ''
+      );
+      return
+    } else if (/^ *$/.test(this.commentForm.controls['comment'].value.toString())) {
+      this.notification.create(
+        'info',
+        'Debe Ingresar un comentario.',
+        ''
+      );
+    }
+    else {
+      this.sendComment()
     }
   }
 }

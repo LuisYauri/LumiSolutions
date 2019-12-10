@@ -1,0 +1,78 @@
+<div>
+  <form nz-form class="login-form" [formGroup]="dataStudentForm">
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="nombre">Nombre :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <input nz-input id="nombre" formControlName="nombre" placeholder="Ej. Luis"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="apaterno">Apellido Parterno :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <input nz-input id="apaterno" formControlName="apaterno" placeholder="Ej. Yauri"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="amaterno">Apellido Materno :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <input nz-input id="amaterno" formControlName="amaterno" placeholder="Ej. Martinez"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="usuario">Usuario :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <input nz-input id="usuario" formControlName="usuario" placeholder="Ej. LuisYauri"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="contrasenia">Constraseña :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <input nz-input id="contrasenia" formControlName="contrasenia" placeholder="Ej. 123456"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *nzModalFooter>
+  <div class="flex-style">
+    <div>
+
+    </div>
+    <div class="">
+      <button nz-button
+              [nzLoading]="varLoadingData"
+              nzType="default"
+              class="btn-global--blue--line"
+              nz-popconfirm
+              nzPopconfirmTitle="¿Estas seguro de agregar un aula?"
+              nzPopconfirmPlacement="rightTop"
+              (nzOnConfirm)="sendData()"
+      >
+        <span>{{nameAccion}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-loading-blank-teacher [flag]="varLoadingData"></app-loading-blank-teacher>
+

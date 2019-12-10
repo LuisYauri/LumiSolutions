@@ -1,7 +1,11 @@
 package pe.edu.savbackend.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -29,6 +33,7 @@ public class Matricula {
     //Llave primaria
     @Id
 	@Column(name="id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idMatricula;
     
     //Llaves foráneas	
@@ -36,6 +41,8 @@ public class Matricula {
 	private Integer idEstudiante;
 	
 	@Column(name="id_grupo")
-	private Integer idGrupo;
+	private Integer idGrupo;	
 	
+	@Column(name="fecha_matricula")
+	private LocalDateTime fechaMatricula;
 }

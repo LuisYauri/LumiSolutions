@@ -30,6 +30,4 @@ public class Docente {
     private Integer idDocente;
 	@Column(name="id_persona")
 	private Integer id_persona;
-    @Column(name="username")
-    private String username;
 }

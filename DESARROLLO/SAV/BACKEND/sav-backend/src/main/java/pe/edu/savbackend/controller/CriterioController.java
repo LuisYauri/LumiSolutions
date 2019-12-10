@@ -19,11 +19,14 @@ import pe.edu.savbackend.service.criterio.CriterioService;
 public class CriterioController {
 
 	@Autowired
-	CriterioService criterio;
+	private CriterioService criterio;
 	
 	@RequestMapping("/")
 	public List<CriterioDto> filtrar(@RequestParam(required = false) Integer idArea) {
 		return criterio.getLsTareas(idArea);
 	}
+	
+	
+
 
 }

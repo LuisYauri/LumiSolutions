@@ -8,21 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.entity.Calificacion;
-import pe.edu.savbackend.entity.Comentario;
 import pe.edu.savbackend.service.calificaciones.CalificacionService;
-import pe.edu.savbackend.service.comentario.ComentarioService;
 
 @RestController
 @RequestMapping("/calificaciones")
 public class CalificacionController {
 
-	
+	//cambios
 	@Autowired
 	CalificacionService calificacionService;
 	
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	//registra una calificacion (estrellas)
 	public Double registrarCalificacion(@RequestBody Calificacion calificacion) {
+		
 		return calificacionService.registrarCalificacion(calificacion);
 	}
 

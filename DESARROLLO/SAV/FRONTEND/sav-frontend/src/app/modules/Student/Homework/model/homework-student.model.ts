@@ -5,12 +5,14 @@ export interface Homework {
   fechaLimite: string
   tiempoLimite: string
   contenido: string
+  flag?: boolean
 }
 
 
 export interface Questions {
   idTarea: number
   titulo: string
+  contenido: string
   lsPreguntas: Question[]
 }
 
@@ -27,6 +29,7 @@ export interface SendAnswers {
   idTarea: number
   titulo: string
   idEstudiante: number
+  contenido: string
   lsPreguntas: QuestionA[]
 }
 
@@ -37,13 +40,26 @@ export interface QuestionA {
   urlImagen: string
   tipo: string
   alternativas: string[]
-  respuestaEstudiante: number
+  respuestaEstudiante: string
 }
 
 export interface Answer {
-  respuesta: number
+  respuesta: string
 }
 
 export interface ConfirmationAnswer {
   confirmacion: boolean
+}
+
+export interface Results {
+  nota: string
+  totalPreguntas: number
+  tipo: string
+  lsTiposResultados: Result[]
+}
+
+export interface Result {
+  tipo: string
+  porcentaje: number
+  cantidad: number
 }

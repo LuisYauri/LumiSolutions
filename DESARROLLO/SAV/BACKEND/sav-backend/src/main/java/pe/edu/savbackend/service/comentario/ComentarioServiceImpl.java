@@ -1,5 +1,6 @@
 package pe.edu.savbackend.service.comentario;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class ComentarioServiceImpl implements ComentarioService {
 	
 	@Override
 	public Comentario registrarComentario(Comentario comentario) {
-		// TODO Auto-generated method stub
+		comentario.setFecha(LocalDateTime.now());
 		System.out.println(comentario.getIdComentario());
 		if(comentario.getIdComentario() != null) {
 			throw new RuntimeException("No puede editar su comentario");

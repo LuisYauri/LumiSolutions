@@ -1,0 +1,14 @@
+<div>
+  <div class="delete-box-teacher">
+    <div class="delete-box-teacher--subtitle">
+      {{subtitle}}
+    </div>
+    <div class="delete-box-teacher--description">
+      {{description}}
+    </div>
+    <div class="delete-box-teacher--action">
+      <button class="btn-global--red-solid delete-box-teacher--action--yes" (click)="sendYes()" nz-button [nzSize]="'large'" nzType="primary">Sí</button>
+      <button class="btn-global--black--solid delete-box-teacher--action--no" (click)="close()" nz-button [nzSize]="'large'" nzType="primary">No</button>
+    </div>
+  </div>
+</div>

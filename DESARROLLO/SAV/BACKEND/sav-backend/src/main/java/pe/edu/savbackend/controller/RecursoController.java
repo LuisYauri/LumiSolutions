@@ -22,7 +22,7 @@ public class RecursoController {
 	@Autowired
 	RecursoService recursoService;
 	
-	@RequestMapping("/{idRecurso}/alumno/{idEstudiante}")
+	@RequestMapping("/{idRecurso}/estudiante/{idEstudiante}")
 	public RecursoDto obtenerPorId(@PathVariable Integer idRecurso, @PathVariable Integer idEstudiante) {
 		return recursoService.obtenerRecursoPorId(idRecurso, idEstudiante); // devolver un recurso con lista de alumnos
 	}

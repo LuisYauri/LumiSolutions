@@ -1,6 +1,6 @@
 export interface SubContent {
   nombre: string,
-  lsSubContenidos: ItemSubContent[]
+  lsSubContenido: ItemSubContent[]
 }
 
 export interface ItemSubContent {
@@ -8,4 +8,5 @@ export interface ItemSubContent {
   nombre: string
   descripcion: string
   urlImagen: string
+  flag?: boolean
 }
