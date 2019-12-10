@@ -25,9 +25,8 @@ public class MatriculaController {
 	MatriculaService matriculaService;
 	
 	@PostMapping(value = "/aula/{idAula}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> matricular(@PathVariable Integer idAula, @RequestBody Integer[] idEstudiantes) {
+	public void matricular(@PathVariable Integer idAula, @RequestBody Integer[] idEstudiantes) {
 		matriculaService.matricular(idAula, idEstudiantes);
-		return ResponseEntity.ok("Alumnos matriculados con exito");
 	}
 
 	@DeleteMapping(value = "/{idEstudiante}/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
