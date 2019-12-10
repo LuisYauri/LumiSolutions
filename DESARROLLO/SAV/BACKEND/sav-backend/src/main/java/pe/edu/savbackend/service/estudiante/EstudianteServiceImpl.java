@@ -12,6 +12,7 @@ import pe.edu.savbackend.dao.EstudianteDao;
 import pe.edu.savbackend.dao.PersonaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.EstudianteDto;
+import pe.edu.savbackend.domain.PROFESOR.ProEstudianteDto;
 import pe.edu.savbackend.entity.Estudiante;
 import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.entity.Usuario;
@@ -62,35 +63,14 @@ public class EstudianteServiceImpl implements EstudianteService {
 			return estudianteBD;
 	}
 	
-	@Override
-	public Estudiante actualizarEstudiante(EstudianteDto estudiante) {
-		/* Grupo grupo = estudianteDao.getOne(aula.getIdAula());
-		if(!aula.getGrupo().equals(grupo.getNombre()))
-		{
-			if(estudianteDao.existe(aula.getGrupo()) != 0) 
-			{
-				throw new RuntimeException("El nombre de grupo ya existe");
-			}
-			grupo.setNombre(aula.getGrupo());
-		}
-		
-		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
-		grupo.setAnio(LocalDateTime.of(aula.getAnio(),1,1,0,0,0));
-		return estudianteDao.save(grupo); */
-		return null;
-	}
+	
+
 
 	@Override
-	public Boolean eliminarEstudiante(Integer idEstudiante) {
-		/* try{
-			Grupo grupo = estudianteDao.getOne(idArea);
-			grupo.setCodigoEstado("0");
-			estudianteDao.save(grupo);
-			return true;	
-		}catch(Exception e){
-			throw new RuntimeException("El id grupo no existe");
-		}	 */
-		return null;
+	public List<ProEstudianteDto> filtrar(Integer idAula) {
+		List<ProEstudianteDto> lsProEstudiantesDto = estudianteDao.filtrar(idAula);
+		
+		return lsProEstudiantesDto;
 	}
 
 }
