@@ -1,5 +1,6 @@
 package pe.edu.savbackend.service.estudiante;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,6 +14,7 @@ import pe.edu.savbackend.dao.PersonaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.EstudianteDto;
 import pe.edu.savbackend.domain.PROFESOR.ProEstudianteDto;
+import pe.edu.savbackend.domain.PROFESOR.ProEstudiantePorMatricularDto;
 import pe.edu.savbackend.entity.Estudiante;
 import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.entity.Usuario;
@@ -68,9 +70,20 @@ public class EstudianteServiceImpl implements EstudianteService {
 
 	@Override
 	public List<ProEstudianteDto> filtrar(Integer idAula) {
-		List<ProEstudianteDto> lsProEstudiantesDto = estudianteDao.filtrar(idAula);
 		
-		return lsProEstudiantesDto;
+		
+		return estudianteDao.filtrar(idAula);
+	}
+
+
+	@Override
+	public List<ProEstudiantePorMatricularDto> listaAlumnosDisponibles(Integer idAula) {
+		List<ProEstudiantePorMatricularDto> lsEstudiantesDisponibles = estudianteDao.listaAlumnosDisponibles(); //lista total de estudiantes
+		List<Integer> idsEstudiantesMatriculadosAnioActual = estudianteDao.estudiantesMatriculadosAnioActual(LocalDate.now().getYear());
+				
+		System.out.println("2019="+idsEstudiantesMatriculadosAnioActual);
+		lsEstudiantesDisponibles.removeIf(led -> idsEstudiantesMatriculadosAnioActual.contains(led.getIdEstudiante()));
+		return lsEstudiantesDisponibles;
 	}
 
 }

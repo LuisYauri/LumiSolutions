@@ -4,17 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.EstudianteDto;
 import pe.edu.savbackend.domain.PROFESOR.ProEstudianteDto;
+import pe.edu.savbackend.domain.PROFESOR.ProEstudiantePorMatricularDto;
 import pe.edu.savbackend.entity.Estudiante;
 import pe.edu.savbackend.service.estudiante.EstudianteService;
 
@@ -47,8 +45,13 @@ public class EstudianteController {
 //		return estudianteService.eliminarEstudiante(idEstudiante);
 //	}
 	
-	@RequestMapping("/{idAula}")
+	@RequestMapping("/{idAula}") //estudiantes matriculados en el aula idAula
 	public List<ProEstudianteDto> listaFiltrada(@PathVariable Integer idAula) {
 		return estudianteService.filtrar(idAula); 
 	}
+	
+	 @RequestMapping("/disponibles/{idAula}") //estudiantes disponibles para matricularse en el aula idAula
+		public List<ProEstudiantePorMatricularDto> listaAlumnosDisponibles(@PathVariable Integer idAula) {
+			return estudianteService.listaAlumnosDisponibles(idAula); 
+		}
 }
