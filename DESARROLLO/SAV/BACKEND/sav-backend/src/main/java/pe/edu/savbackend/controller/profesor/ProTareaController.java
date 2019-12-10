@@ -42,23 +42,5 @@ public class ProTareaController {
 	@PatchMapping(value = "/{idTarea}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean eliminarTarea(@PathVariable Integer idTarea) {
 		return evaluacionService.eliminarTarea(idTarea);
-
 	}
-//
-//	@RequestMapping("/{idTarea}/preguntas")
-////	@Secured("ALUMNO")
-//	public TareaDto getPreguntasPorTarea(@PathVariable Integer idTarea) {
-//		return evaluacionService.getPreguntasPorTarea(idTarea);
-//	}
-//
-//	@PostMapping(value = "/{idEvaluacion}/estudiante/{idEstudiante}/finalizar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public EstadisticaDto finalizar(@PathVariable Integer idEvaluacion, @PathVariable Integer idEstudiante, @RequestBody TareaDto tareaDto) {
-//		tareaDto.setIdTarea(idEvaluacion);
-//		tareaDto.setIdEstudiante(idEstudiante);
-//		return evaluacionService.finalizarTarea(tareaDto);
-//	}
-
-
-	
-	
 }

@@ -49,4 +49,7 @@ public class EstudianteEvaluacion {
     @Column(name="cod_estado_evaluacion")
     private String codigoEstadoEvaluacion;    
     
+    @Column(name="id_grupo")
+    private Integer idGrupo;
+    
 }
