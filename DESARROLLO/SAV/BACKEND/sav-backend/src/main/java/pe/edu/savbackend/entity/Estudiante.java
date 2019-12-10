@@ -22,11 +22,9 @@ import lombok.NoArgsConstructor;
 public class Estudiante {
 	@Id
 	@Column(name="id")
-	private Integer id;
+	private Integer idEstudiante;
 	@Column(name="id_persona")
 	private Integer idPersona;
-	@Column(name="username")
-	private String username;
 	@Column(name="correo_apoderado")
 	private String correoApoderado;
 }

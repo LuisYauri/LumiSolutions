@@ -1,0 +1,25 @@
+.block-details-answers{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  &__inputs{
+    display: flex;
+    flex-direction: column;
+    &--block{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+}
+
+.input-text-details{
+  width: 30%;
+  margin: 5px 0 5px 10px;
+}
+
+.btn-help-details{
+  margin: 0 0 10px;
+}

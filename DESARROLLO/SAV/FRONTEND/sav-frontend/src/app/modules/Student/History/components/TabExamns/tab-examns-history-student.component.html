@@ -1,0 +1,27 @@
+<div nz-row>
+  <div nz-col nzSpan="24">
+    <nz-table #tableExamnHistory
+              [nzData]="lsTareas"
+              [nzShowPagination]="false"
+              [nzLoading]="varLoading"
+    >
+      <thead>
+      <tr>
+        <th *ngFor="let title of varTableTitle">{{title}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let examn of tableExamnHistory.data">
+        <td>{{ examn.titulo}}</td>
+        <td>{{ examn.cantidadPreguntas }}</td>
+        <td>{{ examn.fechaRealizada }}</td>
+        <td>{{ examn.horaRealizada }}</td>
+        <td>
+          <button nz-button class="btn_global--green-solid" [nzLoading]="examn.flag" nzType="primary" (click)="showModal(examn)"><i nz-icon nzType="eye"></i>Ver</button>
+        </td>
+        <app-loading-blank-student [flag]="examn.flag"></app-loading-blank-student>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

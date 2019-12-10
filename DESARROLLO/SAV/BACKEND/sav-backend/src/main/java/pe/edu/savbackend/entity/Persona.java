@@ -21,7 +21,8 @@ import lombok.AllArgsConstructor;
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Persona {
     @Id
-    private Integer id;
+    @Column(name="id")
+    private Integer idPersona;
 	@Column(name="nombre")
 	private String nombre;
 	@Column(name="apellido_paterno")
@@ -31,5 +32,9 @@ public class Persona {
     @Column(name="numero_celular")
     private Integer numeroCelular;
     @Column(name="correo")
-	private String correo;
+    private String correo;
+    @Column(name="id_usuario")
+    private Integer idUsuario;
+    @Column(name="cod_tipo_persona")
+	private String codigoTipoPersona;
 }

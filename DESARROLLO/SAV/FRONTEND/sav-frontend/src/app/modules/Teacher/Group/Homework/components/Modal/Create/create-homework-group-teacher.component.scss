@@ -1,0 +1,44 @@
+.steps-content {
+  margin: 30px 20px 0;
+}
+
+.steps-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
+  margin-right: 8px;
+}
+
+.setps-header {
+  margin: 20px 0 5px;
+}
+
+.defaultColumn {
+  padding: 0 20px 0 0;
+}
+
+.bodyModal {
+  padding: 60px 0 0;
+}
+
+.box-two-subtitle {
+  font-size: 16px;
+}
+
+.box-two-table{
+  margin: 15px 0 25px;
+}
+.box-two-group{
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  margin: 0 0 10px;
+  &--item{
+    margin: 2px 0;
+  }
+}

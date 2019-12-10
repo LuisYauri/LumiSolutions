@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {SubContent} from "../../model/content-student.model";
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ItemSubContent, SubContent} from "../../model/content-student.model";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ContentStudentService} from "../../services/content-student.service";
 
 @Component({
@@ -11,54 +11,50 @@ import {ContentStudentService} from "../../services/content-student.service";
 export class ContentStudentComponent implements OnInit {
 
   varHeader = {
-    title: 'Criterios',
+    title: '',
     icon: 'copy',
     url: '/student/criteria/'
   }
 
   varTitleSubcontent = "Temas"
 
-  varLoading = false
+  varLoading = true
   varIdContent = ""
 
-  subContent:SubContent = {
-    "nombre": "Contenido",
-    "lsSubContenidos": [
-      {
-        "idSubContenido": 1,
-        "nombre": "ga",
-        "descripcion": "Criterio1",
-        "urlImagen": "http://dfdsf.png"
-      },
-      {
-        "idSubContenido": 2,
-        "nombre": "sdsfs",
-        "descripcion": "Criterio1",
-        "urlImagen": "http://dfdsf.png"
-      },
-      {
-        "idSubContenido": 3,
-        "nombre": "dsfds",
-        "descripcion": "Criterio1",
-        "urlImagen": "http://dfdsf.png"
-      }
-    ]
-  }
+  subContent: SubContent
 
-  constructor(private route: ActivatedRoute, private contentStudentService:ContentStudentService) { }
+  constructor(private route: ActivatedRoute, private contentStudentService: ContentStudentService, private router: Router,) {
+  }
 
   ngOnInit() {
     this.varIdContent = this.route.snapshot.paramMap.get('id').toString()
     this.getSubContent(this.varIdContent)
   }
 
-  private async getSubContent(idContent:string) {
-    // Consumeo de servicio
-    // try {
-    //   const response:any = await this.contentStudentService.getSubContent(idContent).toPromise()
-    //   this.subContent = response
-    // }catch (e) {
-    //   console.log(e)
-    // }
+  private async getSubContent(idContent: string) {
+    try {
+      this.varLoading = true
+      const response: any = await this.contentStudentService.getSubContent(idContent).toPromise()
+      this.subContent = response
+      this.subContent.lsSubContenido = this.addFlag(this.subContent.lsSubContenido)
+      this.varHeader.title = this.subContent.nombre
+      this.varLoading = false
+    } catch (e) {
+      console.log(e)
+    }
   }
+
+  addFlag(lsSubContenido: ItemSubContent[]) {
+    let arrayTem = []
+    for (let item of lsSubContenido) {
+      arrayTem.push({...item, flag: false})
+    }
+    return arrayTem
+  }
+
+  checkSubContent(item: ItemSubContent) {
+    let id = `${this.varIdContent.toString()}-${item.idSubContenido.toString()}`
+    this.router.navigate(['/student/criteria/content/resource/', id]);
+  }
+
 }

@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
 
   private getLoginForm() {
     this.loginForm = this.fb.group({
-      type: ['', [Validators.required]],
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],
     })
@@ -45,10 +44,24 @@ export class LoginComponent implements OnInit {
   async sendCredentials() {
     this.varLoading = true
     try {
-      const response = await this.authService.postLogin(this.gJsonLogin()).toPromise()
+      const response: any = await this.authService.postLogin(this.gJsonLogin()).toPromise()
       localStorage.setItem('access_token', response['token']);
-      this.varLoading = false
-      await this.router.navigate(['/student/homework'])
+      const username = this.authService.getUsername()
+      localStorage.setItem('username', username);
+      try {
+        const response: any = await this.authService.getLoginData(username).toPromise()
+        localStorage.setItem('data_username', JSON.stringify(response))
+        if (this.authService.getDataUsername().tipoPersona === "ALUMNO") {
+          await this.router.navigate(['/student/homework'])
+        } else if (this.authService.getDataUsername().tipoPersona === "PROFESOR") {
+          await this.router.navigate(['/teacher-global/classroom'])
+        } else {
+          await this.router.navigate(['/'])
+        }
+        this.varLoading = false
+      } catch (e) {
+        console.log(e)
+      }
     } catch (e) {
       console.log(e)
       this.varLoading = false
@@ -58,9 +71,8 @@ export class LoginComponent implements OnInit {
 
   private gJsonLogin() {
     return {
-      tipo: this.loginForm.controls['type'].value,
-      usuario: this.loginForm.controls['username'].value,
-      contrasenia: this.loginForm.controls['password'].value
+      username: this.loginForm.controls['username'].value,
+      password: this.loginForm.controls['password'].value
     }
   }
 }

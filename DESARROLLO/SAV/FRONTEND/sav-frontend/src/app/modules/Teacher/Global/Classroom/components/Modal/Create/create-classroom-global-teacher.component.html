@@ -1,0 +1,57 @@
+<div>
+  <form nz-form class="login-form" [formGroup]="dataAulaForm">
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="grupo">Nombre del aula :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <input nz-input id="grupo" formControlName="grupo" placeholder="Ej. Sección A"/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="codigoGrado">Grado :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <nz-input-number style="width: 100%" id="codigoGrado" formControlName="codigoGrado" [nzPlaceHolder]="'Ej. 1'" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col class="ng-modal-body__colum" nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzNoColon]="true" nzFor="anio">Año :</nz-form-label>
+          <nz-form-control nzErrorTip="Campo incompleto.">
+            <nz-input-number style="width: 100%" id="anio" formControlName="anio" [nzPlaceHolder]="'Ej. 2019'" [nzMin]="1" [nzMax]="3000" [nzStep]="1"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *nzModalFooter>
+  <div class="flex-style">
+    <div>
+
+    </div>
+    <div class="">
+      <button nz-button
+              [nzLoading]="varLoadingData"
+              nzType="default"
+              class="btn-global--blue--line"
+              nz-popconfirm
+              nzPopconfirmTitle="¿Estas seguro de agregar un aula?"
+              nzPopconfirmPlacement="rightTop"
+              (nzOnConfirm)="sendData()"
+             >
+        <span>{{nameAccion}}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-loading-blank-teacher [flag]="varLoadingData"></app-loading-blank-teacher>

@@ -13,6 +13,6 @@ import pe.edu.savbackend.entity.Subcontenido;
  */
 public interface SubcontenidoDao extends JpaRepository<Subcontenido, Integer> {
  
-	@Query(value = "select new pe.edu.savbackend.domain.SubContenidoDto(e.id, e.nombre, e.descripcion, e.urlImagen) from Subcontenido e join Contenido ee on e.idContenido = ee.id where ee.id >= ?1 AND ee.id <= (?1 +2)")
+	@Query(value = "select new pe.edu.savbackend.domain.SubContenidoDto(e.idSubcontenido, e.nombre, e.descripcion, e.urlImagen) from Subcontenido e join Contenido ee on e.idContenido = ee.idContenido where ee.idContenido >= ?1 AND ee.idContenido <= (?1 +2)")
 	List<SubContenidoDto> getLsubContenido(Integer idContenido);
 }

@@ -26,4 +26,8 @@ public class ComentarioResponse {
 		this.descripcion = descripcion;
 	}
 
+	public String getApellidoPaternoEstudiante (){
+		return this.apellidoPaternoEstudiante;
+	}
+
 }

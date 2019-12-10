@@ -23,9 +23,15 @@ import lombok.AllArgsConstructor;
 public class MaestraDetalle {
     @Id
     @Column(name="codigo")
-    private Integer id;
+    private String codigo;
+
+    @Column(name="id_tabla_maestra")
+    private Integer idTablaMaestra;
+
     @Column(name="descripcion")
     private String descripcion;
-    @Column(name="id_tabla")
-    private Integer id_tabla;
+    
+    @Column(name="abreviatura")
+    private String abreviatura;
+    
 }

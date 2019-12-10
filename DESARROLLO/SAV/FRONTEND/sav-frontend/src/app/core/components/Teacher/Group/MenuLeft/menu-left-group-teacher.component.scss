@@ -1,0 +1,24 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  margin: 30px 16px 30px;
+}
+
+.sidebar{
+  &__item{
+    font-size: 18px;
+    color: #9899AC;
+  }
+
+  &__icon{
+    padding-left: 39px;
+  }
+
+  &__box{
+    height: 60px;
+    display: flex;
+    align-items: center
+  }
+}

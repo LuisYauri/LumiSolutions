@@ -1,7 +1,5 @@
 package pe.edu.savbackend.entity;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,7 +22,7 @@ import lombok.NoArgsConstructor;
 public class Grupo {
 	@Id
 	@Column(name="id")
-	private Integer id;
+	private Integer idGrupo;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -32,12 +30,12 @@ public class Grupo {
 	@Column(name="cod_grado")
 	private String codigoGrado;
 	
-	@Column(name="anio")
-	private LocalDateTime anio;
-	
 	@Column(name="cod_estado")
 	private String codigoEstado;
 	
 	@Column(name="id_docente")
 	private String idDocente;
+
+	@Column(name="anio")
+	private Integer anio;
 }

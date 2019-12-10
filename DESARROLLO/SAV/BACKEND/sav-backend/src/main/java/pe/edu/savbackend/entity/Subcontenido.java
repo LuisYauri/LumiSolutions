@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 public class Subcontenido {
     @Id
     @Column(name="id")
-    private Integer id;
+    private Integer idSubcontenido;
     @Column(name="descripcion")
     private String descripcion;
     @Column(name="id_contenido")

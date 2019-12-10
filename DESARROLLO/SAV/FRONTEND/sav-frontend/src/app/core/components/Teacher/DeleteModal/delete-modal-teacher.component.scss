@@ -1,0 +1,31 @@
+.delete-box-teacher {
+  margin: 20px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &--subtitle {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  &--description {
+    font-size: 15px;
+    margin: 15px 0;
+  }
+
+  &--action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    &--yes{
+      width: 40%;
+    }
+    &--no{
+      width: 40%;
+    }
+  }
+}

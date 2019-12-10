@@ -1,8 +1,14 @@
 body {
   font-family: 'Poppins', sans-serif;
+  background: #f0f2f5;
 }
 
 .body {
+  width: 100%;
+  height: 100%;
+}
+
+.body-global {
   width: 100%;
   height: 100%;
 }
@@ -28,3 +34,399 @@ body {
   box-shadow: none !important;
 }
 
+//btns
+
+.btn_global--blue-solid {
+  background: #2C77F4;
+  border-color: #2C77F4;
+  color: #ffffff;
+
+  &:hover {
+    background: #2C77F4;
+    border-color: #2C77F4;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #2C77F4;
+    background: #2C77F4;
+    color: #ffffff;
+  }
+}
+
+.btn_global--green-solid {
+  background: #73D13D;
+  border-color: #73D13D;
+  border-radius: 4px;
+  color: #ffffff;
+
+  &:hover {
+    border-color: #73D13D;
+    background: #73D13D;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #73D13D;
+    background: #73D13D;
+    color: #ffffff;
+  }
+}
+
+.btn-global--red-solid {
+  background: #FF4D4F;
+  border-color: #FF4D4F;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+
+  &:hover {
+    border-color: #FF4D4F;
+    background: #FF4D4F;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #FF4D4F;
+    background: #FF4D4F;
+    color: #ffffff;
+  }
+}
+
+.btn-global--black-solid {
+  background: #363735;
+  border-color: #363735;
+  border-radius: 4px;
+  color: #ffffff;
+
+  &:hover {
+    border-color: #363735;
+    background: #363735;
+    color: #ffffff;
+  }
+
+  &:focus {
+    border-color: #363735;
+    background: #363735;
+    color: #ffffff;
+  }
+}
+
+.btn-global--blue--line {
+  background: #2C77F4;
+  border-color: #2C77F4;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+
+  &:hover {
+    border-color: #2C77F4;
+    color: #2C77F4;
+  }
+
+  &:focus {
+    border-color: #2C77F4;
+    color: #2C77F4;
+  }
+}
+
+.btn-global--green--line {
+  background: #73D13D;
+  border-color: #73D13D;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+
+  &:hover {
+    border-color: #73D13D;
+    color: #73D13D;
+  }
+
+  &:focus {
+    border-color: #73D13D;
+    color: #73D13D;
+  }
+}
+
+.btn-global--black--line {
+  background: #363735;
+  border-color: #363735;
+  border-radius: 4px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 12px;
+
+  &:hover {
+    border-color: #363735;
+    color: #363735;
+  }
+
+  &:focus {
+    border-color: #363735;
+    color: #363735;
+  }
+}
+
+//fin btns
+
+.ant-progress-circle.ant-progress-status-success .ant-progress-text {
+  color: #595959;
+}
+
+.ant-tabs-nav .ant-tabs-tab-active {
+  color: #2c77f4;
+  font-weight: bold;
+}
+
+.ant-modal-title {
+  color: #000000;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.btn-resolve {
+  transform: matrix(0.8, 0.5, -0.68, 0.83, 0, 0);
+}
+
+
+// Results
+.statics {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+
+    &--text {
+      margin: 10px 0;
+      color: #000000;
+    }
+  }
+}
+
+.note {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: bold;
+  font-size: 16px;
+  align-items: center;
+  margin-top: 10px;
+  color: #000000;
+}
+
+.block-result {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+
+//Modal Questions
+.flex-style {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &-exam {
+    justify-content: flex-end;
+  }
+}
+
+.input-number {
+  width: 100px;
+  margin: 0 10px 0 0;
+}
+
+.aler-box {
+  background: #F9F9FC;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.box__imag {
+  margin: 10px 0;
+  height: 350px;
+  width: 100%;
+}
+
+.text-alter {
+  margin: 0 10px 0 0;
+}
+
+.box_text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.input_text {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  align-items: center;
+
+  &--inp {
+    width: 20%;
+    margin: 0 10px 0 0;
+  }
+}
+
+.question-list {
+  color: #000000;
+}
+
+// Statics Cronómetro
+.ant-statistic-content {
+  font-size: 18px !important;
+  color: #F5222D;
+}
+
+// Box-square-blue
+.group-blue-box-square {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: wrap;
+}
+
+.blue-box-square {
+  width: 100%;
+  height: 170px;
+  background: rgba(44, 119, 244, 0.83);
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.blue-box-square--action {
+  display: flex;
+  flex-direction: row;
+  background: #FFFFFF;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
+  padding: 3px;
+
+  &--item {
+    margin: 5px 2px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .blue-box-square {
+    width: 395px;
+  }
+}
+
+@media screen and (min-width: 1440px) and(max-width: 1919px) {
+  .blue-box-square {
+    width: 270px;
+  }
+}
+
+@media screen and (min-width: 1366px) and(max-width: 1439px) {
+  .blue-box-square {
+    width: 355px;
+  }
+}
+
+@media screen and (min-width: 1280px) and(max-width: 1365px) {
+  .blue-box-square {
+    width: 230px;
+  }
+}
+
+//paginator
+.paginator-box {
+  display: flex;
+  justify-content: flex-end;
+
+  &--item {
+    margin: 10px 20px 0 0;
+  }
+}
+
+// menu-header
+nz-header {
+  background: #272534;
+  padding: 0;
+}
+
+.header__box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__text {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: normal;
+  margin-right: 20px;
+}
+
+.header__icon {
+  background: #2C77F4;
+  font-size: 16px;
+  font-weight: normal;
+  margin-right: 35px;
+}
+
+.box-drawer {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-box {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 10px;
+
+  &--title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 15px;
+    margin: 5px 5px 5px 0;
+  }
+
+  &--description {
+    font-size: 15px;
+    margin: 5px 0;
+  }
+}
+
+//calendar
+.ant-calendar-picker {
+  width: 100%;
+}
+.ant-time-picker{
+  width: 100%;
+}

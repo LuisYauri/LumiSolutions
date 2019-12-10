@@ -1,7 +1,24 @@
 <nz-header>
   <div class="header__box">
-    <div class="header__text">Hola, Luis Yauri
+    <div class="header__text">Hola, {{firstName}} {{lastName}}
     </div>
-    <nz-avatar class="header__icon" [nzShape]="'square'" [nzSize]="'large'"  [nzText]="'YL'"></nz-avatar>
+    <nz-avatar (click)="open()" class="header__icon" [nzShape]="'square'" [nzSize]="'large'"  [nzText]="siglas"></nz-avatar>
   </div>
 </nz-header>
+
+<nz-drawer
+  [nzClosable]="true"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  nzTitle="Hola, {{firstName}} {{lastName}}"
+  (nzOnClose)="close()"
+>
+  <div class="info-box" *ngFor="let item of data">
+    <i nz-icon  nzType="check-square" nzTheme="fill" class="info-box--title"></i>
+    <div class="info-box--title">{{item.title}} :</div>
+    <div class="info-box--description">{{item.description}}</div>
+  </div>
+  <div class="box-drawer">
+    <button nz-button nzType="danger" (click)="logout()"><i nz-icon nzType="api" nzTheme="outline"></i>Salir</button>
+  </div>
+</nz-drawer>

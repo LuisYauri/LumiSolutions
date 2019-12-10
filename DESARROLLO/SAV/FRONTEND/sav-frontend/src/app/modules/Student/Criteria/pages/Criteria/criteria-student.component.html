@@ -1,14 +1,37 @@
 <div class="header_global">
-  <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon" [url]="varHeader.url"></app-header-page-student>
+  <app-header-page-student [title]="varHeader.title" [icon]="varHeader.icon"
+                           [url]="varHeader.url"></app-header-page-student>
 </div>
 <div class="body_global">
   <app-title-page-student [title]="varTitleCriterio"></app-title-page-student>
-  <div *ngIf="varLoading" class="carousel_box">
-    <app-criteria-carousel-criteria (getCriterio)="getCriterio($event)" [listCriteria]="listCriteria"></app-criteria-carousel-criteria>
+  <div *ngIf="varLoadingCriterio">
+    <div class="criteria_loading">
+      <nz-spin nzSimple nzTip="Cargando..."></nz-spin>
+    </div>
+  </div>
+  <div *ngIf="!varLoadingCriterio" class="carousel_box">
+    <app-criteria-carousel-criteria (getCriterio)="getCriterio($event)"
+                                    [listCriteria]="listCriteria"></app-criteria-carousel-criteria>
   </div>
   <app-title-page-student [title]="varTitleCotenido"></app-title-page-student>
-  <div *ngIf="varLoading" class="carousel_box">
-    <app-content-carousel-criteria (getContent)="getContent($event)" [listContent]="listContent"></app-content-carousel-criteria>
+  <div *ngIf="varLoadingContent">
+    <div *ngIf="valueInitial===0" class="criteria_not_loading">
+      <img class="criteria_icon_tap" [src]="'assets/img/icons/tap.svg'" alt="">
+      <div class="criteria_not_loading--text">Seleccione una opción</div>
+    </div>
+    <div *ngIf="valueInitial===1" class="criteria_loading">
+      <nz-spin nzSimple nzTip="Cargando..."></nz-spin>
+    </div>
+  </div>
+  <div *ngIf="!varLoadingContent" class="carousel_box">
+    <div *ngIf="listContent.length>0">
+      <app-content-carousel-criteria (getContent)="getContent($event)"
+                                     [listContent]="listContent"></app-content-carousel-criteria>
+    </div>
+    <div *ngIf="listContent.length==0" class="criteria_not_loading">
+      <img class="criteria_icon_tap" [src]="'assets/img/icons/sad.svg'" alt="">
+      <div class="criteria_not_loading--text">No hay información, seleccione otra opción.</div>
+    </div>
   </div>
 </div>
 
