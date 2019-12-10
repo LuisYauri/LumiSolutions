@@ -66,6 +66,10 @@ const routes: Routes = [
         path: 'homework',
         loadChildren: 'src/app/modules/Teacher/Group/Homework/homework-group-teacher.module#HomeworkGroupTeacherModule',
       },
+      {
+        path: 'students',
+        loadChildren: 'src/app/modules/Teacher/Group/Students/students-group-teacher.module#StudentsGroupTeacherModule',
+      },
     ]
   },
   {
