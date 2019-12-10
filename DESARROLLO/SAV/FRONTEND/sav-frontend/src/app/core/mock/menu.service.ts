@@ -50,7 +50,7 @@ export class MenuService {
       // },
       {
         title: 'Estudiantes',
-        key: 'Criterios',
+        key: 'Estudiantes',
         url: '/teacher-group/students',
         icon: 'team',
       },
