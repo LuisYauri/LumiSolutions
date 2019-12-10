@@ -10,12 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import pe.edu.savbackend.dao.EstudianteDao;
+import pe.edu.savbackend.dao.GrupoDao;
 import pe.edu.savbackend.dao.PersonaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.EstudianteDto;
 import pe.edu.savbackend.domain.PROFESOR.ProEstudianteDto;
 import pe.edu.savbackend.domain.PROFESOR.ProEstudiantePorMatricularDto;
 import pe.edu.savbackend.entity.Estudiante;
+import pe.edu.savbackend.entity.Grupo;
 import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.entity.Usuario;
 
@@ -31,6 +33,9 @@ public class EstudianteServiceImpl implements EstudianteService {
 	@Autowired
 	UsuarioDao usuarioDao;
 
+	@Autowired
+	GrupoDao grupoDao;
+	
 	@Autowired
 	BCryptPasswordEncoder encript;
 
@@ -79,7 +84,8 @@ public class EstudianteServiceImpl implements EstudianteService {
 	@Override
 	public List<ProEstudiantePorMatricularDto> listaAlumnosDisponibles(Integer idAula) {
 		List<ProEstudiantePorMatricularDto> lsEstudiantesDisponibles = estudianteDao.listaAlumnosDisponibles(); //lista total de estudiantes
-		List<Integer> idsEstudiantesMatriculadosAnioActual = estudianteDao.estudiantesMatriculadosAnioActual(LocalDate.now().getYear());
+		
+		List<Integer> idsEstudiantesMatriculadosAnioActual = estudianteDao.estudiantesMatriculadosAnioActual(grupoDao.getOne(idAula).getAnio());
 				
 		System.out.println("2019="+idsEstudiantesMatriculadosAnioActual);
 		lsEstudiantesDisponibles.removeIf(led -> idsEstudiantesMatriculadosAnioActual.contains(led.getIdEstudiante()));
