@@ -23,6 +23,7 @@ import pe.edu.savbackend.dao.EstudianteEvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDao;
 import pe.edu.savbackend.dao.EvaluacionDetalleDao;
 import pe.edu.savbackend.dao.HistorialDao;
+import pe.edu.savbackend.dao.MatriculaDao;
 import pe.edu.savbackend.dao.PreguntaDao;
 import pe.edu.savbackend.domain.PROFESOR.ProCrearTareaDto;
 import pe.edu.savbackend.domain.PROFESOR.ProTareaDto;
@@ -52,13 +53,17 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	private EstudianteEvaluacionDao estudianteEvaluacionDao;	
 	@Autowired
 	private ContenidoDao contenidoDao;
+	@Autowired
+	private MatriculaDao matriculaDao;
 	
 	Gson gson = new Gson();
 
 	@Override
 	public List<TareaDto> getLsTareas(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
-		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante);
+		LocalDateTime fechaActual = LocalDateTime.now(ZoneId.of("America/Lima"));
+		/* System.out.println("***** fechaActual: " + fechaActual); */
+		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante, fechaActual);
 
 		lsTarea.forEach(e->{
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaInicio();
@@ -259,7 +264,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 
 	@Override
 	public List<ProTareaDto> getLsTareasAsignadas(Integer idAula){
-		List<ProTareaDto> listaProTarea = evaluacionDao.getLsTareasAsignadas(idAula, "T", "EA");
+		List<ProTareaDto> listaProTarea = evaluacionDao.getLsTareasAsignadas(idAula, "T");
 		listaProTarea.forEach(proTarea -> {
 			Evaluacion eva = evaluacionDao.getEvaluacion(proTarea.getIdTarea());
 			LocalDateTime fechaInicio = eva.getFechaInicio();
@@ -275,6 +280,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	{
 		Evaluacion evaluacion = new Evaluacion();
 		int idEvaluacion = evaluacionDao.nextId();
+		int idGrupo = tarea.getIdAula();
 		evaluacion.setIdEvaluacion(idEvaluacion);
 		evaluacion.setTitulo(tarea.getTitulo());
 		evaluacion.setIdContenido(tarea.getIdContenido());
@@ -283,20 +289,29 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			LocalTime.of(0, 0, 0))
 		);
 		evaluacion.setFechaFin(
-			LocalDateTime.of(LocalDate.parse(tarea.getFechaInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
+			LocalDateTime.of(LocalDate.parse(tarea.getFechaLimite(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
 			LocalTime.parse(tarea.getTiempoLimite(), DateTimeFormatter.ofPattern("HH:mm")))
 		);
 		evaluacion.setCodTipoEvaluacion("T");
-		evaluacion.setIdGrupo(tarea.getIdAula());
+		evaluacion.setIdGrupo(idGrupo);
 		evaluacion.setIdDocente(1);
 		evaluacion.setCantidad(tarea.getLsPreguntas().size());
-		evaluacion.setCodigoEstado("EA");
+		evaluacion.setCodigoEstado("1");
 		evaluacion = evaluacionDao.save(evaluacion);
 
 		tarea.getLsPreguntas().forEach(idPreg -> {
 			evaluacionDetalleDao.registrarEvaluacionDetalle(idEvaluacion, idPreg);
 		});
-		
+
+		List<Integer> listaAlumnos = matriculaDao.obtenerLtAlumnosGrupo(idGrupo);
+		listaAlumnos.forEach(idEstudiante -> {
+			EstudianteEvaluacion ee = new EstudianteEvaluacion();
+			ee.setIdEstudiante(idEstudiante);
+			ee.setIdEvaluacion(idEvaluacion);
+			ee.setIdArea(1);
+			ee.setCodigoEstadoEvaluacion("1");
+			estudianteEvaluacionDao.save(ee);
+		});
 		return evaluacion;
 	}
 

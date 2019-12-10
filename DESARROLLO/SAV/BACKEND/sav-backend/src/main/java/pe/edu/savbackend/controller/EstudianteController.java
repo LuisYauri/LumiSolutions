@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.savbackend.domain.EstudianteDto;
+import pe.edu.savbackend.domain.PROFESOR.ProEstudianteDto;
 import pe.edu.savbackend.entity.Estudiante;
 import pe.edu.savbackend.service.estudiante.EstudianteService;
 
@@ -35,13 +37,18 @@ public class EstudianteController {
 		return estudianteService.registrarEstudiante(estudiante);
 	}
 
-	@PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public Estudiante actualizarEstudiante(@RequestBody EstudianteDto estudiante) {
-		return estudianteService.actualizarEstudiante(estudiante);
-	}
-
-	@PatchMapping(value = "/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Boolean eliminarEstudiante(@PathVariable Integer idEstudiante) {
-		return estudianteService.eliminarEstudiante(idEstudiante);
+//	@PutMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public Estudiante actualizarEstudiante(@RequestBody EstudianteDto estudiante) {
+//		return estudianteService.actualizarEstudiante(estudiante);
+//	}
+//
+//	@PatchMapping(value = "/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
+//	public Boolean eliminarEstudiante(@PathVariable Integer idEstudiante) {
+//		return estudianteService.eliminarEstudiante(idEstudiante);
+//	}
+	
+	@RequestMapping("/{idAula}")
+	public List<ProEstudianteDto> listaFiltrada(@PathVariable Integer idAula) {
+		return estudianteService.filtrar(idAula); 
 	}
 }

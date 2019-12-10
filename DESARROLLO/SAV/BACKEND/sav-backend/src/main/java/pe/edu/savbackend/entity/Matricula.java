@@ -1,5 +1,7 @@
 package pe.edu.savbackend.entity;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,4 +39,7 @@ public class Matricula {
 	
 	@Column(name="id_grupo")
 	private Integer idGrupo;	
+	
+	@Column(name="fecha_matricula")
+	private LocalDateTime fechaMatricula;
 }

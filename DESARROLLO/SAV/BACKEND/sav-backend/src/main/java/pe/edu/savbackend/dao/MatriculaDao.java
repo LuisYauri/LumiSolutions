@@ -22,4 +22,8 @@ public interface MatriculaDao extends JpaRepository<Matricula, Integer> {
 			+ " and g.anio = ?2")
 	List<MatriculaAux> getMatriculasGrupos(Integer idUsuario, Integer anio);
 
+	@Query(value = "select m.idEstudiante from Matricula m "
+				 + " where m.idGrupo = ?1 ")
+	List<Integer> obtenerLtAlumnosGrupo(Integer idGrupo);
+
 }

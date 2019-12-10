@@ -1,5 +1,7 @@
 package pe.edu.savbackend.dao;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,8 +22,8 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 			+ "join Contenido c on c.idContenido= e.idContenido "
 			+ "where ee.idEstudiante = ?1 "
 			+ "and e.codTipoEvaluacion = 'T' "
-			+ "and ee.codigoEstadoEvaluacion = 1")
-	List<TareaDto> getLsTareas(Integer idEstudiante);
+			+ "and ee.codigoEstadoEvaluacion = 1 and e.fechaInicio <= ?2 and e.fechaFin >= ?2")
+	List<TareaDto> getLsTareas(Integer idEstudiante, LocalDateTime fechaActual);
 	
 	@Query(value = "select new pe.edu.savbackend.domain.tarea.ExamenDto(e.idEvaluacion,e.titulo) "
 			+ "from Evaluacion e "
@@ -44,9 +46,9 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 				 + "c.idContenido, c.nombre, e.cantidad) From Evaluacion e "
 				 + "inner join Contenido c on e.idContenido = c.idContenido " 
 				 + "inner join Criterio cr on c.idCriterio = cr.idCriterio " 
-				 + "where e.idGrupo = ?1 and e.codTipoEvaluacion = ?2 and e.codigoEstado= ?3" 
+				 + "where e.idGrupo = ?1 and e.codTipoEvaluacion = ?2 and e.codigoEstado= 1" 
 	)
-	List<ProTareaDto> getLsTareasAsignadas(Integer idAula, String tipoEvaluacion, String coidogEstado);
+	List<ProTareaDto> getLsTareasAsignadas(Integer idAula, String tipoEvaluacion);
 
 	@Query(value = "select e from Evaluacion e where e.idEvaluacion=?1")
 	Evaluacion getEvaluacion(Integer idvaluacion);
