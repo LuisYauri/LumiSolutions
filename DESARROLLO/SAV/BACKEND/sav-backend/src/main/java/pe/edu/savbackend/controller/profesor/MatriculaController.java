@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +26,9 @@ public class MatriculaController {
 	MatriculaService matriculaService;
 	
 	@PostMapping(value = "/aula/{idAula}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
 	public void matricular(@PathVariable Integer idAula, @RequestBody Integer[] idEstudiantes) {
-		matriculaService.matricular(idAula, idEstudiantes);
+
 	}
 
 	@DeleteMapping(value = "/{idEstudiante}/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,5 +37,14 @@ public class MatriculaController {
 		System.out.println("idAula: " + idAula);
 		matriculaService.eliminarAlumnoDeMatricula(idEstudiante, idAula);
 	}
+
+	@DeleteMapping(value = "/{idEstudiante}/{idAula}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> eliminarAlumnoDeMatricula(@PathVariable Integer idEstudiante, @PathVariable Integer idAula) {
+		System.out.println("idEstudiante: " + idEstudiante);
+		System.out.println("idAula: " + idAula);
+		matriculaService.eliminarAlumnoDeMatricula(idEstudiante, idAula);
+		return ResponseEntity.ok("Alumno eliminado con exito");
+	}
+
 	
 }
