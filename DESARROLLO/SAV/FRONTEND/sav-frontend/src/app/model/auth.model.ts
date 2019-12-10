@@ -18,6 +18,7 @@ export interface PayloadDataToken {
   siglas: string
   seccion: string
   anio: string
+  tipoPersona: string
 }
 
 export interface AulaDataToken {
