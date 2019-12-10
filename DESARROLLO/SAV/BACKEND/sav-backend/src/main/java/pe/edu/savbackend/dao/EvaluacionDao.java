@@ -44,9 +44,9 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 				 + "c.idContenido, c.nombre, e.cantidad) From Evaluacion e "
 				 + "inner join Contenido c on e.idContenido = c.idContenido " 
 				 + "inner join Criterio cr on c.idCriterio = cr.idCriterio " 
-				 + "where e.idGrupo = ?1 and e.codTipoEvaluacion = ?2 and e.codigoEstado= ?3" 
+				 + "where e.idGrupo = ?1 and e.codTipoEvaluacion = ?2 and e.codigoEstado= 1" 
 	)
-	List<ProTareaDto> getLsTareasAsignadas(Integer idAula, String tipoEvaluacion, String coidogEstado);
+	List<ProTareaDto> getLsTareasAsignadas(Integer idAula, String tipoEvaluacion);
 
 	@Query(value = "select e from Evaluacion e where e.idEvaluacion=?1")
 	Evaluacion getEvaluacion(Integer idvaluacion);
