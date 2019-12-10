@@ -62,7 +62,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public List<TareaDto> getLsTareas(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
 		LocalDateTime fechaActual = LocalDateTime.now(ZoneId.of("America/Lima"));
-		/* System.out.println("***** fechaActual: " + fechaActual); */
+		System.out.println("***** fechaActual: " + fechaActual);
 		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante, fechaActual);
 
 		lsTarea.forEach(e->{
