@@ -1,0 +1,55 @@
+<div>
+  <div class="box-two-subtitle">Seleccione los estudiantes a matricular</div>
+  <nz-table class="box-two-table"
+            [nzData]="listMatricularStudents"
+            [nzFrontPagination]="false"
+            [nzShowPagination]="true"
+            [nzLoading]="varLoadingData"
+  >
+    <thead>
+    <tr>
+      <th
+          nzShowCheckbox
+          [(nzChecked)]="isAllChecked"
+          (nzCheckedChange)="checkAll($event)"
+      ></th>
+      <th *ngFor="let title of varTableListTitle">{{title}}</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of listMatricularStudents">
+      <td nzShowCheckbox [(nzChecked)]="data.marcado"
+          (nzCheckedChange)="checkItem($event,data)"></td>
+      <td>{{ data.nombre }}</td>
+      <td>{{ data.amaterno }}</td>
+      <td>{{ data.apaterno }}</td>
+      <td>{{ data.usuario }}</td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<div *nzModalFooter>
+  <div class="flex-style">
+    <div>
+
+    </div>
+    <div class="">
+      <button nz-button
+              [nzLoading]="varLoadingData"
+              nzType="default"
+              class="btn-global--blue--line"
+              nz-popconfirm
+              nzPopconfirmTitle="¿Estas seguro de matricular los estudiantes?"
+              nzPopconfirmPlacement="rightTop"
+              (nzOnConfirm)="sendData()"
+      >
+        <span>Matricular</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-loading-blank-teacher [flag]="varLoadingData"></app-loading-blank-teacher>
+

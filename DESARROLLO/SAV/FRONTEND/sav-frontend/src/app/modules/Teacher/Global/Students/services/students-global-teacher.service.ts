@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 export class StudentsGlobalTeacherService {
 
   private API_URL_LIST_STUDENTS = `${environment.apiMain}estudiantes`
-  private API_URL_POST_STUDENTS = `${environment.apiMain}estudiantes`
+  private API_URL_POST_STUDENTS = `${environment.apiMain}estudiantes/`
   private API_URL_DELETE_STUDENTS = `${environment.apiMain}estudiantes/`
 
   constructor(private http: HttpClient) {

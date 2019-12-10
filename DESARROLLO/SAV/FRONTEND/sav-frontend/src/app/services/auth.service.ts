@@ -26,6 +26,10 @@ export class AuthService {
     return this.http.get(`${this.API_URL_LOGIN_DATA}${username}`)
   }
 
+  isLoggedIn() {
+    return !!(localStorage.getItem('access_token') && localStorage.getItem('data_username') && localStorage.getItem('username'));
+  }
+
   logout() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('data_username');
@@ -33,7 +37,7 @@ export class AuthService {
     localStorage.removeItem('data_aula');
   }
 
-  private getTokenDecode() {
+  getTokenDecode() {
     try {
       const token = localStorage.getItem('access_token')
       return jwt_decode(token);
@@ -56,7 +60,6 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('data_username'))
   }
 
-  ///
   getDataUsername() {
     this.payloadData = this.getTokenDataUsername()
     return this.payloadData

@@ -50,16 +50,16 @@ export class MenuService {
       // },
       {
         title: 'Estudiantes',
-        key: 'Criterios',
+        key: 'Estudiantes',
         url: '/teacher-group/students',
         icon: 'team',
       },
-      {
-        title: 'Preguntas',
-        key: 'Preguntas',
-        url: '/teacher-group/questions',
-        icon: 'message',
-      },
+      // {
+      //   title: 'Preguntas',
+      //   key: 'Preguntas',
+      //   url: '/teacher-group/questions',
+      //   icon: 'message',
+      // },
     ]
   }
 }
