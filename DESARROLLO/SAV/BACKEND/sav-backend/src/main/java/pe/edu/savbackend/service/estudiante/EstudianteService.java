@@ -13,9 +13,9 @@ public interface EstudianteService {
 
 	Estudiante registrarEstudiante(EstudianteDto estudiante);
 
-//	Estudiante actualizarEstudiante(EstudianteDto estudiante);
+	Estudiante actualizarEstudiante(EstudianteDto estudiante);
 //
-//	Boolean eliminarEstudiante(Integer idEstudiante);
+	Boolean eliminarEstudiante(Integer idEstudiante);
 
 	List<ProEstudianteDto> filtrar(Integer idAula);
 	

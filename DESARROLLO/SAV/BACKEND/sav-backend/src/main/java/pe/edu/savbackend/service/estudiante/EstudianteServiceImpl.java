@@ -92,4 +92,35 @@ public class EstudianteServiceImpl implements EstudianteService {
 		return lsEstudiantesDisponibles;
 	}
 
+
+	@Override
+	@Transactional
+	public Boolean eliminarEstudiante(Integer idEstudiante) {
+		Estudiante e = estudianteDao.getOne(idEstudiante);
+		Persona p = personaDao.getOne(e.getIdPersona());
+		System.out.println("Eliminando: " + idEstudiante + " " + p.getIdPersona() + " "+ p.getIdUsuario());
+		estudianteDao.deleteById(idEstudiante);
+		personaDao.deleteById(p.getIdPersona());
+		usuarioDao.deleteById(p.getIdUsuario());
+		return true;
+	}
+
+
+	@Override
+	@Transactional
+	public Estudiante actualizarEstudiante(EstudianteDto estudiante) {
+		Estudiante e = estudianteDao.getOne(estudiante.getIdEstudiante());
+		Persona p = personaDao.getOne(e.getIdPersona());
+		Usuario u = usuarioDao.findById(p.getIdUsuario()).orElseThrow(null);
+		
+		p.setNombre(estudiante.getNombre());
+		p.setApellidoMaterno(estudiante.getAmaterno());
+		p.setApellidoPaterno(estudiante.getApaterno());
+		u.setUsername(estudiante.getUsuario());
+		u.setPassword(encript.encode(estudiante.getContrasenia()));
+		personaDao.save(p);
+		usuarioDao.save(u);
+		return e;
+	}
+
 }
