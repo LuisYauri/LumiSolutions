@@ -109,12 +109,13 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
     }
   }
 
-  async getListContent(idCriterio: number) {
+  async getListContent(idCriterio: string) {
+    console.log(typeof idCriterio)
     this.jsonQuestionsCheck = []
     this.varFlagTableQuestions = true
     this.dataHomeworkForm.controls['idContenido'].setValue(null);
     try {
-      const response: any = await this.criteriaStudentService.getListContent(idCriterio.toString()).toPromise()
+      const response: any = await this.criteriaStudentService.getListContentTeacher(idCriterio).toPromise()
       this.listContent = response
     } catch (e) {
       console.log(e)
@@ -273,7 +274,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
       const title = 'Ver Pregunta'
       const description = this.question.descripcion
       const imageUrl = this.question.urlImagen
-      this.openModalView(title,description,imageUrl)
+      this.openModalView(title, description, imageUrl)
     } catch (e) {
       console.log(e)
     }
