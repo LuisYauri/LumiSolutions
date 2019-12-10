@@ -1,5 +1,6 @@
 package pe.edu.savbackend.service.estudiante;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,11 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import pe.edu.savbackend.dao.EstudianteDao;
+import pe.edu.savbackend.dao.GrupoDao;
 import pe.edu.savbackend.dao.PersonaDao;
 import pe.edu.savbackend.dao.UsuarioDao;
 import pe.edu.savbackend.domain.EstudianteDto;
 import pe.edu.savbackend.domain.PROFESOR.ProEstudianteDto;
+import pe.edu.savbackend.domain.PROFESOR.ProEstudiantePorMatricularDto;
 import pe.edu.savbackend.entity.Estudiante;
+import pe.edu.savbackend.entity.Grupo;
 import pe.edu.savbackend.entity.Persona;
 import pe.edu.savbackend.entity.Usuario;
 
@@ -29,6 +33,9 @@ public class EstudianteServiceImpl implements EstudianteService {
 	@Autowired
 	UsuarioDao usuarioDao;
 
+	@Autowired
+	GrupoDao grupoDao;
+	
 	@Autowired
 	BCryptPasswordEncoder encript;
 
@@ -68,9 +75,52 @@ public class EstudianteServiceImpl implements EstudianteService {
 
 	@Override
 	public List<ProEstudianteDto> filtrar(Integer idAula) {
-		List<ProEstudianteDto> lsProEstudiantesDto = estudianteDao.filtrar(idAula);
 		
-		return lsProEstudiantesDto;
+		
+		return estudianteDao.filtrar(idAula);
+	}
+
+
+	@Override
+	public List<ProEstudiantePorMatricularDto> listaAlumnosDisponibles(Integer idAula) {
+		List<ProEstudiantePorMatricularDto> lsEstudiantesDisponibles = estudianteDao.listaAlumnosDisponibles(); //lista total de estudiantes
+		
+		List<Integer> idsEstudiantesMatriculadosAnioActual = estudianteDao.estudiantesMatriculadosAnioActual(grupoDao.getOne(idAula).getAnio());
+				
+		System.out.println("2019="+idsEstudiantesMatriculadosAnioActual);
+		lsEstudiantesDisponibles.removeIf(led -> idsEstudiantesMatriculadosAnioActual.contains(led.getIdEstudiante()));
+		return lsEstudiantesDisponibles;
+	}
+
+
+	@Override
+	@Transactional
+	public Boolean eliminarEstudiante(Integer idEstudiante) {
+		Estudiante e = estudianteDao.getOne(idEstudiante);
+		Persona p = personaDao.getOne(e.getIdPersona());
+		System.out.println("Eliminando: " + idEstudiante + " " + p.getIdPersona() + " "+ p.getIdUsuario());
+		estudianteDao.deleteById(idEstudiante);
+		personaDao.deleteById(p.getIdPersona());
+		usuarioDao.deleteById(p.getIdUsuario());
+		return true;
+	}
+
+
+	@Override
+	@Transactional
+	public Estudiante actualizarEstudiante(EstudianteDto estudiante) {
+		Estudiante e = estudianteDao.getOne(estudiante.getIdEstudiante());
+		Persona p = personaDao.getOne(e.getIdPersona());
+		Usuario u = usuarioDao.findById(p.getIdUsuario()).orElseThrow(null);
+		
+		p.setNombre(estudiante.getNombre());
+		p.setApellidoMaterno(estudiante.getAmaterno());
+		p.setApellidoPaterno(estudiante.getApaterno());
+		u.setUsername(estudiante.getUsuario());
+		u.setPassword(encript.encode(estudiante.getContrasenia()));
+		personaDao.save(p);
+		usuarioDao.save(u);
+		return e;
 	}
 
 }

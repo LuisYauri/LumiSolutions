@@ -4,13 +4,11 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+
 import java.util.List;
 import java.util.logging.SimpleFormatter;
 
 import pe.edu.savbackend.dao.EstudianteEvaluacionDao;
-
-import java.util.logging.SimpleFormatter;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,9 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Autowired
 	private EstudianteEvaluacionDao estudianteEvaluacionDao;
 
+	@Autowired
+	private EstudianteEvaluacionDao estudianteEvaluacionDao;
+
 	@Override
 	@Transactional	
 	public void matricular(Integer idAula, Integer[] idEstudiantes) {
@@ -38,7 +39,7 @@ public class MatriculaServiceImpl implements MatriculaService {
 			matriculaDao.save(Matricula.builder().idGrupo(idAula).idEstudiante(idEstudiantes[i]).fechaMatricula(fechaMatricula).build());
 		}
 	}
-  
+
 	@Override
 	@Transactional	
 	public void eliminarAlumnoDeMatricula(Integer idEstudiante, Integer idAula) {
