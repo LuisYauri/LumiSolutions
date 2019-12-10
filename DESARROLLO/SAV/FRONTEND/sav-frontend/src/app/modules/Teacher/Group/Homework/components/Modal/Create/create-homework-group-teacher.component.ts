@@ -9,7 +9,6 @@ import {AuthService} from "../../../../../../../services/auth.service";
 import {HomeworkGroupTeacherService} from "../../../services/homework-group-teacher.service";
 import {QuestionsHomeworkGroupTeacherModel} from "../../../model/homework-group-teacher.model";
 import * as moment from 'moment';
-import {DeleteModalTeacherComponent} from "../../../../../../../core/components/Teacher/DeleteModal/delete-modal-teacher.component";
 import {ViewQuestionHomeworkGroupComponent} from "../View/view-question-homework-group.component";
 
 @Component({
@@ -36,7 +35,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
   jsonQuestionsCheck: { idPregunta: number } [] = []
   question: { descripcion: string, urlImagen: string }
 
-  isAllChecked
+  isAllChecked = false
 
   current = 0
   varStep =
@@ -109,12 +108,13 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
     }
   }
 
-  async getListContent(idCriterio: number) {
+  async getListContent(idCriterio: string) {
+    console.log(typeof idCriterio)
     this.jsonQuestionsCheck = []
     this.varFlagTableQuestions = true
     this.dataHomeworkForm.controls['idContenido'].setValue(null);
     try {
-      const response: any = await this.criteriaStudentService.getListContent(idCriterio.toString()).toPromise()
+      const response: any = await this.criteriaStudentService.getListContentTeacher(idCriterio).toPromise()
       this.listContent = response
     } catch (e) {
       console.log(e)
@@ -163,7 +163,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
     }
   }
 
-  private getTitle() {
+  getTitle() {
     this.varTableListTitle = []
     this.varTableListTitle.push('Pregunta')
     this.varTableListTitle.push('Accion')
@@ -194,7 +194,6 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
         }
       }
     }
-    console.log(this.jsonQuestionsCheck)
   }
 
   save() {
@@ -273,7 +272,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
       const title = 'Ver Pregunta'
       const description = this.question.descripcion
       const imageUrl = this.question.urlImagen
-      this.openModalView(title,description,imageUrl)
+      this.openModalView(title, description, imageUrl)
     } catch (e) {
       console.log(e)
     }

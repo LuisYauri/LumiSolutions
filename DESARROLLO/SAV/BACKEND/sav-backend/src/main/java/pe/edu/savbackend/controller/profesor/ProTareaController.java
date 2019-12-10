@@ -1,6 +1,7 @@
 package pe.edu.savbackend.controller.profesor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -31,7 +32,7 @@ public class ProTareaController {
 	
 	@RequestMapping("")//profesor/tareas?idAula={idAula}
 	public List<ProTareaDto> filtrar(@RequestParam(required = false) Integer idAula) {
-		return evaluacionService.getLsTareasAsignadas(idAula);// filtrar por estudiante
+		return evaluacionService.getLsTareasAsignadas(idAula).stream().sorted((c1,c2)-> c2.getIdTarea().compareTo(c1.getIdTarea())).collect(Collectors.toList());// filtrar por estudiante
 	}
 
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

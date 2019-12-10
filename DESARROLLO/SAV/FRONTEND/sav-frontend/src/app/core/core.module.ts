@@ -15,6 +15,7 @@ import { LoadingTeacherComponent } from './components/Teacher/Loading/loading-te
 import { DeleteModalTeacherComponent } from './components/Teacher/DeleteModal/delete-modal-teacher.component';
 import { HeaderGroupTeacherComponent } from './components/Teacher/Group/Header/header-group-teacher.component';
 import { MenuLeftGroupTeacherComponent } from './components/Teacher/Group/MenuLeft/menu-left-group-teacher.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const COMPONENTS = [
   MenuLeftStudentComponent,
@@ -34,7 +35,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ],
+  declarations: [...COMPONENTS, NotFoundComponent, ],
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
   exports: [...COMPONENTS],
   entryComponents: [ModalHelpStudentComponent,DeleteModalTeacherComponent]

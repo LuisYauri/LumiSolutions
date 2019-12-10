@@ -51,8 +51,13 @@ export class LoginComponent implements OnInit {
       try {
         const response: any = await this.authService.getLoginData(username).toPromise()
         localStorage.setItem('data_username', JSON.stringify(response))
-        this.authService.getDataUsername()
-        await this.router.navigate(['/student/homework'])
+        if (this.authService.getDataUsername().tipoPersona === "ALUMNO") {
+          await this.router.navigate(['/student/homework'])
+        } else if (this.authService.getDataUsername().tipoPersona === "PROFESOR") {
+          await this.router.navigate(['/teacher-global/classroom'])
+        } else {
+          await this.router.navigate(['/'])
+        }
         this.varLoading = false
       } catch (e) {
         console.log(e)
