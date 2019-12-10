@@ -9,7 +9,6 @@ import {AuthService} from "../../../../../../../services/auth.service";
 import {HomeworkGroupTeacherService} from "../../../services/homework-group-teacher.service";
 import {QuestionsHomeworkGroupTeacherModel} from "../../../model/homework-group-teacher.model";
 import * as moment from 'moment';
-import {DeleteModalTeacherComponent} from "../../../../../../../core/components/Teacher/DeleteModal/delete-modal-teacher.component";
 import {ViewQuestionHomeworkGroupComponent} from "../View/view-question-homework-group.component";
 
 @Component({
@@ -36,7 +35,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
   jsonQuestionsCheck: { idPregunta: number } [] = []
   question: { descripcion: string, urlImagen: string }
 
-  isAllChecked
+  isAllChecked = false
 
   current = 0
   varStep =
@@ -164,7 +163,7 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
     }
   }
 
-  private getTitle() {
+  getTitle() {
     this.varTableListTitle = []
     this.varTableListTitle.push('Pregunta')
     this.varTableListTitle.push('Accion')
@@ -195,7 +194,6 @@ export class CreateHomeworkGroupTeacherComponent implements OnInit {
         }
       }
     }
-    console.log(this.jsonQuestionsCheck)
   }
 
   save() {

@@ -4,6 +4,8 @@ import {StudentsGroupTeacherModel} from "../../model/students-group-teacher.mode
 import {HomeworkGroupTeacherModel} from "../../../Homework/model/homework-group-teacher.model";
 import {DeleteModalTeacherComponent} from "../../../../../../core/components/Teacher/DeleteModal/delete-modal-teacher.component";
 import {NzModalService, NzNotificationService} from "ng-zorro-antd";
+import {CreateHomeworkGroupTeacherComponent} from "../../../Homework/components/Modal/Create/create-homework-group-teacher.component";
+import {CreateStudentsGroupTeacherComponent} from "../../components/Modal/Create/create-students-group-teacher.component";
 
 @Component({
   selector: 'app-students-group-teacher',
@@ -20,6 +22,7 @@ export class StudentsGroupTeacherComponent implements OnInit {
 
   varTitle = 'Lista de estudiantes'
   varLoading = false
+  varTitleModal: string
 
   listStudents: StudentsGroupTeacherModel
 
@@ -87,5 +90,26 @@ export class StudentsGroupTeacherComponent implements OnInit {
       console.log(e)
       this.varLoading = false
     }
+  }
+
+  openAddStudents() {
+    this.varTitleModal = "Matricular"
+    this.openModalAdd(this.varTitleModal)
+  }
+
+  openModalAdd(title: string) {
+    const modal = this.modalService.create({
+      nzTitle: title,
+      nzContent: CreateStudentsGroupTeacherComponent,
+      nzWidth: 800,
+      nzMaskClosable: false,
+    })
+    modal.afterClose.subscribe((response: any) => {
+      if (response === undefined) {
+        return
+      } else if (response.status) {
+        this.getListStudents()
+      }
+    })
   }
 }
