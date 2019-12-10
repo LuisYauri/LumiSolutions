@@ -1,0 +1,26 @@
+<nz-header>
+  <div class="general-header">
+    <img class="header__logo" [src]="'assets/img/logo/logito.svg'" alt="">
+    <div class="header__box">
+      <div class="routelink-header">
+        <a [routerLink]="'classroom'" class="routelink-header--item">Aulas</a>
+        <a [routerLink]="'students'" class="routelink-header--item">Estudiantes</a>
+      </div>
+      <div class="header__text">Hola, {{firstName}} {{lastName}}
+      </div>
+      <nz-avatar (click)="open()" class="header__icon" [nzShape]="'square'" [nzSize]="'large'"  [nzText]="siglas"></nz-avatar>
+    </div>
+  </div>
+</nz-header>
+
+<nz-drawer
+  [nzClosable]="true"
+  [nzVisible]="visible"
+  nzPlacement="right"
+  nzTitle="Hola, {{firstName}} {{lastName}}"
+  (nzOnClose)="close()"
+>
+  <div class="box-drawer">
+    <button nz-button nzType="danger" (click)="logout()"><i nz-icon nzType="api" nzTheme="outline"></i>Salir</button>
+  </div>
+</nz-drawer>

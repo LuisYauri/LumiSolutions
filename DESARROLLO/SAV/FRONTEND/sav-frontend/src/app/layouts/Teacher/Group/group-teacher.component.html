@@ -1,0 +1,11 @@
+<nz-layout class="body">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzWidth]="286" [nzTrigger]="null">
+    <app-menu-left-group-teacher [isCollapsed]="isCollapsed"></app-menu-left-group-teacher>
+  </nz-sider>
+  <nz-layout>
+    <app-header-group-teacher></app-header-group-teacher>
+    <nz-content class="content_global">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from "./layouts/Login/login.component";
 import {StudentComponent} from "./layouts/Student/student.component";
 import {LayoutsModule} from "./layouts/layouts.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
-import {TeacherComponent} from "./layouts/Teacher/teacher.component";
+import {TeacherComponent} from "./layouts/Teacher/Global/teacher.component";
+import {GroupTeacherComponent} from "./layouts/Teacher/Group/group-teacher.component";
 
 
 const routes: Routes = [
@@ -35,10 +36,28 @@ const routes: Routes = [
       },
     ],
   },
-  {path: 'teacher-dashboard',
+  {
+    path: 'teacher-global',
     component: TeacherComponent,
-    children:[
-
+    children: [
+      {
+        path: 'classroom',
+        loadChildren: 'src/app/modules/Teacher/Global/Classroom/classroom-global-teacher.module#ClassroomGlobalTeacherModule',
+      },
+      {
+        path: 'students',
+        loadChildren: 'src/app/modules/Teacher/Global/Students/students-global-teacher.module#StudentsGlobalTeacherModule',
+      },
+    ]
+  },
+  {
+    path: 'teacher-group',
+    component: GroupTeacherComponent,
+    children: [
+      {
+        path: 'homework',
+        loadChildren: 'src/app/modules/Teacher/Group/Homework/homework-group-teacher.module#HomeworkGroupTeacherModule',
+      },
     ]
   }
 ];
@@ -51,4 +70,5 @@ const routes: Routes = [
     LayoutsModule],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

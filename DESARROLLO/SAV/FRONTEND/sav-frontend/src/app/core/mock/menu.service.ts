@@ -1,5 +1,5 @@
 export class MenuService {
-  static menuStudents(){
+  static menuStudents() {
     return [
       {
         title: 'Tareas',
@@ -28,31 +28,37 @@ export class MenuService {
     ]
   }
 
-  static menuTeachers(){
+  static menuTeachers() {
     return [
       {
         title: 'Tareas',
         key: 'Tareas',
-        url: '/student/homework',
+        url: '/teacher-group/homework',
         icon: 'file-text',
       },
+      // {
+      //   title: 'Examenes',
+      //   key: 'Examenes',
+      //   url: '/teacher-group/examn',
+      //   icon: 'profile',
+      // },
+      // {
+      //   title: 'Historial',
+      //   key: 'Historial',
+      //   url: '/teacher-group/history',
+      //   icon: 'read',
+      // },
       {
-        title: 'Examenes',
-        key: 'Examenes',
-        url: '/student/courses',
-        icon: 'profile',
-      },
-      {
-        title: 'Historial',
-        key: 'Historial',
-        url: '/student/historya-homework',
-        icon: 'read',
-      },
-      {
-        title: 'Criterios',
+        title: 'Estudiantes',
         key: 'Criterios',
-        url: '/student/historya-homework',
-        icon: 'copy',
+        url: '/teacher-group/students',
+        icon: 'team',
+      },
+      {
+        title: 'Preguntas',
+        key: 'Preguntas',
+        url: '/teacher-group/questions',
+        icon: 'message',
       },
     ]
   }
