@@ -61,7 +61,9 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	@Override
 	public List<TareaDto> getLsTareas(Integer idEstudiante) {
 		//contar las tareas formatear la fecha 
-		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante);
+		LocalDateTime fechaActual = LocalDateTime.now(ZoneId.of("America/Lima"));
+		/* System.out.println("***** fechaActual: " + fechaActual); */
+		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante, fechaActual);
 
 		lsTarea.forEach(e->{
 			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaInicio();
@@ -287,7 +289,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			LocalTime.of(0, 0, 0))
 		);
 		evaluacion.setFechaFin(
-			LocalDateTime.of(LocalDate.parse(tarea.getFechaInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
+			LocalDateTime.of(LocalDate.parse(tarea.getFechaLimite(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
 			LocalTime.parse(tarea.getTiempoLimite(), DateTimeFormatter.ofPattern("HH:mm")))
 		);
 		evaluacion.setCodTipoEvaluacion("T");
