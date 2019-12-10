@@ -1,6 +1,7 @@
 package pe.edu.savbackend.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -26,7 +27,7 @@ public class AulaController {
     
     @RequestMapping("")
 	public List<AulaDto> listaAulas() {
-		return aulaService.getLsAulas(); 
+		return aulaService.getLsAulas().stream().sorted((c1,c2)-> c2.getIdAula().compareTo(c1.getIdAula())).collect(Collectors.toList()); 
 	}
 
 	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
