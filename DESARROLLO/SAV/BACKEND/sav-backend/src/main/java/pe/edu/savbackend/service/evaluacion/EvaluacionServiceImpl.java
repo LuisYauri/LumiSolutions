@@ -66,7 +66,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 		List<TareaDto> lsTarea = evaluacionDao.getLsTareas(idEstudiante, fechaActual);
 
 		lsTarea.forEach(e->{
-			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaInicio();
+			LocalDateTime ldt = evaluacionDao.getOne(e.getIdTarea()).getFechaFin();
 			e.setCantidadPreguntas(evaluacionDetalleDao.cantidadPregunta(e.getIdTarea()).toString());
 			e.setFechaLimite((ldt.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 			e.setTiempoLimite((ldt.format(DateTimeFormatter.ofPattern("HH:mm:ss"))));
@@ -288,10 +288,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			LocalDateTime.of(LocalDate.parse(tarea.getFechaInicio(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
 			LocalTime.of(0, 0, 0))
 		);
+		System.out.println("fecha fin inicio : " + tarea.getFechaLimite() + " " + tarea.getTiempoLimite());
 		evaluacion.setFechaFin(
 			LocalDateTime.of(LocalDate.parse(tarea.getFechaLimite(), DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
 			LocalTime.parse(tarea.getTiempoLimite(), DateTimeFormatter.ofPattern("HH:mm")))
 		);
+		System.out.println("fecha fin fin : " + evaluacion.getFechaFin());
 		evaluacion.setCodTipoEvaluacion("T");
 		evaluacion.setIdGrupo(idGrupo);
 		evaluacion.setIdDocente(1);
@@ -310,6 +312,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 			ee.setIdEvaluacion(idEvaluacion);
 			ee.setIdArea(1);
 			ee.setCodigoEstadoEvaluacion("1");
+			ee.setIdGrupo(idGrupo);
 			estudianteEvaluacionDao.save(ee);
 		});
 		return evaluacion;
@@ -319,7 +322,7 @@ public class EvaluacionServiceImpl implements EvaluacionService {
 	public Boolean eliminarTarea(Integer idTarea) {
 		try{
 			Evaluacion evaluacion = evaluacionDao.getOne(idTarea);
-			evaluacion.setCodigoEstado("EE");
+			evaluacion.setCodigoEstado("0");
 			evaluacionDao.save(evaluacion);
 			return true;	
 		}catch(Exception e){

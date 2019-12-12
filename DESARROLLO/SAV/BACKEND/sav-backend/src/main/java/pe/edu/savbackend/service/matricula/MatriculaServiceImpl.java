@@ -27,9 +27,6 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Autowired
 	private EstudianteEvaluacionDao estudianteEvaluacionDao;
 
-	@Autowired
-	private EstudianteEvaluacionDao estudianteEvaluacionDao;
-
 	@Override
 	@Transactional	
 	public void matricular(Integer idAula, Integer[] idEstudiantes) {
@@ -44,9 +41,6 @@ public class MatriculaServiceImpl implements MatriculaService {
 	@Transactional	
 	public void eliminarAlumnoDeMatricula(Integer idEstudiante, Integer idAula) {
 		Matricula matricula = matriculaDao.obtenerMatricula(idEstudiante, idAula);
-		System.out.println("id_Matricula: " + matricula.getIdMatricula());
-		System.out.println("id_Estudiante: " + matricula.getIdEstudiante());
-		System.out.println("id_Grupo: " + matricula.getIdGrupo());
 		matriculaDao.delete(matricula);
 
 		List<EstudianteEvaluacion> lsEvaEst = estudianteEvaluacionDao.obtenerLsEvaluacionesPorEstudiante(idEstudiante, idAula);

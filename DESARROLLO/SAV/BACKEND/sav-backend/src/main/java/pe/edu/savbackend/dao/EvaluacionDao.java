@@ -54,5 +54,8 @@ public interface EvaluacionDao extends JpaRepository<Evaluacion, Integer>{
 	Evaluacion getEvaluacion(Integer idvaluacion);
 
 	@Query(value = "select max(e.idEvaluacion)+ 1 from Evaluacion e")
-    Integer nextId();
+	Integer nextId();
+	
+	@Query(value = "select e from Evaluacion e where e.idGrupo =?1")
+	List<Evaluacion> getEvaluacionesGrupo(Integer idGrupo);
 }
