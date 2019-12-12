@@ -2,6 +2,23 @@
 
 _Este proyecto busca brindar un espacio educativo adaptado a las necesidades de la realidad nacional fomentando que docentes puedan interactuar con los alumnos y desarrollen sus actividades académicas utilizando herramientas que faciliten los procesos de enseñanza usando las tecnologías actuales._
 
+## PÁGINA DE PRUEBA
+* https://ihcpro.firebaseapp.com/
+```
+USUARIO PROFESOR
+* Usuario: JOSECHAGUA
+* Contraseña: 123456
+
+USUARIO ALUMNO
+* Usuario: LUISYAURI
+* Contraseña: 123456
+```
+
+## PROTOTIPOS
+
+* https://www.figma.com/proto/YnIMsCbNfRtlM7ZOffvQLJ/AULA-VIRTUAL-E-P?node-id=4%3A0&viewport=346%2C139%2C0.06535005569458008&scaling=min-zoom
+* https://www.figma.com/file/YnIMsCbNfRtlM7ZOffvQLJ/AULA-VIRTUAL-E-P?node-id=0%3A1 
+
 ## Comenzando 🚀
 
 _Este contenido te permitirá conocer mejor el proyecto._
