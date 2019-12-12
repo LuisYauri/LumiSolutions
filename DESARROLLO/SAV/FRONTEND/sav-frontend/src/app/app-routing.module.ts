@@ -7,16 +7,22 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "./shared/shared.module";
 import {TeacherComponent} from "./layouts/Teacher/Global/teacher.component";
 import {GroupTeacherComponent} from "./layouts/Teacher/Group/group-teacher.component";
+import {TeacherGuard} from "./guards/teacher.guard";
+import {StudentGuard} from "./guards/student.guard";
+import {LoginGuard} from "./guards/login.guard";
+import {NotFoundComponent} from "./core/components/not-found/not-found.component";
 
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard],
   },
   {
     path: 'student',
     component: StudentComponent,
+    canActivate: [StudentGuard],
     children: [
       {
         path: 'homework',
@@ -39,6 +45,7 @@ const routes: Routes = [
   {
     path: 'teacher-global',
     component: TeacherComponent,
+    canActivate: [TeacherGuard],
     children: [
       {
         path: 'classroom',
@@ -53,12 +60,21 @@ const routes: Routes = [
   {
     path: 'teacher-group',
     component: GroupTeacherComponent,
+    canActivate: [TeacherGuard],
     children: [
       {
         path: 'homework',
         loadChildren: 'src/app/modules/Teacher/Group/Homework/homework-group-teacher.module#HomeworkGroupTeacherModule',
       },
+      {
+        path: 'students',
+        loadChildren: 'src/app/modules/Teacher/Group/Students/students-group-teacher.module#StudentsGroupTeacherModule',
+      },
     ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

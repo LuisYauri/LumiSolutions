@@ -26,6 +26,7 @@ export class ModalHelpStudentComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.resource)
     this.selectValue = this.resource.alumnoCalificacion
     this.getCommentForm()
     this.getComments(this.resource.idRecurso)

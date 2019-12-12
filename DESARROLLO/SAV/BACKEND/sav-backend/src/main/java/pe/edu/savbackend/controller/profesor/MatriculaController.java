@@ -2,8 +2,6 @@ package pe.edu.savbackend.controller.profesor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +25,7 @@ public class MatriculaController {
 	MatriculaService matriculaService;
 	
 	@PostMapping(value = "/aula/{idAula}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+
 	public void matricular(@PathVariable Integer idAula, @RequestBody Integer[] idEstudiantes) {
 		matriculaService.matricular(idAula, idEstudiantes);
 	}
