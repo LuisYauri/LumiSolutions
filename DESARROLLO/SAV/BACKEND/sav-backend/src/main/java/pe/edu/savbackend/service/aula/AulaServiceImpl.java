@@ -29,7 +29,8 @@ public class AulaServiceImpl implements AulaService {
 
 	@Override
 	public Grupo registrarAula(AulaDto aula) {
-		if(grupoDao.existe(aula.getGrupo()) != 0) {
+		if(grupoDao.existe(aula.getGrupo(), aula.getAnio(), String.valueOf(aula.getCodigoGrado())) != 0)
+		{
 			throw new RuntimeException("El nombre de grupo ya existe");
 		}
 		Grupo grupo = new Grupo();
@@ -45,18 +46,20 @@ public class AulaServiceImpl implements AulaService {
 	@Override
 	public Grupo actualizarAula(AulaDto aula) {
 		Grupo grupo = grupoDao.getOne(aula.getIdAula());
-		if(!aula.getGrupo().equals(grupo.getNombre()))
-		{
-			if(grupoDao.existe(aula.getGrupo()) != 0) 
+		if(!aula.getGrupo().equals(grupo.getNombre()) || 
+		   !aula.getAnio().equals(grupo.getAnio())    ||
+		   !grupo.getCodigoGrado().equals(String.valueOf(aula.getCodigoGrado())))
+		{ 
+			if(grupoDao.existe(aula.getGrupo(), aula.getAnio(), String.valueOf(aula.getCodigoGrado())) != 0) 
 			{
 				throw new RuntimeException("El nombre de grupo ya existe");
 			}
 			grupo.setNombre(aula.getGrupo());
+			grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
+			grupo.setAnio(aula.getAnio());
+			grupo = grupoDao.save(grupo);
 		}
-		
-		grupo.setCodigoGrado(String.valueOf(aula.getCodigoGrado()));
-		grupo.setAnio(aula.getAnio());
-		return grupoDao.save(grupo);
+		return grupo;
 	}
 
 	@Override

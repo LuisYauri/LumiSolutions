@@ -18,7 +18,7 @@ public interface GrupoDao extends JpaRepository<Grupo, Integer>{
     @Query(value = "select max(c.idGrupo)+ 1 from Grupo c")
     Integer nextId();
     
-    @Query(value = "select count(c) from Grupo c where c.nombre = ?1")
-    Integer existe(String nombreGrupo);
+    @Query(value = "select count(c) from Grupo c where c.nombre = ?1 and c.anio=?2 and c.codigoGrado=?3")
+    Integer existe(String nombreGrupo, Integer anio, String codigoGrado);
     
 }
